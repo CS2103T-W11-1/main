@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>AddressBook Level 3 - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>AlgoBase - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>AddressBook Level 3 - Developer Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>AlgoBase - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team CS2103T-W11-1</code>      Since: <code>Sept 2019</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -40,7 +40,7 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
+<li><a href="#deleting-a-problem">G.2. Deleting a problem</a></li>
 <li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
@@ -76,14 +76,14 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <code>.puml</code> files used to create diagrams in this document can be found in the <a href="https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/">diagrams</a> folder.
+The <code>.puml</code> files used to create diagrams in this document can be found in the <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/docs/diagrams/">diagrams</a> folder.
 Refer to the <a href="UsingPlantUml.html">Using PlantUML guide</a> to learn how to create and edit diagrams.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has two classes called <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java"><code>Main</code></a> and <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/Main.java"><code>Main</code></a> and <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -170,13 +170,13 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -202,7 +202,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -254,7 +254,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Model</code>,</p>
@@ -299,7 +299,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="title">Figure 8. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -645,7 +645,14 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Value proposition</strong>: manage contacts faster than a typical mouse/GUI driven app</p>
+<p><strong>Value proposition</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To manage algorithmic problems and training plans faster than using Excel sheets</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -680,63 +687,126 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a new problem</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of the problems for future usage</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">delete a person</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete a problem</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">remove entries that I no longer need</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">find a person by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of persons without having to go through the entire list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find a problem by keyword</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of problems without having to go through the entire list</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing them by accident</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">do advanced search on problems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of problems without having to go through the entire list</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">do fuzzy search on problems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of problems without having to go through the entire list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create custom tags</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">categorize problems via tags</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add tags to problems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">categorize problems via tags</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort problems according to difficulty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate problems easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add remarks to problems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have reference in the future</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create plans containing problems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">better prepare for interview</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add problems to a plan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">better prepare for interview</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mark problems as complete/incomplete within plans</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">better prepare for interview</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">import database from <a href="#json">JSON</a> files</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily transfer data from one computer to another</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">export data into JSON format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily transfer data from one computer to another</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">advanced user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">export data into CSV format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">do some manipulation/processing on the data</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>AlgoBase</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
+<h3 id="use-case-1-add-problem" class="discrete">Use Case 1: Add Problem</h3>
+<div class="paragraph">
+<p><strong>Guarantees</strong></p>
+</div>
+<div class="paragraph">
+<p>Problem will be added to the application if and only if the required fields are specified and the details entered are all valid.</p>
+</div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to list persons</p>
+<p>User launches AlgoBase.</p>
 </li>
 <li>
-<p>AddressBook shows a list of persons</p>
+<p>User adds a new problem by entering the name of the problem, optionally specifying the description, author, weblink, source as well as any remarks or tags.</p>
 </li>
 <li>
-<p>User requests to delete a specific person in the list</p>
+<p>AlgoBase indicates successful addition of new problem.</p>
 </li>
 <li>
-<p>AddressBook deletes the person</p>
+<p>AlgoBase displays details of problem added.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -749,19 +819,26 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The list is empty.</p>
+<p>2a. AlgoBase detects that an existing name already exists.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that problem was not successfully added because the name already exists.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
+</ul>
+</div>
+</li>
 <li>
-<p>3a. The given index is invalid.</p>
+<p>2b. AlgoBase detects a missing name or invalid format for some field(s).</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. AddressBook shows an error message.</p>
+<p>2b1. AlgoBase informs user that problem was not successfully added because the format is invalid.</p>
 <div class="paragraph">
-<p>Use case resumes at step 2.</p>
+<p>Use case ends.</p>
 </div>
 </li>
 </ul>
@@ -769,8 +846,318 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
+<h3 id="use-case-2-edit-problem" class="discrete">Use Case 2: Edit Problem</h3>
 <div class="paragraph">
-<p><em>{More to be added}</em></p>
+<p><strong>Preconditions</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>There are existing problems in the storage of AlgoBase.</p>
+</li>
+<li>
+<p>The command is formatted correctly and the provided arguments meet the requirement for corresponding fields.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Guarantees</strong></p>
+</div>
+<div class="paragraph">
+<p>The matched problem in the application will be edited with the provided fields.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User launches AlgoBase.</p>
+</li>
+<li>
+<p>User edits an existing problem by entering the index, followed by fields that the user intends to edit (including name, description, weblink, author, source, remark, tag, etc.).</p>
+</li>
+<li>
+<p>AlgoBase indicates successful edition of the existing problem.</p>
+</li>
+<li>
+<p>AlgoBase updates the UI with the updated problem.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AlgoBase detects the index is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that the edition is unsuccessful because the index is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2b. AlgoBase detects no provided fields.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. AlgoBase informs user that nothing is updated.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-3-delete-problem" class="discrete">Use Case 3: Delete Problem</h3>
+<div class="paragraph">
+<p><strong>Guarantees</strong></p>
+</div>
+<div class="paragraph">
+<p>Problem will be deleted and removed from local storage of AlgoBase and cannot find from relevant tags.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User launches AlgoBase.</p>
+</li>
+<li>
+<p>User deletes an existing problem by entering index.</p>
+</li>
+<li>
+<p>AlgoBase indicates successful deletion of the existing problem.</p>
+</li>
+<li>
+<p>AlgoBase updates the UI with the remaining problems.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AlgoBase detects the index is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that the deletion is unsuccessful because the index is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-4-list-problem" class="discrete">Use Case 4: List Problem</h3>
+<div class="paragraph">
+<p><strong>Guarantees</strong></p>
+</div>
+<div class="paragraph">
+<p>A list of existing problems will be returned.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User launches AlgoBase.</p>
+</li>
+<li>
+<p>User requests for a list of all existing problems.</p>
+</li>
+<li>
+<p>AlgoBase returns a list of problems stored in AlgoBase.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. There is no existing problems stored in AlgoBase.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that there is no existing problems.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-5-find-problem" class="discrete">Use Case 5: Find Problem</h3>
+<div class="paragraph">
+<p><strong>Guarantees</strong></p>
+</div>
+<div class="paragraph">
+<p>A list of existing problems with matching fields will be returned.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User launches AlgoBase.</p>
+</li>
+<li>
+<p>User requests to find a problem by specifying keywords in certain fields.</p>
+</li>
+<li>
+<p>AlgoBase returns a list of problems that have matching keywords in specified fields.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The user specifies no keywords in any fields.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase returns a list of all existing problems.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. There is no problem that matches the user’s requirement.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. AlgoBase informs user there is no matching problem.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c. There is no existing problems stored in AlgoBase.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c1. AlgoBase informs user that there is currently no problems.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-6-sort-problem" class="discrete">Use Case 6: Sort Problem</h3>
+<div class="paragraph">
+<p><strong>Guarantees</strong></p>
+</div>
+<div class="paragraph">
+<p>A list of problems will be returned in a specific order restricted by user.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User launches AlgoBase.</p>
+</li>
+<li>
+<p>User requests to sort a set of problems by specifying rules of ordering.</p>
+</li>
+<li>
+<p>AlgoBase show the set of questions in sorted order.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The user specifies no sort order.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that no sort order is given.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. There is no existing problems stored in AlgoBase.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. AlgoBase informs user that there is currently no problems.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -780,18 +1167,33 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
+<p>Every change is saved immediately and no manual saving is needed.</p>
+</li>
+<li>
+<p>A user with above average typing speed for regular Unix commands should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
+</li>
+<li>
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>11</code> or above installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
+<p>Should work on both <code>32-bit</code> and <code>64-bit</code> <a href="#environment">environments</a>.</p>
 </li>
 <li>
-<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
+<p>Should be able to hold up to 1000 problems with <a href="#response-time">response time</a> less than 1 second for typical usage.</p>
+</li>
+<li>
+<p>Should work without installation (i.e. portable).</p>
+</li>
+<li>
+<p>Should be for a single user i.e. (not a multi-user product).</p>
+</li>
+<li>
+<p>Storage file should be human interpretable and editable for someone who’s familiar with JSON.</p>
+</li>
+<li>
+<p>Not required to store <a href="#solutions">solutions to problems</a>.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -800,13 +1202,25 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="sectionbody">
 <div class="dlist">
 <dl>
+<dt class="hdlist1"><a id="json"></a> JSON</dt>
+<dd>
+<p>JavaScript Object Notation</p>
+</dd>
 <dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
 <dd>
 <p>Windows, Linux, Unix, OS-X</p>
 </dd>
-<dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
+<dt class="hdlist1"><a id="environment"></a> Environment</dt>
 <dd>
-<p>A contact detail that is not meant to be shared with others</p>
+<p>An execution environment offered by mainstream OSes as defined above</p>
+</dd>
+<dt class="hdlist1"><a id="response-time"></a> Response Time</dt>
+<dd>
+<p>An execution environment offered by mainstream OSes as defined above</p>
+</dd>
+<dt class="hdlist1"><a id="solutions"></a> Solutions to Problems</dt>
+<dd>
+<p>Source code or executable that aims to solve the corresponding problem</p>
 </dd>
 </dl>
 </div>
@@ -819,7 +1233,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <p><strong>Product Name</strong></p>
 </div>
 <div class="paragraph">
-<p>Author: &#8230;&#8203;</p>
+<p>Author: <code>Team CS2103T-W11-1</code></p>
 </div>
 <div class="paragraph">
 <p>Pros:</p>
@@ -880,7 +1294,7 @@ These instructions only provide a starting point for testers to work on; testers
 </li>
 <li>
 <p>Double-click the jar file<br>
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
+Expected: Shows the GUI with a set of sample problems. The window size may not be optimum.</p>
 </li>
 </ol>
 </div>
@@ -901,20 +1315,17 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
+<h3 id="deleting-a-problem"><a class="link" href="#deleting-a-problem">G.2. Deleting a problem</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Deleting a problem while all problems are listed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all problems using the <code>list</code> command. Multiple persons in the list.</p>
 </li>
 <li>
 <p>Test case: <code>delete 1</code><br>
@@ -933,9 +1344,6 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
@@ -953,9 +1361,6 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-09-29 10:06:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-09-30 13:12:41 UTC</div></div></div></body></html>
