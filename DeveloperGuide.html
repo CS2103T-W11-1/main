@@ -39,8 +39,8 @@
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-problem">F.2. Deleting a problem</a></li>
-<li><a href="#saving-data">F.3. Saving data</a></li>
+<li><a href="#deleting-problems">F.2. Deleting Problems</a></li>
+<li><a href="#saving-data">F.3. Saving Data</a></li>
 </ul>
 </li>
 </ul>
@@ -746,13 +746,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add problems to a plan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add tasks to a plan</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">better prepare for interview</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mark problems as complete/incomplete within plans</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mark tasks as complete/incomplete within plans</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">better prepare for interview</p></td>
 </tr>
 <tr>
@@ -783,23 +783,17 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>AlgoBase</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-1-add-problem" class="discrete">Use Case 1: Add Problem</h3>
-<div class="paragraph">
-<p><strong>Guarantees</strong></p>
-</div>
-<div class="paragraph">
-<p>Problem will be added to the application if and only if the required fields are specified and the details entered are all valid.</p>
-</div>
+<h3 id="use-case-1-add-problems" class="discrete">Use Case 1: Add Problems</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User launches AlgoBase.</p>
+<p>User requests to add a new problem by entering the name of the problem, optionally specifying the description, author, weblink, source as well as any remarks or tags.</p>
 </li>
 <li>
-<p>User adds a new problem by entering the name of the problem, optionally specifying the description, author, weblink, source as well as any remarks or tags.</p>
+<p>AlgoBase adds a new problem with the provided details.</p>
 </li>
 <li>
 <p>AlgoBase indicates successful addition of new problem.</p>
@@ -831,7 +825,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </li>
 <li>
-<p>2b. AlgoBase detects a missing name or invalid format for some field(s).</p>
+<p>2b. AlgoBase detects that name is missing or format for some field(s) is invalid.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -845,36 +839,17 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-2-edit-problem" class="discrete">Use Case 2: Edit Problem</h3>
-<div class="paragraph">
-<p><strong>Preconditions</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>There are existing problems in the storage of AlgoBase.</p>
-</li>
-<li>
-<p>The command is formatted correctly and the provided arguments meet the requirement for corresponding fields.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Guarantees</strong></p>
-</div>
-<div class="paragraph">
-<p>The matched problem in the application will be edited with the provided fields.</p>
-</div>
+<h3 id="use-case-2-edit-problems" class="discrete">Use Case 2: Edit Problems</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User launches AlgoBase.</p>
+<p>User requests to edit an existing problem by entering the index, followed by fields that the user intends to edit (including name, description, weblink, author, source, remark, tag, etc.).</p>
 </li>
 <li>
-<p>User edits an existing problem by entering the index, followed by fields that the user intends to edit (including name, description, weblink, author, source, remark, tag, etc.).</p>
+<p>AlgoBase edits the problem using the provided details.</p>
 </li>
 <li>
 <p>AlgoBase indicates successful edition of the existing problem.</p>
@@ -893,7 +868,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. AlgoBase detects the index is out of bounds.</p>
+<p>2a. AlgoBase detects that the index is out of bounds.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -905,8 +880,12 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </ul>
 </div>
 </li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
 <li>
-<p>2b. AlgoBase detects no provided fields.</p>
+<p>2b. AlgoBase detects that no fields are provided.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -920,23 +899,17 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-3-delete-problem" class="discrete">Use Case 3: Delete Problem</h3>
-<div class="paragraph">
-<p><strong>Guarantees</strong></p>
-</div>
-<div class="paragraph">
-<p>Problem will be deleted and removed from local storage of AlgoBase and cannot find from relevant tags.</p>
-</div>
+<h3 id="use-case-3-delete-problems" class="discrete">Use Case 3: Delete Problems</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User launches AlgoBase.</p>
+<p>User requests to delete an existing problem by entering index.</p>
 </li>
 <li>
-<p>User deletes an existing problem by entering index.</p>
+<p>AlgoBase deletes the problem from storage.</p>
 </li>
 <li>
 <p>AlgoBase indicates successful deletion of the existing problem.</p>
@@ -955,7 +928,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. AlgoBase detects the index is out of bounds.</p>
+<p>2a. AlgoBase detects that the index is out of bounds.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -969,12 +942,12 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-4-list-problem" class="discrete">Use Case 4: List Problem</h3>
+<h3 id="use-case-4-list-problems" class="discrete">Use Case 4: List Problems</h3>
 <div class="paragraph">
 <p><strong>Guarantees</strong></p>
 </div>
 <div class="paragraph">
-<p>A list of existing problems will be returned.</p>
+<p>A list of existing problems will be displayed.</p>
 </div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -982,13 +955,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User launches AlgoBase.</p>
-</li>
-<li>
 <p>User requests for a list of all existing problems.</p>
 </li>
 <li>
-<p>AlgoBase returns a list of problems stored in AlgoBase.</p>
+<p>AlgoBase retrieves all problems in storage.</p>
+</li>
+<li>
+<p>AlgoBase displays in the UI the list of problems stored in AlgoBase.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1001,7 +974,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. There is no existing problems stored in AlgoBase.</p>
+<p>2a. AlgoBase detects no existing problems stored.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -1015,12 +988,12 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-5-find-problem" class="discrete">Use Case 5: Find Problem</h3>
+<h3 id="use-case-5-find-problems" class="discrete">Use Case 5: Find Problems</h3>
 <div class="paragraph">
 <p><strong>Guarantees</strong></p>
 </div>
 <div class="paragraph">
-<p>A list of existing problems with matching fields will be returned.</p>
+<p>A list of existing problems with matching keywords in specified fields will be displayed.</p>
 </div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -1028,13 +1001,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User launches AlgoBase.</p>
+<p>User requests to find problems by specifying keywords in certain fields.</p>
 </li>
 <li>
-<p>User requests to find a problem by specifying keywords in certain fields.</p>
+<p>AlgoBase retrieves all problems with matching keywords in specified fields from storage.</p>
 </li>
 <li>
-<p>AlgoBase returns a list of problems that have matching keywords in specified fields.</p>
+<p>AlgoBase displays in the UI the list of problems with matching keywords in specified fields.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1047,7 +1020,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The user specifies no keywords in any fields.</p>
+<p>2a. AlgoBase detects that no keywords in any fields are specified.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -1061,12 +1034,12 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-6-sort-problem" class="discrete">Use Case 6: Sort Problem</h3>
+<h3 id="use-case-6-sort-problems" class="discrete">Use Case 6: Sort Problems</h3>
 <div class="paragraph">
 <p><strong>Guarantees</strong></p>
 </div>
 <div class="paragraph">
-<p>A list of problems will be returned in a specific order restricted by user.</p>
+<p>A list of problems will be displayed in a specific order provided by user.</p>
 </div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -1074,13 +1047,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User launches AlgoBase.</p>
-</li>
-<li>
 <p>User requests to sort a set of problems by specifying rules of ordering.</p>
 </li>
 <li>
-<p>AlgoBase show the set of questions in sorted order.</p>
+<p>AlgoBase sorts the problem list using the provided order.</p>
+</li>
+<li>
+<p>AlgoBase displays the set of questions in sorted order.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1093,7 +1066,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The user specifies no sort order.</p>
+<p>2a. AlgoBase detects that no sort order is specified.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -1107,20 +1080,26 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 </ul>
 </div>
-<h3 id="use-case-7-switch-between-view-of-items" class="discrete">Use Case 7: Switch between view of items.</h3>
+<h3 id="use-case-7-add-tasks-to-plan" class="discrete">Use Case 7: Add Tasks to Plan</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User launches AlgoBase.</p>
+<p>User requests to add a new task by entering the index of the problem and index of the plan.</p>
 </li>
 <li>
-<p>User requests to switch the current view of items to a different view of items.</p>
+<p>AlgoBase creates a new task with the specified problem.</p>
 </li>
 <li>
-<p>AlgoBase shows the list of items corresponding to that view.</p>
+<p>AlgoBase adds the newly created task to the specified plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates successful addition of new task to plan.</p>
+</li>
+<li>
+<p>AlgoBase displays details of task added.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1133,7 +1112,241 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The specified view of items does not exist.</p>
+<p>2a. AlgoBase detects that the index of problem is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that the addition is unsuccessful because the index of problem is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. AlgoBase detects that the index of plan is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. AlgoBase informs user that the addition is unsuccessful because the index of plan is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-8-delete-tasks-from-plan" class="discrete">Use Case 8: Delete Tasks from Plan</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to delete an existing task by entering the index of the plan and index of the task.</p>
+</li>
+<li>
+<p>AlgoBase deletes the specified task from the specified plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates successful deletion of the existing task.</p>
+</li>
+<li>
+<p>AlgoBase updates the UI with the remaining tasks in the plan.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AlgoBase detects that the index of plan is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that the deletion is unsuccessful because the index of plan is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. AlgoBase detects that the index of task is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. AlgoBase informs user that the deletion is unsuccessful because the index of task is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-9-mark-tasks-as-done-in-plan" class="discrete">Use Case 9: Mark Tasks as Done in Plan</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to mark an existing task as done by entering the index of the plan and index of the task.</p>
+</li>
+<li>
+<p>AlgoBase marks the specified task as done in the specified plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates that the existing task is marked as done successfully.</p>
+</li>
+<li>
+<p>AlgoBase displays details of the task updated.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AlgoBase detects that the index of plan is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that the update is unsuccessful because the index of plan is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. AlgoBase detects that the index of task is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. AlgoBase informs user that the update is unsuccessful because the index of task is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-10-mark-tasks-as-undone-in-plan" class="discrete">Use Case 10: Mark Tasks as Undone in Plan</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to mark an existing task as undone by entering the index of the plan and index of the task.</p>
+</li>
+<li>
+<p>AlgoBase marks the specified task as undone in the specified plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates that the existing task is marked as done successfully.</p>
+</li>
+<li>
+<p>AlgoBase displays details of the task updated.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AlgoBase detects that the index of plan is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that the update is unsuccessful because the index of plan is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. AlgoBase detects that the index of task is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. AlgoBase informs user that the update is unsuccessful because the index of task is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-11-switch-between-view-of-items" class="discrete">Use Case 11: Switch between View of Items</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to switch the current view of items to a different view of items.</p>
+</li>
+<li>
+<p>AlgoBase displays the list of items corresponding to that view.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AlgoBase detects that the specified view of items does not exist.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -1268,7 +1481,7 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-problem"><a class="link" href="#deleting-a-problem">F.2. Deleting a problem</a></h3>
+<h3 id="deleting-problems"><a class="link" href="#deleting-problems">F.2. Deleting Problems</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1297,7 +1510,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.3. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">F.3. Saving Data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1319,4 +1532,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-15 09:18:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-15 13:17:27 UTC</div></div></div></body></html>

@@ -68,7 +68,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>list</code></strong> : lists all problems</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Wee Han</code> : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Wee Han'</p>
+<p><strong><code>add</code></strong><code>n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Halim</code> : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Wee Han'</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
@@ -148,10 +148,40 @@ A problem can have any number of tags (including 0)
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-all-problems-code-list-code"><a class="link" href="#listing-all-problems-code-list-code">3.1.2. Listing all problems : <code>list</code></a></h4>
+<h4 id="deleting-a-problem-code-delete-code"><a class="link" href="#deleting-a-problem-code-delete-code">3.1.2. Deleting a problem : <code>delete</code></a></h4>
 <div class="paragraph">
-<p>Displays a list of all existing problems.<br>
-Format: <code>list</code></p>
+<p>Deletes an existing problem.<br>
+Format: <code>delete INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the problem at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed problem list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>delete 2</code><br>
+Deletes the 2nd problem in the displayed list.</p>
+</li>
+<li>
+<p><code>find n/factorial</code><br>
+<code>delete 1</code><br>
+Deletes the 1st problem in the results of the <code>find</code> command.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -289,40 +319,10 @@ Returns any problem having names <code>factorial</code>, or <code>permutations</
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-problem-code-delete-code"><a class="link" href="#deleting-a-problem-code-delete-code">3.1.5. Deleting a problem : <code>delete</code></a></h4>
+<h4 id="listing-all-problems-code-list-code"><a class="link" href="#listing-all-problems-code-list-code">3.1.5. Listing all problems : <code>list</code></a></h4>
 <div class="paragraph">
-<p>Deletes an existing problem.<br>
-Format: <code>delete INDEX</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the problem at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed problem list.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list</code><br>
-<code>delete 2</code><br>
-Deletes the 2nd problem in the displayed list.</p>
-</li>
-<li>
-<p><code>find n/factorial</code><br>
-<code>delete 1</code><br>
-Deletes the 1st problem in the results of the <code>find</code> command.</p>
-</li>
-</ul>
+<p>Displays a list of all existing problems.<br>
+Format: <code>list</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -473,10 +473,10 @@ Format: <code>listplan</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-a-problem-as-done-code-done-code"><a class="link" href="#marking-a-problem-as-done-code-done-code">3.3.5. Marking a problem as done: <code>done</code></a></h4>
+<h4 id="adding-a-new-task-to-a-plan-code-addtask-code"><a class="link" href="#adding-a-new-task-to-a-plan-code-addtask-code">3.3.5. Adding a new task to a plan: <code>addtask</code></a></h4>
 <div class="paragraph">
-<p>Marks a problem in a given plan as done.<br>
-Format: <code>done PLAN_INDEX PROBLEM_INDEX</code></p>
+<p>Adds a task to a specified plan.<br>
+Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -484,16 +484,16 @@ Format: <code>done PLAN_INDEX PROBLEM_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>done 1 2</code></p>
+<p><code>addtask plan/1 prob/1</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="unmarking-a-problem-as-undone-code-undone-code"><a class="link" href="#unmarking-a-problem-as-undone-code-undone-code">3.3.6. Unmarking a problem as undone: <code>undone</code></a></h4>
+<h4 id="deleting-a-task-from-a-plan-code-deletetask-code"><a class="link" href="#deleting-a-task-from-a-plan-code-deletetask-code">3.3.6. Deleting a task from a plan: <code>deletetask</code></a></h4>
 <div class="paragraph">
-<p>Marks a problem in a given plan as undone.<br>
-Format: <code>undone PLAN_INDEX PROBLEM_INDEX</code></p>
+<p>Deletes a specified task from a specified plan.<br>
+Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -501,7 +501,41 @@ Format: <code>undone PLAN_INDEX PROBLEM_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>undone 1 2</code></p>
+<p><code>deletetask plan/1 task/1</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="marking-a-task-as-done-code-donetask-code"><a class="link" href="#marking-a-task-as-done-code-donetask-code">3.3.7. Marking a task as done: <code>donetask</code></a></h4>
+<div class="paragraph">
+<p>Marks a specified task in a specified plan as done.<br>
+Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>donetask plan/1 task/1</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="marking-a-task-as-undone-code-undonetask-code"><a class="link" href="#marking-a-task-as-undone-code-undonetask-code">3.3.8. Marking a task as undone: <code>undonetask</code></a></h4>
+<div class="paragraph">
+<p>Marks a specified task in a specified plan as undone.<br>
+Format: <code>undone plan/PLAN_INDEX prob/TASK_INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>undonetask plan/1 task/1</code></p>
 </li>
 </ul>
 </div>
@@ -712,4 +746,4 @@ e.g. <code>export f/csv p/./</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-15 09:18:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-15 13:17:27 UTC</div></div></div></body></html>
