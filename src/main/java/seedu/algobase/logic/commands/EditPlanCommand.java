@@ -36,19 +36,21 @@ public class EditPlanCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the Plan identified "
             + "by the index number used in the displayed Plan list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters:\n"
+            + "INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_START_DATE + "START_DATE] "
-            + "[" + PREFIX_END_DATE + "END_DATE] \n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "[" + PREFIX_END_DATE + "END_DATE]\n"
+            + "Example:\n"
+            + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "future questions of CS2040 "
             + PREFIX_START_DATE + "2019/01/01"
             + PREFIX_END_DATE + "3019/12/12";
 
     public static final String MESSAGE_EDIT_PLAN_SUCCESS = "Edited Plan: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PLAN = "This Plan already exists in the algobase.";
+    public static final String MESSAGE_DUPLICATE_PLAN = "A plan of this name already exists in the algobase.";
 
     private final Index index;
     private final EditPlanDescriptor editPlanDescriptor;

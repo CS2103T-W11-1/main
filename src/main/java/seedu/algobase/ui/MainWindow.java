@@ -16,6 +16,7 @@ import seedu.algobase.logic.Logic;
 import seedu.algobase.logic.commands.CommandResult;
 import seedu.algobase.logic.commands.exceptions.CommandException;
 import seedu.algobase.logic.parser.exceptions.ParseException;
+import seedu.algobase.model.ModelEnum;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -33,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private DisplayTabPane displayTabPane;
     private ProblemListPanel problemListPanel;
+    private PlanListPanel planListPanel;
+    private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -109,11 +112,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         problemListPanel = new ProblemListPanel(logic.getProcessedProblemList());
-        DisplayTab problemListPanelTab = new DisplayTab("Problems", problemListPanel);
-        DisplayTab tagListPanelTab = new DisplayTab("Tags");
-        DisplayTab planListPanelTab = new DisplayTab("Plans");
+        planListPanel = new PlanListPanel(logic.getProcessedPlanList());
+        taskListPanel = new TaskListPanel(logic.getProcessedTaskList());
+        DisplayTab problemListPanelTab = new DisplayTab(ModelEnum.PROBLEM.getTabName(), problemListPanel);
+        DisplayTab tagListPanelTab = new DisplayTab(ModelEnum.TAG.getTabName());
+        DisplayTab planListPanelTab = new DisplayTab(ModelEnum.PLAN.getTabName(), planListPanel);
+        DisplayTab taskListPanelTab = new DisplayTab(ModelEnum.TASK.getTabName(), taskListPanel);
 
-        displayTabPane = new DisplayTabPane(problemListPanelTab, tagListPanelTab, planListPanelTab);
+        displayTabPane =
+            new DisplayTabPane(
+                logic.getGuiState(), problemListPanelTab, tagListPanelTab, planListPanelTab, taskListPanelTab);
         displayTabPanePlaceholder.getChildren().add(displayTabPane.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -168,6 +176,14 @@ public class MainWindow extends UiPart<Stage> {
 
     public ProblemListPanel getProblemListPanel() {
         return problemListPanel;
+    }
+
+    public PlanListPanel getPlanListPanel() {
+        return planListPanel;
+    }
+
+    public TaskListPanel getTaskListPanel() {
+        return taskListPanel;
     }
 
     /**

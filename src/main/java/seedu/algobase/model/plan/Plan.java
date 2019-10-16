@@ -3,6 +3,7 @@ package seedu.algobase.model.plan;
 import static seedu.algobase.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,6 +17,9 @@ import seedu.algobase.model.task.Task;
  */
 public class Plan {
 
+    public static final String DATE_TIME_CONSTRAINTS = "DateTime format should be 'yyyy-MM-dd HH:mm:ss'.";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     // Identity fields
     private final PlanName planName;
 
@@ -25,11 +29,9 @@ public class Plan {
     private final LocalDateTime endDate;
     private final Set<Task> tasks;
 
-
     /**
      * Every field must be present and not null.
      */
-
     public Plan(PlanName planName, PlanDescription planDescription, LocalDateTime startDate, LocalDateTime endDate,
                 Set<Task> tasks) {
         requireAllNonNull(planName, planDescription, startDate, endDate, tasks);
@@ -39,6 +41,21 @@ public class Plan {
         this.endDate = endDate;
         this.tasks = new HashSet<>();
         this.tasks.addAll(tasks);
+    }
+
+    /**
+     * Creates and returns a {@code Plan} with the details of {@code planToUpdate}
+     * with an updated {@code taskSet}.
+     */
+    public static Plan createUpdatedPlan(Plan planToUpdate, Set taskSet) {
+        assert planToUpdate != null;
+
+        PlanName updatedName = planToUpdate.getPlanName();
+        PlanDescription updatedDescription = planToUpdate.getPlanDescription();
+        LocalDateTime startDate = planToUpdate.getStartDate();
+        LocalDateTime endDate = planToUpdate.getEndDate();
+
+        return new Plan(updatedName, updatedDescription, startDate, endDate, taskSet);
     }
 
     public PlanName getPlanName() {
