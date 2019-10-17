@@ -2,6 +2,8 @@ package seedu.algobase.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +13,9 @@ import seedu.algobase.commons.core.index.Index;
 import seedu.algobase.commons.util.StringUtil;
 import seedu.algobase.logic.commands.SortCommand;
 import seedu.algobase.logic.parser.exceptions.ParseException;
+import seedu.algobase.model.plan.Plan;
+import seedu.algobase.model.plan.PlanDescription;
+import seedu.algobase.model.plan.PlanName;
 import seedu.algobase.model.problem.Author;
 import seedu.algobase.model.problem.Description;
 import seedu.algobase.model.problem.Difficulty;
@@ -56,6 +61,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} into a {@code PlanName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static PlanName parsePlanName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new PlanName(trimmedName);
+    }
+
+    /**
      * Parses a {@code String author} into a {@code Author}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -86,6 +106,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String description} into an {@code PlanDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static PlanDescription parsePlanDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new PlanDescription(trimmedDescription);
+    }
+
+    /**
      * Parses a {@code String weblink} into an {@code WebLink}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -106,8 +141,12 @@ public class ParserUtil {
      * @throws ParseException if the given {@code difficulty} is invalid.
      */
     public static Difficulty parseDifficulty(String difficulty) throws ParseException {
-        // TODO: implement parse difficulty
-        return Difficulty.DEFAULT_DIFFICULTY;
+        requireNonNull(difficulty);
+        String trimmedDifficulty = difficulty.trim();
+        if (!Difficulty.isValidDifficulty(trimmedDifficulty)) {
+            throw new ParseException(Difficulty.MESSAGE_CONSTRAINTS);
+        }
+        return new Difficulty(trimmedDifficulty);
     }
 
     /**
@@ -116,7 +155,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code remark} is invalid.
      */
     public static Remark parseRemark(String remark) throws ParseException {
-        // TODO: implementation
+        String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+        }
         return new Remark(remark);
     }
 
@@ -126,7 +168,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code source} is invalid.
      */
     public static Source parseSource(String source) throws ParseException {
-        // TODO: implementation
+        String trimmedSource = source.trim();
+        if (!Source.isValidSource(trimmedSource)) {
+            throw new ParseException(Source.MESSAGE_CONSTRAINTS);
+        }
         return new Source(source);
     }
 
@@ -160,7 +205,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String method} into a {@code SortingMethod}.
      *
-     * @throws ParseException
+     * @throws ParseException if the given {@code String method} is invalid.
      */
     public static SortCommand.SortingMethod parseSortingMethod(String method) throws ParseException {
         switch (method) {
@@ -182,7 +227,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String order} into a {@code SortingOrder}.
      *
-     * @throws ParseException
+     * @throws ParseException if the given {@code String order} is invalid.
      */
     public static SortCommand.SortingOrder parseSortingOrder(String order) throws ParseException {
         switch (order) {
@@ -202,4 +247,17 @@ public class ParserUtil {
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
+    /** Parses a {@code String date} into an {@code LocalDateTime}.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDateTime parseDate(String date) throws ParseException {
+        try {
+            return LocalDateTime.parse(date, Plan.FORMATTER);
+        } catch (DateTimeException ex) {
+            throw new ParseException(Plan.DATE_TIME_CONSTRAINTS);
+        }
+    }
+
 }

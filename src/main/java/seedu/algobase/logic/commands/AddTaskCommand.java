@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.algobase.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.algobase.logic.parser.CliSyntax.PREFIX_PROBLEM;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.algobase.commons.core.Messages;
 import seedu.algobase.commons.core.index.Index;
@@ -21,11 +23,13 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addtask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to a training plan. "
-            + "Parameters: "
-            + PREFIX_PLAN + "PLAN "
-            + PREFIX_PROBLEM + "PROBLEM\n"
-            + "Example: " + COMMAND_WORD + " "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a task to a training plan.\n"
+            + "Parameters:\n"
+            + PREFIX_PLAN + "PLAN_INDEX "
+            + PREFIX_PROBLEM + "PROBLEM_INDEX\n"
+            + "Example:\n"
+            + COMMAND_WORD + " "
             + PREFIX_PLAN + "1 "
             + PREFIX_PROBLEM + "10";
 
@@ -61,9 +65,12 @@ public class AddTaskCommand extends Command {
         Plan plan = lastShownPlanList.get(addTaskDescriptor.planIndex.getZeroBased());
         Problem problem = lastShownProblemList.get(addTaskDescriptor.problemIndex.getZeroBased());
         Task task = new Task(problem);
-        plan.getTasks().add(task);
+        Set<Task> taskSet = new HashSet<>(plan.getTasks());
+        taskSet.add(task);
+        Plan updatedPlan = Plan.createUpdatedPlan(plan, taskSet);
+        model.setPlan(plan, updatedPlan);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, task, plan));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, task, updatedPlan));
     }
 
     @Override
@@ -74,7 +81,7 @@ public class AddTaskCommand extends Command {
     }
 
     /**
-     * Stores the details of the plan and problem involced.
+     * Stores the details of the plan and problem involved.
      */
     public static class AddTaskDescriptor {
         private Index planIndex;

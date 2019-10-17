@@ -34,7 +34,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all problems
-* **`add`**`n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Wee Han` : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Wee Han'
+* **`add`**`n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Halim` : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Wee Han'
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -67,10 +67,23 @@ Examples:
 
 * `add n/Sequences a/Tung Kam Chuen w/https://open.kattis.com/problems/sequences d/Find the sum of the number of inversions of the 2k sequences, modulo 1000000007 (109+7). diff/3.0 src/Kattis t/recursion`
 
-==== Listing all problems : `list`
+==== Deleting a problem : `delete`
 
-Displays a list of all existing problems. +
-Format: `list`
+Deletes an existing problem. +
+Format: `delete INDEX`
+
+* Deletes the problem at the specified `INDEX`.
+* The index refers to the index number shown in the displayed problem list.
+* The index *must be a positive integer* 1, 2, 3, ...
+
+Examples:
+
+* `list` +
+`delete 2` +
+Deletes the 2nd problem in the displayed list.
+* `find n/factorial` +
+`delete 1` +
+Deletes the 1st problem in the results of the `find` command.
 
 ==== Editing a problem : `edit`
 
@@ -90,15 +103,15 @@ Edits the author of the 1st problem to be `John Doe` respectively.
 * `edit 2 n/permutations t/` +
 Edits the name of the 2nd problem to be `permutations` and clears all existing tags.
 
-==== Locating problems by name: `find`
+==== Locating problems: `find`
 
-Finds problems whose names contain any of the given keywords. +
+Finds problems fulfilling all provided constraints. +
 Format: `find [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]...`
 
 * Name
-** is case-insensitive and is matched by words. e.g. `henz` will match `Henz`
+** is case-insensitive. e.g. `henz` will match `Henz`
+** is considered a match as long as one word matches. (e.g. `Henz Ben` matches both `Martin Henz` and `Ben Leong`)
 ** is matched word by word. e.g. `hello` will match `hello world` but not `helloworld`
-** is considered a match as long as one word matches. e.g. `Henz Ben` matches both `Martin Henz` and `Ben Leong`
 * Author requires an exact match.
 * Description
 ** is case-insensitive
@@ -110,34 +123,22 @@ Format: `find [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND
 ** Constraint tag set is a subset of matching problems. (e.g. `find t/Recursion Brute-Force` will match problem with tags `Recursion`+`Brute-Force`+`Playful` but not `Recursion`+`Adhoc`)
 ** Tags are considered equal only when the tag strings are exactly matched.
 * Difficulty
-** matches problems with `LOWER_BOUND <= difficulty <= UPPER_BOUND`
+** matches problems with `LOWER_BOUND \<= difficulty \<= UPPER_BOUND`
 ** Note that you should provide both bounds. If you want to match problems with exact difficulty `1.5`, please use `diff/1.5-1.5`
 
 Examples:
 
-* `find factorial` +
-Returns `factorial` and `Factorialize`
-* `find factorial permutations` +
-Returns any problem having names `factorial`, or `permutations`
+* `find n/Sequence` +
+Returns any problem with word `sequence` (case-insensitive) in its name.
+* `find t/algorithm diff/2.0-4.0` +
+Returns any problem with `algorithm` as one of its tags AND with a difficulty between 2.0 and 4.0 (inclusive).
+* `find a/Hentin Marz src/Kattis` +
+Returns any problem from `Kattis` that's authored by `Hentin Marz`.
 
-==== Deleting a problem : `delete`
+==== Listing all problems : `list`
 
-Deletes an existing problem. +
-Format: `delete INDEX`
-
-* Deletes the problem at the specified `INDEX`.
-* The index refers to the index number shown in the displayed problem list.
-* The index *must be a positive integer* 1, 2, 3, ...
-
-Examples:
-
-* `list` +
-`delete 2` +
-Deletes the 2nd problem in the displayed list.
-* `find n/factorial` +
-`delete 1` +
-Deletes the 1st problem in the results of the `find` command.
-
+Displays a list of all existing problems. +
+Format: `list`
 
 ==== Sorting problems: `sort`
 
@@ -213,28 +214,46 @@ Returns `training-set-1` and `training-set-2`
 * `find training set` +
 Returns any problem having names `training`, or `set`
 
-==== Listing all training plans: `lsplan`
+==== Listing all training plans: `listplan`
 
 Displays a list of all existing plans alphabetically. +
-Format: `lsplan`
+Format: `listplan`
 
-==== Marking a problem as done: `done`
+==== Adding a new task to a plan: `addtask`
 
-Marks a problem in a given plan as done. +
-Format: `done PLAN_INDEX PROBLEM_INDEX`
-
-Examples:
-
-* `done 1 2`
-
-==== Unmarking a problem as undone: `undone`
-
-Marks a problem in a given plan as undone. +
-Format: `undone PLAN_INDEX PROBLEM_INDEX`
+Adds a task to a specified plan. +
+Format: `addtask plan/PLAN_INDEX prob/PROBLEM_INDEX`
 
 Examples:
 
-* `undone 1 2`
+* `addtask plan/1 prob/1`
+
+==== Deleting a task from a plan: `deletetask`
+
+Deletes a specified task from a specified plan. +
+Format: `deletetask plan/PLAN_INDEX task/TASK_INDEX`
+
+Examples:
+
+* `deletetask plan/1 task/1`
+
+==== Marking a task as done: `donetask`
+
+Marks a specified task in a specified plan as done. +
+Format: `donetask plan/PLAN_INDEX task/TASK_INDEX`
+
+Examples:
+
+* `donetask plan/1 task/1`
+
+==== Marking a task as undone: `undonetask`
+
+Marks a specified task in a specified plan as undone. +
+Format: `undone plan/PLAN_INDEX prob/TASK_INDEX`
+
+Examples:
+
+* `undonetask plan/1 task/1`
 
 === Importing and Exporting data
 
@@ -245,7 +264,6 @@ Format: `import f/FORMAT p/PATH`
 
 * Format can be ‘CSV’ or ‘JSON’.
 * Directory refers to the full path of the output file.
-
 
 Examples:
 
@@ -268,6 +286,16 @@ Examples:
 ==== Encrypting data files `[coming in v2.0]`
 
 === Miscellaneous
+
+==== Switching tabs : `switch`
+
+Switches to a tab display in the application. +
+Format: `switch INDEX`
+
+Examples:
+
+* `switch 1`
+Switches to the tab at index 1.
 
 ==== Viewing help : `help`
 
@@ -313,13 +341,13 @@ e.g. `newtag n/sssp`
 * *Delete Tag* : `deletetag INDEX` +
 e.g. `deletetag 3`
 
-* *Add Training Plan* : `addplan n/NAME` +
+* *Add Training Plan* : `addplan n/NAME [d/DESCRIPTION] [s/START_DATE] [e/END_DATE]` +
 e.g. `addplan n/CS2040`
-* *Edit Training Plan* : `editplan INDEX [a/ADD_PROBLEM_INDEX_LIST] [d/DELETE_PROBLEM_INDEX_LIST] [n/NAME]` +
+* *Edit Training Plan* : `editplan INDEX [a/ADD_PROBLEM_INDEX_LIST] [d/DELETE_PROBLEM_INDEX_LIST] [n/NAME] [d/DESCRIPTION] [s/START_DATE] [e/END_DATE]` +
 e.g. `editplan 1 a/1 2 3 d/4 5 6 n/training set 1`
 * *Find Training Plan* : `findplan KEYWORD [MORE_KEYWORDS]` +
 e.g. `find training set`
-* *List Training Plans* : `lsplan`
+* *List Training Plans* : `listplan`
 * *Mark Training Plan as done* : `done PLAN_INDEX PROBLEM_INDEX` +
 e.g. `done 1 2`
 * *Mark Training Plan as undone* : `undone PLAN_INDEX PROBLEM_INDEX` +

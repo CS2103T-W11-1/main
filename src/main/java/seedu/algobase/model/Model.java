@@ -1,13 +1,17 @@
 package seedu.algobase.model;
 
 import java.nio.file.Path;
+
 import java.util.Comparator;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.algobase.commons.core.GuiSettings;
 import seedu.algobase.model.plan.Plan;
 import seedu.algobase.model.problem.Problem;
+import seedu.algobase.model.tag.Tag;
+import seedu.algobase.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -15,9 +19,10 @@ import seedu.algobase.model.problem.Problem;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Problem> PREDICATE_SHOW_ALL_PROBLEMS = unused -> true;
+    Predicate<Tag> PREDICATE_SHOW_ALL_TAGS = unused -> true;
+    Predicate<Plan> PREDICATE_SHOW_ALL_PLANS = unused -> true;
 
-    //=========== UserPref =============================================================
-
+    //=========== UserPref ==============================================================
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -48,7 +53,14 @@ public interface Model {
      */
     void setAlgoBaseFilePath(Path algoBaseFilePath);
 
-    //=========== AlgoBase =============================================================
+    //=========== GUI state =============================================================
+
+    /**
+     * Returns the state of the GUI.
+     */
+    GuiState getGuiState();
+
+    //=========== AlgoBase ==============================================================
 
     /**
      * Replaces algobase data with the data in {@code algoBase}.
@@ -58,7 +70,7 @@ public interface Model {
     /** Returns the AlgoBase */
     ReadOnlyAlgoBase getAlgoBase();
 
-    //=========== Problem List =============================================================
+    //=========== Problem ===============================================================
 
     /**
      * Returns true if a Problem with the same identity as {@code Problem} exists in the algobase.
@@ -100,8 +112,97 @@ public interface Model {
      */
     void updateSortedProblemList(Comparator<Problem> problemComparator);
 
-    //=========== Plan List =============================================================
+    //=========== Tag ===================================================================
 
-    /** Returns an unmodifiable view of the filtered Problem list */
+    /**
+     * Returns true if a Tag with the same identity as {@code Tag} exists in the algobase.
+     */
+    boolean hasTag(Tag tag);
+
+    /**
+     * Deletes the given Tag.
+     * The Tag must exist in the algobase.
+     */
+    void deleteTag(Tag target);
+
+    /**
+     * Deletes the given Tag for all problems.
+     * The Tag must exist in the algobase.
+     */
+    void deleteTags(Tag target);
+
+    /**
+     * Adds the given Tag.
+     * {@code Tag} must not already exist in the algobase.
+     */
+    void addTag(Tag tag);
+
+    /**
+     * Adds the given Tag list.
+     * {@code Tag} must not already exist in the algobase.
+     */
+    void addTags(Set<Tag> tags);
+
+    /**
+     * Replaces the given Tag {@code target} with {@code editedTag}.
+     * {@code target} must exist in the algobase.
+     * The Tag identity of {@code editedTag} must not be the same as another existing Tag in the algobase.
+     */
+    void setTag(Tag target, Tag editedTag);
+
+    /**
+     * Replaces the given Tag {@code target} with {@code editedTag} for all problems in AlgoBase.
+     * {@code target} must exist in the algobase.
+     * The Tag identity of {@code editedTag} must not be the same as another existing Tag in the algobase.
+     */
+    void setTags(Tag target, Tag editedTag);
+
+    /** Returns an unmodifiable view of the filtered Tag list */
+    ObservableList<Tag> getFilteredTagList();
+
+    /**
+     * Updates the filter of the filtered Tag list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTagList(Predicate<Tag> predicate);
+
+    //=========== Plan ==================================================================
+
+    /**
+     * Returns true if a Plan with the same identity as {@code Plan} exists in the algobase.
+     */
+    boolean hasPlan(Plan plan);
+
+    /**
+     * Deletes the given Plan.
+     * The Plan must exist in the algobase.
+     */
+    void deletePlan(Plan target);
+
+    /**
+     * Adds the given Plan.
+     * {@code Plan} must not already exist in the algobase.
+     */
+    void addPlan(Plan plan);
+
+    /**
+     * Replaces the given Plan {@code target} with {@code editedPlan}.
+     * {@code target} must exist in the algobase.
+     * The Plan identity of {@code editedPlan} must not be the same as another existing Plan in the algobase.
+     */
+    void setPlan(Plan target, Plan editedPlan);
+
+    /** Returns an unmodifiable view of the filtered Plan list */
     ObservableList<Plan> getFilteredPlanList();
+
+    /**
+     * Updates the filter of the filtered Plan list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPlanList(Predicate<Plan> predicate);
+
+    //=========== Task ==================================================================
+
+    /** Returns an unmodifiable view of the filtered Plan list */
+    ObservableList<Task> getCurrentTaskList();
 }
