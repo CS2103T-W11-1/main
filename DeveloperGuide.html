@@ -22,11 +22,8 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#tag-feature">3.3. Tag feature</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
+<li><a href="#tag-feature">3.1. Tag feature</a></li>
+<li><a href="#find-problem-feature">3.2. Find Problem Feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -330,229 +327,9 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></h3>
+<h3 id="tag-feature"><a class="link" href="#tag-feature">3.1. Tag feature</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.1.1. Proposed Implementation</a></h4>
-<div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
-It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
-Additionally, it implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current address book state in its history.</p>
-</li>
-<li>
-<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous address book state from its history.</p>
-</li>
-<li>
-<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone address book state from its history.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState0.png" alt="UndoRedoState0">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState1.png" alt="UndoRedoState1">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState2.png" alt="UndoRedoState2">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState3.png" alt="UndoRedoState3">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState4.png" alt="UndoRedoState4">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoState5.png" alt="UndoRedoState5">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/CommitActivityDiagram.png" alt="CommitActivityDiagram">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
-</li>
-<li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
-</li>
-<li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
-</li>
-<li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
-</li>
-<li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="tag-feature"><a class="link" href="#tag-feature">3.3. Tag feature</a></h3>
-<div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">3.3.1. Implementation</a></h4>
+<h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The tag mechanism is facilitated by UniqueTagList. It creates a list of Tag, stored internally as an uniqueTagList. Additionally, it implements the following operations:</p>
 </div>
@@ -613,7 +390,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-data-structure-to-support-the-tag-commands"><a class="link" href="#aspect-data-structure-to-support-the-tag-commands">Aspect: Data structure to support the tag commands.</a></h5>
 <div class="ulist">
@@ -650,47 +427,331 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
+<h3 id="find-problem-feature"><a class="link" href="#find-problem-feature">3.2. Find Problem Feature</a></h3>
 <div class="paragraph">
-<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
+<p>Since AlgoBase is a management tool for algorithmic questions, the search functionality is crucial to the user’s experience with AlgoBase. For instance, the planning feature heavily relies on <code>find</code> command to determine the exact set of problems the user wants to include in a training plan.</p>
+</div>
+<div class="paragraph">
+<p>This section will describe in detail the current implementation and design considerations of the find problem feature (i.e. search feature) of AlgoBase.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes the find command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/find/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. Activity Diagram for the Execution of <code>find</code> Command</em></p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The find problem feature mainly involves three parts:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>validating and parsing user input</p>
+</li>
+<li>
+<p>creating a filtering predicate from user’s search restrictions</p>
+</li>
+<li>
+<p>update the displayed problem list with the filtering predicate.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The find problem feature is facilitated by the following classes:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
-</li>
-<li>
-<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
-</li>
-<li>
-<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
-</li>
-</ul>
+<p><code>FindProblemDescriptor</code></p>
+<div class="paragraph">
+<p>It stores predicates that are needed to describe a <code>FindCommand</code></p>
 </div>
 <div class="paragraph">
-<p><strong>Logging Levels</strong></p>
+<p>Additionally, it implements the following operation(s):</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
+<p><code>FindProblemDescriptor#isAnyFieldProvided()</code> - Determines if there is at least one search restriction included in this instance of <code>FindProblemDescriptor</code>.</p>
 </li>
 <li>
-<p><code>WARNING</code> : Can continue, but with caution</p>
+<p><code>FindProblemDescriptor#equals(&#8230;&#8203;)</code> - Two instances of <code>FindProblemDescriptor</code> are equal if and only if all of their predicates are equal.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
+<p>Predicates that implements interface <code>Predicate&lt;Problem&gt;</code></p>
+<div class="paragraph">
+<p>These are classes that describes whether an instance of <code>Problem</code> is considered a match under a certain field with provided keyword(s).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NameContainsKeywordsPredicate</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>It ignores case.</p>
 </li>
 <li>
-<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
+<p>It returns true as long as one of the keywords appear in the name as a word. (“As a word” means the matching is done word by word. For instance, <code>hello</code> doesn’t match <code>helloworld</code>.)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>AuthorMatchesKeywordPredicate</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>It is case sensitive and matches the entire author string (i.e. requires an exact match).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>DescriptionContainsKeywordsPredicate</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>It ignores case.</p>
+</li>
+<li>
+<p>It returns true only when all of the keywords appear in the description as a word.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>SourceMatchesKeywordPredicate</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>It requires an exact match.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>DifficultyIsInRangePredicate</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>It matches problems with LOWER_BOUND &#8656; difficulty &#8656; UPPER_BOUND</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>TagIncludesKeywordsPredicate</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Each keyword will be considered as a tag, and two tags are considered equal only when their names are exactly the same.</p>
+</li>
+<li>
+<p>It returns true when the provided tags are a subset of the tags of the provided problem.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>FindCommandParser</code>
+It validates and parses user input to an instance of <code>FindCommand</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user provides difficulty range as one of the search restrictions, <code>FindCommandParser</code> expects the format <code>LOWER_BOUND &#8656; difficulty &#8656; UPPER_BOUND</code> while <code>LOWER_BOUND</code> and <code>UPPER_BOUND</code> are valid strings for doubles (i.e. parsable by <code>Double.parseDouble(&#8230;&#8203;)</code>).
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FindCommand</code></p>
+<div class="paragraph">
+<p>It creates and stores the <code>predicate</code> from an instance of <code>FindProblemDescriptor</code>. <code>predicate</code> is used to perform the filtering of the displayed problem list when the command is executed.</p>
+</div>
+<div class="paragraph">
+<p><code>predicate</code> returns true only when the provided problem fulfills all restrictions described by the provided instance of <code>FindProblemDescriptor</code>.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, it implements the following operation(s):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FindCommand#execute(&#8230;&#8203;)</code> - This method overrides <code>Command#execute(&#8230;&#8203;)</code>. It filters problems in <code>filteredProblemList</code> in <code>model</code> with <code>predicate</code>.</p>
+</li>
+<li>
+<p><code>FindCommand#equals(&#8230;&#8203;)</code> - Two instances of <code>FindCommand</code> are equal if and only if their <code>predicate</code> are equal.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/find/FindCommandClassDiagram.png" alt="FindCommandClassDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. Class Diagram of the Find Feature</em></p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the find problem mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user executes <code>find t/recursion diff/2.0-4.0</code> to find a problem with a tag “recursion” and difficulty between 2.0 and 4.0.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. <code>FindCommandParser</code> processes the user input and returns a <code>FindCommand</code> instance with the information of user’s search restrictions.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If no valid search restriction is provided by the user, <code>FindCommandParser</code> will throw a parsing exception, which is handled and displayed to the user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. <code>LogicManager</code> invokes <code>execute()</code> method of the returned <code>FindCommand</code>. <code>FindCommand</code> updates the problem list with user’s search restrictions.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/find/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3. Sequence Diagram for the Execution of <code>find</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-to-update-the-displayed-problem-list-in-the-ui"><a class="link" href="#aspect-how-to-update-the-displayed-problem-list-in-the-ui">Aspect: How to update the displayed problem list in the UI</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Let UI display problems in a <code>FilteredList&lt;Problem&gt;</code> and update the displayed problem by calling <code>setPredicate</code> on the <code>FilteredList</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Provides good protection over unexpected changes on the displayed problem list.</p>
+</li>
+<li>
+<p>Cons: Need to write a complex logic to generate one predicate out of multiple search constraints.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Let UI displays problems in an <code>ObservableList&lt;Problem&gt;</code> and update the list directly.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The implementation would be more straightforward as the logic can update the displayed list directly.</p>
+</li>
+<li>
+<p>Cons: Leaves room for potential unexpected changes on the displayed problem list as the observable list is open to any kind of operation.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
-<div class="paragraph">
-<p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
+<div class="sect4">
+<h5 id="aspect-how-to-deal-with-the-case-where-no-search-restriction-is-provided-i-e-user-types-in-code-find-code-with-no-arguments-given"><a class="link" href="#aspect-how-to-deal-with-the-case-where-no-search-restriction-is-provided-i-e-user-types-in-code-find-code-with-no-arguments-given">Aspect: How to deal with the case where no search restriction is provided (i.e. user types in <code>find</code> with no arguments given)</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Treat it as an exception and notify the user to provide at least one constraint.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes the meaning of <code>find</code> command clear - you can’t search for problems without giving any conditions.</p>
+</li>
+<li>
+<p>Cons: Has to check there is at least one predicate provided, making the implementation a bit more complicated.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Treat it as no restriction (i.e. <code>find</code> is equivalent to <code>list</code> in this case)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier implementation (if all predicates are always-true predicates, using <code>.and</code> method to chain them together would naturally result in an always-true predicate).</p>
+</li>
+<li>
+<p>Cons: Confusing definition of a search function.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-to-make-predicates-optional-i-e-user-doesn-t-have-to-provide-restrictions-for-all-searchable-fields"><a class="link" href="#aspect-how-to-make-predicates-optional-i-e-user-doesn-t-have-to-provide-restrictions-for-all-searchable-fields">Aspect: How to make predicates optional (i.e. user doesn’t have to provide restrictions for all searchable fields)</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use <code>FindProblemDescriptor</code> in which the getter for the predicate returns <code>Optional&lt;Predicate&gt;</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: If the parser doesn’t receive keyword(s) for a specific field, it simply doesn’t call the descriptor’s setter for that field. It doesn’t need to deal with <code>null</code>, and <code>null</code> is dealt gracefully using <code>Optional.ofNullable(&#8230;&#8203;)</code></p>
+</li>
+<li>
+<p>Cons: Rather troublesome implementation of the descriptor.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Altermative 2:</strong> Store predicates in <code>FindProblemCommand</code> and check for not-provided predicates by comparing it with <code>null</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More straightforward implementation.</p>
+</li>
+<li>
+<p>Cons: If we are to add more predicates, it’s more likely that we forget to check <code>null</code> value of the new predicate.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1633,4 +1694,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 10:43:35 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 11:26:26 UTC</div></div></div></body></html>
