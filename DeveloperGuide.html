@@ -22,9 +22,10 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#tag-feature">3.1. Tag feature</a></li>
-<li><a href="#find-problem-feature">3.2. Find Problem Feature</a></li>
-<li><a href="#gui-enhancements">3.3. GUI Enhancements</a></li>
+<li><a href="#task-management-feature">3.1. Task Management Feature</a></li>
+<li><a href="#tag-feature">3.2. Tag feature</a></li>
+<li><a href="#find-problem-feature">3.3. Find Problem Feature</a></li>
+<li><a href="#gui-enhancements">3.4. GUI Enhancements</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -168,7 +169,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
@@ -283,7 +284,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="title">Figure 8. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -291,10 +292,16 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="ulist">
 <ul>
 <li>
-<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+<p>can store <code>UserPref</code> objects in json format.</p>
 </li>
 <li>
-<p>can save the Address Book data in json format and read it back.</p>
+<p>can retrieve <code>UserPref</code> objects from json format.</p>
+</li>
+<li>
+<p>can store the AlgoBase app data including <code>Plan</code>, <code>Problem</code>, <code>Tag</code>, <code>Task</code> objects in relational manner in json format.</p>
+</li>
+<li>
+<p>can retrieve <code>Plan</code>, <code>Problem</code>, <code>Tag</code>, <code>Task</code> objects from json format.</p>
 </li>
 </ul>
 </div>
@@ -302,7 +309,11 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="sect2">
 <h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
+<p>Classes used by multiple components are in the <code>seedu.algobase.commons</code> package.</p>
+</div>
+<div class="paragraph">
+<p>It contains utility files for configuration <code>ConfigUtil</code>, file handling <code>FileUtil</code>, ID generation <code>IdUtil</code>,
+JSON storage <code>JsonUtil</code>, string manipulation <code>StringUtil</code> and others.</p>
 </div>
 </div>
 </div>
@@ -314,9 +325,114 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="tag-feature"><a class="link" href="#tag-feature">3.1. Tag feature</a></h3>
+<h3 id="task-management-feature"><a class="link" href="#task-management-feature">3.1. Task Management Feature</a></h3>
+<div class="paragraph">
+<p>As a algorithmic problem management tool, one of the most important features will be manage tasks that have been done
+and are to be done.</p>
+</div>
+<div class="paragraph">
+<p>This section will describe in details the current implementation and design considerations of
+the task management feature.</p>
+</div>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The task management feature mainly involves four main behaviours:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AlgoBase#addTask()</code> - create a new task for a problem and add it to a specified plan.</p>
+</li>
+<li>
+<p><code>AlgoBase#deleteTask()</code> - delete an existing task from a specified plan.</p>
+</li>
+<li>
+<p><code>AlgoBase#doneTask()</code> - mark a task as done in a specified plan.</p>
+</li>
+<li>
+<p><code>AlgoBase#undoneTask()</code> - mark a task as undone in a specified plan.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the mechanism for adding tasks behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes the <code>AddTask</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. Activity Diagram for the Execution of <code>AddTask</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. AlgoBase displays a list of existing problems and plans in the UI.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user executes <code>addtask plan/1 prob/1</code> to add the problem with index 1 in the list to the plan with index 1.
+The <code>AddTask</code> command calls <code>Plan#updateTasks</code> to create a new plan from the original plan with this additional task.
+After that, <code>Model#setPlan()</code> is called to replace the original plan with the updated plan in the <code>PlanList</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>addtask</code> operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. Sequence Diagram for the Execution of <code>AddTask</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-task-commands"><a class="link" href="#aspect-data-structure-to-support-the-task-commands">Aspect: Data structure to support the task commands.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Use a <code>HashSet</code> in current AlgoBase to save all tasks in a plan.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Users can manage the tasks conveniently.</p>
+</li>
+<li>
+<p>Cons: Harder to implement for relational storage.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Simply keep tasks as a part of a plan.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: No need to save the task separately in the storage, all tasks are under plans.</p>
+</li>
+<li>
+<p>Cons: Does not keep track of relations between tasks and plans.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tag-feature"><a class="link" href="#tag-feature">3.2. Tag feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">3.2.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The tag mechanism is facilitated by UniqueTagList. It creates a list of Tag, stored internally as an uniqueTagList. Additionally, it implements the following operations:</p>
 </div>
@@ -377,7 +493,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-data-structure-to-support-the-tag-commands"><a class="link" href="#aspect-data-structure-to-support-the-tag-commands">Aspect: Data structure to support the tag commands.</a></h5>
 <div class="ulist">
@@ -414,7 +530,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 </div>
 </div>
 <div class="sect2">
-<h3 id="find-problem-feature"><a class="link" href="#find-problem-feature">3.2. Find Problem Feature</a></h3>
+<h3 id="find-problem-feature"><a class="link" href="#find-problem-feature">3.3. Find Problem Feature</a></h3>
 <div class="paragraph">
 <p>Since AlgoBase is a management tool for algorithmic questions, the search functionality is crucial to the user’s experience with AlgoBase. For instance, the planning feature heavily relies on <code>find</code> command to determine the exact set of problems the user wants to include in a training plan.</p>
 </div>
@@ -433,7 +549,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 <p><em>Figure 1. Activity Diagram for the Execution of <code>find</code> Command</em></p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The find problem feature mainly involves three parts:</p>
 </div>
@@ -532,7 +648,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 <div class="ulist">
 <ul>
 <li>
-<p>It matches problems with LOWER_BOUND &#8656; difficulty &#8656; UPPER_BOUND</p>
+<p>It matches problems with LOWER_BOUND &lt;= difficulty &lt;= UPPER_BOUND</p>
 </li>
 </ul>
 </div>
@@ -566,7 +682,7 @@ It validates and parses user input to an instance of <code>FindCommand</code>.</
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the user provides difficulty range as one of the search restrictions, <code>FindCommandParser</code> expects the format <code>LOWER_BOUND &#8656; difficulty &#8656; UPPER_BOUND</code> while <code>LOWER_BOUND</code> and <code>UPPER_BOUND</code> are valid strings for doubles (i.e. parsable by <code>Double.parseDouble(&#8230;&#8203;)</code>).
+If the user provides difficulty range as one of the search restrictions, <code>FindCommandParser</code> expects the format <code>LOWER_BOUND &lt;= difficulty &lt;= UPPER_BOUND</code> while <code>LOWER_BOUND</code> and <code>UPPER_BOUND</code> are valid strings for doubles (i.e. parsable by <code>Double.parseDouble(&#8230;&#8203;)</code>).
 </td>
 </tr>
 </table>
@@ -639,7 +755,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-update-the-displayed-problem-list-in-the-ui"><a class="link" href="#aspect-how-to-update-the-displayed-problem-list-in-the-ui">Aspect: How to update the displayed problem list in the UI</a></h5>
 <div class="ulist">
@@ -742,12 +858,12 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 </div>
 </div>
 <div class="sect2">
-<h3 id="gui-enhancements"><a class="link" href="#gui-enhancements">3.3. GUI Enhancements</a></h3>
+<h3 id="gui-enhancements"><a class="link" href="#gui-enhancements">3.4. GUI Enhancements</a></h3>
 <div class="paragraph">
 <p>An intuitive GUI facilitates the overall user friendliness of the application. The user should be able to navigate around the application easily to facilitate a smooth experience using AlgoBase. Additionally, multitasking is important as a user may be tackling multiple algorithmic questions at a single time. One of the main enhancements that we introduced to the GUI is tabbing, which fulfils these 2 requirements.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The state of the GUI is stored in a <code>GuiState</code> object. The <code>GuiState</code> object contains a <code>TabManager</code> object, which manages tab information such as the tabs that are open and the tabs that are currently selected.</p>
 </div>
@@ -852,7 +968,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>Aspect: Implementation of Tab Logic</p>
 </div>
@@ -1878,4 +1994,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 14:31:38 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 15:49:42 UTC</div></div></div></body></html>
