@@ -24,6 +24,7 @@
 <ul class="sectlevel2">
 <li><a href="#tag-feature">3.1. Tag feature</a></li>
 <li><a href="#find-problem-feature">3.2. Find Problem Feature</a></li>
+<li><a href="#gui-enhancements">3.3. GUI Enhancements</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -737,6 +738,186 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="gui-enhancements"><a class="link" href="#gui-enhancements">3.3. GUI Enhancements</a></h3>
+<div class="paragraph">
+<p>An intuitive GUI facilitates the overall user friendliness of the application. The user should be able to navigate around the application easily to facilitate a smooth experience using AlgoBase. Additionally, multitasking is important as a user may be tackling multiple algorithmic questions at a single time. One of the main enhancements that we introduced to the GUI is tabbing, which fulfils these 2 requirements.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The state of the GUI is stored in a <code>GuiState</code> object. The <code>GuiState</code> object contains a <code>TabManager</code> object, which manages tab information such as the tabs that are open and the tabs that are currently selected.</p>
+</div>
+<div class="paragraph">
+<p>The information is linked to the <code>UI</code> through listeners. When the attributes of the <code>TabManager</code> object is updated, it triggers callback functions in the UI controllers that update the state of the UI displayed.</p>
+</div>
+<div class="paragraph">
+<p>The following commands facilitate the management of tabs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AlgoBase#switchTab()</code> - Switch between tabs within a specified Tab pane.</p>
+</li>
+<li>
+<p><code>AlgoBase#openTab()</code> - Opens a new tab containing details of a model.</p>
+</li>
+<li>
+<p><code>AlgoBase#closeTab()</code> - Closes an existing tab.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the <code>TabManager</code> class respectively as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SwitchTab()</code>: <code>TabManager#setDisplayTabIndex</code> and <code>TabManager#setDetailsTabIndex</code></p>
+</li>
+<li>
+<p><code>OpenTab()</code>: <code>TabManager#addTab</code></p>
+</li>
+<li>
+<p><code>CloseTab()</code>: <code>TabManager#removeTab</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following Activity Diagrams illustrate what happens when the user executes a <code>SwitchTabCommand</code> or <code>OpenTabCommand</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/SwitchTabCommandActivityDiagram.png" alt="SwitchTabCommandActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1.1 Activity Diagram for the Execution of <code>switchtab</code> Command</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/OpenTabCommandActivityDiagram.png" alt="OpenTabCommandActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1.2 Activity Diagram for the Execution of <code>opentab</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the tag mechanism behaves at each step.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/SwitchTabsSequenceDiagram0.png" alt="SwitchTabsSequenceDiagram0">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.1 Sequence Diagram for instantiating a <code>SwitchCommand</code> object</em></p>
+</div>
+<div class="paragraph">
+<p>Step 1: The user executes <code>switchtab t/display i/1</code> to switch to the first tab in the <code>display</code> tabpane.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: <code>SwitchTabCommandParser</code> processes the user input, retrieving the tab type (<code>display</code>) and the index (<code>1</code>).</p>
+</div>
+<div class="paragraph">
+<p>Step 3: These two attributes are passed into the constructor of a <code>SwitchTabCommand</code> and a corresponding <code>SwitchTabCommand</code> object is returned to the LogicManager</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/SwitchTabsSequenceDiagram1.png" alt="SwitchTabsSequenceDiagram1">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.2 Sequence Diagram for updating the tab index in the TabManager</em></p>
+</div>
+<div class="paragraph">
+<p>Step 4: <code>LogicManager</code> invokes <code>execute()</code> method of the returned <code>SwitchTabCommand</code>, which retrieves the TabManager from the <code>Model</code> object. The <code>setDisplayTabPaneIndex(1)</code> method is invoked with the index 1 that the <code>SwitchTabCommand</code> was instantiated with.</p>
+</div>
+<div class="paragraph">
+<p>Step 5: Invoking this method updates the integer value in the <code>displayTabIndex</code> field (type <code>ObservableIntegerValue</code>) of the <code>TabManager</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/SwitchTabsSequenceDiagram2.png" alt="SwitchTabsSequenceDiagram2">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3.3 Sequence Diagram for reflecting the tab changes</em></p>
+</div>
+<div class="paragraph">
+<p>Step 6: A listener was added to the <code>displayTabIndex</code> field when the application was initialized. When a change in the value is detected, it triggers the <code>selectTab(1)</code> method with the value of the new index passed as an argument. This updates the selected tab in the UI.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p>Aspect: Implementation of Tab Logic</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Implement Tab Logic separately within model and UI.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Modularizes the logic and reduces the need for tighter coupling between model and UI</p>
+</li>
+<li>
+<p>Cons: Multiple sources of truth and more modules to be implemented</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Implement Tab Logic as a singular module</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Single source of truth for state of tabs</p>
+</li>
+<li>
+<p>Cons: Increasing coupling between Model and UI, which in turn reduces testability</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Aspect: How to update the tab in the UI</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Using a listener to detect changes to state of tab</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces coupling between the <code>TabManager</code> class and the UI</p>
+</li>
+<li>
+<p>Cons: As callback functions are utilized, it is not immediately obvious how changes in state of TabManager leads to a change in the UI</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Execution is sequential and it is easier to keep track of the flow of the program.</p>
+</li>
+<li>
+<p>Cons: Increases coupling between the <code>TabManager</code> class and the UI and reduces testability.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1508,6 +1689,23 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 </li>
 </ul>
 </div>
+<h3 id="use-case-12-see-details-of-an-item" class="discrete">Use Case 12: See details of an item</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see the details of a specified item from the list of items.</p>
+</li>
+<li>
+<p>AlgoBase displays the details of that item.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1680,4 +1878,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 13:10:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 14:31:38 UTC</div></div></div></body></html>

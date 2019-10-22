@@ -16,9 +16,10 @@
 <li><a href="#problems">3.1. Problems</a></li>
 <li><a href="#tags">3.2. Tags</a></li>
 <li><a href="#training-plans">3.3. Training Plans</a></li>
-<li><a href="#importing-and-exporting-data">3.4. Importing and Exporting data</a></li>
-<li><a href="#encryption">3.5. Encryption</a></li>
-<li><a href="#miscellaneous">3.6. Miscellaneous</a></li>
+<li><a href="#tabs">3.4. Tabs</a></li>
+<li><a href="#importing-and-exporting-data">3.5. Importing and Exporting data</a></li>
+<li><a href="#encryption">3.6. Encryption</a></li>
+<li><a href="#miscellaneous">3.7. Miscellaneous</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -542,9 +543,114 @@ Format: <code>undone plan/PLAN_INDEX prob/TASK_INDEX</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-and-exporting-data"><a class="link" href="#importing-and-exporting-data">3.4. Importing and Exporting data</a></h3>
+<h3 id="tabs"><a class="link" href="#tabs">3.4. Tabs</a></h3>
 <div class="sect3">
-<h4 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">3.4.1. Importing data: <code>import</code></a></h4>
+<h4 id="switching-tabs-code-switchtab-code"><a class="link" href="#switching-tabs-code-switchtab-code">3.4.1. Switching Tabs: <code>switchtab</code></a></h4>
+<div class="paragraph">
+<p>Switches between tabs in the GUI<br>
+Format: <code>switchtab t/TAB_TYPE i/TAB_INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tab Type</p>
+<div class="ulist">
+<ul>
+<li>
+<p>can be <code>display</code> or <code>details</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>switchtab t/display i/1</code></p>
+</li>
+<li>
+<p><code>switchtab t/details i/2</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="open-tabs-code-opentab-code"><a class="link" href="#open-tabs-code-opentab-code">3.4.2. Open Tabs: <code>opentab</code></a></h4>
+<div class="paragraph">
+<p>Opens a new tab in the GUI<br>
+Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Model Type</p>
+<div class="ulist">
+<ul>
+<li>
+<p>can be <code>problem</code>, <code>tag</code> or <code>plan</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>opentab m/problem i/1</code></p>
+</li>
+<li>
+<p><code>opentab m/plan i/2</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="close-tabs-code-closetab-code"><a class="link" href="#close-tabs-code-closetab-code">3.4.3. Close Tabs: <code>closetab</code></a></h4>
+<div class="paragraph">
+<p>Closes a tab in the GUI<br>
+Format: <code>closetab t/TAB_TYPE i/TAB_INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tab Type</p>
+<div class="ulist">
+<ul>
+<li>
+<p>can be <code>display</code> or <code>details</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>closetab t/display i/1</code></p>
+</li>
+<li>
+<p><code>closetab t/details i/2</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-and-exporting-data"><a class="link" href="#importing-and-exporting-data">3.5. Importing and Exporting data</a></h3>
+<div class="sect3">
+<h4 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">3.5.1. Importing data: <code>import</code></a></h4>
 <div class="paragraph">
 <p>Imports external data of a specified format (e.g. CSV, JSON) into local storage.<br>
 Format: <code>import f/FORMAT p/PATH</code></p>
@@ -571,7 +677,7 @@ Format: <code>import f/FORMAT p/PATH</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">3.4.2. Exporting data: <code>export</code></a></h4>
+<h4 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">3.5.2. Exporting data: <code>export</code></a></h4>
 <div class="paragraph">
 <p>Exports data into a specified format (e.g. CSV, JSON).<br>
 Format: <code>export f/FORMAT p/DIRECTORY</code></p>
@@ -599,34 +705,16 @@ Format: <code>export f/FORMAT p/DIRECTORY</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encryption"><a class="link" href="#encryption">3.5. Encryption</a></h3>
+<h3 id="encryption"><a class="link" href="#encryption">3.6. Encryption</a></h3>
 <div class="sect3">
-<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.5.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
+<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.6.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="miscellaneous"><a class="link" href="#miscellaneous">3.6. Miscellaneous</a></h3>
+<h3 id="miscellaneous"><a class="link" href="#miscellaneous">3.7. Miscellaneous</a></h3>
 <div class="sect3">
-<h4 id="switching-tabs-code-switch-code"><a class="link" href="#switching-tabs-code-switch-code">3.6.1. Switching tabs : <code>switch</code></a></h4>
-<div class="paragraph">
-<p>Switches to a tab display in the application.<br>
-Format: <code>switch INDEX</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>switch 1</code>
-Switches to the tab at index 1.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.6.2. Viewing help : <code>help</code></a></h4>
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.7.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>List all possible commands or find command usage using the command word.<br>
 Format: <code>help [COMMAND_WORD]</code></p>
@@ -645,21 +733,21 @@ Shows command usage for <code>add</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.6.3. Clearing all entries : <code>clear</code></a></h4>
+<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.7.2. Clearing all entries : <code>clear</code></a></h4>
 <div class="paragraph">
 <p>Clears all entries from AlgoBase.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.6.4. Exiting the program : <code>exit</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.7.3. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.6.5. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.7.4. Saving the data</a></h4>
 <div class="paragraph">
 <p>AlgoBase data is saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -759,4 +847,4 @@ e.g. <code>export f/csv p/./</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 13:10:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 14:31:38 UTC</div></div></div></body></html>
