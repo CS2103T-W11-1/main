@@ -248,7 +248,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/design/model/ModelClassDiagram.png" alt="ModelClassDiagram">
+<img src="images/design/model/ModelClassDiagram.png" alt="ModelClassDiagram" width="65%">
 </div>
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
@@ -267,7 +267,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>stores the AlgoBase data.</p>
 </li>
 <li>
-<p>exposes unmodifiable <code>ObservableList&lt;Problem&gt;</code>, <code>ObservableList&lt;Tag&gt;</code>, <code>ObservableList&lt;Plan&gt;</code>, <code>ObservableList&lt;Task&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes unmodifiable <code>ObservableList&lt;Problem&gt;</code>, <code>ObservableList&lt;Tag&gt;</code>, <code>ObservableList&lt;Plan&gt;</code>, <code>ObservableList&lt;Task&gt;</code>, <code>ObservableList&lt;ProblemSearchRule&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -279,27 +279,33 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/design/model/ProblemPackageDiagram.png" alt="ProblemPackageDiagram">
+<img src="images/design/model/ProblemPackageDiagram.png" alt="ProblemPackageDiagram" width="75%">
 </div>
 <div class="title">Figure 8. Structure of the Problem Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/design/model/PlanPackageDiagram.png" alt="PlanPackageDiagram">
+<img src="images/design/model/PlanPackageDiagram.png" alt="PlanPackageDiagram" width="50%">
 </div>
 <div class="title">Figure 9. Structure of the Plan Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/design/model/TagPackageDiagram.png" alt="TagPackageDiagram">
+<img src="images/design/model/TagPackageDiagram.png" alt="TagPackageDiagram" width="30%">
 </div>
 <div class="title">Figure 10. Structure of the Tag Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/design/model/TaskPackageDiagram.png" alt="TaskPackageDiagram">
+<img src="images/design/model/TaskPackageDiagram.png" alt="TaskPackageDiagram" width="30%">
 </div>
 <div class="title">Figure 11. Structure of the Task Package</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/design/model/ProblemSearchRulePackageDiagram.png" alt="ProblemSearchRulePackageDiagram" width="60%">
+</div>
+<div class="title">Figure 12. Structure of the ProblemSearchRule Package</div>
 </div>
 </div>
 <div class="sect2">
@@ -308,7 +314,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
 </div>
-<div class="title">Figure 12. Structure of the Storage Component</div>
+<div class="title">Figure 13. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -392,7 +398,7 @@ the task management feature.</p>
 <div class="content">
 <img src="images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram">
 </div>
-<div class="title">Figure 13. Activity Diagram for the Execution of <code>AddTask</code> Command</div>
+<div class="title">Figure 14. Activity Diagram for the Execution of <code>AddTask</code> Command</div>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application.</p>
@@ -412,7 +418,7 @@ After that, <code>Model#setPlan()</code> is called to replace the original plan 
 <div class="content">
 <img src="images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram">
 </div>
-<div class="title">Figure 14. Sequence Diagram for the Execution of <code>AddTask</code> Command</div>
+<div class="title">Figure 15. Sequence Diagram for the Execution of <code>AddTask</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -567,7 +573,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 <div class="content">
 <img src="images/find/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram">
 </div>
-<div class="title">Figure 15. Activity Diagram for the Execution of <code>find</code> Command</div>
+<div class="title">Figure 16. Activity Diagram for the Execution of <code>find</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
@@ -657,9 +663,9 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/find/FindCommandClassDiagram.png" alt="FindCommandClassDiagram">
+<img src="images/find/FindCommandClassDiagram.png" alt="FindCommandClassDiagram" width="75%">
 </div>
-<div class="title">Figure 16. Class Diagram of the Find Feature</div>
+<div class="title">Figure 17. Class Diagram of the Find Feature</div>
 </div>
 <div class="ulist">
 <ul>
@@ -746,9 +752,9 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/find/PredicateClassDiagram.png" alt="PredicateClassDiagram">
+<img src="images/find/PredicateClassDiagram.png" alt="PredicateClassDiagram" width="40%">
 </div>
-<div class="title">Figure 17. Class Diagram for Predicates in the Find Feature</div>
+<div class="title">Figure 18. Class Diagram for Predicates in the Find Feature</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the find problem mechanism behaves at each step.</p>
@@ -778,7 +784,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/find/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram">
 </div>
-<div class="title">Figure 18. Sequence Diagram for the Execution of <code>find</code> Command</div>
+<div class="title">Figure 19. Sequence Diagram for the Execution of <code>find</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -2021,4 +2027,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:03:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-26 04:13:09 UTC</div></div></div></body></html>

@@ -14,12 +14,13 @@
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
 <li><a href="#problems">3.1. Problems</a></li>
-<li><a href="#tags">3.2. Tags</a></li>
-<li><a href="#training-plans">3.3. Training Plans</a></li>
-<li><a href="#tabs">3.4. Tabs</a></li>
-<li><a href="#importing-and-exporting-data">3.5. Importing and Exporting data</a></li>
-<li><a href="#encryption">3.6. Encryption</a></li>
-<li><a href="#miscellaneous">3.7. Miscellaneous</a></li>
+<li><a href="#searching-problems">3.2. Searching Problems</a></li>
+<li><a href="#tags">3.3. Tags</a></li>
+<li><a href="#training-plans">3.4. Training Plans</a></li>
+<li><a href="#tabs">3.5. Tabs</a></li>
+<li><a href="#importing-and-exporting-data">3.6. Importing and Exporting data</a></li>
+<li><a href="#encryption">3.7. Encryption</a></li>
+<li><a href="#miscellaneous">3.8. Miscellaneous</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -227,7 +228,56 @@ Edits the name of the 2nd problem to be <code>permutations</code> and clears all
 </div>
 </div>
 <div class="sect3">
-<h4 id="locating-problems-code-find-code"><a class="link" href="#locating-problems-code-find-code">3.1.4. Locating problems: <code>find</code></a></h4>
+<h4 id="listing-all-problems-code-list-code"><a class="link" href="#listing-all-problems-code-list-code">3.1.4. Listing all problems : <code>list</code></a></h4>
+<div class="paragraph">
+<p>Displays a list of all existing problems.<br>
+Format: <code>list</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sorting-problems-code-sort-code"><a class="link" href="#sorting-problems-code-sort-code">3.1.5. Sorting problems: <code>sort</code></a></h4>
+<div class="paragraph">
+<p>Sorts the current list of results by a specified order and direction.<br>
+Format: <code>sort m/METHOD [ord/ORDER]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Method can be <code>name</code>, <code>author</code>, <code>weblink</code>, <code>difficulty</code> or <code>source</code>.</p>
+</li>
+<li>
+<p>ORDER can be <code>ascend</code> or <code>descend</code> representing ascending and descending order. The default is in ascending order.</p>
+</li>
+<li>
+<p>String-based values (i.e. <code>name</code>, <code>author</code>, etc.) are sorted alphabetically.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort m/name</code>
+Sorts the current list of problems in ascending order of names.</p>
+</li>
+<li>
+<p><code>sort m/author ord/descend</code>
+Sorts the current list of problems in descending order of author names.</p>
+</li>
+<li>
+<p><code>sort m/difficulty ord/ascend</code>
+Sorts the current list of problems from lowest to highest difficulty.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="searching-problems"><a class="link" href="#searching-problems">3.2. Searching Problems</a></h3>
+<div class="sect3">
+<h4 id="locating-problems-code-find-code"><a class="link" href="#locating-problems-code-find-code">3.2.1. Locating problems: <code>find</code></a></h4>
 <div class="paragraph">
 <p>Finds problems fulfilling all provided constraints.<br>
 Format: <code>find [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code></p>
@@ -324,28 +374,55 @@ Returns any problem from <code>Kattis</code> that&#8217;s authored by <code>Hent
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-all-problems-code-list-code"><a class="link" href="#listing-all-problems-code-list-code">3.1.5. Listing all problems : <code>list</code></a></h4>
+<h4 id="storing-a-problem-finding-rule-code-addfindrule-code"><a class="link" href="#storing-a-problem-finding-rule-code-addfindrule-code">3.2.2. Storing a problem-finding rule: <code>addfindrule</code></a></h4>
 <div class="paragraph">
-<p>Displays a list of all existing problems.<br>
-Format: <code>list</code></p>
+<p>Saves a problem-finding rule from provided constraints.<br>
+Format: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The rules for constraints are the same as those described in <code>find</code> command.
+</td>
+</tr>
+</table>
 </div>
-<div class="sect3">
-<h4 id="sorting-problems-code-sort-code"><a class="link" href="#sorting-problems-code-sort-code">3.1.6. Sorting problems: <code>sort</code></a></h4>
 <div class="paragraph">
-<p>Sorts the current list of results by a specified order and direction.<br>
-Format: <code>sort m/METHOD [ord/ORDER]</code></p>
+<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Method can be <code>name</code>, <code>author</code>, <code>weblink</code>, <code>difficulty</code> or <code>source</code>.</p>
+<p><code>addfindrule MediumDiffAlgo t/algorithm diff/2.0-4.0</code><br>
+Adds a new find rule named <code>MediumDiffAlgo</code> that when applied, returns any problem with <code>algorithm</code> as one of its tags AND with a difficulty between 2.0 and 4.0 (inclusive).</p>
 </li>
 <li>
-<p>ORDER can be <code>ascend</code> or <code>descend</code> representing ascending and descending order. The default is in ascending order.</p>
+<p><code>addfindrule Kattis src/Kattis</code><br>
+Adds a new find rule named <code>Kattis</code> that when applied, returns any problem from <code>Kattis</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="applying-a-problem-finding-rule-code-apply-code"><a class="link" href="#applying-a-problem-finding-rule-code-apply-code">3.2.3. Applying a problem-finding rule: <code>apply</code></a></h4>
+<div class="paragraph">
+<p>Applies a problem-finding rule.<br>
+Format: <code>apply INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Applies the find rule at the specified <code>INDEX</code>.</p>
 </li>
 <li>
-<p>String-based values (i.e. <code>name</code>, <code>author</code>, etc.) are sorted alphabetically.</p>
+<p>The index refers to the index number shown in the displayed find rule list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -355,25 +432,48 @@ Format: <code>sort m/METHOD [ord/ORDER]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>sort m/name</code>
-Sorts the current list of problems in ascending order of names.</p>
+<p><code>apply 2</code><br>
+Applies the 2nd find rule in the displayed list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-problem-finding-rule-code-deletefindrule-code"><a class="link" href="#deleting-a-problem-finding-rule-code-deletefindrule-code">3.2.4. Deleting a problem-finding rule: <code>deletefindrule</code></a></h4>
+<div class="paragraph">
+<p>Deletes a problem-finding rule.<br>
+Format: <code>deletefindrule INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the find rule at the specified <code>INDEX</code>.</p>
 </li>
 <li>
-<p><code>sort m/author ord/descend</code>
-Sorts the current list of problems in descending order of author names.</p>
+<p>The index refers to the index number shown in the displayed find rule list.</p>
 </li>
 <li>
-<p><code>sort m/difficulty ord/ascend</code>
-Sorts the current list of problems from lowest to highest difficulty.</p>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deletefindrule 2</code><br>
+Deletes the 2nd find rule in the displayed list.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="tags"><a class="link" href="#tags">3.2. Tags</a></h3>
+<h3 id="tags"><a class="link" href="#tags">3.3. Tags</a></h3>
 <div class="sect3">
-<h4 id="creating-new-tags-code-newtag-code"><a class="link" href="#creating-new-tags-code-newtag-code">3.2.1. Creating new tags: <code>newtag</code></a></h4>
+<h4 id="creating-new-tags-code-newtag-code"><a class="link" href="#creating-new-tags-code-newtag-code">3.3.1. Creating new tags: <code>newtag</code></a></h4>
 <div class="paragraph">
 <p>Generates a new tag.<br>
 Format: <code>newtag n/NAME</code></p>
@@ -390,14 +490,14 @@ Format: <code>newtag n/NAME</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-tags-code-lstag-code"><a class="link" href="#listing-tags-code-lstag-code">3.2.2. Listing tags: <code>lstag</code></a></h4>
+<h4 id="listing-tags-code-lstag-code"><a class="link" href="#listing-tags-code-lstag-code">3.3.2. Listing tags: <code>lstag</code></a></h4>
 <div class="paragraph">
 <p>Displays a list of all existing tags.<br>
 Format: <code>lstag</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-new-tags-code-deletetag-code"><a class="link" href="#deleting-new-tags-code-deletetag-code">3.2.3. Deleting new tags: <code>deletetag</code></a></h4>
+<h4 id="deleting-new-tags-code-deletetag-code"><a class="link" href="#deleting-new-tags-code-deletetag-code">3.3.3. Deleting new tags: <code>deletetag</code></a></h4>
 <div class="paragraph">
 <p>Deletes an existing tag.<br>
 Format: <code>deletetag INDEX</code>
@@ -413,9 +513,9 @@ Examples:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="training-plans"><a class="link" href="#training-plans">3.3. Training Plans</a></h3>
+<h3 id="training-plans"><a class="link" href="#training-plans">3.4. Training Plans</a></h3>
 <div class="sect3">
-<h4 id="creating-a-new-training-plan-code-addplan-code"><a class="link" href="#creating-a-new-training-plan-code-addplan-code">3.3.1. Creating a new training plan <code>addplan</code></a></h4>
+<h4 id="creating-a-new-training-plan-code-addplan-code"><a class="link" href="#creating-a-new-training-plan-code-addplan-code">3.4.1. Creating a new training plan <code>addplan</code></a></h4>
 <div class="paragraph">
 <p>Generates a new training plan.<br>
 Format: <code>addplan n/NAME</code></p>
@@ -432,7 +532,7 @@ Format: <code>addplan n/NAME</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-training-plan-code-editplan-code"><a class="link" href="#editing-a-training-plan-code-editplan-code">3.3.2. Editing a training plan <code>editplan</code></a></h4>
+<h4 id="editing-a-training-plan-code-editplan-code"><a class="link" href="#editing-a-training-plan-code-editplan-code">3.4.2. Editing a training plan <code>editplan</code></a></h4>
 <div class="paragraph">
 <p>Edits an existing training plan.<br>
 Format: <code>editplan INDEX [a/ADD_PROBLEM_INDEX_LIST] [d/DELETE_PROBLEM_INDEX_LIST] [n/NAME]</code></p>
@@ -449,7 +549,7 @@ Format: <code>editplan INDEX [a/ADD_PROBLEM_INDEX_LIST] [d/DELETE_PROBLEM_INDEX_
 </div>
 </div>
 <div class="sect3">
-<h4 id="locating-training-plans-by-name-code-findplan-code"><a class="link" href="#locating-training-plans-by-name-code-findplan-code">3.3.3. Locating training plans by name: <code>findplan</code></a></h4>
+<h4 id="locating-training-plans-by-name-code-findplan-code"><a class="link" href="#locating-training-plans-by-name-code-findplan-code">3.4.3. Locating training plans by name: <code>findplan</code></a></h4>
 <div class="paragraph">
 <p>Finds problems whose names contain any of the given keywords.<br>
 Format: <code>findplan KEYWORD [MORE_KEYWORDS]</code></p>
@@ -471,14 +571,14 @@ Returns any problem having names <code>training</code>, or <code>set</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-all-training-plans-code-listplan-code"><a class="link" href="#listing-all-training-plans-code-listplan-code">3.3.4. Listing all training plans: <code>listplan</code></a></h4>
+<h4 id="listing-all-training-plans-code-listplan-code"><a class="link" href="#listing-all-training-plans-code-listplan-code">3.4.4. Listing all training plans: <code>listplan</code></a></h4>
 <div class="paragraph">
 <p>Displays a list of all existing plans alphabetically.<br>
 Format: <code>listplan</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-new-task-to-a-plan-code-addtask-code"><a class="link" href="#adding-a-new-task-to-a-plan-code-addtask-code">3.3.5. Adding a new task to a plan: <code>addtask</code></a></h4>
+<h4 id="adding-a-new-task-to-a-plan-code-addtask-code"><a class="link" href="#adding-a-new-task-to-a-plan-code-addtask-code">3.4.5. Adding a new task to a plan: <code>addtask</code></a></h4>
 <div class="paragraph">
 <p>Adds a task to a specified plan.<br>
 Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/TARGET_DATE]</code></p>
@@ -495,7 +595,7 @@ Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/TARGET_DATE]</code
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-task-from-a-plan-code-deletetask-code"><a class="link" href="#deleting-a-task-from-a-plan-code-deletetask-code">3.3.6. Deleting a task from a plan: <code>deletetask</code></a></h4>
+<h4 id="deleting-a-task-from-a-plan-code-deletetask-code"><a class="link" href="#deleting-a-task-from-a-plan-code-deletetask-code">3.4.6. Deleting a task from a plan: <code>deletetask</code></a></h4>
 <div class="paragraph">
 <p>Deletes a specified task from a specified plan.<br>
 Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
@@ -512,7 +612,7 @@ Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-a-task-as-done-code-donetask-code"><a class="link" href="#marking-a-task-as-done-code-donetask-code">3.3.7. Marking a task as done: <code>donetask</code></a></h4>
+<h4 id="marking-a-task-as-done-code-donetask-code"><a class="link" href="#marking-a-task-as-done-code-donetask-code">3.4.7. Marking a task as done: <code>donetask</code></a></h4>
 <div class="paragraph">
 <p>Marks a specified task in a specified plan as done.<br>
 Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
@@ -529,7 +629,7 @@ Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-a-task-as-undone-code-undonetask-code"><a class="link" href="#marking-a-task-as-undone-code-undonetask-code">3.3.8. Marking a task as undone: <code>undonetask</code></a></h4>
+<h4 id="marking-a-task-as-undone-code-undonetask-code"><a class="link" href="#marking-a-task-as-undone-code-undonetask-code">3.4.8. Marking a task as undone: <code>undonetask</code></a></h4>
 <div class="paragraph">
 <p>Marks a specified task in a specified plan as undone.<br>
 Format: <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
@@ -547,9 +647,9 @@ Format: <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="tabs"><a class="link" href="#tabs">3.4. Tabs</a></h3>
+<h3 id="tabs"><a class="link" href="#tabs">3.5. Tabs</a></h3>
 <div class="sect3">
-<h4 id="switching-tabs-code-switchtab-code"><a class="link" href="#switching-tabs-code-switchtab-code">3.4.1. Switching Tabs: <code>switchtab</code></a></h4>
+<h4 id="switching-tabs-code-switchtab-code"><a class="link" href="#switching-tabs-code-switchtab-code">3.5.1. Switching Tabs: <code>switchtab</code></a></h4>
 <div class="paragraph">
 <p>Switches between tabs in the GUI<br>
 Format: <code>switchtab t/TAB_TYPE i/TAB_INDEX</code></p>
@@ -583,7 +683,7 @@ Format: <code>switchtab t/TAB_TYPE i/TAB_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="open-tabs-code-opentab-code"><a class="link" href="#open-tabs-code-opentab-code">3.4.2. Open Tabs: <code>opentab</code></a></h4>
+<h4 id="open-tabs-code-opentab-code"><a class="link" href="#open-tabs-code-opentab-code">3.5.2. Open Tabs: <code>opentab</code></a></h4>
 <div class="paragraph">
 <p>Opens a new tab in the GUI<br>
 Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code></p>
@@ -617,7 +717,7 @@ Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="close-tabs-code-closetab-code"><a class="link" href="#close-tabs-code-closetab-code">3.4.3. Close Tabs: <code>closetab</code></a></h4>
+<h4 id="close-tabs-code-closetab-code"><a class="link" href="#close-tabs-code-closetab-code">3.5.3. Close Tabs: <code>closetab</code></a></h4>
 <div class="paragraph">
 <p>Closes a tab in the GUI<br>
 Format: <code>closetab t/TAB_TYPE i/TAB_INDEX</code></p>
@@ -652,9 +752,9 @@ Format: <code>closetab t/TAB_TYPE i/TAB_INDEX</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-and-exporting-data"><a class="link" href="#importing-and-exporting-data">3.5. Importing and Exporting data</a></h3>
+<h3 id="importing-and-exporting-data"><a class="link" href="#importing-and-exporting-data">3.6. Importing and Exporting data</a></h3>
 <div class="sect3">
-<h4 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">3.5.1. Importing data: <code>import</code></a></h4>
+<h4 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">3.6.1. Importing data: <code>import</code></a></h4>
 <div class="paragraph">
 <p>Imports external data of a specified format (e.g. CSV, JSON) into local storage.<br>
 Format: <code>import f/FORMAT p/PATH</code></p>
@@ -681,7 +781,7 @@ Format: <code>import f/FORMAT p/PATH</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">3.5.2. Exporting data: <code>export</code></a></h4>
+<h4 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">3.6.2. Exporting data: <code>export</code></a></h4>
 <div class="paragraph">
 <p>Exports data into a specified format (e.g. CSV, JSON).<br>
 Format: <code>export f/FORMAT p/DIRECTORY</code></p>
@@ -709,16 +809,16 @@ Format: <code>export f/FORMAT p/DIRECTORY</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encryption"><a class="link" href="#encryption">3.6. Encryption</a></h3>
+<h3 id="encryption"><a class="link" href="#encryption">3.7. Encryption</a></h3>
 <div class="sect3">
-<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.6.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
+<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.7.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="miscellaneous"><a class="link" href="#miscellaneous">3.7. Miscellaneous</a></h3>
+<h3 id="miscellaneous"><a class="link" href="#miscellaneous">3.8. Miscellaneous</a></h3>
 <div class="sect3">
-<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.7.1. Viewing help : <code>help</code></a></h4>
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.8.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>List all possible commands or find command usage using the command word.<br>
 Format: <code>help [COMMAND_WORD]</code></p>
@@ -737,21 +837,21 @@ Shows command usage for <code>add</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.7.2. Clearing all entries : <code>clear</code></a></h4>
+<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.8.2. Clearing all entries : <code>clear</code></a></h4>
 <div class="paragraph">
 <p>Clears all entries from AlgoBase.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.7.3. Exiting the program : <code>exit</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.8.3. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.7.4. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.8.4. Saving the data</a></h4>
 <div class="paragraph">
 <p>AlgoBase data is saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -859,4 +959,4 @@ e.g. <code>export f/csv p/./</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:03:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-26 04:13:09 UTC</div></div></div></body></html>
