@@ -837,21 +837,52 @@ Shows command usage for <code>add</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.8.2. Clearing all entries : <code>clear</code></a></h4>
+<h4 id="rewinding-command-code-rewind-code"><a class="link" href="#rewinding-command-code-rewind-code">3.8.2. Rewinding command: <code>rewind</code></a></h4>
+<div class="paragraph">
+<p>Rewind back to a previous successfully executed command.<br>
+Format: <code>rewind INDEX</code></p>
+</div>
+<div class="paragraph">
+<p><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>↑</kbd></span> is shortcut for <code>rewind 1</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>↑</kbd></span> is equivalent to executing <code>rewind 1</code>, you should not expect to rewind multiple commands back if you press the shortcut multiple times - it will always show you the last successfully executed command, if any. If you want to rewind several commands back
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find n/Sequences</code><br>
+<code>rewind 1</code><br>
+Execute <code>find</code> command first, then <code>rewind</code> back to the <code>find</code> command (now the content in the command box should be <code>find n/Sequences</code>)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.8.3. Clearing all entries : <code>clear</code></a></h4>
 <div class="paragraph">
 <p>Clears all entries from AlgoBase.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.8.3. Exiting the program : <code>exit</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.8.4. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.8.4. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.8.5. Saving the data</a></h4>
 <div class="paragraph">
 <p>AlgoBase data is saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -959,4 +990,4 @@ e.g. <code>export f/csv p/./</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-26 04:13:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-27 15:42:00 UTC</div></div></div></body></html>
