@@ -46,7 +46,7 @@
 <p>Ensure you have Java <code>11</code> or above installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>algobase.jar</code> <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/releases">here</a>.</p>
+<p>Download the latest <code>algobase.jar</code> <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/releases">here</a>.</p>
 </li>
 <li>
 <p>Copy the file to the folder you want to use as the home folder for your AlgoBase application.</p>
@@ -55,7 +55,7 @@
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui.png" alt="Ui" width="790">
+<img src="images/Ui.png" alt="Ui" width="80%">
 </div>
 </div>
 </li>
@@ -72,6 +72,26 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </li>
 <li>
 <p><strong><code>add</code></strong><code>n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Halim</code> : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Wee Han'</p>
+</li>
+<li>
+<p><strong><code>edit</code></strong><code>1 src/LeetCode</code> : edits the first problem displayed and sets its source to 'LeetCode'</p>
+</li>
+<li>
+<p><strong><code>switchtab</code></strong><code>t/display i/2</code> : switches to tag tab</p>
+</li>
+<li>
+<p><strong><code>switchtab</code></strong><code>t/display i/3</code> : switches to plan tab</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiStartPlan.png" alt="UiStartPlan" width="60%">
+</div>
+</div>
+</li>
+<li>
+<p><strong><code>findplan</code></strong><code>n/CS2040</code> : finds plans that with name 'CS2040'</p>
+</li>
+<li>
+<p><strong><code>clear</code></strong> : resets Algobase</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
@@ -609,7 +629,7 @@ Format: <code>add n/NAME [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]</code
 <div class="ulist">
 <ul>
 <li>
-<p><code>addplan n/CS2040 d/past year questions in practical exams s/2019-01-01 e/3019-12-12</code></p>
+<p><code>addplan n/CS2040 d/past year questions in practical exams start/2019-01-01 end/3019-12-12</code></p>
 </li>
 </ul>
 </div>
@@ -680,7 +700,7 @@ Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/EN
 Edits the description of the 1st plan to be `past year questions of sit-in labs</code> respectively.</p>
 </li>
 <li>
-<p><code>edit 2 s/2019-08-13</code><br>
+<p><code>edit 2 start/2019-08-13</code><br>
 Edits the starting date of the 2nd plan to be <code>2019-08-13</code>.</p>
 </li>
 </ul>
@@ -802,7 +822,7 @@ Format: <code>movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
 <h4 id="locating-plans-code-findplan-code"><a class="link" href="#locating-plans-code-findplan-code">3.5.1. Locating plans: <code>findplan</code></a></h4>
 <div class="paragraph">
 <p>Finds plans fulfilling all provided constraints.<br>
-Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_END]&#8230;&#8203;</code></p>
+Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_END]</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1054,7 +1074,7 @@ Format: <code>rewind INDEX</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Since <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>↑</kbd></span> is equivalent to executing <code>rewind 1</code>, you should not expect to rewind multiple commands back if you press the shortcut multiple times - it will always show you the last successfully executed command, if any. If you want to rewind several commands back
+Since <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>↑</kbd></span> is equivalent to executing <code>rewind 1</code>, you should not expect to rewind multiple commands back if you press the shortcut multiple times - it will always show you the last successfully executed command, if any. if you want to rewind several commands back, please use <code>rewind INDEX</code> instead.
 </td>
 </tr>
 </table>
@@ -1165,15 +1185,19 @@ e.g. <code>deletetag 3</code></p>
 e.g. <code>addplan n/CS2040</code></p>
 </li>
 <li>
-<p><strong>Edit Training Plan</strong> : <code>editplan INDEX [a/ADD_PROBLEM_INDEX_LIST] [d/DELETE_PROBLEM_INDEX_LIST] [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]</code><br>
-e.g. <code>editplan 1 a/1 2 3 d/4 5 6 n/training set 1</code></p>
+<p><strong>Edit Training Plan</strong> : <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]</code><br>
+e.g. <code>editplan 1 n/training start/2020-02-02</code></p>
 </li>
 <li>
-<p><strong>Find Training Plan</strong> : <code>findplan KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>find training set</code></p>
+<p><strong>Find Training Plans</strong> : <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_END]</code><br>
+e.g. <code>find n/CS2040 start/2019-03-01 end/2019-03-31</code></p>
 </li>
 <li>
 <p><strong>List Training Plans</strong> : <code>listplan</code></p>
+</li>
+<li>
+<p><strong>Delete Training Plan</strong> : <code>deleteplan INDEX</code><br>
+e.g. <code>deleteplan 2</code></p>
 </li>
 <li>
 <p><strong>Add Task to Training Plan</strong> : <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX</code><br>
@@ -1208,6 +1232,10 @@ e.g. <code>export format/json path/.</code></p>
 e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </li>
 <li>
+<p><strong>Rewind Command History</strong> : <code>rewind INDEX</code><br>
+e.g. <code>rewind 1</code></p>
+</li>
+<li>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
 <li>
@@ -1219,4 +1247,4 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 11:23:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 20:26:42 UTC</div></div></div></body></html>
