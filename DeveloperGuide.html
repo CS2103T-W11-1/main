@@ -27,6 +27,7 @@
 <li><a href="#find-problem-feature">3.3. Find Problem Feature</a></li>
 <li><a href="#save-find-rules-feature">3.4. Save Find Rules Feature</a></li>
 <li><a href="#gui-enhancements">3.5. GUI Enhancements</a></li>
+<li><a href="#training-plan-feature">3.6. Training Plan Feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -308,6 +309,12 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 <div class="title">Figure 12. Structure of the ProblemSearchRule Package</div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/design/model/PlanSearchRulePackageDiagram.png" alt="PlanSearchRulePackageDiagram" width="60%">
+</div>
+<div class="title">Figure 13. Structure of the PlanSearchRule Package</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
@@ -315,7 +322,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
 </div>
-<div class="title">Figure 13. Structure of the Storage Component</div>
+<div class="title">Figure 14. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -405,7 +412,7 @@ the task management feature.</p>
 <div class="content">
 <img src="images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram">
 </div>
-<div class="title">Figure 14. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 15. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application.</p>
@@ -426,7 +433,7 @@ stored in <code>AlgoBase</code>.</p>
 <div class="content">
 <img src="images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram">
 </div>
-<div class="title">Figure 15. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 16. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 </div>
 <div class="sect3">
@@ -574,7 +581,7 @@ stored in <code>AlgoBase</code>.</p>
 <div class="content">
 <img src="images/AddTagSequenceDiagram.png" alt="AddTagSequenceDiagram">
 </div>
-<div class="title">Figure 16. Sequence Diagram for <code>AddTagCommand</code></div>
+<div class="title">Figure 17. Sequence Diagram for <code>AddTagCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls Model#listtag(), causing the taglist shows the current components of uniqueTagList. Commands that do not modify the address book, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
@@ -594,7 +601,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 <div class="content">
 <img src="images/TagActivityDiagram.png" alt="TagActivityDiagram">
 </div>
-<div class="title">Figure 17. Activity Diagram for tag commands</div>
+<div class="title">Figure 18. Activity Diagram for tag commands</div>
 </div>
 </div>
 <div class="sect3">
@@ -649,7 +656,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 <div class="content">
 <img src="images/find/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram">
 </div>
-<div class="title">Figure 18. Activity Diagram for the Execution of <code>find</code> Command</div>
+<div class="title">Figure 19. Activity Diagram for the Execution of <code>find</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
@@ -741,7 +748,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/FindCommandClassDiagram.png" alt="FindCommandClassDiagram" width="75%">
 </div>
-<div class="title">Figure 19. Class Diagram of the Find Feature</div>
+<div class="title">Figure 20. Class Diagram of the Find Feature</div>
 </div>
 <div class="ulist">
 <ul>
@@ -830,7 +837,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/PredicateClassDiagram.png" alt="PredicateClassDiagram" width="40%">
 </div>
-<div class="title">Figure 20. Class Diagram for Predicates in the Find Feature</div>
+<div class="title">Figure 21. Class Diagram for Predicates in the Find Feature</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the find problem mechanism behaves at each step.</p>
@@ -860,7 +867,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/find/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 21. Sequence Diagram for the Execution of <code>find</code> Command</div>
+<div class="title">Figure 22. Sequence Diagram for the Execution of <code>find</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -981,7 +988,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/savefindrule/AddFindRuleActivityDiagram.png" alt="AddFindRuleActivityDiagram" width="70%">
 </div>
-<div class="title">Figure 22. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 23. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
@@ -1048,7 +1055,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleClassDiagram.png" alt="AddFindRuleClassDiagram" width="70%">
 </div>
-<div class="title">Figure 23. Class Diagram for Add Find Rule Feature</div>
+<div class="title">Figure 24. Class Diagram for Add Find Rule Feature</div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes the request when user types in <code>addfindrule rule1 n/Sequences</code>:</p>
@@ -1057,7 +1064,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/HighLevelAddFindRuleSequenceDiagram.png" alt="HighLevelAddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 24. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
+<div class="title">Figure 25. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
@@ -1066,7 +1073,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleSequenceDiagram.png" alt="AddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 25. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 26. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 </div>
 </div>
@@ -1269,6 +1276,115 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="training-plan-feature"><a class="link" href="#training-plan-feature">3.6. Training Plan Feature</a></h3>
+<div class="paragraph">
+<p>Training plan feature allows user to create customized training plans that consist of selected problems in AlgoBase. Users can record their progress by marking problems in plans as done.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.6.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The training plan mechanism is faciliated by <code>AlgoBase</code>. It supports the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Algobase#addPlan()</code>&#8201;&#8212;&#8201;Adds a new empty training plan to AlgoBase.</p>
+</li>
+<li>
+<p><code>AlgoBase#setPlan()</code>&#8201;&#8212;&#8201;Edits an existing training plan by specifying its number.</p>
+</li>
+<li>
+<p><code>AlgoBase#removePlan()</code>&#8201;&#8212;&#8201;Deletes a training plan by specifying its number.</p>
+</li>
+<li>
+<p><code>AlgoBase#getPlanList()</code>&#8201;&#8212;&#8201;Returns a list of plans in AlgoBase.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the training plan behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>AlgoBase</code> will be initialized with the initial empty state.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user switches to the plan tab and executes <code>addplan n/CS2040 d/past year questions start/2019-01-01 end/2019-05-04</code> command to add a new plan to AlgoBase. The <code>addplan</code> command calls <code>Model#addPlan()</code>, causing the modified state of AlgoBase after the <code>addplan</code> command executes to be saved in the <code>PlanList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user executes <code>listplan</code> to list all plans. The <code>listplan</code> command also calls <code>Model#updateFilteredPlanList()</code>. The plan <code>CS2040</code> is numbered <code>1</code> in the displayed list.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The user finds out that the exam date of CS2040 has changed, and decides to change the end date by executing the <code>editplan 1 end/2019-05-05</code> command. The <code>editplan</code> command will call <code>Model#setPlan()</code>, which will replace the original plan with the modified plan in the <code>PlanList</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The user can also add value for an empty field by executing <code>editplan</code> command if the field was not specified when adding the plan.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 5. The user then decides to execute the command <code>findplan start/2019-03-01 end/2019-03-31</code>. The <code>findplan</code> command constructs a <code>FindPlanDescriptor</code> and executes <code>Model#updateFilteredPlanList(FindPlanDescriptor)</code>. A list of plans in AlgoBase that has overlapping time range with specified starting date and end date will be displayed on the plan list panel.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user wants to find plans with overlapping time range, both the starting date and the end date should be specified and valid, or an error message will be displayed to inform the user that both fields should be present.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 6. The user executes <code>deleteplan 1</code>, which calls <code>Model#getFilteredPlanList()</code> and #Model#deletePlan`. The 'Model#getFilteredPlanList()' returns the last shown plan list, which is list of plans returns by the <code>findplan</code> command in step 4. Therefore, the first plan with overlapping time range is deleted.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-data-structure-of-timerange-class"><a class="link" href="#aspect-data-structure-of-timerange-class">Aspect: Data Structure of TimeRange class</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Abstract out a <code>TimeRange</code> class in package plansearchrule.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Generating a <code>TimeRange</code> object in <code>findplan</code> command adds coupling.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Replace <code>startDate</code> and <code>endDate</code> fields in plans to a single field <code>TimeRange</code> .</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More OOP (<code>startDate</code> and <code>endDate</code> are currently <code>LocalDate</code> objects).</p>
+</li>
+<li>
+<p>Cons: We must ensure that the implementation complies with other date-related commands and storage of plans.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2442,4 +2558,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 10:04:06 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 10:31:23 UTC</div></div></div></body></html>
