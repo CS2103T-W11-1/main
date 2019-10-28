@@ -174,7 +174,9 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts
+e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>DetailsTabPane</code>, <code>DisplayTabPane</code>, <code>TaskManagementPane</code>, <code>StatusBarFooter</code> etc.
+All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
@@ -339,10 +341,10 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>can retrieve <code>UserPref</code> objects from json format.</p>
 </li>
 <li>
-<p>can store the AlgoBase app data including <code>Plan</code>, <code>Problem</code>, <code>Tag</code>, <code>Task</code> objects in relational manner in json format.</p>
+<p>can store the AlgoBase app data including <code>GuiState</code>, <code>Plan</code>, <code>Problem</code>, <code>ProblemSearchRule</code>, <code>Tag</code>, <code>Task</code> objects in relational manner in json format.</p>
 </li>
 <li>
-<p>can retrieve <code>Plan</code>, <code>Problem</code>, <code>Tag</code>, <code>Task</code> objects from json format.</p>
+<p>can retrieve <code>GuiState</code>, <code>Plan</code>, <code>Problem</code>, <code>ProblemSearchRule</code>, <code>Tag</code>, <code>Task</code> objects from json format.</p>
 </li>
 </ul>
 </div>
@@ -353,8 +355,8 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>Classes used by multiple components are in the <code>seedu.algobase.commons</code> package.</p>
 </div>
 <div class="paragraph">
-<p>It contains utility files for configuration <code>ConfigUtil</code>, file handling <code>FileUtil</code>, ID generation <code>IdUtil</code>,
-JSON storage <code>JsonUtil</code>, string manipulation <code>StringUtil</code> and others.</p>
+<p>It contains utility files for configuration <code>ConfigUtil</code>, file handling <code>FileUtil</code>,
+JSON storage <code>JsonUtil</code>, string manipulation <code>StringUtil</code> and others including <code>AppUtil</code> and <code>CollectionUtil</code>.</p>
 </div>
 </div>
 </div>
@@ -2558,4 +2560,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 10:31:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 11:23:01 UTC</div></div></div></body></html>
