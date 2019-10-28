@@ -112,6 +112,7 @@ image::DeleteSequenceDiagram.png[]
 NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 //@@author le0tan
+// tag::model[]
 [[Design-Model]]
 === Model component
 
@@ -143,7 +144,7 @@ image::design/model/TaskPackageDiagram.png[width="30%"]
 
 .Structure of the ProblemSearchRule Package
 image::design/model/ProblemSearchRulePackageDiagram.png[width="60%"]
-
+// end::model[]
 //@@author
 
 //@@author jiayushe
