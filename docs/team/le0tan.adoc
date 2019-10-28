@@ -2,6 +2,7 @@
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
+:experimental:
 
 == PROJECT: AlgoBase
 
@@ -31,8 +32,14 @@ https://github.com/AY1920S1-CS2103T-W11-1/main/pull/90[#90]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/94[#94]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/107[#107]
 
-* *Minor enhancement*:
-** `rewind`
+* *Minor enhancement*: Implemented the `rewind` command to check command history.
+
+** What it does: allows the user to navigate to previous commands using either `rewind INDEX` command or kbd:[Ctrl + ↑] keyboard shortcut.
+
+** Justification: `rewind` is to make `addfindrule` more useful - the user can first check if their problem find rule is working as they expected by executing it using `find` command, then `rewind 1` or press kbd:[Ctrl + ↑] to restore the command text, change the command word to `addfindrule` and assign a name to the added find rule.
+
+** Relevant pull request
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/105[#105]
 
 * *Code contributed*:
 https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=le0tan[Funtional and Test Code]
@@ -47,8 +54,18 @@ https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=le0tan[Funtional and 
 *** Explains how reserved words should work in *AlgoBase* (used as a reference in the development) https://github.com/AY1920S1-CS2103T-W11-1/main/pull/35[#35]
 ** Community:
 *** PRs reviewed (with non-trivial review comments):
-
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/24[#24]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/37[#37]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/65[#65]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/66[#66]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/67[#67]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/70[#70]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/80[#80]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/85[#85]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/116[#116]
 *** Contributed to forum discussions
+**** Fixed the forum issue template https://github.com/nus-cs2103-AY1920S1/forum/pull/126[#126]
+**** Reported module website's inaccurate information on PPP https://github.com/nus-cs2103-AY1920S1/forum/issues/149[#149]
 
 *** Reported bugs and suggestions for other teams in the class
 
