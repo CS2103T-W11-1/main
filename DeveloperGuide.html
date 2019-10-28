@@ -25,7 +25,8 @@
 <li><a href="#task-management-feature">3.1. Task Management Feature</a></li>
 <li><a href="#tag-feature">3.2. Tag feature</a></li>
 <li><a href="#find-problem-feature">3.3. Find Problem Feature</a></li>
-<li><a href="#gui-enhancements">3.4. GUI Enhancements</a></li>
+<li><a href="#save-find-rules-feature">3.4. Save Find Rules Feature</a></li>
+<li><a href="#gui-enhancements">3.5. GUI Enhancements</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -782,7 +783,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/find/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram">
+<img src="images/find/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram" width="70%">
 </div>
 <div class="title">Figure 19. Sequence Diagram for the Execution of <code>find</code> Command</div>
 </div>
@@ -891,12 +892,156 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 </div>
 </div>
 <div class="sect2">
-<h3 id="gui-enhancements"><a class="link" href="#gui-enhancements">3.4. GUI Enhancements</a></h3>
+<h3 id="save-find-rules-feature"><a class="link" href="#save-find-rules-feature">3.4. Save Find Rules Feature</a></h3>
+<div class="paragraph">
+<p>AlgoBase provides many ways to organizing your problems including tags and plans. However, both organizing features require persistent user involvement - if the user added a new problem belonging to a category, the user needs to manually assign a tag to the problem or add the problem to a plan. Since AlgoBase&#8217;s <code>find</code> command enables the user to filter problems with great flexibility, we allow them to save certain find rules so that they can re-apply these rules to quickly locate problems of their need.</p>
+</div>
+<div class="paragraph">
+<p>This section will describe in detail the current implementation and design considerations of the save find rules (or problem search rules) feature of AlgoBase.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes <code>addfindrule</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/savefindrule/AddFindRuleActivityDiagram.png" alt="AddFindRuleActivityDiagram" width="70%">
+</div>
+<div class="title">Figure 20. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The save find rules feature is facilitated by the following classes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ProblemSearchRule</code><br>
+It stores both the <code>Name</code> of the find rule and all predicates included in this find rule. A <code>ProblemSearchRule</code> doesn&#8217;t have to include all possible predicates as the user may not provide all of them. Missing predicates will be stored as <code>null</code> in this class.</p>
+</li>
+<li>
+<p><code>UniqueFindRuleList</code><br>
+It stores the find rules and makes sure that every find rule in this list has a unique name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UniqueFindRuleList</code> stores a <code>ObservableList&lt;ProblemSearchRule&gt;</code> for UI purposes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Except for <code>ProblemSearchRule</code>, we refer to these rules as <code>FindRule</code> in all other places. This is to prevent possible naming conflicts if AlgoBase is to support saving find rules on other items (e.g. Plans, etc.). <code>FindRule</code> corresponds to <code>FindCommand</code>. Thus, if you are to implement saving find plan rules, name them as <code>PlanSearchRule</code>, <code>AddFindPlanRuleCommand</code>, <code>UniqueFindPlanRuleList</code>, etc.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Under the category of save find rules feature, we have the following <code>Command</code> classes and their corresponding <code>Parser</code> classes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddFindRuleCommand</code></p>
+</li>
+<li>
+<p><code>DeleteFindRuleCommand</code></p>
+</li>
+<li>
+<p><code>ApplyCommand</code><br>
+It applies a problem-finding rule by specifying the index of the displayed find rule.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since these commands share similar implementations, we will only take <code>AddFindRuleCommand</code> as an example since it&#8217;s the most complicated one among the three.</p>
+</div>
+<div class="sect4">
+<h5 id="implementation-of-code-addfindrule-code-feature"><a class="link" href="#implementation-of-code-addfindrule-code-feature">Implementation of <code>addfindrule</code> feature</a></h5>
+<div class="paragraph">
+<p>The <code>addfindrule</code> feature is facilitated by <code>AddFindRuleCommand</code> and <code>AddFindRuleCommandParser</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/savefindrule/AddFindRuleClassDiagram.png" alt="AddFindRuleClassDiagram" width="70%">
+</div>
+<div class="title">Figure 21. Class Diagram for Add Find Rule Feature</div>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes the request when user types in <code>addfindrule rule1 n/Sequences</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/savefindrule/HighLevelAddFindRuleSequenceDiagram.png" alt="HighLevelAddFindRuleSequenceDiagram" width="70%">
+</div>
+<div class="title">Figure 22. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/savefindrule/AddFindRuleSequenceDiagram.png" alt="AddFindRuleSequenceDiagram" width="70%">
+</div>
+<div class="title">Figure 23. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-a-immutable-concrete-class"><a class="link" href="#aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-a-immutable-concrete-class">Aspect: To implement <code>ProblemSearchRule</code> as a subclass of <code>FindProblemDescriptor</code> or implement it as a immutable concrete class.</a></h5>
+<div class="paragraph">
+<p>Since AlgoBase is forked from AddressBook 3, it also inherits AB3&#8217;s design choice on all data classes - they are all immutable classes with all fields being <code>final</code>. However, <code>ProblemSearchRule</code> is essentially saving the information of a command input, where the user may provide any number of predicates as the argument. We implement mutable <code>FindProblemDescriptor</code> to accommodate variable user inputs, now we have to consider whether to keep <code>ProblemSearchRule</code> immutable or not.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> <code>ProblemSearchRule</code> extends <code>FindProblemDescriptor</code> with an additional field <code>name</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Drastically reduces the amount of duplicate code as <code>ProblemSearchRule</code> shares most fields with <code>FindProblemDescriptor</code></p>
+</li>
+<li>
+<p>Cons: <code>ProblemSearchRule</code> as a data class is no longer immutable. We have to be careful not to call any setters it inherits from <code>FindProblemDescriptor</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> <code>ProblemSearchRule</code> as an individual class with immutable fields.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Provides good protection over unexpected changes to the data fields.</p>
+</li>
+<li>
+<p>Cons: Lots of repeated code.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="gui-enhancements"><a class="link" href="#gui-enhancements">3.5. GUI Enhancements</a></h3>
 <div class="paragraph">
 <p>An intuitive GUI facilitates the overall user friendliness of the application. The user should be able to navigate around the application easily to facilitate a smooth experience using AlgoBase. Additionally, multitasking is important as a user may be tackling multiple algorithmic questions at a single time. One of the main enhancements that we introduced to the GUI is tabbing, which fulfils these 2 requirements.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The state of the GUI is stored in a <code>GuiState</code> object. The <code>GuiState</code> object contains a <code>TabManager</code> object, which manages tab information such as the tabs that are open and the tabs that are currently selected.</p>
 </div>
@@ -1001,7 +1146,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>Aspect: Implementation of Tab Logic</p>
 </div>
@@ -2027,4 +2172,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 05:16:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 05:51:24 UTC</div></div></div></body></html>

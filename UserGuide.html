@@ -126,6 +126,18 @@ Format: <code>add n/NAME [a/AUTHOR] [w/WEBLINK] [d/DESCRIPTION] [diff/DIFFICULTY
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Don&#8217;t provide extreme values like <code>5.00000&#8230;&#8203;01</code> as difficulty range as computers can&#8217;t store decimals exactly and some round-off error is unavoidable.
+</td>
+</tr>
+</table>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -253,6 +265,18 @@ Format: <code>sort m/METHOD [ord/ORDER]</code></p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If sorted by ascending order (i.e. the default order), empty fields will have the highest priority, which means if you execute <code>sort m/weblink</code>, the first few results would be (if any) without web links.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -345,13 +369,46 @@ Format: <code>find [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_
 <li>
 <p>matches problems with <code>LOWER_BOUND &lt;= difficulty &lt;= UPPER_BOUND</code></p>
 </li>
-<li>
-<p>Note that you should provide both bounds. If you want to match problems with exact difficulty <code>1.5</code>, please use <code>diff/1.5-1.5</code></p>
-</li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you want to match problems with exact difficulty <code>1.5</code>, please use <code>diff/1.5-1.5</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When providing the search restrictions, you should ensure that keywords are non-blank and difficulty range is valid (as specified in <code>add</code> command). Also at least one search restriction should be provided.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Words are separated by empty spaces. Thus if we have a sentence "Hello, world!", we have two words <code>Hello,</code> and <code>world!</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -921,27 +978,39 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add n/NAME [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code><br>
+<p><strong>Add Problem</strong> <code>add n/NAME [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>add  n/factorial d/define a function factorial that takes in a number n and returns the factorial of the number t/recursion a/Wee Han</code></p>
 </li>
 <li>
-<p><strong>List</strong> : <code>list</code><br></p>
+<p><strong>List Problems</strong> : <code>list</code><br></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit INDEX [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code><br>
+<p><strong>Edit Problems</strong> : <code>edit INDEX [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>edit 2 n/permutations t/</code></p>
 </li>
 <li>
-<p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>find factorial permutations</code></p>
-</li>
-<li>
-<p><strong>Delete</strong> : <code>delete INDEX</code><br>
+<p><strong>Delete Problem</strong> : <code>delete INDEX</code><br>
 e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>Sort</strong> : <code>sort m/METHOD [d/DIRECTION]</code><br>
-e.g. <code>sort m/alphabetical d/ASC</code></p>
+<p><strong>Sort Problems</strong> : <code>sort m/METHOD [ord/ORDER]</code><br>
+e.g. <code>sort m/difficulty ord/ascend</code></p>
+</li>
+<li>
+<p><strong>Find Problems</strong> : <code>find [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]…</code><br>
+e.g. <code>find t/algorithm diff/2.0-4.0</code></p>
+</li>
+<li>
+<p><strong>Add Find Rule</strong>: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]…</code><br>
+e.g. <code>addfindrule MediumDiffAlgo t/algorithm diff/2.0-4.0</code></p>
+</li>
+<li>
+<p><strong>Apply Find Rule</strong>: <code>apply INDEX</code><br>
+e.g. <code>apply 2</code></p>
+</li>
+<li>
+<p><strong>Delete Find Rule</strong>: <code>deletefindrule INDEX</code><br>
+e.g. <code>deletefindrule 2</code></p>
 </li>
 <li>
 <p><strong>New Tag</strong> : <code>addtag n/NAME</code><br>
@@ -1005,4 +1074,4 @@ e.g. <code>export f/csv p/./</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 05:16:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 05:51:24 UTC</div></div></div></body></html>
