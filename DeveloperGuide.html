@@ -371,7 +371,7 @@ the task management feature.</p>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The task management feature mainly involves four main behaviours:</p>
+<p>The task management feature mainly involves six main behaviours:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -383,6 +383,12 @@ the task management feature.</p>
 </li>
 <li>
 <p><code>AlgoBase#doneTask()</code> - mark a task as done in a specified plan.</p>
+</li>
+<li>
+<p><code>AlgoBase#editTask()</code> - edit the due date of a task in a specified plan.</p>
+</li>
+<li>
+<p><code>AlgoBase#moveTask()</code> - move a task from one plan to another.</p>
 </li>
 <li>
 <p><code>AlgoBase#undoneTask()</code> - mark a task as undone in a specified plan.</p>
@@ -399,7 +405,7 @@ the task management feature.</p>
 <div class="content">
 <img src="images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram">
 </div>
-<div class="title">Figure 14. Activity Diagram for the Execution of <code>AddTask</code> Command</div>
+<div class="title">Figure 14. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application.</p>
@@ -410,7 +416,8 @@ the task management feature.</p>
 <div class="paragraph">
 <p>Step 3. The user executes <code>addtask plan/1 prob/1</code> to add the problem with index 1 in the list to the plan with index 1.
 The <code>AddTask</code> command calls <code>Plan#updateTasks</code> to create a new plan from the original plan with this additional task.
-After that, <code>Model#setPlan()</code> is called to replace the original plan with the updated plan in the <code>PlanList</code>.</p>
+After that, <code>Model#setPlan</code> is called to replace the original plan with the updated plan in the <code>PlanList</code>
+stored in <code>AlgoBase</code>.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the <code>addtask</code> operation works:</p>
@@ -419,7 +426,7 @@ After that, <code>Model#setPlan()</code> is called to replace the original plan 
 <div class="content">
 <img src="images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram">
 </div>
-<div class="title">Figure 15. Sequence Diagram for the Execution of <code>AddTask</code> Command</div>
+<div class="title">Figure 15. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 </div>
 <div class="sect3">
@@ -429,27 +436,93 @@ After that, <code>Model#setPlan()</code> is called to replace the original plan 
 <div class="ulist">
 <ul>
 <li>
-<p>Alternative 1 (current choice): Use a <code>HashSet</code> in current AlgoBase to save all tasks in a plan.</p>
+<p>Alternative 1 (current choice): Use a <code>HashSet</code> to store tasks in a plan.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Users can manage the tasks conveniently.</p>
+<p>Pros: Duplicate tasks can be checked easily.</p>
 </li>
 <li>
-<p>Cons: Harder to implement for relational storage.</p>
+<p>Cons: Harder to identify tasks by index.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Alternative 2: Simply keep tasks as a part of a plan.</p>
+<p>Alternative 2: Use an <code>ArrayList</code> to store tasks in a plan.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: No need to save the task separately in the storage, all tasks are under plans.</p>
+<p>Pros: Tasks can be identified by index easily.</p>
 </li>
 <li>
-<p>Cons: Does not keep track of relations between tasks and plans.</p>
+<p>Cons: Harder to check for duplicates.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-to-store-problem-details-within-tasks-to-support-the-task-commands"><a class="link" href="#aspect-how-to-store-problem-details-within-tasks-to-support-the-task-commands">Aspect: How to store problem details within tasks to support the task commands.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Store a problem object in each task.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Changes in problem details will be reflected in the relevant tasks as well.</p>
+</li>
+<li>
+<p>Cons: Relational storage is required to keep track of this relationship.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Copy all problem details and store as separate fields in each task.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: No need to implement relational storage. There will be less coupling between problems and tasks as well.</p>
+</li>
+<li>
+<p>Cons: Changes in problem details will not be reflected in the relevant tasks.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-relational-storage-to-support-the-task-commands"><a class="link" href="#aspect-relational-storage-to-support-the-task-commands">Aspect: Relational storage to support the task commands.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Use an additional <code>id</code> field to identify problems and tasks.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Id is immutable over time.</p>
+</li>
+<li>
+<p>Cons: An additional field is needed for the models.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Use object hash to identify problems and tasks.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: No need to store another additional field in the models.</p>
+</li>
+<li>
+<p>Cons: Object hash can change over time.</p>
 </li>
 </ul>
 </div>
@@ -501,6 +574,7 @@ After that, <code>Model#setPlan()</code> is called to replace the original plan 
 <div class="content">
 <img src="images/AddTagSequenceDiagram.png" alt="AddTagSequenceDiagram">
 </div>
+<div class="title">Figure 16. Sequence Diagram for <code>AddTagCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls Model#listtag(), causing the taglist shows the current components of uniqueTagList. Commands that do not modify the address book, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
@@ -520,6 +594,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 <div class="content">
 <img src="images/TagActivityDiagram.png" alt="TagActivityDiagram">
 </div>
+<div class="title">Figure 17. Activity Diagram for tag commands</div>
 </div>
 </div>
 <div class="sect3">
@@ -574,7 +649,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 <div class="content">
 <img src="images/find/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram">
 </div>
-<div class="title">Figure 16. Activity Diagram for the Execution of <code>find</code> Command</div>
+<div class="title">Figure 18. Activity Diagram for the Execution of <code>find</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
@@ -666,7 +741,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/FindCommandClassDiagram.png" alt="FindCommandClassDiagram" width="75%">
 </div>
-<div class="title">Figure 17. Class Diagram of the Find Feature</div>
+<div class="title">Figure 19. Class Diagram of the Find Feature</div>
 </div>
 <div class="ulist">
 <ul>
@@ -755,7 +830,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/PredicateClassDiagram.png" alt="PredicateClassDiagram" width="40%">
 </div>
-<div class="title">Figure 18. Class Diagram for Predicates in the Find Feature</div>
+<div class="title">Figure 20. Class Diagram for Predicates in the Find Feature</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the find problem mechanism behaves at each step.</p>
@@ -785,7 +860,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/find/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 19. Sequence Diagram for the Execution of <code>find</code> Command</div>
+<div class="title">Figure 21. Sequence Diagram for the Execution of <code>find</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -906,7 +981,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/savefindrule/AddFindRuleActivityDiagram.png" alt="AddFindRuleActivityDiagram" width="70%">
 </div>
-<div class="title">Figure 20. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 22. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
@@ -973,7 +1048,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleClassDiagram.png" alt="AddFindRuleClassDiagram" width="70%">
 </div>
-<div class="title">Figure 21. Class Diagram for Add Find Rule Feature</div>
+<div class="title">Figure 23. Class Diagram for Add Find Rule Feature</div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes the request when user types in <code>addfindrule rule1 n/Sequences</code>:</p>
@@ -982,7 +1057,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/HighLevelAddFindRuleSequenceDiagram.png" alt="HighLevelAddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 22. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
+<div class="title">Figure 24. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
@@ -991,7 +1066,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleSequenceDiagram.png" alt="AddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 23. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 25. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 </div>
 </div>
@@ -1356,8 +1431,20 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mark tasks as complete/incomplete within plans</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">better prepare for interview</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mark tasks as done/undone within plans</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of progress within each plan</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit due dates of tasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">better manage progress for each plan</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">move tasks among plans</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">better manage progress for each plan</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -1368,7 +1455,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">export data into JSON format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">export data into <a href="#json">JSON</a> format</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">easily transfer data from one computer to another</p></td>
 </tr>
 <tr>
@@ -1927,7 +2014,129 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 </li>
 </ul>
 </div>
-<h3 id="use-case-11-switch-between-view-of-items" class="discrete">Use Case 11: Switch between View of Items</h3>
+<h3 id="use-case-11-edit-due-dates-of-tasks" class="discrete">Use Case 11: Edit Due Dates of Tasks</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to edit due date of an existing task
+by entering the index of the plan, index of the task and new due date.</p>
+</li>
+<li>
+<p>AlgoBase edits the due date of the specified task in the specified plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates that the existing task is edited successfully.</p>
+</li>
+<li>
+<p>AlgoBase displays details of the task updated.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AlgoBase detects that the index of plan is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that the update is unsuccessful because the index of plan is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. AlgoBase detects that the index of task is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. AlgoBase informs user that the update is unsuccessful because the index of task is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-12-move-tasks-between-plans" class="discrete">Use Case 12: Move Tasks between Plans</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to move an existing task from one plan to another
+by entering the index of the task and the indices of the plans involved.</p>
+</li>
+<li>
+<p>AlgoBase moves the specified task from the specified "from" plan to the "to" plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates that the existing task is moved successfully.</p>
+</li>
+<li>
+<p>AlgoBase displays list of tasks of the "to" plan updated.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AlgoBase detects that the index of either plan is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that the update is unsuccessful because the index of plan is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. AlgoBase detects that the index of task is out of bounds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. AlgoBase informs user that the update is unsuccessful because the index of task is out of bounds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-13-switch-between-view-of-items" class="discrete">Use Case 13: Switch between View of Items</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -1964,7 +2173,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 </li>
 </ul>
 </div>
-<h3 id="use-case-12-see-details-of-an-item" class="discrete">Use Case 12: See details of an item</h3>
+<h3 id="use-case-14-see-details-of-an-item" class="discrete">Use Case 14: See details of an item</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -1980,6 +2189,86 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 </div>
 </li>
 </ol>
+</div>
+<h3 id="use-case-15-export-algobase-data" class="discrete">Use Case 15: Export AlgoBase data</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to export AlgoBase data to a specified path.</p>
+</li>
+<li>
+<p>AlgoBase exports AlgoBase data to a file name <code>algobase.json</code> in the specified location.</p>
+</li>
+<li>
+<p>AlgoBase indicates that AlgoBase data are exported successfully.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AlgoBase detects that the specified path is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that the export is unsuccessful because the path is invalid.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-16-import-algobase-data" class="discrete">Use Case 16: Import AlgoBase data</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to import data from a specified file into AlgoBase.</p>
+</li>
+<li>
+<p>AlgoBase imports data from the specified file into AlgoBase.</p>
+</li>
+<li>
+<p>AlgoBase indicates that the data are imported into AlgoBase successfully.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AlgoBase detects that the specified file does not exist.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AlgoBase informs user that the import is unsuccessful because the file path is invalid.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2153,4 +2442,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 06:53:07 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 10:04:06 UTC</div></div></div></body></html>
