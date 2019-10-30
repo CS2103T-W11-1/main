@@ -388,6 +388,9 @@ the task management feature.</p>
 <p><code>AlgoBase#addTask()</code> - create a new task for a problem and add it to a specified plan.</p>
 </li>
 <li>
+<p><code>AlgoBase#copyTask()</code> - copy a task from one plan to another.</p>
+</li>
+<li>
 <p><code>AlgoBase#deleteTask()</code> - delete an existing task from a specified plan.</p>
 </li>
 <li>
@@ -401,6 +404,9 @@ the task management feature.</p>
 </li>
 <li>
 <p><code>AlgoBase#undoneTask()</code> - mark a task as undone in a specified plan.</p>
+</li>
+<li>
+<p><code>AlgoBase#setPlan()</code> - set a task as the current plan in main display.</p>
 </li>
 </ul>
 </div>
@@ -1952,265 +1958,24 @@ If the user wants to find plans with overlapping time range, both the starting d
 </li>
 </ul>
 </div>
-<h3 id="use-case-8-delete-tasks-from-plan" class="discrete">Use Case 8: Delete Tasks from Plan</h3>
+<h3 id="use-case-8-copy-tasks-between-plans" class="discrete">Use Case 8: Copy Tasks between Plans</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to delete an existing task by entering the index of the plan and index of the task.</p>
-</li>
-<li>
-<p>AlgoBase deletes the specified task from the specified plan.</p>
-</li>
-<li>
-<p>AlgoBase indicates successful deletion of the existing task.</p>
-</li>
-<li>
-<p>AlgoBase updates the UI with the remaining tasks in the plan.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. AlgoBase detects that the index of plan is out of bounds.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a1. AlgoBase informs user that the deletion is unsuccessful because the index of plan is out of bounds.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2b. AlgoBase detects that the index of task is out of bounds.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2b1. AlgoBase informs user that the deletion is unsuccessful because the index of task is out of bounds.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-9-mark-tasks-as-done-in-plan" class="discrete">Use Case 9: Mark Tasks as Done in Plan</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to mark an existing task as done by entering the index of the plan and index of the task.</p>
-</li>
-<li>
-<p>AlgoBase marks the specified task as done in the specified plan.</p>
-</li>
-<li>
-<p>AlgoBase indicates that the existing task is marked as done successfully.</p>
-</li>
-<li>
-<p>AlgoBase displays details of the task updated.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. AlgoBase detects that the index of plan is out of bounds.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a1. AlgoBase informs user that the update is unsuccessful because the index of plan is out of bounds.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2b. AlgoBase detects that the index of task is out of bounds.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2b1. AlgoBase informs user that the update is unsuccessful because the index of task is out of bounds.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-10-mark-tasks-as-undone-in-plan" class="discrete">Use Case 10: Mark Tasks as Undone in Plan</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to mark an existing task as undone by entering the index of the plan and index of the task.</p>
-</li>
-<li>
-<p>AlgoBase marks the specified task as undone in the specified plan.</p>
-</li>
-<li>
-<p>AlgoBase indicates that the existing task is marked as done successfully.</p>
-</li>
-<li>
-<p>AlgoBase displays details of the task updated.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. AlgoBase detects that the index of plan is out of bounds.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a1. AlgoBase informs user that the update is unsuccessful because the index of plan is out of bounds.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2b. AlgoBase detects that the index of task is out of bounds.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2b1. AlgoBase informs user that the update is unsuccessful because the index of task is out of bounds.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-11-edit-due-dates-of-tasks" class="discrete">Use Case 11: Edit Due Dates of Tasks</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to edit due date of an existing task
-by entering the index of the plan, index of the task and new due date.</p>
-</li>
-<li>
-<p>AlgoBase edits the due date of the specified task in the specified plan.</p>
-</li>
-<li>
-<p>AlgoBase indicates that the existing task is edited successfully.</p>
-</li>
-<li>
-<p>AlgoBase displays details of the task updated.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. AlgoBase detects that the index of plan is out of bounds.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a1. AlgoBase informs user that the update is unsuccessful because the index of plan is out of bounds.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2b. AlgoBase detects that the index of task is out of bounds.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2b1. AlgoBase informs user that the update is unsuccessful because the index of task is out of bounds.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-12-move-tasks-between-plans" class="discrete">Use Case 12: Move Tasks between Plans</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to move an existing task from one plan to another
+<p>User requests to copy an existing task from one plan to another
 by entering the index of the task and the indices of the plans involved.</p>
 </li>
 <li>
-<p>AlgoBase moves the specified task from the specified "from" plan to the "to" plan.</p>
+<p>AlgoBase copies the specified task from the specified "from" plan to the "to" plan.</p>
 </li>
 <li>
-<p>AlgoBase indicates that the existing task is moved successfully.</p>
+<p>AlgoBase indicates that the existing task is copied successfully.</p>
 </li>
 <li>
-<p>AlgoBase displays list of tasks of the "to" plan updated.</p>
+<p>AlgoBase displays list of tasks of the updated "to" plan.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2254,7 +2019,266 @@ by entering the index of the task and the indices of the plans involved.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-13-switch-between-view-of-items" class="discrete">Use Case 13: Switch between View of Items</h3>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c. AlgoBase detects that task to be copied already exists in the "to" plan.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c1. AlgoBase informs user that the update is unsuccessful because the task already exists.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-9-delete-tasks-from-plan" class="discrete">Use Case 9: Delete Tasks from Plan</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to delete an existing task by entering the index of the plan and index of the task.</p>
+</li>
+<li>
+<p>AlgoBase deletes the specified task from the specified plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates successful deletion of the existing task.</p>
+</li>
+<li>
+<p>AlgoBase updates the UI with the remaining tasks in the plan.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. Similar to <code>2a</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. Similar to <code>2b</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-10-edit-due-dates-of-tasks" class="discrete">Use Case 10: Edit Due Dates of Tasks</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to edit due date of an existing task
+by entering the index of the plan, index of the task and new due date.</p>
+</li>
+<li>
+<p>AlgoBase edits the due date of the specified task in the specified plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates that the existing task is edited successfully.</p>
+</li>
+<li>
+<p>AlgoBase displays details of the task updated.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. Similar to <code>2a</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. Similar to <code>2b</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-11-mark-tasks-as-done-in-plan" class="discrete">Use Case 11: Mark Tasks as Done in Plan</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to mark an existing task as done by entering the index of the plan and index of the task.</p>
+</li>
+<li>
+<p>AlgoBase marks the specified task as done in the specified plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates that the existing task is marked as done successfully.</p>
+</li>
+<li>
+<p>AlgoBase displays details of the task updated.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. Similar to <code>2a</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. Similar to <code>2b</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-12-mark-tasks-as-undone-in-plan" class="discrete">Use Case 12: Mark Tasks as Undone in Plan</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to mark an existing task as undone by entering the index of the plan and index of the task.</p>
+</li>
+<li>
+<p>AlgoBase marks the specified task as undone in the specified plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates that the existing task is marked as done successfully.</p>
+</li>
+<li>
+<p>AlgoBase displays details of the task updated.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. Similar to <code>2a</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. Similar <code>2b</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-13-move-tasks-between-plans" class="discrete">Use Case 13: Move Tasks between Plans</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to move an existing task from one plan to another
+by entering the index of the task and the indices of the plans involved.</p>
+</li>
+<li>
+<p>AlgoBase moves the specified task from the specified "from" plan to the "to" plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates that the existing task is moved successfully.</p>
+</li>
+<li>
+<p>AlgoBase displays list of tasks of the updated "to" plan.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. Similar to <code>2a</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. Similar to <code>2b</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c. Similar to <code>2c</code> in Use Case 8.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-14-set-current-plan-in-main-display" class="discrete">Use Case 14: Set Current Plan in Main Display</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to set a plan as the current plan in main display.</p>
+</li>
+<li>
+<p>AlgoBase sets the specified plan as the current plan.</p>
+</li>
+<li>
+<p>AlgoBase indicates that the specified plan is successfully set as the current plan.</p>
+</li>
+<li>
+<p>AlgoBase displays updated current plan in main display.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. Same as <code>2a</code> in Use Case 9.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-15-switch-between-view-of-items" class="discrete">Use Case 15: Switch between View of Items</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2291,7 +2315,7 @@ by entering the index of the task and the indices of the plans involved.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-14-see-details-of-an-item" class="discrete">Use Case 14: See details of an item</h3>
+<h3 id="use-case-16-see-details-of-an-item" class="discrete">Use Case 16: See details of an item</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2308,7 +2332,7 @@ by entering the index of the task and the indices of the plans involved.</p>
 </li>
 </ol>
 </div>
-<h3 id="use-case-15-export-algobase-data" class="discrete">Use Case 15: Export AlgoBase data</h3>
+<h3 id="use-case-17-export-algobase-data" class="discrete">Use Case 17: Export AlgoBase data</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2348,7 +2372,7 @@ by entering the index of the task and the indices of the plans involved.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-16-import-algobase-data" class="discrete">Use Case 16: Import AlgoBase data</h3>
+<h3 id="use-case-18-import-algobase-data" class="discrete">Use Case 18: Import AlgoBase data</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2560,4 +2584,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-28 20:26:42 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 12:32:00 UTC</div></div></div></body></html>
