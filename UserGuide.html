@@ -456,7 +456,8 @@ Returns any problem from <code>Kattis</code> that&#8217;s authored by <code>Hent
 <h4 id="storing-a-problem-finding-rule-code-addfindrule-code"><a class="link" href="#storing-a-problem-finding-rule-code-addfindrule-code">3.2.2. Storing a problem-finding rule: <code>addfindrule</code></a></h4>
 <div class="paragraph">
 <p>Saves a problem-finding rule from provided constraints.<br>
-Format: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code><br>
+Alias: <code>afr</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -480,7 +481,7 @@ The rules for constraints are the same as those described in <code>find</code> c
 Adds a new find rule named <code>MediumDiffAlgo</code> that when applied, returns any problem with <code>algorithm</code> as one of its tags AND with a difficulty between 2.0 and 4.0 (inclusive).</p>
 </li>
 <li>
-<p><code>addfindrule Kattis src/Kattis</code><br>
+<p><code>addfindrule Kattis src/Kattis</code> or <code>afr Kattis src/Kattis</code><br>
 Adds a new find rule named <code>Kattis</code> that when applied, returns any problem from <code>Kattis</code>.</p>
 </li>
 </ul>
@@ -521,7 +522,8 @@ Applies the 2nd find rule in the displayed list.</p>
 <h4 id="deleting-a-problem-finding-rule-code-deletefindrule-code"><a class="link" href="#deleting-a-problem-finding-rule-code-deletefindrule-code">3.2.4. Deleting a problem-finding rule: <code>deletefindrule</code></a></h4>
 <div class="paragraph">
 <p>Deletes a problem-finding rule.<br>
-Format: <code>deletefindrule INDEX</code></p>
+Format: <code>deletefindrule INDEX</code><br>
+Alias: <code>dfr</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -542,7 +544,7 @@ Format: <code>deletefindrule INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>deletefindrule 2</code><br>
+<p><code>deletefindrule 2</code> or <code>dfr 2</code><br>
 Deletes the 2nd find rule in the displayed list.</p>
 </li>
 </ul>
@@ -1363,4 +1365,4 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 11:51:44 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 12:26:40 UTC</div></div></div></body></html>
