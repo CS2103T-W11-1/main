@@ -78,10 +78,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>edit</code></strong><code>1 src/LeetCode</code> : edits the first problem displayed and sets its source to 'LeetCode'</p>
 </li>
 <li>
-<p><strong><code>switchtab</code></strong><code>t/display i/2</code> : switches to tag tab</p>
+<p><strong><code>switchtab</code></strong><code>tt/display i/2</code> : switches to tag tab</p>
 </li>
 <li>
-<p><strong><code>switchtab</code></strong><code>t/display i/3</code> : switches to plan tab</p>
+<p><strong><code>switchtab</code></strong><code>tt/display i/3</code> : switches to plan tab</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiStartPlan.png" alt="UiStartPlan" width="60%">
@@ -952,11 +952,46 @@ Format: <code>setplan PLAN_INDEX</code></p>
 </div>
 <div class="sect2">
 <h3 id="tabs"><a class="link" href="#tabs">3.7. Tabs</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/TabsOverview.png" alt="TabsOverview" width="70%">
+</div>
+</div>
+<div class="paragraph">
+<p><em>fig 3.7.0 – Types of Tabs highlighted in Orange</em></p>
+</div>
+<div class="paragraph">
+<p>There are 2 types of tabs in AlgoBase: Display and Details tabs.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Display tabs</strong> give a high level overview of the contents of a list of items
+(e.g. a list of <code>problems</code>/<code>tags</code>/<code>plans</code>).</p>
+</li>
+<li>
+<p><strong>Details tabs</strong> give a more detailed description of an item in a display tab.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the example in fig 3.7.0, there is a problem called "Sequences" in the current display tab.
+The details for this problem can be seen in the details tab where the orange arrow is pointing to.</p>
+</div>
 <div class="sect3">
 <h4 id="switching-tabs-code-switchtab-code"><a class="link" href="#switching-tabs-code-switchtab-code">3.7.1. Switching Tabs: <code>switchtab</code></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/SwitchTabCommand.png" alt="SwitchTabCommand" width="70%">
+</div>
+</div>
+<div class="paragraph">
+<p><em>fig 3.7.1 – Demonstration of <code>SwitchTab</code> command</em></p>
+</div>
 <div class="paragraph">
 <p>Switches between tabs in the GUI<br>
-Format: <code>switchtab t/TAB_TYPE i/TAB_INDEX</code></p>
+Format: <code>switchtab tt/TAB_TYPE i/TAB_INDEX</code>
+Format: <code>st tt/TAB_TYPE i/TAB_INDEX</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -966,6 +1001,9 @@ Format: <code>switchtab t/TAB_TYPE i/TAB_INDEX</code></p>
 <ul>
 <li>
 <p>can be <code>display</code> or <code>details</code></p>
+</li>
+<li>
+<p>Alternatively, <code>display</code> and <code>details</code> can be replaced by <code>1</code> and <code>2</code> respectively</p>
 </li>
 </ul>
 </div>
@@ -978,19 +1016,31 @@ Format: <code>switchtab t/TAB_TYPE i/TAB_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>switchtab t/display i/1</code></p>
+<p><code>switchtab tt/display i/3</code> – Switches to the third <strong>display</strong> tab (i.e. <code>plans</code> tab), as seen in fig 3.7.1</p>
 </li>
 <li>
-<p><code>switchtab t/details i/2</code></p>
+<p><code>st tt/1 i/3</code> – Same effects as the previous command but in a shorter format.</p>
+</li>
+<li>
+<p><code>switchtab tt/details i/3</code> – Switches to the third <strong>details</strong> tab</p>
+</li>
+<li>
+<p><code>st tt/2 i/3</code> – Same effects as the previous command but in a shorter format.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="opening-tabs-code-opentab-code"><a class="link" href="#opening-tabs-code-opentab-code">3.7.2. Opening Tabs: <code>opentab</code></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/OpenTabCommand.png" alt="OpenTabCommand" width="70%">
+</div>
+</div>
 <div class="paragraph">
-<p>Opens a new tab in the GUI<br>
-Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code></p>
+<p>Opens a new <strong>Details</strong> tab in the GUI<br>
+Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code>
+Format: <code>ot m/MODEL_TYPE i/MODEL_INDEX</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -999,7 +1049,10 @@ Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>can be <code>problem</code>, <code>tag</code> or <code>plan</code></p>
+<p>can be <code>problem</code>, <code>tag</code>, <code>plan</code> and <code>findrule</code></p>
+</li>
+<li>
+<p>Alternatively, <code>problem</code>, <code>tag</code>, <code>plan</code> and <code>findrule</code> can be replaced by <code>1</code>, <code>2</code>, <code>3</code> and <code>4</code> respectively</p>
 </li>
 </ul>
 </div>
@@ -1012,10 +1065,16 @@ Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>opentab m/problem i/1</code></p>
+<p><code>opentab m/problem i/2</code> – Opens the 2nd problem in the list of problems, as seen in fig 3.7.2</p>
 </li>
 <li>
-<p><code>opentab m/plan i/2</code></p>
+<p><code>ot m/1 i/2</code> – Same effects as the previous command but in a shorter format.</p>
+</li>
+<li>
+<p><code>opentab m/plan i/3</code> – Opens the 3nd plan in the list of plans, as seen in fig 3.7.2</p>
+</li>
+<li>
+<p><code>ot m/3 i/3</code> – Same effects as the previous command but in a shorter format.</p>
 </li>
 </ul>
 </div>
@@ -1023,22 +1082,9 @@ Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code></p>
 <div class="sect3">
 <h4 id="closing-tabs-code-closetab-code"><a class="link" href="#closing-tabs-code-closetab-code">3.7.3. Closing Tabs: <code>closetab</code></a></h4>
 <div class="paragraph">
-<p>Closes a tab in the GUI<br>
-Format: <code>closetab t/TAB_TYPE i/TAB_INDEX</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Tab Type</p>
-<div class="ulist">
-<ul>
-<li>
-<p>can be <code>display</code> or <code>details</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>Closes a <strong>details</strong> tab in the GUI<br>
+Format: <code>closetab i/DETAILS_TAB_INDEX</code>
+Format: <code>ct i/DETAILS_TAB_INDEX</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1046,10 +1092,10 @@ Format: <code>closetab t/TAB_TYPE i/TAB_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>closetab t/display i/1</code></p>
+<p><code>closetab i/3</code> – Closes the third <strong>details</strong> tab</p>
 </li>
 <li>
-<p><code>closetab t/details i/2</code></p>
+<p><code>ct i/1</code> – Same effects as the previous command but in a shorter format.</p>
 </li>
 </ul>
 </div>
@@ -1286,6 +1332,18 @@ e.g. <code>movetask task/1 from/1 to/2</code></p>
 e.g. <code>setplan 10</code></p>
 </li>
 <li>
+<p><strong>Switch Tab</strong> : <code>switchtab tt/TAB_TYPE i/TAB_INDEX</code><br>
+e.g. <code>switchtab tt/display i/3</code></p>
+</li>
+<li>
+<p><strong>Open Tab</strong> : <code>opentab m/MODEL_TYPE i/TAB_INDEX</code><br>
+e.g. <code>opentab m/problem i/2</code></p>
+</li>
+<li>
+<p><strong>Close Tab</strong> : <code>closetab i/DETAILS_TAB_INDEX</code><br>
+e.g. <code>closetab i/3</code></p>
+</li>
+<li>
 <p><strong>Exporting data</strong> : <code>export format/FORMAT path/DIRECTORY_PATH</code><br>
 e.g. <code>export format/json path/.</code></p>
 </li>
@@ -1305,4 +1363,4 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 07:39:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 10:09:03 UTC</div></div></div></body></html>
