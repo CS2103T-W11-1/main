@@ -1289,43 +1289,61 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="sect2">
 <h3 id="training-plan-feature"><a class="link" href="#training-plan-feature">3.6. Training Plan Feature</a></h3>
 <div class="paragraph">
-<p>Training plan feature allows user to create customized training plans with specific starting date and end date that consist of selected problems in AlgoBase. Each problem is wrapped up as a task in the plan. Users can record their progress by marking problems in plans as done.</p>
+<p>Training plan feature allows users to create customized training plans with specific starting date and end date and that consist of selected problems in AlgoBase. Each problem is wrapped up as a task in the plan. Users can record their progress by marking problems in plans as done or undone, and they can edit, delete or search for plans.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The training plan mechanism is faciliated by <code>AlgoBase</code>. It supports the following operations:</p>
+<p>The training plan mechanism is faciliated by <code>AlgoBase</code>, which keeps a list of training plans. It supports the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Algobase#addPlan()</code>&#8201;&#8212;&#8201;Adds a new empty training plan to AlgoBase.</p>
+<p><code>Algobase#addPlan()</code>&#8201;&#8212;&#8201;Adds a new training plan.</p>
 </li>
 <li>
-<p><code>AlgoBase#setPlan()</code>&#8201;&#8212;&#8201;Edits an existing training plan by specifying its number.</p>
+<p><code>AlgoBase#setPlan()</code>&#8201;&#8212;&#8201;Replaces an existing plan by an edited version.</p>
 </li>
 <li>
-<p><code>AlgoBase#removePlan()</code>&#8201;&#8212;&#8201;Deletes a training plan by specifying its number.</p>
+<p><code>AlgoBase#removePlan()</code>&#8201;&#8212;&#8201;Deletes a training plan.</p>
 </li>
 <li>
-<p><code>AlgoBase#getPlanList()</code>&#8201;&#8212;&#8201;Returns a list of plans in AlgoBase.</p>
+<p><code>AlgoBase#getPlanList()</code>&#8201;&#8212;&#8201;Returns a list of training plans.</p>
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/plan/PlanClassDiagram.png" alt="PlanClassDiagram">
+</div>
+<div class="title">Figure 27. Class Diagram of <code>Plan</code></div>
+</div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the training plan behaves at each step.</p>
+<p>Given below is an example usage scenario and how the AlgoBase behaves at each step.</p>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application for the first time. The <code>AlgoBase</code> will be initialized with the initial empty state.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user switches to the plan tab and executes <code>addplan n/CS2040 d/past year questions start/2019-01-01 end/2019-05-04</code> command to add a new plan to AlgoBase. The <code>addplan</code> command calls <code>Model#addPlan()</code>, causing the modified state of AlgoBase after the <code>addplan</code> command executes to be saved in the <code>PlanList</code>.</p>
+<p>Step 2. The user switches to the plan tab and executes <code>addplan n/CS2040 d/past year questions start/2019-01-01 end/2019-05-04</code> command to add a new plan to AlgoBase. The <code>addplan</code> command checks if <code>Model#hasPlan()</code> and calls <code>Model#addPlan()</code>, causing the modified state of plans after the <code>addplan</code> command executes to be saved in the <code>PlanList</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/plan/AddPlanSequenceDiagram.png" alt="AddPlanSequenceDiagram">
+</div>
+<div class="title">Figure 28. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>listplan</code> to list all plans. The <code>listplan</code> command also calls <code>Model#updateFilteredPlanList()</code>. The plan <code>CS2040</code> is numbered <code>1</code> in the displayed list.</p>
+<p>Step 3. The user executes <code>listplan</code> to list all plans. The <code>listplan</code> command calls <code>Model#updateFilteredPlanList()</code>. The plan <code>CS2040</code> is numbered <code>1</code> in the displayed list.</p>
 </div>
 <div class="paragraph">
-<p>Step 4. The user finds out that the exam date of CS2040 has changed, and decides to change the end date by executing the <code>editplan 1 end/2019-05-05</code> command. The <code>editplan</code> command will call <code>Model#setPlan()</code>, which will replace the original plan with the modified plan in the <code>PlanList</code>.</p>
+<p>Step 4. The user finds out that the exam date of CS2040 has changed, and decides to change the end date of the training plan by executing the <code>editplan 1 end/2019-05-05</code> command. The <code>editplan</code> command will check if <code>Model#hasPlan()</code>, and then call <code>Model#setPlan()</code> and <code>Model#updateFilteredPlanList()</code>, which will replace the original plan with the modified plan in the <code>PlanList</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/plan/EditPlanCommandActivityDiagram.png" alt="EditPlanCommandActivityDiagram">
+</div>
+<div class="title">Figure 29. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1334,13 +1352,19 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The user can also add value for an empty field by executing <code>editplan</code> command if the field was not specified when adding the plan.
+The user can also add value for an empty field by executing <code>editplan</code> command if the field has not been specified when adding the plan.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>findplan start/2019-03-01 end/2019-03-31</code>. The <code>findplan</code> command constructs a <code>FindPlanDescriptor</code> and executes <code>Model#updateFilteredPlanList(FindPlanDescriptor)</code>. A list of plans in AlgoBase that has overlapping time range with specified starting date and end date will be displayed on the plan list panel.</p>
+<p>Step 5. The user then decides to execute the command <code>findplan start/2019-03-01 end/2019-03-31</code> to find out what plans he has in March. The <code>findplan</code> command constructs a <code>FindPlanDescriptor</code>, and then executes <code>Model#getFilteredPlanList()</code> and <code>Model#updateFilteredPlanList(FindPlanDescriptor)</code>. A list of plans in AlgoBase that has overlapping time range with the specified starting date and end date will be displayed on the plan list panel.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/plan/FindPlanDescriptorClassDiagram.png" alt="FindPlanDescriptorClassDiagram">
+</div>
+<div class="title">Figure 30. Class Diagram for <code>FindPlanDescriptor</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1349,13 +1373,13 @@ The user can also add value for an empty field by executing <code>editplan</code
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the user wants to find plans with overlapping time range, both the starting date and the end date should be specified and valid, or an error message will be displayed to inform the user that both fields should be present.
+If the user wants to find plans with overlapping time range, both the starting date and the end date should be specified, and the starting date should be before or at least equal to the end date, or an error message will be displayed to inform the user the correct form of input.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>deleteplan 1</code>, which calls <code>Model#getFilteredPlanList()</code> and #Model#deletePlan`. The 'Model#getFilteredPlanList()' returns the last shown plan list, which is list of plans returns by the <code>findplan</code> command in step 4. Therefore, the first plan with overlapping time range is deleted.</p>
+<p>Step 6. The user executes <code>deleteplan 1</code>, which calls <code>Model#getFilteredPlanList()</code> and <code>Model#deletePlan</code>. The 'Model#getFilteredPlanList()' returns the last shown plan list, which is list of plans returns by the <code>findplan</code> command in step 4. Therefore, the first plan with overlapping time range is deleted.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1365,7 +1389,7 @@ If the user wants to find plans with overlapping time range, both the starting d
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Abstract out a <code>TimeRange</code> class in package plansearchrule.</p>
+<p><strong>Alternative 1 (current choice):</strong> Abstract out a <code>TimeRange</code> class in package <code>plansearchrule</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1386,6 +1410,39 @@ If the user wants to find plans with overlapping time range, both the starting d
 </li>
 <li>
 <p>Cons: We must ensure that the implementation complies with other date-related commands and storage of plans.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-to-find-plans-with-certain-tasks"><a class="link" href="#aspect-how-to-find-plans-with-certain-tasks">Aspect: How to find plans with certain tasks</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> By matching names.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Users need to figure out the exact name of the task they would like to find, which is more time-consuming.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> By indicating index of the original problem.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Complies with other usages of prefix <code>task/</code>.</p>
+</li>
+<li>
+<p>Cons: Adds coupling due to access to <code>filteredProblemList</code> in the model.</p>
 </li>
 </ul>
 </div>
@@ -2584,4 +2641,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-01 00:53:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-01 09:24:39 UTC</div></div></div></body></html>
