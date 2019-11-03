@@ -117,6 +117,9 @@ NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X
 
 //@@author le0tan
 [[Design-Model]]
+
+// tag::model[]
+
 === Model component
 
 .Structure of the Model Component
@@ -150,6 +153,9 @@ image::design/model/ProblemSearchRulePackageDiagram.png[width="60%"]
 
 .Structure of the PlanSearchRule Package
 image::design/model/PlanSearchRulePackageDiagram.png[width='60%']
+
+// end::model[]
+
 //@@author
 
 //@@author jiayushe

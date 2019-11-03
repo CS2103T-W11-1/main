@@ -121,6 +121,8 @@ Edits the name of the 2nd problem to be `permutations` and clears all existing t
 Displays a list of all existing problems. +
 Format: `list`
 
+// tag::sort[]
+
 ==== Sorting problems: `sort`
 
 Sorts the current list of results by a specified order and direction. +
@@ -142,7 +144,11 @@ Sorts the current list of problems in descending order of author names.
 * `sort m/difficulty ord/ascend`
 Sorts the current list of problems from lowest to highest difficulty.
 
+// end::sort[]
+
 === Searching Problems
+
+// tag::find[]
 
 ==== Locating problems: `find`
 
@@ -183,6 +189,10 @@ Returns any problem with word `sequence` (case-insensitive) in its name.
 Returns any problem with `algorithm` as one of its tags AND with a difficulty between 2.0 and 4.0 (inclusive).
 * `find a/Hentin Marz src/Kattis` +
 Returns any problem from `Kattis` that's authored by `Hentin Marz`.
+
+// end::find[]
+
+// tag::findrule[]
 
 ==== Storing a problem-finding rule: `addfindrule`
 
@@ -228,6 +238,8 @@ Examples:
 
 * `deletefindrule 2` or `dfr 2` +
 Deletes the 2nd find rule in the displayed list.
+
+// end::findrule[]
 
 === Tags
 

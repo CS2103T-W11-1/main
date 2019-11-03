@@ -82,12 +82,16 @@ https://github.com/le0tan/ped[Reported 19 bugs in PED]
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
+include::../UserGuide.adoc[tag=sort]
+include::../UserGuide.adoc[tag=find]
+include::../UserGuide.adoc[tag=findrule]
+
 == Contributions to the Developer Guide
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=model]
-include::../DeveloperGuide.adoc[tag=find]
+https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#Design-Model[Design - Model] +
+https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#find-problem-feature[Implementation - Find Feature]
 include::../DeveloperGuide.adoc[tag=savefindrule]
