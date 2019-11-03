@@ -12,7 +12,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master
+:repoURL: https://github.com/AY1920S1-CS2103T-W11-1/main
 
 By: `Team CS2103T-W11-1`      Since: `Sep 2019`      Licence: `MIT`
 
@@ -27,7 +27,7 @@ AlgoBase (AB) is for those who prefer to use a desktop app for managing algorith
 .  Copy the file to the folder you want to use as the home folder for your AlgoBase application.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+image::Ui.png[width="80%"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will list all possible commands in the result window and open the help window.
@@ -35,6 +35,14 @@ e.g. typing *`help`* and pressing kbd:[Enter] will list all possible commands in
 
 * *`list`* : lists all problems
 * **`add`**`n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Halim` : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Wee Han'
+* **`edit`**`1 src/LeetCode` : edits the first problem displayed and sets its source to 'LeetCode'
+* **`switchtab`**`tt/display i/2` : switches to tag tab
+* **`switchtab`**`tt/display i/3` : switches to plan tab
++
+image::UiStartPlan.png[width="60%"]
++
+* **`findplan`**`n/CS2040` : finds plans that with name 'CS2040'
+* **`clear`** : resets Algobase
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -73,11 +81,13 @@ Examples:
 ==== Deleting a problem : `delete`
 
 Deletes an existing problem. +
-Format: `delete INDEX`
+Format: `delete INDEX [f/]`
 
 * Deletes the problem at the specified `INDEX`.
 * The index refers to the index number shown in the displayed problem list.
 * The index *must be a positive integer* 1, 2, 3, ...
+* The command will fail if the problem identified by `INDEX` is used in some task(s) in existing plans.
+Add `f/` to force AlgoBase to delete all tasks associated with the problem.
 
 Examples:
 
@@ -91,7 +101,7 @@ Deletes the 1st problem in the results of the `find` command.
 ==== Editing a problem : `edit`
 
 Edits an existing problem. +
-Format: `edit INDEX [d/DELETE] [n/NAME] [d/DESCRIPTION] [a/AUTHOR]  [t/TAG]...`
+Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [a/AUTHOR]  [t/TAG]...`
 
 * Edits the problem at the specified `INDEX`. The index refers to the index number shown in the displayed problem list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
@@ -165,7 +175,6 @@ When providing the search restrictions, you should ensure that keywords are non-
 [NOTE]
 Words are separated by empty spaces. Thus if we have a sentence "Hello, world!", we have two words `Hello,` and `world!`.
 
-
 Examples:
 
 * `find n/Sequence` +
@@ -178,7 +187,8 @@ Returns any problem from `Kattis` that's authored by `Hentin Marz`.
 ==== Storing a problem-finding rule: `addfindrule`
 
 Saves a problem-finding rule from provided constraints. +
-Format: `addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]...`
+Format: `addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]...` +
+Alias: `afr`
 
 [NOTE]
 The rules for constraints are the same as those described in `find` command.
@@ -187,7 +197,7 @@ Examples:
 
 * `addfindrule MediumDiffAlgo t/algorithm diff/2.0-4.0` +
 Adds a new find rule named `MediumDiffAlgo` that when applied, returns any problem with `algorithm` as one of its tags AND with a difficulty between 2.0 and 4.0 (inclusive).
-* `addfindrule Kattis src/Kattis` +
+* `addfindrule Kattis src/Kattis` or `afr Kattis src/Kattis` +
 Adds a new find rule named `Kattis` that when applied, returns any problem from `Kattis`.
 
 ==== Applying a problem-finding rule: `apply`
@@ -207,7 +217,8 @@ Applies the 2nd find rule in the displayed list.
 ==== Deleting a problem-finding rule: `deletefindrule`
 
 Deletes a problem-finding rule. +
-Format: `deletefindrule INDEX`
+Format: `deletefindrule INDEX` +
+Alias: `dfr`
 
 * Deletes the find rule at the specified `INDEX`.
 * The index refers to the index number shown in the displayed find rule list.
@@ -215,7 +226,7 @@ Format: `deletefindrule INDEX`
 
 Examples:
 
-* `deletefindrule 2` +
+* `deletefindrule 2` or `dfr 2` +
 Deletes the 2nd find rule in the displayed list.
 
 === Tags
@@ -223,18 +234,18 @@ Deletes the 2nd find rule in the displayed list.
 ==== Creating new tags: `addtag`
 
 Generates a new tag. +
-Format: `addtag n/NAME`
+Format: `addtag t/NAME`
 
 Examples:
 
-* `newtag n/sssp`
+* `addtag t/sssp`
 
 ==== Listing tags: `listtag`
 
 Displays a list of all existing tags. +
 Format: `listtag`
 
-==== Deleting new tags: `deletetag`
+==== Deleting current tags: `deletetag`
 
 Deletes an existing tag. +
 Format: `deletetag INDEX`
@@ -252,49 +263,107 @@ Examples:
 
 === Training Plans
 
-==== Creating a new training plan `addplan`
+==== Adding a plan: `addplan`
 
-Generates a new training plan. +
-Format: `addplan n/NAME`
+Generates a new plan. +
+Format: `add n/NAME [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]`
 
-Examples:
-
-* `addplan n/CS2040`
-
-==== Editing a training plan `editplan`
-
-Edits an existing training plan. +
-Format: `editplan INDEX [a/ADD_PROBLEM_INDEX_LIST] [d/DELETE_PROBLEM_INDEX_LIST] [n/NAME]`
+* Plans cannot have duplicate names.
+* `START_DATE` and `END_DATE` should be in the format of `yyyy-MM-dd`
+* `START_DATE` should be before or equal to `END_DATE`.
 
 Examples:
 
-* `editplan 1 a/1 2 3 d/4 5 6 n/training set 1`
+* `addplan n/CS2040 d/past year questions in practical exams start/2019-01-01 end/3019-12-12`
 
-==== Locating training plans by name: `findplan`
+==== Deleting a plan : `deleteplan`
 
-Finds problems whose names contain any of the given keywords. +
-Format: `findplan KEYWORD [MORE_KEYWORDS]`
+Deletes an existing plan. +
+Format: `deleteplan INDEX`
+
+* Deletes the plan at the specified `INDEX`.
+* The index refers to the index number shown in the displayed plan list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* `START_DATE` will be `LocalDate#now()` if not specified, and `END_DATE` will be one month from `START_DATE` if not specified.
 
 Examples:
 
-* `find training-set` +
-Returns `training-set-1` and `training-set-2`
-* `find training set` +
-Returns any problem having names `training`, or `set`
+* `listplan` +
+`deleteplan 2` +
+Deletes the 2nd problem in the displayed list.
+* `findplan n/CS2040` +
+`delete 1` +
+Deletes the 1st problem in the results of the `findplan` command (will be introduced in the next section).
 
-==== Listing all training plans: `listplan`
+==== Editing a plan : `editplan`
 
-Displays a list of all existing plans alphabetically. +
+Edits an existing plan. +
+Format: `editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]`
+
+* Edits the plan at the specified `INDEX`. The index refers to the index number shown in the displayed plan list. The index *must be a positive integer* 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* `START_DATE` should be before or equal to `END_DATE`.
+
+Examples:
+
+* `edit 1 d/past year questions of sit-in labs +
+Edits the description of the 1st plan to be `past year questions of sit-in labs` respectively.
+* `edit 2 start/2019-08-13` +
+Edits the starting date of the 2nd plan to be `2019-08-13`.
+
+==== Listing all plans : `listplan`
+
+Displays a list of all existing plans. +
 Format: `listplan`
+
+=== Searching Plans
+
+==== Locating plans: `findplan`
+
+Finds plans fulfilling all provided constraints. +
+Format: `findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_END] [task/TASK_NAME]`
+
+* Name
+** is case-insensitive.
+** is considered a match as long as one word matches.
+** is matched word by word.
+* Description
+** is case-insensitive
+** is matched word by word
+** is considered as a match only when the problem's description includes all words in the constraint.
+* Start and end range
+** is considered a match when there exist overlaps in time. (e.g. a plan with start date of `2019-01-01` and end date of `2019-03-03` matches a plan with start date of `2019-02-02` and end date of `2019-04-04`)
+** both `RANGE_START` and `RANGE_END` should be specified.
+** `RANGE_START` should be before or equal to `RANGE_END`.
+* Task name
+** is case-sensitive.
+** is matched word by word.
+** is considered a match only when there is a task whose name is exactly the same as the given task name.
+
+=== Task Management
 
 ==== Adding a new task to a plan: `addtask`
 
 Adds a task to a specified plan. +
-Format: `addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/TARGET_DATE]`
+Format: `addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]`
+
+* `DUE_DATE` should be in between plan's `startDate` and `endDate` (inclusive).
 
 Examples:
 
 * `addtask plan/1 prob/1 due/2019-12-12`
+
+==== Copying a task from one plan to another: `copytask`
+
+Copies a specified task from one plan to another. +
+Format: `copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX`
+
+* Task identified by `TASK_INDEX` should have a due date in between plan's `startDate` and `endDate` (inclusive).
+
+Examples:
+
+* `copytask task/1 from/1 to/2`
 
 ==== Deleting a task from a plan: `deletetask`
 
@@ -314,6 +383,17 @@ Examples:
 
 * `donetask plan/1 task/1`
 
+==== Editing due date of a task from a plan: `edittask`
+
+Edits the due date of a specified task from a specified plan. +
+Format: `edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE`
+
+* `DUE_DATE` should be in between plan's `startDate` and `endDate` (inclusive).
+
+Examples:
+
+* `edittask plan/1 task/1 due/2019-12-12`
+
 ==== Marking a task as undone: `undonetask`
 
 Marks a specified task in a specified plan as undone. +
@@ -323,73 +403,115 @@ Examples:
 
 * `undonetask plan/1 task/1`
 
+==== Moving a task from one plan to another: `movetask`
+
+Moves a specified task from a specified plan to another. +
+Format: `movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX`
+
+* Task identified by `TASK_INDEX` should have a due date in between plan's `startDate` and `endDate` (inclusive).
+
+Examples:
+
+* `movetask task/1 from/1 to/2`
+
+==== Setting the plan to be used in main display: `setplan`
+
+Sets a specified plan as the current display plan. +
+Format: `setplan PLAN_INDEX`
+
+Examples:
+
+* `setplan 10`
+
 === Tabs
 
+image::gui/TabsOverview.png[width="70%"]
+_fig 3.7.0 – Types of Tabs highlighted in Orange_
+
+There are 2 types of tabs in AlgoBase: Display and Details tabs.
+
+* **Display tabs** give a high level overview of the contents of a list of items
+(e.g. a list of `problems`/`tags`/`plans`).
+* **Details tabs** give a more detailed description of an item in a display tab.
+
+In the example in fig 3.7.0, there is a problem called "Sequences" in the current display tab.
+The details for this problem can be seen in the details tab where the orange arrow is pointing to.
+
 ==== Switching Tabs: `switchtab`
+image::gui/SwitchTabCommand.png[width="70%"]
+_fig 3.7.1 – Demonstration of `SwitchTab` command_
+
 Switches between tabs in the GUI +
-Format: `switchtab t/TAB_TYPE i/TAB_INDEX`
+Format: `switchtab tt/TAB_TYPE i/TAB_INDEX`
+Format: `st tt/TAB_TYPE i/TAB_INDEX`
 
 * Tab Type
 ** can be `display` or `details`
+** Alternatively, `display` and `details` can be replaced by `1` and `2` respectively
 
 Examples:
 
-* `switchtab t/display i/1`
-* `switchtab t/details i/2`
+* `switchtab tt/display i/3` – Switches to the third **display** tab (i.e. `plans` tab), as seen in fig 3.7.1
+* `st tt/1 i/3` – Same effects as the previous command but in a shorter format.
+* `switchtab tt/details i/3` – Switches to the third **details** tab
+* `st tt/2 i/3` – Same effects as the previous command but in a shorter format.
 
-==== Open Tabs: `opentab`
-Opens a new tab in the GUI +
+
+==== Opening Tabs: `opentab`
+
+image::gui/OpenTabCommand.png[width="70%"]
+
+Opens a new **Details** tab in the GUI +
 Format: `opentab m/MODEL_TYPE i/MODEL_INDEX`
+Format: `ot m/MODEL_TYPE i/MODEL_INDEX`
+
 
 * Model Type
-** can be `problem`, `tag` or `plan`
+** can be `problem`, `tag`, `plan` and `findrule`
+** Alternatively, `problem`, `tag`, `plan` and `findrule` can be replaced by `1`, `2`, `3` and `4` respectively
 
 Examples:
 
-* `opentab m/problem i/1`
-* `opentab m/plan i/2`
+* `opentab m/problem i/2` – Opens the 2nd problem in the list of problems, as seen in fig 3.7.2
+* `ot m/1 i/2` – Same effects as the previous command but in a shorter format.
+* `opentab m/plan i/3` – Opens the 3nd plan in the list of plans, as seen in fig 3.7.2
+* `ot m/3 i/3` – Same effects as the previous command but in a shorter format.
 
-==== Close Tabs: `closetab`
-Closes a tab in the GUI +
-Format: `closetab t/TAB_TYPE i/TAB_INDEX`
-
-* Tab Type
-** can be `display` or `details`
+==== Closing Tabs: `closetab`
+Closes a **details** tab in the GUI +
+Format: `closetab i/DETAILS_TAB_INDEX`
+Format: `ct i/DETAILS_TAB_INDEX`
 
 Examples:
 
-* `closetab t/display i/1`
-* `closetab t/details i/2`
+* `closetab i/3` – Closes the third **details** tab
+* `ct i/1` – Same effects as the previous command but in a shorter format.
 
-=== Importing and Exporting data
+=== Data Management
 
 ==== Importing data: `import`
 
-Imports external data of a specified format (e.g. CSV, JSON) into local storage. +
-Format: `import f/FORMAT p/PATH`
+Imports external data of a specified format (e.g. JSON) into local storage. +
+Format: `import format/FORMAT path/FILE_PATH`
 
-* Format can be ‘CSV’ or ‘JSON’.
-* Directory refers to the full path of the output file.
+* Format can only be `JSON`.
+* File path refers to the relative path of the input file.
 
 Examples:
 
-* `import t/plan p/./steven_halim_secret.json`
+* `import format/json path/./steven_halim_secret.json`
 
 ==== Exporting data: `export`
 
-Exports data into a specified format (e.g. CSV, JSON). +
-Format: `export f/FORMAT p/DIRECTORY`
+Exports data into a specified format (e.g. JSON). +
+Format: `export format/FORMAT path/DIRECTORY_PATH`
 
-* Format can be ‘CSV’ or ‘JSON’.
-* Directory refers to the full path of the output file.
+* Format can only be `JSON`.
+* Directory path refers to the relative path of the directory to store the output file.
 
 Examples:
 
-* `export f/csv p/./`
-
-=== Encryption
-
-==== Encrypting data files `[coming in v2.0]`
+* `export format/json path/.`
 
 === Miscellaneous
 
@@ -403,20 +525,6 @@ Shows all possible commands.
 * `help add`
 Shows command usage for `add` command.
 
-==== Rewinding command: `rewind`
-
-Rewind back to a previous successfully executed command. +
-Format: `rewind INDEX`
-
-kbd:[Ctrl + ↑] is shortcut for `rewind 1`
-
-[NOTE]
-Since kbd:[Ctrl + ↑] is equivalent to executing `rewind 1`, you should not expect to rewind multiple commands back if you press the shortcut multiple times - it will always show you the last successfully executed command, if any. If you want to rewind several commands back
-
-* `find n/Sequences` +
-`rewind 1` +
-Execute `find` command first, then `rewind` back to the `find` command (now the content in the command box should be `find n/Sequences`)
-
 ==== Clearing all entries : `clear`
 
 Clears all entries from AlgoBase. +
@@ -427,10 +535,18 @@ Format: `clear`
 Exits the program. +
 Format: `exit`
 
+==== Navigating the command history
+
+You can press kbd:[↑] to navigate back or kbd:[↓] to navigate forward in the command history.
+
 ==== Saving the data
 
 AlgoBase data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
+
+=== Encryption
+
+==== Encrypting data files `[coming in v2.0]`
 
 == FAQ
 
@@ -458,34 +574,53 @@ e.g. `apply 2`
 * *Delete Find Rule*: `deletefindrule INDEX` +
 e.g. `deletefindrule 2`
 
-* *New Tag* : `addtag n/NAME` +
-e.g. `addtag n/sssp`
+* *New Tag* : `addtag t/NAME` +
+e.g. `addtag t/sssp`
 * *List Tags* : `listtag`
 * *Delete Tag* : `deletetag INDEX` +
 e.g. `deletetag 3`
+* *Edit tag* : `edittag INDEX t/TAGNAME` +
+e.g. `edittag 1 t/sort`
 
-* *Add Training Plan* : `addplan n/NAME [d/DESCRIPTION] [s/START_DATE] [e/END_DATE]` +
+* *Add Training Plan* : `addplan n/NAME [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]` +
 e.g. `addplan n/CS2040`
-* *Edit Training Plan* : `editplan INDEX [a/ADD_PROBLEM_INDEX_LIST] [d/DELETE_PROBLEM_INDEX_LIST] [n/NAME] [d/DESCRIPTION] [s/START_DATE] [e/END_DATE]` +
-e.g. `editplan 1 a/1 2 3 d/4 5 6 n/training set 1`
-* *Find Training Plan* : `findplan KEYWORD [MORE_KEYWORDS]` +
-e.g. `find training set`
+* *Edit Training Plan* : `editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]` +
+e.g. `editplan 1 n/training start/2020-02-02`
+* *Find Training Plans* : `findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_END] [task/TASK_NAME]` +
+e.g. `find n/CS2040 start/2019-03-01 end/2019-03-31`
 * *List Training Plans* : `listplan`
+* *Delete Training Plan* : `deleteplan INDEX` +
+e.g. `deleteplan 2`
+
 * *Add Task to Training Plan* : `addtask plan/PLAN_INDEX prob/PROBLEM_INDEX` +
 e.g. `addtask plan/1 prob/2`
+* *Copy Tasks among Plans* : `copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_TASK` +
+e.g. `copytask task/1 from/1 to/2`
 * *Delete Task from Training Plan* : `deletetask plan/PLAN_INDEX task/TASK_INDEX` +
 e.g. `deletetask plan/1 task/2`
+* *Edit Due Date of Task* : `edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE` +
+e.g. `edittask plan/1 task/2 due/2019-12-12`
 * *Mark Task as done* : `donetask plan/PLAN_INDEX task/TASK_INDEX` +
 e.g. `donetask plan/1 task/2`
 * *Mark Task as undone* : `undonetask plan/PLAN_INDEX task/TASK_INDEX` +
 e.g. `undonetask plan/1 task/2`
+* *Move Tasks among Plans* : `movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_TASK` +
+e.g. `movetask task/1 from/1 to/2`
+* *Set Current Plan* : `setplan PLAN_TASK` +
+e.g. `setplan 10`
 
-* *Importing data* : `import f/FORMAT p/PATH` +
-e.g. `import t/plan p/./steven_halim_secret.json`
-* *Exporting data* : `export f/FORMAT p/DIRECTORY` +
-e.g. `export f/csv p/./`
+* *Switch Tab* : `switchtab tt/TAB_TYPE i/TAB_INDEX` +
+e.g. `switchtab tt/display i/3`
+* *Open Tab* : `opentab m/MODEL_TYPE i/TAB_INDEX` +
+e.g. `opentab m/problem i/2`
+* *Close Tab* : `closetab i/DETAILS_TAB_INDEX` +
+e.g. `closetab i/3`
+
+* *Exporting data* : `export format/FORMAT path/DIRECTORY_PATH` +
+e.g. `export format/json path/.`
+* *Importing data* : `import format/FORMAT path/FILE_PATH` +
+e.g. `import format/json path/./steven_halim_secret.json`
 
 * *Help* : `help`
 * *Clear* : `clear`
 * *Exit* : `exit`
-

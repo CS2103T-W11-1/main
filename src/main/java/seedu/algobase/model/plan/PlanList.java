@@ -3,12 +3,18 @@ package seedu.algobase.model.plan;
 import static java.util.Objects.requireNonNull;
 import static seedu.algobase.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.algobase.model.plan.exceptions.PlanNotFoundException;
+import seedu.algobase.model.problem.Problem;
 import seedu.algobase.model.task.Task;
 
 /**
@@ -26,6 +32,26 @@ public class PlanList implements Iterable<Plan> {
     private final ObservableList<Task> internalTaskList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableTaskList =
         FXCollections.unmodifiableObservableList(internalTaskList);
+    private final StringProperty currentPlan = new SimpleStringProperty();
+    private final IntegerProperty solvedCount = new SimpleIntegerProperty();
+    private final IntegerProperty unsolvedCount = new SimpleIntegerProperty();
+
+    /**
+     * Check whether any plan in the list contains the given problem.
+     * @return true/false based on whether the given problem is contained in one of the plans.
+     */
+    public boolean containsProblem(Problem problem) {
+        return internalList.stream().anyMatch(plan -> plan.containsProblem(problem));
+    }
+
+    /**
+     * Removes the given problem from all tasks.
+     */
+    public void removeProblem(Problem problem) {
+        List<Plan> updatedList = new ArrayList<>();
+        internalList.stream().forEach(plan -> updatedList.add(plan.removeProblem(problem)));
+        setPlans(updatedList);
+    }
 
     /**
      * Adds a Plan to the list.
@@ -33,7 +59,7 @@ public class PlanList implements Iterable<Plan> {
     public void add(Plan toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
-        internalTaskList.setAll(toAdd.getTasks());
+        setCurrentPlan(toAdd);
     }
 
     /**
@@ -49,7 +75,7 @@ public class PlanList implements Iterable<Plan> {
         }
 
         internalList.set(index, updatedPlan);
-        internalTaskList.setAll(updatedPlan.getTasks());
+        setCurrentPlan(updatedPlan);
     }
 
     /**
@@ -61,21 +87,64 @@ public class PlanList implements Iterable<Plan> {
         if (!internalList.remove(toRemove)) {
             throw new PlanNotFoundException();
         }
+        currentPlan.set("");
+        solvedCount.set(0);
+        unsolvedCount.set(0);
         internalTaskList.setAll();
     }
 
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     */
     public void setPlans(PlanList replacement) {
         requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        setPlans(replacement.internalList);
     }
 
     /**
      * Replaces the contents of this list with {@code plans}.
-     * {@code plans} must not contain duplicate plans.
      */
     public void setPlans(List<Plan> plans) {
         requireAllNonNull(plans);
         internalList.setAll(plans);
+
+        if (plans.size() > 0) {
+            // Default to first plan in list
+            setCurrentPlan(plans.get(0));
+        } else {
+            currentPlan.set("");
+        }
+    }
+
+    /**
+     * Returns the current {@code Plan}.
+     */
+    public StringProperty getCurrentPlan() {
+        return currentPlan;
+    }
+
+    /**
+     * Sets the current {@code Plan}.
+     */
+    public void setCurrentPlan(Plan plan) {
+        currentPlan.set(plan.getPlanName().fullName);
+        solvedCount.set(plan.getSolvedTaskCount());
+        unsolvedCount.set(plan.getUnsolvedTaskCount());
+        internalTaskList.setAll(plan.getTaskList());
+    }
+
+    /**
+     * Returns the number of solved tasks in current plan.
+     */
+    public IntegerProperty getCurrentSolvedCount() {
+        return solvedCount;
+    }
+
+    /**
+     * Returns the number of solved tasks in current plan.
+     */
+    public IntegerProperty getCurrentUnsolvedCount() {
+        return unsolvedCount;
     }
 
     /**

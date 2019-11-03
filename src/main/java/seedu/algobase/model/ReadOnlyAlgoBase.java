@@ -1,8 +1,9 @@
 package seedu.algobase.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.algobase.commons.exceptions.IllegalValueException;
-import seedu.algobase.model.commandhistory.CommandHistory;
 import seedu.algobase.model.gui.GuiState;
 import seedu.algobase.model.plan.Plan;
 import seedu.algobase.model.problem.Problem;
@@ -26,6 +27,15 @@ public interface ReadOnlyAlgoBase {
      */
     Problem findProblemById(Id problemId) throws IllegalValueException;
 
+    /**
+     * Checks whether a problem is used in any plan.
+     */
+    boolean checkIsProblemUsed(Problem problem);
+
+    /**
+     * Returns an unmodifiable view of the tags list.
+     * This list will not contain any duplicate tags.
+     */
     ObservableList<Tag> getTagList();
 
     /**
@@ -49,14 +59,29 @@ public interface ReadOnlyAlgoBase {
     ObservableList<Task> getCurrentTaskList();
 
     /**
+     * Returns current plan name.
+     */
+    StringProperty getCurrentPlan();
+
+    /**
+     * Returns the number of solved tasks in current plan.
+     */
+    IntegerProperty getCurrentSolvedCount();
+
+    /**
+     * Returns the number of solved tasks in current plan.
+     */
+    IntegerProperty getCurrentUnsolvedCount();
+
+    /**
+     * Returns an unmodifiable view of the find rule list.
+     */
+    ObservableList<ProblemSearchRule> getFindRules();
+
+
+    /**
      * Returns a view of the GuiState.
      */
     GuiState getGuiState();
 
-    /**
-     * Returns an unmodifiable view of the command history.
-     */
-    ObservableList<CommandHistory> getCommandHistoryList();
-
-    ObservableList<ProblemSearchRule> getFindRules();
 }

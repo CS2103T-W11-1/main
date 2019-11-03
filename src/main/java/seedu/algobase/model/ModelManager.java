@@ -9,12 +9,14 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.algobase.commons.core.GuiSettings;
 import seedu.algobase.commons.core.LogsCenter;
-import seedu.algobase.model.commandhistory.CommandHistory;
+import seedu.algobase.logic.commands.problem.SortCommand;
 import seedu.algobase.model.gui.GuiState;
 import seedu.algobase.model.plan.Plan;
 import seedu.algobase.model.problem.Problem;
@@ -35,7 +37,6 @@ public class ModelManager implements Model {
     private final FilteredList<Tag> filteredTags;
     private final FilteredList<Plan> filteredPlans;
     private final FilteredList<Task> filteredTasks;
-    private final FilteredList<CommandHistory> filteredCommandHistories;
     private final FilteredList<ProblemSearchRule> filteredFindRules;
 
     /**
@@ -52,10 +53,10 @@ public class ModelManager implements Model {
         filteredProblems = new FilteredList<>(this.algoBase.getProblemList());
         filteredTags = new FilteredList<>(this.algoBase.getTagList());
         sortedProblems = new SortedList<>(filteredProblems);
+        sortedProblems.setComparator(SortCommand.PROBLEM_NAME_COMPARATOR);
         filteredPlans = new FilteredList<>(this.algoBase.getPlanList());
         filteredTasks = new FilteredList<>(this.algoBase.getCurrentTaskList());
         filteredFindRules = new FilteredList<>(this.algoBase.getFindRules());
-        filteredCommandHistories = new FilteredList<>(this.algoBase.getCommandHistoryList());
     }
 
     public ModelManager() {
@@ -65,14 +66,14 @@ public class ModelManager implements Model {
     //========== UserPrefs ==============================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -140,9 +141,6 @@ public class ModelManager implements Model {
         algoBase.setProblem(target, editedProblem);
     }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Problem}.
-     */
     @Override
     public ObservableList<Problem> getFilteredProblemList() {
         return sortedProblems;
@@ -166,6 +164,16 @@ public class ModelManager implements Model {
         sortedProblems.setComparator(problemComparator);
     }
 
+    @Override
+    public boolean checkIsProblemUsed(Problem problem) {
+        return algoBase.checkIsProblemUsed(problem);
+    }
+
+    @Override
+    public void removeProblemFromAllPlans(Problem problem) {
+        algoBase.removeProblemFromAllPlans(problem);
+    }
+
     //=========== Tag ===================================================================
 
     @Override
@@ -183,10 +191,8 @@ public class ModelManager implements Model {
     public void deleteTags(Tag target) {
         for (Problem problem : filteredProblems) {
             Set<Tag> targetTags = problem.getTags();
-            for (Tag tag : targetTags) {
-                if (tag.getName().equals(target.getName())) {
-                    problem.deleteTag(tag);
-                }
+            if (targetTags.contains(target)) {
+                problem.deleteTag(target);
             }
         }
     }
@@ -216,19 +222,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTag);
         for (Problem problem : filteredProblems) {
             Set<Tag> targetTags = problem.getTags();
-            for (Tag tag : targetTags) {
-                if (tag.getName().equals(target.getName())) {
-                    problem.addTag(editedTag);
-                    problem.deleteTag(tag);
-                }
+            if (targetTags.contains(target)) {
+                problem.deleteTag(target);
+                problem.addTag(editedTag);
             }
         }
     }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
-     * {@code versionedAlgoBase}
-     */
     @Override
     public ObservableList<Tag> getFilteredTagList() {
         return filteredTags;
@@ -282,36 +282,30 @@ public class ModelManager implements Model {
 
     //========== Task ===================================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code versionedAlgoBase}
-     */
+    @Override
+    public void setCurrentPlan(Plan plan) {
+        this.algoBase.setCurrentPlan(plan);
+    }
+
     @Override
     public ObservableList<Task> getCurrentTaskList() {
         return filteredTasks;
     }
 
-    //========== Rewind =================================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code CommandHistory}.
-     */
     @Override
-    public ObservableList<CommandHistory> getCommandHistoryList() {
-        return filteredCommandHistories;
+    public StringProperty getCurrentPlan() {
+        return this.algoBase.getCurrentPlan();
     }
 
-    /**
-     * Adds the given {@code CommandHistory}.
-     *
-     * @param history the added history
-     */
     @Override
-    public void addCommandHistory(CommandHistory history) {
-        requireNonNull(history);
-        algoBase.addCommandHistory(history);
+    public IntegerProperty getCurrentSolvedCount() {
+        return this.algoBase.getCurrentSolvedCount();
     }
 
+    @Override
+    public IntegerProperty getCurrentUnsolvedCount() {
+        return this.algoBase.getCurrentUnsolvedCount();
+    }
 
     //========== Find Rules =============================================================
 
@@ -343,6 +337,7 @@ public class ModelManager implements Model {
     public ObservableList<ProblemSearchRule> getFilteredFindRuleList() {
         return filteredFindRules;
     }
+
 
     //========== Util ===================================================================
 

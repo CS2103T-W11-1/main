@@ -15,11 +15,9 @@ import seedu.algobase.commons.core.GuiSettings;
 import seedu.algobase.commons.core.LogsCenter;
 import seedu.algobase.logic.Logic;
 import seedu.algobase.logic.commands.CommandResult;
-import seedu.algobase.logic.commands.RewindCommand;
 import seedu.algobase.logic.commands.exceptions.CommandException;
 import seedu.algobase.logic.parser.exceptions.ParseException;
 import seedu.algobase.model.ModelType;
-import seedu.algobase.model.gui.WriteOnlyTabManager;
 import seedu.algobase.ui.details.DetailsTabPane;
 import seedu.algobase.ui.display.DisplayTab;
 import seedu.algobase.ui.display.DisplayTabPane;
@@ -40,13 +38,16 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private DisplayTabPane displayTabPane;
     private DetailsTabPane detailsTabPane;
+    private TaskManagementPane taskManagementPane;
     private ProblemListPanel problemListPanel;
     private TagListPanel tagListPanel;
     private PlanListPanel planListPanel;
-    private TaskListPanel taskListPanel;
     private FindRuleListPanel findRuleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private SplitPane mainDisplayPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -120,8 +121,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        displayTabPane = getDisplayTabPane(logic.getGuiState().getTabManager());
+        displayTabPane = getDisplayTabPane();
         detailsTabPane = new DetailsTabPane(logic);
+        taskManagementPane = new TaskManagementPane(
+            logic.getProcessedTaskList(),
+            logic.getCurrentPlan(),
+            logic.getCurrentSolvedCount(),
+            logic.getCurrentUnsolvedCount()
+        );
 
         layoutPanePlaceholder.getItems().add(displayTabPane.getRoot());
         layoutPanePlaceholder.getItems().add(detailsTabPane.getRoot());
@@ -132,29 +139,38 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAlgoBaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, logic.getHistory());
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        mainDisplayPlaceholder.getItems().add(taskManagementPane.getRoot());
+        mainDisplayPlaceholder.setDividerPositions(0.66);
     }
 
-    private DisplayTabPane getDisplayTabPane(WriteOnlyTabManager writeOnlyTabManager) {
-        problemListPanel =
-            new ProblemListPanel(logic.getProcessedProblemList(), writeOnlyTabManager);
-        planListPanel =
-            new PlanListPanel(logic.getProcessedPlanList(), writeOnlyTabManager);
-        tagListPanel =
-            new TagListPanel(logic.getProcessedTagList());
-        taskListPanel =
-            new TaskListPanel(logic.getProcessedTaskList());
-        findRuleListPanel =
-            new FindRuleListPanel(logic.getProcessedFindRuleList());
+    private DisplayTabPane getDisplayTabPane() {
+        problemListPanel = new ProblemListPanel(
+            logic.getProcessedProblemList(),
+            logic.getGuiState().getTabManager(),
+            logic.getSaveAlgoBaseStorageRunnable()
+        );
+        planListPanel = new PlanListPanel(
+            logic.getProcessedPlanList(),
+            logic.getGuiState().getTabManager(),
+            logic.getSaveAlgoBaseStorageRunnable()
+        );
+        tagListPanel = new TagListPanel(logic.getProcessedTagList());
+        findRuleListPanel = new FindRuleListPanel(logic.getProcessedFindRuleList());
         DisplayTab problemListPanelTab = new DisplayTab(ModelType.PROBLEM.getTabName(), problemListPanel);
         DisplayTab tagListPanelTab = new DisplayTab(ModelType.TAG.getTabName(), tagListPanel);
         DisplayTab planListPanelTab = new DisplayTab(ModelType.PLAN.getTabName(), planListPanel);
-        DisplayTab taskListPanelTab = new DisplayTab(ModelType.TASK.getTabName(), taskListPanel);
         DisplayTab findRuleListPaneTab = new DisplayTab(ModelType.FINDRULE.getTabName(), findRuleListPanel);
         return new DisplayTabPane(
-            logic.getGuiState(), problemListPanelTab, tagListPanelTab, planListPanelTab, taskListPanelTab,
-            findRuleListPaneTab);
+            logic.getGuiState().getTabManager(),
+            logic.getSaveAlgoBaseStorageRunnable(),
+            problemListPanelTab,
+            tagListPanelTab,
+            planListPanelTab,
+            findRuleListPaneTab
+        );
     }
 
     /**
@@ -209,10 +225,6 @@ public class MainWindow extends UiPart<Stage> {
         return planListPanel;
     }
 
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
-    }
-
     public FindRuleListPanel getFindRuleListPanel() {
         return findRuleListPanel;
     }
@@ -226,12 +238,6 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-
-            // For rewind commands, result displayed is not what .getFeedbackToUser() returns.
-            if (commandResult.isRewind()) {
-                resultDisplay.setFeedbackToUser(RewindCommand.MESSAGE_SUCCESS);
-                return commandResult;
-            }
 
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

@@ -2,6 +2,8 @@ package seedu.algobase.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.algobase.commons.core.GuiSettings;
 import seedu.algobase.logic.commands.CommandResult;
@@ -14,6 +16,7 @@ import seedu.algobase.model.problem.Problem;
 import seedu.algobase.model.searchrule.problemsearchrule.ProblemSearchRule;
 import seedu.algobase.model.tag.Tag;
 import seedu.algobase.model.task.Task;
+import seedu.algobase.storage.SaveStorageRunnable;
 
 /**
  * API of the Logic component
@@ -29,6 +32,13 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
+     * Returns a runnable that saves the AlgoBase.
+     *
+     * @see seedu.algobase.model.Model#getAlgoBase()
+     */
+    SaveStorageRunnable getSaveAlgoBaseStorageRunnable();
+
+    /**
      * Returns the AlgoBase.
      *
      * @see seedu.algobase.model.Model#getAlgoBase()
@@ -39,6 +49,12 @@ public interface Logic {
      * Returns the current state of the GUI.
      */
     GuiState getGuiState();
+
+    /**
+     * Returns an unmodifiable view of the list of commands entered by the user.
+     * The list is ordered from the least recent command to the most recent command.
+     */
+    ObservableList<String> getHistory();
 
     /**
      * Returns an unmodifiable view of the processed list of problems.
@@ -53,6 +69,15 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getProcessedTaskList();
+
+    /** Returns the current plan. */
+    StringProperty getCurrentPlan();
+
+    /** Returns the number of solved tasks in current plan. */
+    IntegerProperty getCurrentSolvedCount();
+
+    /** Returns the number of solved tasks in current plan. */
+    IntegerProperty getCurrentUnsolvedCount();
 
     /**
      * Returns an unmodifiable view of the filtered list of find rules.

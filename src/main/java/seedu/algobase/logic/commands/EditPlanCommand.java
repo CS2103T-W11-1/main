@@ -1,12 +1,13 @@
 package seedu.algobase.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.algobase.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.algobase.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.algobase.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.algobase.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.algobase.model.Model.PREDICATE_SHOW_ALL_PLANS;
+import static seedu.algobase.model.searchrule.plansearchrule.TimeRange.ORDER_CONSTRAINTS;
+import static seedu.algobase.model.searchrule.plansearchrule.TimeRange.isValidRange;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -18,6 +19,7 @@ import java.util.Set;
 import seedu.algobase.commons.core.Messages;
 import seedu.algobase.commons.core.index.Index;
 import seedu.algobase.commons.util.CollectionUtil;
+import seedu.algobase.logic.CommandHistory;
 import seedu.algobase.logic.commands.exceptions.CommandException;
 import seedu.algobase.model.Id;
 import seedu.algobase.model.Model;
@@ -46,12 +48,12 @@ public class EditPlanCommand extends Command {
             + "Example:\n"
             + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "future questions of CS2040 "
-            + PREFIX_START_DATE + "2019/01/01"
+            + PREFIX_START_DATE + "2019/01/01 "
             + PREFIX_END_DATE + "3019/12/12";
 
-    public static final String MESSAGE_EDIT_PLAN_SUCCESS = "Edited Plan: %1$s";
+    public static final String MESSAGE_EDIT_PLAN_SUCCESS = "Plan [%1$s] edited.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PLAN = "A plan of this name already exists in the algobase.";
+    public static final String MESSAGE_DUPLICATE_PLAN = "A plan of name [%1$s] already exists in AlgoBase.";
 
     private final Index index;
     private final EditPlanDescriptor editPlanDescriptor;
@@ -69,7 +71,7 @@ public class EditPlanCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Plan> lastShownList = model.getFilteredPlanList();
 
@@ -80,13 +82,17 @@ public class EditPlanCommand extends Command {
         Plan planToEdit = lastShownList.get(index.getZeroBased());
         Plan editedPlan = createEditedPlan(planToEdit, editPlanDescriptor);
 
+        if (!isValidRange(editedPlan.getStartDate(), editedPlan.getEndDate())) {
+            throw new CommandException(ORDER_CONSTRAINTS);
+        }
+
         if (!planToEdit.isSamePlan(editedPlan) && model.hasPlan(editedPlan)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PLAN);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PLAN, editedPlan.getPlanName()));
         }
 
         model.setPlan(planToEdit, editedPlan);
         model.updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PLAN_SUCCESS, editedPlan));
+        return new CommandResult(String.format(MESSAGE_EDIT_PLAN_SUCCESS, editedPlan.getPlanName()));
     }
 
     /**

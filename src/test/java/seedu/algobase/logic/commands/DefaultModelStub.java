@@ -5,12 +5,13 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.algobase.commons.core.GuiSettings;
 import seedu.algobase.model.Model;
 import seedu.algobase.model.ReadOnlyAlgoBase;
 import seedu.algobase.model.ReadOnlyUserPrefs;
-import seedu.algobase.model.commandhistory.CommandHistory;
 import seedu.algobase.model.gui.GuiState;
 import seedu.algobase.model.plan.Plan;
 import seedu.algobase.model.problem.Problem;
@@ -22,6 +23,8 @@ import seedu.algobase.model.task.Task;
  * A default model stub that have all of the methods failing.
  */
 public class DefaultModelStub implements Model {
+
+    //=========== UserPref ==============================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -49,14 +52,18 @@ public class DefaultModelStub implements Model {
     }
 
     @Override
-    public void setAlgoBaseFilePath(Path addressBookFilePath) {
+    public void setAlgoBaseFilePath(Path algobaseFilePath) {
         throw new AssertionError("This method should not be called.");
     }
 
+    //=========== UI ====================================================================
+
     @Override
-    public void addProblem(Problem problem) {
+    public GuiState getGuiState() {
         throw new AssertionError("This method should not be called.");
     }
+
+    //=========== AlgoBase ==============================================================
 
     @Override
     public void setAlgoBase(ReadOnlyAlgoBase newData) {
@@ -65,6 +72,13 @@ public class DefaultModelStub implements Model {
 
     @Override
     public ReadOnlyAlgoBase getAlgoBase() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    //=========== Problem ===============================================================
+
+    @Override
+    public void addProblem(Problem problem) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -84,24 +98,21 @@ public class DefaultModelStub implements Model {
     }
 
     @Override
-    public GuiState getGuiState() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Plan> getFilteredPlanList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredPlanList(Predicate<Plan> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public ObservableList<Problem> getFilteredProblemList() {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void updateFilteredProblemList(Predicate<Problem> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateSortedProblemList(Comparator<Problem> problemComparator) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    //=========== Plan ==================================================================
 
     @Override
     public boolean hasPlan(Plan plan) {
@@ -124,9 +135,26 @@ public class DefaultModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredProblemList(Predicate<Problem> predicate) {
+    public ObservableList<Plan> getFilteredPlanList() {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void updateFilteredPlanList(Predicate<Plan> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean checkIsProblemUsed(Problem problem) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeProblemFromAllPlans(Problem problem) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    //=========== Tag ===================================================================
 
     @Override
     public boolean hasTag(Tag tag) {
@@ -173,8 +201,10 @@ public class DefaultModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    //=========== Task ==================================================================
+
     @Override
-    public void updateSortedProblemList(Comparator<Problem> problemComparator) {
+    public void setCurrentPlan(Plan plan) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -182,6 +212,23 @@ public class DefaultModelStub implements Model {
     public ObservableList<Task> getCurrentTaskList() {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public StringProperty getCurrentPlan() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public IntegerProperty getCurrentSolvedCount() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public IntegerProperty getCurrentUnsolvedCount() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    //=========== Find Rule =============================================================
 
     @Override
     public boolean hasFindRule(ProblemSearchRule rule) {
@@ -208,21 +255,4 @@ public class DefaultModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    /**
-     * Returns an unmodifiable view of the filtered CommandHistory list.
-     */
-    @Override
-    public ObservableList<CommandHistory> getCommandHistoryList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    /**
-     * Adds the given {@code CommandHistory}.
-     *
-     * @param history the added history
-     */
-    @Override
-    public void addCommandHistory(CommandHistory history) {
-        throw new AssertionError("This method should not be called.");
-    }
 }

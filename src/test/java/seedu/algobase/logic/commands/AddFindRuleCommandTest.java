@@ -13,12 +13,17 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.algobase.logic.CommandHistory;
 import seedu.algobase.logic.commands.exceptions.CommandException;
+import seedu.algobase.logic.commands.findrule.AddFindRuleCommand;
 import seedu.algobase.model.AlgoBase;
 import seedu.algobase.model.ReadOnlyAlgoBase;
 import seedu.algobase.model.searchrule.problemsearchrule.ProblemSearchRule;
 
 class AddFindRuleCommandTest {
+
+    private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void constructor_nullProblemSearchRule_throwsNullPointerException() {
@@ -30,9 +35,9 @@ class AddFindRuleCommandTest {
         ModelStubAcceptFindRuleAdded modelStub = new ModelStubAcceptFindRuleAdded();
         ProblemSearchRule validSearchRule = ALL_PREDICATE;
 
-        CommandResult commandResult = new AddFindRuleCommand(validSearchRule).execute(modelStub);
+        CommandResult commandResult = new AddFindRuleCommand(validSearchRule).execute(modelStub, commandHistory);
 
-        assertEquals(String.format(AddFindRuleCommand.MESSAGE_SUCCESS, validSearchRule),
+        assertEquals(String.format(AddFindRuleCommand.MESSAGE_SUCCESS, validSearchRule.getName()),
             commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validSearchRule), modelStub.findRulesAdded);
     }
@@ -43,8 +48,11 @@ class AddFindRuleCommandTest {
         AddFindRuleCommand command = new AddFindRuleCommand(validRule);
         ModelStubWithFindRule modelStubWithFindRule = new ModelStubWithFindRule(validRule);
 
-        assertThrows(CommandException.class, AddFindRuleCommand.MESSAGE_DUPLICATE_FIND_RULE, ()
-            -> command.execute(modelStubWithFindRule));
+        assertThrows(
+            CommandException.class,
+            String.format(AddFindRuleCommand.MESSAGE_DUPLICATE_FIND_RULE, validRule.getName()), ()
+                -> command.execute(modelStubWithFindRule, commandHistory)
+        );
     }
 
     @Test

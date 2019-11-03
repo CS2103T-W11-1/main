@@ -2,6 +2,7 @@ package seedu.algobase.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.algobase.logic.CommandHistory;
 import seedu.algobase.model.AlgoBase;
 import seedu.algobase.model.Model;
 
@@ -15,11 +16,11 @@ public class ClearCommand extends Command {
             + "Clears all entries from AlgoBase.\n"
             + "Example: \n"
             + COMMAND_WORD;
-    public static final String MESSAGE_SUCCESS = "AlgoBase has been cleared!";
+    public static final String MESSAGE_SUCCESS = "AlgoBase has been cleared.";
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.setAlgoBase(new AlgoBase());
         return new CommandResult(MESSAGE_SUCCESS);
