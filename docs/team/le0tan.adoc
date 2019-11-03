@@ -6,8 +6,6 @@
 
 == PROJECT: AlgoBase
 
----
-
 == Overview
 
 AlgoBase is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
@@ -18,15 +16,25 @@ This project portfolio details my individual contributions to the *AlgoBase* pro
 
 == Summary of contributions
 
+* *Code contributed*:
+https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&search=le0tan[Code contributed]
+
 * *Major enhancement*: Implemented the problem searching and sorting feature.
 
 ** What it does: allows the user to filter problems by combining search constraints on most fields (e.g. problem names, sources, descriptions, difficulty, etc.), allows user to save and reuse some typical search rules and allows user to sort the search result.
 
-** Justification: To organize algorithmic questions, the first step is to find a proper subset of AlgoBase to either add to a training plan or solve the problems directly. The search feature is one of the most frequently used functionality in *AlgoBase*.
+** Justification: To organize algorithmic questions, the first step is to find a proper subset of AlgoBase to either add to a training plan or solve the problems directly. Searching and sorting feature should be one of the most frequently used features in *AlgoBase*. Plus, by enabling the user to save certain frequently used find rules (e.g. medium difficulty), we essentially made it possible to create a problem list that's dynamically updated according to certain rules - the user no longer needs to manually add tags or create plans for problems with certain properties, they can just use the saved find rules to locate them.
 
-** Highlights: This is a full-stack feature all the components of *AlgoBase* from `Logic` to `Model` to `Storage` to `UI`. It requires an in-depth analysis of the overall architecture of *AlgoBase* as the original implementation of `find` in AddressBook accepts only one search constraint (i.e. the name), but in *AlgoBase* we need to support combination of arbitrary (non-zero) number of search constraints.
+** Highlights:
+*** This is a full-stack feature involving all the components of *AlgoBase* from `Logic` to `Model` to `Storage` to `UI`, consisting of roughly 3000 lines of functional code and more than 2000 lines of testing code.
+*** `find` can search on almost all fields of a problem while `sort` provides 10 combinations of sorting order.
+*** It requires an in-depth analysis of the overall architecture of *AlgoBase* because
+**** The original implementation of `find` in AddressBook accepts only one search constraint (i.e. the name), but in *AlgoBase* we need to support combination of arbitrary (non-zero) number of search constraints.
+**** The design of AB3 only considers "filtering" problems, thus it used `FilteredList` to support `find` command. However, *AlgoBase* needs to support both `find` and `sort`. We need to redesign the way AB3 exposes the processed observable list to the UI so that the list accepts both a predicate and a comparator.
 
 ** Relevant pull requests:
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/49[#49]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/61[#61]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/64[#64]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/90[#90]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/94[#94]
@@ -34,27 +42,25 @@ https://github.com/AY1920S1-CS2103T-W11-1/main/pull/107[#107]
 
 * *Minor enhancement*: Implemented the command history feature.
 
-** What it does: allows the user to navigate to previous commands using kbd:[Ctrl + ↑] and kbd:[Ctrl + ↓] keyboard shortcut.
+** What it does: allows the user to navigate to previous commands using ↑ and ↓ keyboard shortcut.
 
-** Justification: This feature makes `addfindrule` more useful - the user can first check if their problem find rule is working as expected by executing it using `find` command, then press kbd:[Ctrl + ↑] to restore the command text, change the command word to `addfindrule` and assign a name to the added find rule.
+** Justification: This feature makes `addfindrule` more useful - the user can first check if their problem find rule is working as expected by executing it using `find` command, then press ↑ to restore the command text, change the command word to `addfindrule` and assign a name to the added find rule.
 
 ** Relevant pull request
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/105[#105]
-https://github.com/AY1920S1-CS2103T-W11-1/main/pull/137[#137]
-
-* *Code contributed*:
-https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=le0tan[Funtional and Test Code]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/137[#137] (Adapted some code from AB4)
 
 * *Other contributions*:
 
 ** Project management:
 *** Managed releases `v1.3` (1 release) on GitHub
 ** Enhancements to existing features:
-*** Re-implement the `help` command
+*** Re-implement the `help` command:
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/81[#81]
 ** Documentation:
 *** Explains how reserved words should work in *AlgoBase* (used as a reference in the development) https://github.com/AY1920S1-CS2103T-W11-1/main/pull/35[#35]
 ** Community:
-*** As shown below, I participated in the review of most significant PRs in *AlgoBase* to make sure that the code quality of this project is consistent.
+*** As shown below, I participated in the review of most significant PRs in *AlgoBase* and provided some in-depth comments to make sure that the code quality of this project is consistent.
 *** PRs reviewed (with non-trivial review comments):
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/24[#24]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/37[#37]
