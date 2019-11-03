@@ -32,14 +32,15 @@ https://github.com/AY1920S1-CS2103T-W11-1/main/pull/90[#90]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/94[#94]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/107[#107]
 
-* *Minor enhancement*: Implemented the `rewind` command to check command history.
+* *Minor enhancement*: Implemented the command history feature.
 
-** What it does: allows the user to navigate to previous commands using either `rewind INDEX` command or kbd:[Ctrl + ↑] keyboard shortcut.
+** What it does: allows the user to navigate to previous commands using kbd:[Ctrl + ↑] and kbd:[Ctrl + ↓] keyboard shortcut.
 
-** Justification: `rewind` is to make `addfindrule` more useful - the user can first check if their problem find rule is working as they expected by executing it using `find` command, then `rewind 1` or press kbd:[Ctrl + ↑] to restore the command text, change the command word to `addfindrule` and assign a name to the added find rule.
+** Justification: This feature makes `addfindrule` more useful - the user can first check if their problem find rule is working as expected by executing it using `find` command, then press kbd:[Ctrl + ↑] to restore the command text, change the command word to `addfindrule` and assign a name to the added find rule.
 
 ** Relevant pull request
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/105[#105]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/137[#137]
 
 * *Code contributed*:
 https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=le0tan[Funtional and Test Code]
@@ -53,6 +54,7 @@ https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=le0tan[Funtional and 
 ** Documentation:
 *** Explains how reserved words should work in *AlgoBase* (used as a reference in the development) https://github.com/AY1920S1-CS2103T-W11-1/main/pull/35[#35]
 ** Community:
+*** As shown below, I participated in the review of most significant PRs in *AlgoBase* to make sure that the code quality of this project is consistent.
 *** PRs reviewed (with non-trivial review comments):
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/24[#24]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/37[#37]
@@ -63,11 +65,15 @@ https://github.com/AY1920S1-CS2103T-W11-1/main/pull/70[#70]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/80[#80]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/85[#85]
 https://github.com/AY1920S1-CS2103T-W11-1/main/pull/116[#116]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/145[#145]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/147[#147]
+https://github.com/AY1920S1-CS2103T-W11-1/main/pull/201[#201]
 *** Contributed to forum discussions
 **** Fixed the forum issue template https://github.com/nus-cs2103-AY1920S1/forum/pull/126[#126]
 **** Reported module website's inaccurate information on PPP https://github.com/nus-cs2103-AY1920S1/forum/issues/149[#149]
 
-*** Reported bugs and suggestions for other teams in the class
+*** Reported bugs and suggestions for other teams in the class:
+https://github.com/le0tan/ped[Reported 19 bugs in PED]
 
 == Contributions to the User Guide
 
