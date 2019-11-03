@@ -72,7 +72,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>list</code></strong> : lists all problems</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Halim</code> : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Wee Han'</p>
+<p><strong><code>add</code></strong><code>n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Halim</code> : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Halim'</p>
 </li>
 <li>
 <p><strong><code>edit</code></strong><code>1 src/LeetCode</code> : edits the first problem displayed and sets its source to 'LeetCode'</p>
@@ -118,7 +118,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/Two Sequences</code>.</p>
 </li>
 <li>
 <p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/factorial t/recursion</code> or as <code>n/factorial</code>.</p>
@@ -255,8 +255,8 @@ Format: <code>edit INDEX [n/NAME] [d/DESCRIPTION] [a/AUTHOR]  [t/TAG]&#8230;&#82
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit 1 a/John Doe<br>
-Edits the author of the 1st problem to be `John Doe</code> respectively.</p>
+<p><code>edit 1 a/John Doe</code><br>
+Edits the author of the 1st problem to be <code>John Doe</code> respectively.</p>
 </li>
 <li>
 <p><code>edit 2 n/permutations t/</code><br>
@@ -585,8 +585,10 @@ Format: <code>listtag</code></p>
 <h4 id="deleting-current-tags-code-deletetag-code"><a class="link" href="#deleting-current-tags-code-deletetag-code">3.3.3. Deleting current tags: <code>deletetag</code></a></h4>
 <div class="paragraph">
 <p>Deletes an existing tag.<br>
-Format: <code>deletetag INDEX</code>
-Examples:</p>
+Format: <code>deletetag INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -600,8 +602,10 @@ Examples:</p>
 <h4 id="editing-tags-code-edittag-code"><a class="link" href="#editing-tags-code-edittag-code">3.3.4. Editing tags: <code>edittag</code></a></h4>
 <div class="paragraph">
 <p>Edits an existing tag.<br>
-Format: <code>edittag INDEX t/NAME</code>
-Examples:</p>
+Format: <code>edittag INDEX t/NAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -614,6 +618,9 @@ Examples:</p>
 </div>
 <div class="sect2">
 <h3 id="training-plans"><a class="link" href="#training-plans">3.4. Training Plans</a></h3>
+<div class="paragraph">
+<p>Training plans consist of wrapped-up problems which we call <code>task</code> s.</p>
+</div>
 <div class="sect3">
 <h4 id="adding-a-plan-code-addplan-code"><a class="link" href="#adding-a-plan-code-addplan-code">3.4.1. Adding a plan: <code>addplan</code></a></h4>
 <div class="paragraph">
@@ -630,6 +637,9 @@ Format: <code>add n/NAME [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]</code
 </li>
 <li>
 <p><code>START_DATE</code> should be before or equal to <code>END_DATE</code>.</p>
+</li>
+<li>
+<p><code>START_DATE</code> will be <code>LocalDate#now()</code> if not specified, and <code>END_DATE</code> will be one month from <code>START_DATE</code> if not specified.</p>
 </li>
 </ul>
 </div>
@@ -660,9 +670,6 @@ Format: <code>deleteplan INDEX</code></p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p><code>START_DATE</code> will be <code>LocalDate#now()</code> if not specified, and <code>END_DATE</code> will be one month from <code>START_DATE</code> if not specified.</p>
 </li>
 </ul>
 </div>
@@ -712,8 +719,8 @@ Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/EN
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit 1 d/past year questions of sit-in labs<br>
-Edits the description of the 1st plan to be `past year questions of sit-in labs</code> respectively.</p>
+<p><code>edit 1 d/past year questions of sit-in labs</code><br>
+Edits the description of the 1st plan to be <code>past year questions of sit-in labs</code> respectively.</p>
 </li>
 <li>
 <p><code>edit 2 start/2019-08-13</code><br>
@@ -1388,4 +1395,4 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-03 09:37:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-03 13:39:01 UTC</div></div></div></body></html>
