@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AlgoBase</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-W11-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Tan Yuanhong - Project Portfolio</h1></div><div id="content"><div class="sect1">
 <h2 id="project-algobase"><a class="link" href="#project-algobase">PROJECT: AlgoBase</a></h2>
 <div class="sectionbody">
-<hr>
+
 </div>
 </div>
 <div class="sect1">
@@ -15,34 +15,87 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="about-this-portfolio"><a class="link" href="#about-this-portfolio">About this portfolio</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This project portfolio details my individual contributions to the <strong>AlgoBase</strong> project. It includes a summary of the enhancements and other contributions I made throughout the duration  of the project. Additionally, portions of my contribution to the User Guide and Developer Guide have also been included.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo previous commands</strong></p>
+<p><strong>Code contributed</strong>:
+<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=le0tan">Code contributed</a></p>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: Implemented the problem searching and sorting feature.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.</p>
+<p>What it does: allows the user to filter problems by combining search constraints on most fields (e.g. problem names, sources, descriptions, difficulty, etc.), allows user to save and reuse some typical search rules and allows user to sort the search result.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
+<p>Justification: To organize algorithmic questions, the first step is to find a proper subset of AlgoBase to either add to a training plan or solve the problems directly. Searching and sorting feature should be one of the most frequently used features in <strong>AlgoBase</strong>. Plus, by enabling the user to save certain frequently used find rules (e.g. medium difficulty), we essentially made it possible to create a problem list that&#8217;s dynamically updated according to certain rules - the user no longer needs to manually add tags or create plans for problems with certain properties, they can just use the saved find rules to locate them.</p>
 </li>
 <li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
+<p>Highlights:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This is a full-stack feature involving all the components of <strong>AlgoBase</strong> from <code>Logic</code> to <code>Model</code> to <code>Storage</code> to <code>UI</code>, consisting of roughly 3000 lines of functional code and more than 2000 lines of testing code.</p>
 </li>
 <li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p><code>find</code> can search on almost all fields of a problem while <code>sort</code> provides 10 combinations of sorting order.</p>
+</li>
+<li>
+<p>It requires an in-depth analysis of the overall architecture of <strong>AlgoBase</strong> because</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The original implementation of <code>find</code> in AddressBook accepts only one search constraint (i.e. the name), but in <strong>AlgoBase</strong> we need to support combination of arbitrary (non-zero) number of search constraints.</p>
+</li>
+<li>
+<p>The design of AB3 only considers "filtering" problems, thus it used <code>FilteredList</code> to support <code>find</code> command. However, <strong>AlgoBase</strong> needs to support both <code>find</code> and <code>sort</code>. We need to redesign the way AB3 exposes the processed observable list to the UI so that the list accepts both a predicate and a comparator.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+<p>Relevant pull requests:
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/49">#49</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/61">#61</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/64">#64</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/90">#90</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/94">#94</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/107">#107</a></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>Minor enhancement</strong>: Implemented the command history feature.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to navigate to previous commands using ↑ and ↓ keyboard shortcut.</p>
+</li>
+<li>
+<p>Justification: This feature makes <code>addfindrule</code> more useful - the user can first check if their problem find rule is working as expected by executing it using <code>find</code> command, then press ↑ to restore the command text, change the command word to <code>addfindrule</code> and assign a name to the added find rule.</p>
+</li>
+<li>
+<p>Relevant pull request
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/105">#105</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/137">#137</a> (Adapted some code from AB4)</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -53,7 +106,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+<p>Managed releases <code>v1.3</code> (1 release) on GitHub</p>
 </li>
 </ul>
 </div>
@@ -63,10 +116,8 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Re-implement the <code>help</code> command:
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/81">#81</a></p>
 </li>
 </ul>
 </div>
@@ -76,7 +127,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
+<p>Explains how reserved words should work in <strong>AlgoBase</strong> (used as a reference in the development) <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/35">#35</a></p>
 </li>
 </ul>
 </div>
@@ -86,29 +137,39 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+<p>As shown below, I participated in the review of most significant PRs in <strong>AlgoBase</strong> and provided some in-depth comments to make sure that the code quality of this project is consistent.</p>
 </li>
 <li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
+<p>PRs reviewed (with non-trivial review comments):
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/24">#24</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/37">#37</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/65">#65</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/66">#66</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/67">#67</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/70">#70</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/80">#80</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/85">#85</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/116">#116</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/145">#145</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/147">#147</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/201">#201</a></p>
 </li>
 <li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Tools:</p>
+<p>Contributed to forum discussions</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
+<p>Fixed the forum issue template <a href="https://github.com/nus-cs2103-AY1920S1/forum/pull/126">#126</a></p>
 </li>
 <li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>Reported module website&#8217;s inaccurate information on PPP <a href="https://github.com/nus-cs2103-AY1920S1/forum/issues/149">#149</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class:
+<a href="https://github.com/le0tan/ped">Reported 19 bugs in PED</a></p>
 </li>
 </ul>
 </div>
@@ -117,9 +178,6 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -136,6 +194,327 @@
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="sorting-problems-code-sortprob-code"><a class="link" href="#sorting-problems-code-sortprob-code">Sorting problems: <code>sortprob</code></a></h4>
+<div class="paragraph">
+<p>Sorts the current list of results by a specified order and direction.<br>
+Format: <code>sortprob m/METHOD [ord/ORDER]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>METHOD</code> can be <code>name</code>, <code>author</code>, <code>weblink</code>, <code>difficulty</code> or <code>source</code>.</p>
+</li>
+<li>
+<p><code>ORDER</code> can be <code>ascend</code> or <code>descend</code> representing ascending and descending order. The default is in ascending order.</p>
+</li>
+<li>
+<p>String-based values (i.e. <code>name</code>, <code>author</code>, etc.) are sorted alphabetically.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If sorted by ascending order (i.e. the default order), empty fields will have the highest priority, which means if you execute <code>sortprob m/weblink</code>, the first few results would be (if any) without web links.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sortprob m/name</code>
+Sorts the current list of problems in ascending order of names.</p>
+</li>
+<li>
+<p><code>sortprob m/author ord/descend</code>
+Sorts the current list of problems in descending order of author names.</p>
+</li>
+<li>
+<p><code>sortprob m/difficulty ord/ascend</code>
+Sorts the current list of problems from lowest to highest difficulty.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="locating-problems-code-findprob-code"><a class="link" href="#locating-problems-code-findprob-code">Locating problems: <code>findprob</code></a></h4>
+<div class="paragraph">
+<p>Finds problems fulfilling all provided constraints.<br>
+Format: <code>findprob [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name</p>
+<div class="ulist">
+<ul>
+<li>
+<p>is case-insensitive. e.g. <code>henz</code> will match <code>Henz</code></p>
+</li>
+<li>
+<p>is considered a match as long as one word matches. (e.g. <code>Henz Ben</code> matches both <code>Martin Henz</code> and <code>Ben Leong</code>)</p>
+</li>
+<li>
+<p>is matched word by word. e.g. <code>hello</code> will match <code>hello world</code> but not <code>helloworld</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Author requires an exact match.</p>
+</li>
+<li>
+<p>Description</p>
+<div class="ulist">
+<ul>
+<li>
+<p>is case-insensitive</p>
+</li>
+<li>
+<p>is matched word by word</p>
+</li>
+<li>
+<p>is considered as a match only when the problem&#8217;s description includes all words in the constraint. e.g. <code>wordA wordB</code> matches <code>wordC wordB wordA</code> not <code>wordD wordA</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Source requires an exact match.</p>
+</li>
+<li>
+<p>Tag</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Constraints are separated by spaces. (e.g. <code>findprob t/Recursion Brute-Force</code> will display all problems with both tag <code>Recursion</code> and <code>Brute-Force</code>)</p>
+</li>
+<li>
+<p>Constraint tag set is a subset of matching problems. (e.g. <code>findprob t/Recursion Brute-Force</code> will match problem with tags <code>Recursion</code>+<code>Brute-Force</code>+<code>Playful</code> but not <code>Recursion</code>+<code>Adhoc</code>)</p>
+</li>
+<li>
+<p>Two tags are considered equal only when their tag strings are exactly matched.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Difficulty</p>
+<div class="ulist">
+<ul>
+<li>
+<p>matches problems with <code>LOWER_BOUND &lt;= difficulty &lt;= UPPER_BOUND</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you want to match problems with exact difficulty <code>1.5</code>, please use <code>diff/1.5-1.5</code>.<br>
+If you want to match problems with with difficulty no lower than <code>1.5</code>, please use <code>diff/1.5-5.0</code> because <code>5.0</code> is the upper limit of difficulty.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When providing the search restrictions, you should ensure that keywords are non-blank and difficulty range is valid (as specified in <code>addprob</code> command). Also at least one search restriction should be provided.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Words are separated by empty spaces. Thus if we have a sentence "Hello, world!", we have two words <code>Hello,</code> and <code>world!</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>findprob n/Sequence</code><br>
+Returns any problem with word <code>sequence</code> (case-insensitive) in its name.</p>
+</li>
+<li>
+<p><code>findprob t/algorithm diff/2.0-4.0</code><br>
+Returns any problem with <code>algorithm</code> as one of its tags AND with a difficulty between 2.0 and 4.0 (inclusive).</p>
+</li>
+<li>
+<p><code>findprob a/Hentin Marz src/Kattis</code><br>
+Returns any problem from <code>Kattis</code> that&#8217;s authored by <code>Hentin Marz</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="storing-a-problem-finding-rule-code-addfindrule-code"><a class="link" href="#storing-a-problem-finding-rule-code-addfindrule-code">Storing a problem-finding rule: <code>addfindrule</code></a></h4>
+<div class="paragraph">
+<p>Saves a problem-finding rule from provided constraints.<br>
+Format: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code><br>
+Alias: <code>afr</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The feature of storing/applying a problem-finding rule is complementary to the plan and tag feature: both tag and plan requires you to categorize problems one by one manually. If you simply want to "keep a list of problems" that fulfills certain conditions, say "algorithm questions of medium difficulty" or "graph theory questions from Kattis", you may store these rules using <code>addfindrule</code> and <code>apply</code> them later. Unlike plans, as you add new questions to AlgoBase, so long as the new questions fulfill the search rule, they will show up if you <code>apply</code> that rule.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The rules for constraints are the same as those described in <code>find</code> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addfindrule MediumDiffAlgo t/algorithm diff/2.0-4.0</code><br>
+Adds a new find rule named <code>MediumDiffAlgo</code> that when applied, returns any problem with <code>algorithm</code> as one of its tags AND with a difficulty between 2.0 and 4.0 (inclusive).</p>
+</li>
+<li>
+<p><code>addfindrule Kattis src/Kattis</code> or <code>afr Kattis src/Kattis</code><br>
+Adds a new find rule named <code>Kattis</code> that when applied, returns any problem from <code>Kattis</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="applying-a-problem-finding-rule-code-apply-code"><a class="link" href="#applying-a-problem-finding-rule-code-apply-code">Applying a problem-finding rule: <code>apply</code></a></h4>
+<div class="paragraph">
+<p>Applies a problem-finding rule.<br>
+Format: <code>apply INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Applies the find rule at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed find rule list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can find problem-finding rules that you can <code>apply</code> with in the "Find Rules" panel by clicking on the "Find Rules" tab.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/apply_tip_find_rule_tab.png" alt="apply tip find rule tab">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>apply</code> a problem-finding rule is essentially the same as executing a pre-filled <code>findprob</code> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>apply 2</code><br>
+Applies the 2nd find rule in the displayed list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-problem-finding-rule-code-deletefindrule-code"><a class="link" href="#deleting-a-problem-finding-rule-code-deletefindrule-code">Deleting a problem-finding rule: <code>deletefindrule</code></a></h4>
+<div class="paragraph">
+<p>Deletes a problem-finding rule.<br>
+Format: <code>deletefindrule INDEX</code><br>
+Alias: <code>dfr</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the find rule at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed find rule list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deletefindrule 2</code> or <code>dfr 2</code><br>
+Deletes the 2nd find rule in the displayed list.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -151,14 +530,153 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
 <div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+<p><a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#Design-Model">Design - Model</a><br>
+<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#find-problem-feature">Implementation - Find Feature</a></p>
+</div>
+<div class="sect2">
+<h3 id="save-find-rules-feature"><a class="link" href="#save-find-rules-feature">Save Find Rules Feature</a></h3>
+<div class="paragraph">
+<p>AlgoBase provides many ways to organizing your problems including tags and plans. However, both organizing features require persistent user involvement - if the user added a new problem belonging to a category, the user needs to manually assign a tag to the problem or add the problem to a plan. Since AlgoBase&#8217;s <code>find</code> command enables the user to filter problems with great flexibility, we allow them to save certain find rules so that they can re-apply these rules to quickly locate problems of their need.</p>
+</div>
+<div class="paragraph">
+<p>This section will describe in detail the current implementation and design considerations of the save find rules (or problem search rules) feature of AlgoBase.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes <code>addfindrule</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/savefindrule/AddFindRuleActivityDiagram.png" alt="AddFindRuleActivityDiagram" width="70%">
+</div>
+<div class="title">Figure 1. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The save find rules feature is facilitated by the following classes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ProblemSearchRule</code><br>
+It stores both the <code>Name</code> of the find rule and all predicates included in this find rule. A <code>ProblemSearchRule</code> doesn&#8217;t have to include all possible predicates as the user may not provide all of them. Missing predicates will be stored as <code>null</code> in this class.</p>
+</li>
+<li>
+<p><code>UniqueFindRuleList</code><br>
+It stores the find rules and makes sure that every find rule in this list has a unique name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UniqueFindRuleList</code> stores a <code>ObservableList&lt;ProblemSearchRule&gt;</code> for UI purposes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Except for <code>ProblemSearchRule</code>, we refer to these rules as <code>FindRule</code> in all other places. This is to prevent possible naming conflicts if AlgoBase is to support saving find rules on other items (e.g. Plans, etc.). <code>FindRule</code> corresponds to <code>FindCommand</code>. Thus, if you are to implement saving find plan rules, name them as <code>PlanSearchRule</code>, <code>AddFindPlanRuleCommand</code>, <code>UniqueFindPlanRuleList</code>, etc.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Under the category of save find rules feature, we have the following <code>Command</code> classes and their corresponding <code>Parser</code> classes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddFindRuleCommand</code></p>
+</li>
+<li>
+<p><code>DeleteFindRuleCommand</code></p>
+</li>
+<li>
+<p><code>ApplyCommand</code><br>
+It applies a problem-finding rule by specifying the index of the displayed find rule.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since these commands share similar implementations, we will only take <code>AddFindRuleCommand</code> as an example since it&#8217;s the most complicated one among the three.</p>
+</div>
+<div class="sect4">
+<h5 id="implementation-of-code-addfindrule-code-feature"><a class="link" href="#implementation-of-code-addfindrule-code-feature">Implementation of <code>addfindrule</code> feature</a></h5>
+<div class="paragraph">
+<p>The <code>addfindrule</code> feature is facilitated by <code>AddFindRuleCommand</code> and <code>AddFindRuleCommandParser</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/savefindrule/AddFindRuleClassDiagram.png" alt="AddFindRuleClassDiagram" width="70%">
+</div>
+<div class="title">Figure 2. Class Diagram for Add Find Rule Feature</div>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes the request when user types in <code>addfindrule rule1 n/Sequences</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/savefindrule/HighLevelAddFindRuleSequenceDiagram.png" alt="HighLevelAddFindRuleSequenceDiagram" width="70%">
+</div>
+<div class="title">Figure 3. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/savefindrule/AddFindRuleSequenceDiagram.png" alt="AddFindRuleSequenceDiagram" width="70%">
+</div>
+<div class="title">Figure 4. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 13:21:50 UTC</div></div></div></body></html>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-a-immutable-concrete-class"><a class="link" href="#aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-a-immutable-concrete-class">Aspect: To implement <code>ProblemSearchRule</code> as a subclass of <code>FindProblemDescriptor</code> or implement it as a immutable concrete class.</a></h5>
+<div class="paragraph">
+<p>Since AlgoBase is forked from AddressBook 3, it also inherits AB3&#8217;s design choice on all data classes - they are all immutable classes with all fields being <code>final</code>. However, <code>ProblemSearchRule</code> is essentially saving the information of a command input, where the user may provide any number of predicates as the argument. We implement mutable <code>FindProblemDescriptor</code> to accommodate variable user inputs, now we have to consider whether to keep <code>ProblemSearchRule</code> immutable or not.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> <code>ProblemSearchRule</code> extends <code>FindProblemDescriptor</code> with an additional field <code>name</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Drastically reduces the amount of duplicate code as <code>ProblemSearchRule</code> shares most fields with <code>FindProblemDescriptor</code></p>
+</li>
+<li>
+<p>Cons: <code>ProblemSearchRule</code> as a data class is no longer immutable. We have to be careful not to call any setters it inherits from <code>FindProblemDescriptor</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> <code>ProblemSearchRule</code> as an individual class with immutable fields.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Provides good protection over unexpected changes to the data fields.</p>
+</li>
+<li>
+<p>Cons: Lots of repeated code.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 15:08:14 UTC</div></div></div></body></html>
