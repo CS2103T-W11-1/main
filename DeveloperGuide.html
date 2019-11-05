@@ -15,9 +15,10 @@
 <li><a href="#Design-Architecture">2.1. Architecture</a></li>
 <li><a href="#Design-Ui">2.2. UI component</a></li>
 <li><a href="#Design-Logic">2.3. Logic component</a></li>
-<li><a href="#Design-Model">2.4. Model component</a></li>
-<li><a href="#Design-Storage">2.5. Storage component</a></li>
-<li><a href="#Design-Commons">2.6. Common classes</a></li>
+<li><a href="#Design-UiLogic">2.4. UiLogic Component</a></li>
+<li><a href="#Design-Model">2.5. Model component</a></li>
+<li><a href="#Design-Storage">2.6. Storage component</a></li>
+<li><a href="#Design-Commons">2.7. Common classes</a></li>
 </ul>
 </li>
 <li><a href="#implementation">3. Implementation</a>
@@ -108,7 +109,7 @@ The following class plays an important role at the architecture level:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The rest of the App consists of four components.</p>
+<p>The rest of the App consists of five components.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -119,6 +120,9 @@ The following class plays an important role at the architecture level:</p>
 <p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: The command executor.</p>
 </li>
 <li>
+<p><a href="#Design-Logic"><strong><code>UiLogic</code></strong></a>: The UI action handler.</p>
+</li>
+<li>
 <p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of the App in-memory.</p>
 </li>
 <li>
@@ -127,7 +131,7 @@ The following class plays an important role at the architecture level:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Each of the four components</p>
+<p>Each of the five components</p>
 </div>
 <div class="ulist">
 <ul>
@@ -159,6 +163,15 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 3. Component interactions for <code>delete 1</code> command</div>
 </div>
 <div class="paragraph">
+<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user switches tabs in the GUI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ArchitectureSequenceDiagram1.png" alt="ArchitectureSequenceDiagram1">
+</div>
+<div class="title">Figure 4. Component interactions for Switching Tab UI Action</div>
+</div>
+<div class="paragraph">
 <p>The sections below give more details of each component.</p>
 </div>
 </div>
@@ -168,7 +181,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram">
 </div>
-<div class="title">Figure 4. Structure of the UI Component</div>
+<div class="title">Figure 5. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/ui/Ui.java"><code>Ui.java</code></a></p>
@@ -201,7 +214,7 @@ All these, including the <code>MainWindow</code>, inherit from the abstract <cod
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
 </div>
-<div class="title">Figure 5. Structure of the Logic Component</div>
+<div class="title">Figure 6. Structure of the Logic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -233,7 +246,7 @@ All these, including the <code>MainWindow</code>, inherit from the abstract <cod
 <div class="content">
 <img src="images/DeleteSequenceDiagram.png" alt="DeleteSequenceDiagram">
 </div>
-<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
+<div class="title">Figure 7. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -249,12 +262,65 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
+<h3 id="Design-UiLogic"><a class="link" href="#Design-UiLogic">2.4. UiLogic Component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiLogicClassDiagram.png" alt="UiLogicClassDiagram" width="65%">
+</div>
+<div class="title">Figure 8. Structure of the UiLogic Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> :
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/ui/action/UiLogic.java"><code>UiLogic.java</code></a></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Performing an action (e.g. switching tabs) triggers the creation of a <code>UiActionDetails</code> object.</p>
+</li>
+<li>
+<p><code>UiLogic</code> uses the <code>AlgoBaseUiActionParser</code> class to parse the <code>UiActionDetails</code> object.</p>
+</li>
+<li>
+<p>This results in a <code>UiAction</code> object which is executed by the <code>UiLogicManager</code>.</p>
+</li>
+<li>
+<p>The command execution can affect the <code>Model</code> (e.g. deleting a problem).</p>
+</li>
+<li>
+<p>The result of the command execution is encapsulated as a <code>UiActionResult</code> object which is passed back to the <code>Ui</code>.</p>
+</li>
+<li>
+<p>In addition, the <code>UiActionResult</code> object can also instruct the <code>Ui</code> to perform certain actions, such as displaying the results as feedback to the user.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditSequenceDiagram.png" alt="EditSequenceDiagram">
+</div>
+<div class="title">Figure 9. Interactions Inside the UiLogic Component for a <code>UiActionDetails</code> with a <code>UiActionType</code> of <code>editPlanUiAction</code>. This <code>UiActionDetails</code> also contains the ID of the problem to be deleted, in this case <code>11b</code>.</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The lifeline for <code>EditProblemUiActionParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Model"><a class="link" href="#Design-Model">2.5. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/ModelClassDiagram.png" alt="ModelClassDiagram" width="65%">
 </div>
-<div class="title">Figure 7. Structure of the Model Component</div>
+<div class="title">Figure 10. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/model/Model.java"><code>Model.java</code></a></p>
@@ -285,52 +351,58 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="content">
 <img src="images/design/model/ProblemPackageDiagram.png" alt="ProblemPackageDiagram" width="75%">
 </div>
-<div class="title">Figure 8. Structure of the Problem Package</div>
+<div class="title">Figure 11. Structure of the Problem Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/PlanPackageDiagram.png" alt="PlanPackageDiagram" width="50%">
 </div>
-<div class="title">Figure 9. Structure of the Plan Package</div>
+<div class="title">Figure 12. Structure of the Plan Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/TagPackageDiagram.png" alt="TagPackageDiagram" width="30%">
 </div>
-<div class="title">Figure 10. Structure of the Tag Package</div>
+<div class="title">Figure 13. Structure of the Tag Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/TaskPackageDiagram.png" alt="TaskPackageDiagram" width="30%">
 </div>
-<div class="title">Figure 11. Structure of the Task Package</div>
+<div class="title">Figure 14. Structure of the Task Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/ProblemSearchRulePackageDiagram.png" alt="ProblemSearchRulePackageDiagram" width="60%">
 </div>
-<div class="title">Figure 12. Structure of the ProblemSearchRule Package</div>
+<div class="title">Figure 15. Structure of the ProblemSearchRule Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/PlanSearchRulePackageDiagram.png" alt="PlanSearchRulePackageDiagram" width="60%">
 </div>
-<div class="title">Figure 13. Structure of the PlanSearchRule Package</div>
+<div class="title">Figure 16. Structure of the PlanSearchRule Package</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/design/model/GuiPackageDiagram.png" alt="GuiPackageDiagram" width="60%">
+</div>
+<div class="title">Figure 17. Structure of the GUI Package</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.6. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/storage/StorageClassDiagram.png" alt="StorageClassDiagram">
 </div>
-<div class="title">Figure 14. Structure of the Storage Component</div>
+<div class="title">Figure 18. Structure of the Storage Component</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/storage/ProblemSearchRuleClassDiagram.png" alt="ProblemSearchRuleClassDiagram">
 </div>
-<div class="title">Figure 15. Structure of the JsonAdaptedProblemSearchRule Component</div>
+<div class="title">Figure 19. Structure of the JsonAdaptedProblemSearchRule Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -357,7 +429,7 @@ objects in relational manner in json format.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
+<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.7. Common classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.algobase.commons</code> package.</p>
 </div>
@@ -427,7 +499,7 @@ the task management feature.</p>
 <div class="content">
 <img src="images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram">
 </div>
-<div class="title">Figure 16. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 20. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application.</p>
@@ -447,7 +519,7 @@ and replace the original plan with this updated plan in the <code>PlanList</code
 <div class="content">
 <img src="images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram">
 </div>
-<div class="title">Figure 17. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 21. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 </div>
 <div class="sect3">
@@ -595,7 +667,7 @@ and replace the original plan with this updated plan in the <code>PlanList</code
 <div class="content">
 <img src="images/tag/AddTagSequenceDiagram.png" alt="AddTagSequenceDiagram">
 </div>
-<div class="title">Figure 18. Sequence Diagram for <code>AddTagCommand</code></div>
+<div class="title">Figure 22. Sequence Diagram for <code>AddTagCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls Model#listtag(), causing the taglist shows the current components of uniqueTagList. Commands that do not modify the address book, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
@@ -615,7 +687,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 <div class="content">
 <img src="images/tag/TagActivityDiagram.png" alt="TagActivityDiagram">
 </div>
-<div class="title">Figure 19. Activity Diagram for tag commands</div>
+<div class="title">Figure 23. Activity Diagram for tag commands</div>
 </div>
 </div>
 <div class="sect3">
@@ -670,7 +742,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 <div class="content">
 <img src="images/find/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram">
 </div>
-<div class="title">Figure 20. Activity Diagram for the Execution of <code>find</code> Command</div>
+<div class="title">Figure 24. Activity Diagram for the Execution of <code>find</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
@@ -762,7 +834,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/FindCommandClassDiagram.png" alt="FindCommandClassDiagram" width="75%">
 </div>
-<div class="title">Figure 21. Class Diagram of the Find Feature</div>
+<div class="title">Figure 25. Class Diagram of the Find Feature</div>
 </div>
 <div class="ulist">
 <ul>
@@ -851,7 +923,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/PredicateClassDiagram.png" alt="PredicateClassDiagram" width="40%">
 </div>
-<div class="title">Figure 22. Class Diagram for Predicates in the Find Feature</div>
+<div class="title">Figure 26. Class Diagram for Predicates in the Find Feature</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the find problem mechanism behaves at each step.</p>
@@ -881,7 +953,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/find/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 23. Sequence Diagram for the Execution of <code>find</code> Command</div>
+<div class="title">Figure 27. Sequence Diagram for the Execution of <code>find</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -1002,7 +1074,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/savefindrule/AddFindRuleActivityDiagram.png" alt="AddFindRuleActivityDiagram" width="70%">
 </div>
-<div class="title">Figure 24. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 28. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
@@ -1069,7 +1141,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleClassDiagram.png" alt="AddFindRuleClassDiagram" width="70%">
 </div>
-<div class="title">Figure 25. Class Diagram for Add Find Rule Feature</div>
+<div class="title">Figure 29. Class Diagram for Add Find Rule Feature</div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes the request when user types in <code>addfindrule rule1 n/Sequences</code>:</p>
@@ -1078,7 +1150,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/HighLevelAddFindRuleSequenceDiagram.png" alt="HighLevelAddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 26. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
+<div class="title">Figure 30. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
@@ -1087,7 +1159,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleSequenceDiagram.png" alt="AddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 27. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 31. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 </div>
 </div>
@@ -1134,15 +1206,165 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="sect2">
 <h3 id="gui-enhancements"><a class="link" href="#gui-enhancements">3.5. GUI Enhancements</a></h3>
 <div class="paragraph">
-<p>An intuitive GUI facilitates the overall user friendliness of the application. The user should be able to navigate around the application easily to facilitate a smooth experience using AlgoBase. Additionally, multitasking is important as a user may be tackling multiple algorithmic questions at a single time. One of the main enhancements that we introduced to the GUI is tabbing, which fulfils these 2 requirements.</p>
+<p>An intuitive GUI facilitates the overall user friendliness of the application.
+The user should be able to navigate around the application easily to facilitate a smooth experience using AlgoBase.
+While the command line is fast for typing short commands, it us not ideal if the user is editing large amounts of text (e.g. when the user is adding description for a new problem).
+In this case, having a GUI will be more beneficial to the user and facilitates a smoother user experience.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, multitasking is important as a user may be tackling multiple algorithmic questions at a single time.
+This, we introduced tabbing, which facilitates multitasking in AlgoBase, which is an important requirement for competitive programmers.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.5.1. Current Implementation</a></h4>
+<h4 id="editing-problems-from-gui"><a class="link" href="#editing-problems-from-gui">3.5.1. Editing Problems from GUI</a></h4>
+<div class="sect4">
+<h5 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h5>
 <div class="paragraph">
-<p>The state of the GUI is stored in a <code>GuiState</code> object. The <code>GuiState</code> object contains a <code>TabManager</code> object, which manages tab information such as the tabs that are open and the tabs that are currently selected.</p>
+<p>When the user makes a change in the GUI, the change is propagated from <code>Ui</code> to <code>UiLogic</code> to <code>Model</code> and to <code>Storage</code>, as represented in the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ArchitectureSequenceDiagram1.png" alt="ArchitectureSequenceDiagram1">
+</div>
+<div class="title">Figure 32. An example of a high level representation of GUI actions.</div>
+</div>
+<div class="paragraph">
+<p>The following classes facilitate the handling of GUI actions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UiActionType</code> - An enum of the types of UI actions that exist in AlgoBase.</p>
+</li>
+<li>
+<p><code>UiActionDetails</code> - An object containing details of a UI action.</p>
+</li>
+<li>
+<p><code>UiAction</code> - Interface with instructions for executing a UI action.</p>
+</li>
+<li>
+<p><code>UiLogicManager</code> - Manages the overall UI Logic.</p>
+</li>
+<li>
+<p><code>AlgoBaseUiActionParser</code> - Parses a <code>UiActionDetails</code> object into an implementation of <code>UiAction</code>.</p>
+</li>
+<li>
+<p><code>UiActionResult</code> - The result of executing the UI action.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When the user performs any action in the GUI (e.g. Editing a problem), a <code>UiActionDetails</code> object is created with a given <code>UiActionType</code>, an enum type.
+This object contains information about the action which will later be used to make changes to the application.</p>
+</div>
+<div class="paragraph">
+<p>This <code>UiActionDetails</code> object is sent to the <code>AlgoBaseUiActionParser</code>, which instantiates a <code>UiParser</code> depending on the <code>UiActionType</code> of the object.
+The purpose of the <code>UiParser</code> is to convert the <code>UiActionDetails</code> object into a <code>UiAction</code> object.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UiAction</code> object stores the instructions to make the specified changes to the <code>Model</code>, which will run when its <code>execute</code> method is called.
+The <code>UiAction</code> object is passed along to the <code>UiLogicManager</code>, which calls its <code>execute</code> method on the <code>Model</code> object.</p>
+</div>
+<div class="paragraph">
+<p>This process is captured by the example in the Sequence Diagrams below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/EditProblemUiActionSequenceDiagram0.png" alt="EditProblemUiActionSequenceDiagram0">
+</div>
+<div class="title">Figure 33. Interaction between <code>UI</code> and <code>UiLogic</code></div>
+</div>
+<div class="paragraph">
+<p>Step 1: The user edits the <code>ProblemDetails</code> controller class through his/her actions in the GUI.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: The <code>ProblemDetails</code> class constructs a new <code>UiActionDetails</code> object with using <code>UiActionType.EditProblem</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: The <code>executeUiAction</code> of the <code>MainWindow</code> class is called with the <code>UiActionDetails</code> object,
+which in turn calls the <code>execute</code> method of <code>UiLogicManager</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 4: The method call returns a <code>UiActionResult</code> object, which may optionally contain feedback for the user.</p>
+</div>
+<div class="paragraph">
+<p>The following diagram goes into more details on how the <code>UiLogic</code> handles the <code>UiActionDetails</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/EditProblemUiActionSequenceDiagram1.png" alt="EditProblemUiActionSequenceDiagram1">
+</div>
+<div class="title">Figure 34. Interactions between classes in the <code>UiLogic</code></div>
+</div>
+<div class="paragraph">
+<p>Step 1: The <code>UiLogicManager</code> passes the <code>UiActionDetails</code> object to the <code>AlgoBaseActionParser</code>,
+which in turn passes it to the <code>EditProblemUiActionParser</code> based on its Action type.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: The <code>EditProblemUiActionParser</code> converts the <code>UiActionDetails</code> object into a <code>EditProblemUiAction</code> object,
+and passes it back to the <code>UiLogicManager</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: The <code>UiLogicManager</code> executes the <code>EditProblemUiAction</code> together with the <code>Model</code>, and returns the <code>CommandResult</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Alternative 1 (Current Choice)</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handling Commands and UI Actions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handle Commands and UI Actions separately.</p>
+<p class="tableblock"><strong>Pros</strong>: Higher modularity. Allows separation the different architectures as well
+(Synchronous for Commands &amp; Event-Driven for UI Actions)</p>
+<p class="tableblock"><strong>Cons</strong>: Multiple Logic managers (LogicManager and UiLogicManager)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handle Commands and UI Actions together.</p>
+<p class="tableblock"><strong>Pros</strong>: Less code and higher reusability.</p>
+<p class="tableblock"><strong>Cons</strong>: Higher coupling and less cohesion.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handling different kinds of UI Actions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Using a command structure with a central parser and many smaller parsers.</p>
+<p class="tableblock"><strong>Pros</strong>: Higher extensibility, easier to add new UI Actions</p>
+<p class="tableblock"><strong>Cons</strong>: Have to write more code to achieve the same functionality.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handling each UI action individually.</p>
+<p class="tableblock"><strong>Pros</strong>: Can write less code to achieve the same functionality.</p>
+<p class="tableblock"><strong>Cons</strong>: Lower extensibility, harder to add new UI Actions</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tabbing-feature"><a class="link" href="#tabbing-feature">3.5.2. Tabbing Feature</a></h4>
+<div class="sect4">
+<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The state of the GUI is stored in a <code>GuiState</code> object, which is in turn stored in the <code>Model</code>. The <code>GuiState</code> object contains a <code>TabManager</code> object, which manages tab information such as the tabs that are open and the tabs that are currently selected.</p>
 </div>
 <div class="paragraph">
 <p>The information is linked to the <code>UI</code> through listeners. When the attributes of the <code>TabManager</code> object is updated, it triggers callback functions in the UI controllers that update the state of the UI displayed.</p>
+</div>
+<div class="paragraph">
+<p>The following class diagram illustrates how the classes in the <code>GuiState</code> interact with one another:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/design/model/GuiPackageDiagram.png" alt="GuiPackageDiagram" width="60%">
+</div>
+<div class="title">Figure 35. Class Dagram for the <code>GuiState</code> class</div>
 </div>
 <div class="paragraph">
 <p>The following commands facilitate the management of tabs:</p>
@@ -1150,13 +1372,13 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="ulist">
 <ul>
 <li>
-<p><code>AlgoBase#switchTab()</code> - Switch between tabs within a specified Tab pane.</p>
+<p><code>switchTab</code> - Switch between tabs within a specified Tab pane.</p>
 </li>
 <li>
-<p><code>AlgoBase#openTab()</code> - Opens a new tab containing details of a model.</p>
+<p><code>openTab</code> - Opens a new tab containing details of a model.</p>
 </li>
 <li>
-<p><code>AlgoBase#closeTab()</code> - Closes an existing tab.</p>
+<p><code>closeTab</code> - Closes an existing tab.</p>
 </li>
 </ul>
 </div>
@@ -1166,13 +1388,13 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="ulist">
 <ul>
 <li>
-<p><code>SwitchTab()</code>: <code>TabManager#setDisplayTabIndex</code> and <code>TabManager#setDetailsTabIndex</code></p>
+<p><code>SwitchTab</code>: <code>TabManager#switchTab</code></p>
 </li>
 <li>
-<p><code>OpenTab()</code>: <code>TabManager#addTab</code></p>
+<p><code>OpenTab</code>: <code>TabManager#openTab</code></p>
 </li>
 <li>
-<p><code>CloseTab()</code>: <code>TabManager#removeTab</code></p>
+<p><code>CloseTab</code>: <code>TabManager#closeTab</code></p>
 </li>
 </ul>
 </div>
@@ -1183,17 +1405,13 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/gui/SwitchTabCommandActivityDiagram.png" alt="SwitchTabCommandActivityDiagram" width="50%">
 </div>
-</div>
-<div class="paragraph">
-<p><em>Figure 1.1 Activity Diagram for the Execution of <code>switchtab</code> Command</em></p>
+<div class="title">Figure 36. Activity Diagram for the Execution of <code>switchtab</code> Command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/OpenTabCommandActivityDiagram.png" alt="OpenTabCommandActivityDiagram" width="50%">
 </div>
-</div>
-<div class="paragraph">
-<p><em>Figure 1.2 Activity Diagram for the Execution of <code>opentab</code> Command</em></p>
+<div class="title">Figure 37. Activity Diagram for the Execution of <code>opentab</code> Command</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the tag mechanism behaves at each step.</p>
@@ -1202,9 +1420,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram0.png" alt="SwitchTabsSequenceDiagram0">
 </div>
-</div>
-<div class="paragraph">
-<p><em>Figure 2.1 Sequence Diagram for instantiating a <code>SwitchCommand</code> object</em></p>
+<div class="title">Figure 38. Sequence Diagram for instantiating a <code>SwitchCommand</code> object</div>
 </div>
 <div class="paragraph">
 <p>Step 1: The user executes <code>switchtab tt/display i/1</code> to switch to the first tab in the <code>display</code> tabpane.</p>
@@ -1219,9 +1435,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram1.png" alt="SwitchTabsSequenceDiagram1">
 </div>
-</div>
-<div class="paragraph">
-<p><em>Figure 2.2 Sequence Diagram for updating the tab index in the TabManager</em></p>
+<div class="title">Figure 39. Sequence Diagram for updating the tab index in the TabManager</div>
 </div>
 <div class="paragraph">
 <p>Step 4: <code>LogicManager</code> invokes <code>execute()</code> method of the returned <code>SwitchTabCommand</code>, which retrieves the TabManager from the <code>Model</code> object. The <code>setDisplayTabPaneIndex(1)</code> method is invoked with the index 1 that the <code>SwitchTabCommand</code> was instantiated with.</p>
@@ -1233,9 +1447,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram2.png" alt="SwitchTabsSequenceDiagram2">
 </div>
-</div>
-<div class="paragraph">
-<p><em>Figure 3.3 Sequence Diagram for reflecting the tab changes</em></p>
+<div class="title">Figure 40. Sequence Diagram for reflecting the tab changes</div>
 </div>
 <div class="paragraph">
 <p>Step 6: A listener was added to the <code>displayTabIndex</code> field when the application was initialized. When a change in the value is detected, it triggers the <code>selectTab(1)</code> method with the value of the new index passed as an argument. This updates the selected tab in the UI.</p>
@@ -1244,9 +1456,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3">
 </div>
-</div>
-<div class="paragraph">
-<p><em>Figure 3.4 Sequence Diagram for storing new GUI state</em></p>
+<div class="title">Figure 41. Sequence Diagram for storing new GUI state</div>
 </div>
 <div class="paragraph">
 <p>Step 7: After the command is executed, the state of the GUI changes. This causes the <code>StorageManager</code> to save the modified GUI state as a new <code>JSON</code> file.
@@ -1254,8 +1464,8 @@ This is done with the help of the <code>JsonSerializableGui</code>, <code>JsonSe
 These wrapper classes can be converted into <code>JSON</code> format for storage without any data loss.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design Considerations</a></h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1292,13 +1502,14 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 </table>
 </div>
 </div>
+</div>
 <div class="sect2">
 <h3 id="training-plan-feature"><a class="link" href="#training-plan-feature">3.6. Training Plan Feature</a></h3>
 <div class="paragraph">
 <p>Training plan feature allows users to create customized training plans with specific starting date and end date and that consist of selected problems in AlgoBase. Each problem is wrapped up as a task in the plan. Users can record their progress by marking problems in plans as done or undone, and they can edit, delete or search for plans.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.6.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The training plan mechanism is faciliated by <code>AlgoBase</code>, which keeps a list of training plans. It supports the following operations:</p>
 </div>
@@ -1322,7 +1533,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/PlanClassDiagram.png" alt="PlanClassDiagram">
 </div>
-<div class="title">Figure 28. Class Diagram of <code>Plan</code></div>
+<div class="title">Figure 42. Class Diagram of <code>Plan</code></div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the AlgoBase behaves at each step.</p>
@@ -1337,7 +1548,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/AddPlanSequenceDiagram.png" alt="AddPlanSequenceDiagram">
 </div>
-<div class="title">Figure 29. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
+<div class="title">Figure 43. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user executes <code>listplan</code> to list all plans. The <code>listplan</code> command calls <code>Model#updateFilteredPlanList()</code>. The plan <code>CS2040</code> is numbered <code>1</code> in the displayed list.</p>
@@ -1349,7 +1560,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/EditPlanCommandActivityDiagram.png" alt="EditPlanCommandActivityDiagram">
 </div>
-<div class="title">Figure 30. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
+<div class="title">Figure 44. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1370,7 +1581,7 @@ The user can also add value for an empty field by executing <code>editplan</code
 <div class="content">
 <img src="images/plan/FindPlanDescriptorClassDiagram.png" alt="FindPlanDescriptorClassDiagram">
 </div>
-<div class="title">Figure 31. Class Diagram for <code>FindPlanDescriptor</code></div>
+<div class="title">Figure 45. Class Diagram for <code>FindPlanDescriptor</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1389,7 +1600,7 @@ If the user wants to find plans with overlapping time range, both the starting d
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-data-structure-of-timerange-class"><a class="link" href="#aspect-data-structure-of-timerange-class">Aspect: Data Structure of TimeRange class</a></h5>
 <div class="ulist">
@@ -2647,4 +2858,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 16:44:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 17:03:39 UTC</div></div></div></body></html>

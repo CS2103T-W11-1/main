@@ -19,10 +19,11 @@
 <li><a href="#training-plans">3.4. Training Plans</a></li>
 <li><a href="#searching-plans">3.5. Searching Plans</a></li>
 <li><a href="#task-management">3.6. Task Management</a></li>
-<li><a href="#tabs">3.7. Tabs</a></li>
-<li><a href="#data-management">3.8. Data Management</a></li>
-<li><a href="#miscellaneous">3.9. Miscellaneous</a></li>
-<li><a href="#encryption">3.10. Encryption</a></li>
+<li><a href="#editing-from-gui">3.7. Editing from GUI</a></li>
+<li><a href="#tabs">3.8. Tabs</a></li>
+<li><a href="#data-management">3.9. Data Management</a></li>
+<li><a href="#miscellaneous">3.10. Miscellaneous</a></li>
+<li><a href="#encryption">3.11. Encryption</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -1025,46 +1026,107 @@ Format: <code>setplan PLAN_INDEX</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="tabs"><a class="link" href="#tabs">3.7. Tabs</a></h3>
+<h3 id="editing-from-gui"><a class="link" href="#editing-from-gui">3.7. Editing from GUI</a></h3>
+<div class="paragraph">
+<p>AlgoBase currently supports editing Problems and Plans from the GUI with an intuitive layout.</p>
+</div>
+<div class="sect3">
+<h4 id="editing-a-problem-plan"><a class="link" href="#editing-a-problem-plan">3.7.1. Editing a Problem / Plan</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/EditPlanUiAction0.png" alt="EditPlanUiAction0" width="70%">
+</div>
+<div class="title">Figure 1. Plan with name "Data Structures" is opened.</div>
+</div>
+<div class="paragraph">
+<p>Step 1: Select the problem / plan you want to delete by double clicking on it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/EditPlanUiAction1.png" alt="EditPlanUiAction1" width="70%">
+</div>
+<div class="title">Figure 2. The name and start date of the plan are modified.</div>
+</div>
+<div class="paragraph">
+<p>Step 2: Make changes to the problem / plan by editing the fields directly.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/EditPlanUiAction2.png" alt="EditPlanUiAction2" width="70%">
+</div>
+<div class="title">Figure 3. The plan is successfully edited.</div>
+</div>
+<div class="paragraph">
+<p>Step 3: Save changes to the problem by clicking on the <em>"Edit Problem"</em> / <em>"Edit Plan"</em> button.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-problem-plan"><a class="link" href="#deleting-a-problem-plan">3.7.2. Deleting a Problem / Plan</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/DeleteProblemUiAction0.png" alt="DeleteProblemUiAction0" width="70%">
+</div>
+<div class="title">Figure 4. Problem with name "Sequences" is opened.</div>
+</div>
+<div class="paragraph">
+<p>Step 1: Select the problem / plan you want to delete by double clicking on it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/DeleteProblemUiAction1.png" alt="DeleteProblemUiAction1" width="70%">
+</div>
+<div class="title">Figure 5. Warning Dialog to confirm problem being deleted.</div>
+</div>
+<div class="paragraph">
+<p>Step 2: Click on the red <em>"Delete Problem"</em> / <em>"Delete Plan"</em> button at the bottom right.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: For <em>Problems</em>, select whether you want the problem to be removed from all existing plans.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/gui/DeleteProblemUiAction2.png" alt="DeleteProblemUiAction2" width="70%">
+</div>
+<div class="title">Figure 6. The problem is successfully deleted.</div>
+</div>
+<div class="paragraph">
+<p>Step 4: Click on <em>Confirm</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tabs"><a class="link" href="#tabs">3.8. Tabs</a></h3>
+<div class="paragraph">
+<p>There are 2 types of tabs in AlgoBase: Display and Details tabs, as seen in the figure below.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/TabsOverview.png" alt="TabsOverview" width="70%">
 </div>
-</div>
-<div class="paragraph">
-<p><em>fig 3.7.0 – Types of Tabs highlighted in Orange</em></p>
-</div>
-<div class="paragraph">
-<p>There are 2 types of tabs in AlgoBase: Display and Details tabs.</p>
+<div class="title">Figure 7. Types of tabs highlighted in Orange</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><strong>Display tabs</strong> give a high level overview of the contents of a list of items
-(e.g. a list of <code>problems</code>/<code>tags</code>/<code>plans</code>).</p>
+(e.g. a list of <em>problems</em> / <em>tags</em> / <em>plans</em> / <em>findrules</em>).</p>
 </li>
 <li>
 <p><strong>Details tabs</strong> give a more detailed description of an item in a display tab.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>In the example in fig 3.7.0, there is a problem called "Sequences" in the current display tab.
-The details for this problem can be seen in the details tab where the orange arrow is pointing to.</p>
-</div>
 <div class="sect3">
-<h4 id="switching-tabs-code-switchtab-code"><a class="link" href="#switching-tabs-code-switchtab-code">3.7.1. Switching Tabs: <code>switchtab</code></a></h4>
+<h4 id="switching-tabs-code-switchtab-code"><a class="link" href="#switching-tabs-code-switchtab-code">3.8.1. Switching Tabs: <code>switchtab</code></a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/SwitchTabCommand.png" alt="SwitchTabCommand" width="70%">
 </div>
-</div>
-<div class="paragraph">
-<p><em>fig 3.7.1 – Demonstration of <code>SwitchTab</code> command</em></p>
+<div class="title">Figure 8. Demonstration of the <code>SwitchTab</code> command</div>
 </div>
 <div class="paragraph">
 <p>Switches between tabs in the GUI<br>
-Format: <code>switchtab tt/TAB_TYPE i/TAB_INDEX</code>
+Format: <code>switchtab tt/TAB_TYPE i/TAB_INDEX</code><br>
 Format: <code>st tt/TAB_TYPE i/TAB_INDEX</code></p>
 </div>
 <div class="ulist">
@@ -1074,10 +1136,10 @@ Format: <code>st tt/TAB_TYPE i/TAB_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>can be <code>display</code> or <code>details</code></p>
+<p>can be <strong>display</strong> or <strong>details</strong></p>
 </li>
 <li>
-<p>Alternatively, <code>display</code> and <code>details</code> can be replaced by <code>1</code> and <code>2</code> respectively</p>
+<p>Alternatively, <strong>display</strong> and <strong>details</strong> can be replaced by <strong>1</strong> and <strong>2</strong> respectively</p>
 </li>
 </ul>
 </div>
@@ -1090,7 +1152,7 @@ Format: <code>st tt/TAB_TYPE i/TAB_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>switchtab tt/display i/3</code> – Switches to the third <strong>display</strong> tab (i.e. <code>plans</code> tab), as seen in fig 3.7.1</p>
+<p><code>switchtab tt/display i/3</code> – Switches to the third <strong>display</strong> tab (i.e. <em>plans</em> tab).</p>
 </li>
 <li>
 <p><code>st tt/1 i/3</code> – Same effects as the previous command but in a shorter format.</p>
@@ -1105,15 +1167,16 @@ Format: <code>st tt/TAB_TYPE i/TAB_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="opening-tabs-code-opentab-code"><a class="link" href="#opening-tabs-code-opentab-code">3.7.2. Opening Tabs: <code>opentab</code></a></h4>
+<h4 id="opening-tabs-code-opentab-code"><a class="link" href="#opening-tabs-code-opentab-code">3.8.2. Opening Tabs: <code>opentab</code></a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/OpenTabCommand.png" alt="OpenTabCommand" width="70%">
 </div>
+<div class="title">Figure 9. Demonstration of the <code>OpenTab</code> command</div>
 </div>
 <div class="paragraph">
 <p>Opens a new <strong>Details</strong> tab in the GUI<br>
-Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code>
+Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code><br>
 Format: <code>ot m/MODEL_TYPE i/MODEL_INDEX</code></p>
 </div>
 <div class="ulist">
@@ -1123,10 +1186,10 @@ Format: <code>ot m/MODEL_TYPE i/MODEL_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>can be <code>problem</code>, <code>tag</code>, <code>plan</code> and <code>findrule</code></p>
+<p>can be <em>problem</em>, <em>tag</em>, <em>plan</em> and <em>findrule</em></p>
 </li>
 <li>
-<p>Alternatively, <code>problem</code>, <code>tag</code>, <code>plan</code> and <code>findrule</code> can be replaced by <code>1</code>, <code>2</code>, <code>3</code> and <code>4</code> respectively</p>
+<p>Alternatively, <em>problem</em>, <em>tag</em>, <em>plan</em> and <em>findrule</em> can be replaced by <em>1</em>, <em>2</em>, <em>3</em> and <em>4</em> respectively</p>
 </li>
 </ul>
 </div>
@@ -1139,13 +1202,13 @@ Format: <code>ot m/MODEL_TYPE i/MODEL_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>opentab m/problem i/2</code> – Opens the 2nd problem in the list of problems, as seen in fig 3.7.2</p>
+<p><code>opentab m/problem i/2</code> – Opens the 2nd problem in the list of problems.</p>
 </li>
 <li>
 <p><code>ot m/1 i/2</code> – Same effects as the previous command but in a shorter format.</p>
 </li>
 <li>
-<p><code>opentab m/plan i/3</code> – Opens the 3nd plan in the list of plans, as seen in fig 3.7.2</p>
+<p><code>opentab m/plan i/3</code> – Opens the 3nd plan in the list of plans.</p>
 </li>
 <li>
 <p><code>ot m/3 i/3</code> – Same effects as the previous command but in a shorter format.</p>
@@ -1154,10 +1217,10 @@ Format: <code>ot m/MODEL_TYPE i/MODEL_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="closing-tabs-code-closetab-code"><a class="link" href="#closing-tabs-code-closetab-code">3.7.3. Closing Tabs: <code>closetab</code></a></h4>
+<h4 id="closing-tabs-code-closetab-code"><a class="link" href="#closing-tabs-code-closetab-code">3.8.3. Closing Tabs: <code>closetab</code></a></h4>
 <div class="paragraph">
 <p>Closes a <strong>details</strong> tab in the GUI<br>
-Format: <code>closetab i/DETAILS_TAB_INDEX</code>
+Format: <code>closetab i/DETAILS_TAB_INDEX</code><br>
 Format: <code>ct i/DETAILS_TAB_INDEX</code></p>
 </div>
 <div class="paragraph">
@@ -1176,9 +1239,9 @@ Format: <code>ct i/DETAILS_TAB_INDEX</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-management"><a class="link" href="#data-management">3.8. Data Management</a></h3>
+<h3 id="data-management"><a class="link" href="#data-management">3.9. Data Management</a></h3>
 <div class="sect3">
-<h4 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">3.8.1. Importing data: <code>import</code></a></h4>
+<h4 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">3.9.1. Importing data: <code>import</code></a></h4>
 <div class="paragraph">
 <p>Imports external data of a specified format (e.g. JSON) into local storage.<br>
 Format: <code>import format/FORMAT path/FILE_PATH</code></p>
@@ -1205,7 +1268,7 @@ Format: <code>import format/FORMAT path/FILE_PATH</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">3.8.2. Exporting data: <code>export</code></a></h4>
+<h4 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">3.9.2. Exporting data: <code>export</code></a></h4>
 <div class="paragraph">
 <p>Exports data into a specified format (e.g. JSON).<br>
 Format: <code>export format/FORMAT path/DIRECTORY_PATH</code></p>
@@ -1233,9 +1296,9 @@ Format: <code>export format/FORMAT path/DIRECTORY_PATH</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="miscellaneous"><a class="link" href="#miscellaneous">3.9. Miscellaneous</a></h3>
+<h3 id="miscellaneous"><a class="link" href="#miscellaneous">3.10. Miscellaneous</a></h3>
 <div class="sect3">
-<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.9.1. Viewing help : <code>help</code></a></h4>
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.10.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>List all possible commands or find command usage using the command word.<br>
 Format: <code>help [COMMAND_WORD]</code></p>
@@ -1254,27 +1317,27 @@ Shows command usage for <code>addprob</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.9.2. Clearing all entries : <code>clear</code></a></h4>
+<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.10.2. Clearing all entries : <code>clear</code></a></h4>
 <div class="paragraph">
 <p>Clears all entries from AlgoBase.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.9.3. Exiting the program : <code>exit</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.10.3. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="navigating-the-command-history"><a class="link" href="#navigating-the-command-history">3.9.4. Navigating the command history</a></h4>
+<h4 id="navigating-the-command-history"><a class="link" href="#navigating-the-command-history">3.10.4. Navigating the command history</a></h4>
 <div class="paragraph">
 <p>You can press <kbd>↑</kbd> to navigate back or <kbd>↓</kbd> to navigate forward in the command history.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.9.5. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.10.5. Saving the data</a></h4>
 <div class="paragraph">
 <p>AlgoBase data is saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -1282,9 +1345,9 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encryption"><a class="link" href="#encryption">3.10. Encryption</a></h3>
+<h3 id="encryption"><a class="link" href="#encryption">3.11. Encryption</a></h3>
 <div class="sect3">
-<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.10.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
+<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.11.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
 
 </div>
 </div>
@@ -1486,4 +1549,4 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 16:44:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 17:03:39 UTC</div></div></div></body></html>
