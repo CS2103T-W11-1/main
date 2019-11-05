@@ -322,9 +322,15 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
+<img src="images/storage/StorageClassDiagram.png" alt="StorageClassDiagram">
 </div>
 <div class="title">Figure 14. Structure of the Storage Component</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/storage/ProblemSearchRuleClassDiagram.png" alt="ProblemSearchRuleClassDiagram">
+</div>
+<div class="title">Figure 15. Structure of the JsonAdaptedProblemSearchRule Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -341,7 +347,8 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>can retrieve <code>UserPref</code> objects from json format.</p>
 </li>
 <li>
-<p>can store the AlgoBase app data including <code>GuiState</code>, <code>Plan</code>, <code>Problem</code>, <code>ProblemSearchRule</code>, <code>Tag</code>, <code>Task</code> objects in relational manner in json format.</p>
+<p>can store the AlgoBase app data including <code>GuiState</code>, <code>Plan</code>, <code>Problem</code>, <code>ProblemSearchRule</code>, <code>Tag</code>, <code>Task</code>
+objects in relational manner in json format.</p>
 </li>
 <li>
 <p>can retrieve <code>GuiState</code>, <code>Plan</code>, <code>Problem</code>, <code>ProblemSearchRule</code>, <code>Tag</code>, <code>Task</code> objects from json format.</p>
@@ -380,33 +387,33 @@ the task management feature.</p>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The task management feature mainly involves six main behaviours:</p>
+<p>The task management feature supports eight main operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>AlgoBase#addTask()</code> - create a new task for a problem and add it to a specified plan.</p>
+<p><code>AddTask</code> - creates a new task for a problem and add it to a specified plan.</p>
 </li>
 <li>
-<p><code>AlgoBase#copyTask()</code> - copy a task from one plan to another.</p>
+<p><code>CopyTask</code> - copies a task from one plan to another.</p>
 </li>
 <li>
-<p><code>AlgoBase#deleteTask()</code> - delete an existing task from a specified plan.</p>
+<p><code>DeleteTask</code> - deletes an existing task from a specified plan.</p>
 </li>
 <li>
-<p><code>AlgoBase#doneTask()</code> - mark a task as done in a specified plan.</p>
+<p><code>DoneTask</code> - marks a task as done in a specified plan.</p>
 </li>
 <li>
-<p><code>AlgoBase#editTask()</code> - edit the due date of a task in a specified plan.</p>
+<p><code>EditTask</code> - edits the due date of a task in a specified plan.</p>
 </li>
 <li>
-<p><code>AlgoBase#moveTask()</code> - move a task from one plan to another.</p>
+<p><code>MoveTask</code> - moves a task from one plan to another.</p>
 </li>
 <li>
-<p><code>AlgoBase#undoneTask()</code> - mark a task as undone in a specified plan.</p>
+<p><code>UndoneTask</code> - marks a task as undone in a specified plan.</p>
 </li>
 <li>
-<p><code>AlgoBase#setPlan()</code> - set a task as the current plan in main display.</p>
+<p><code>SetPlan</code> - sets a plan as the current plan in main display.</p>
 </li>
 </ul>
 </div>
@@ -414,13 +421,13 @@ the task management feature.</p>
 <p>Given below is an example usage scenario and how the mechanism for adding tasks behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes the <code>AddTask</code> command:</p>
+<p>The following activity diagram summarizes what happens when a user executes the <code>AddTaskCommand</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram">
 </div>
-<div class="title">Figure 15. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 16. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application.</p>
@@ -430,18 +437,17 @@ the task management feature.</p>
 </div>
 <div class="paragraph">
 <p>Step 3. The user executes <code>addtask plan/1 prob/1</code> to add the problem with index 1 in the list to the plan with index 1.
-The <code>AddTask</code> command calls <code>Plan#updateTasks</code> to create a new plan from the original plan with this additional task.
-After that, <code>Model#setPlan</code> is called to replace the original plan with the updated plan in the <code>PlanList</code>
-stored in <code>AlgoBase</code>.</p>
+The <code>AddTaskCommand</code> calls <code>Model#updateTasks</code> to create a new plan from the original plan with this additional task,
+and replace the original plan with this updated plan in the <code>PlanList</code> stored in <code>AlgoBase</code>.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the <code>addtask</code> operation works:</p>
+<p>The following sequence diagram shows how the <code>AddTaskCommand</code> executes:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram">
 </div>
-<div class="title">Figure 16. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 17. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 </div>
 <div class="sect3">
@@ -471,7 +477,7 @@ stored in <code>AlgoBase</code>.</p>
 <p>Pros: Tasks can be identified by index easily.</p>
 </li>
 <li>
-<p>Cons: Harder to check for duplicates.</p>
+<p>Cons: Harder to check for duplicate tasks.</p>
 </li>
 </ul>
 </div>
@@ -504,7 +510,7 @@ stored in <code>AlgoBase</code>.</p>
 <p>Pros: No need to implement relational storage. There will be less coupling between problems and tasks as well.</p>
 </li>
 <li>
-<p>Cons: Changes in problem details will not be reflected in the relevant tasks.</p>
+<p>Cons: Changes in problem details cannot be reflected in the relevant tasks easily.</p>
 </li>
 </ul>
 </div>
@@ -521,7 +527,7 @@ stored in <code>AlgoBase</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Id is immutable over time.</p>
+<p>Pros: The id field is kept immutable over time, thus ensuring integrity.</p>
 </li>
 <li>
 <p>Cons: An additional field is needed for the models.</p>
@@ -587,9 +593,9 @@ stored in <code>AlgoBase</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddTagSequenceDiagram.png" alt="AddTagSequenceDiagram">
+<img src="images/tag/AddTagSequenceDiagram.png" alt="AddTagSequenceDiagram">
 </div>
-<div class="title">Figure 17. Sequence Diagram for <code>AddTagCommand</code></div>
+<div class="title">Figure 18. Sequence Diagram for <code>AddTagCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls Model#listtag(), causing the taglist shows the current components of uniqueTagList. Commands that do not modify the address book, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
@@ -607,9 +613,9 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/TagActivityDiagram.png" alt="TagActivityDiagram">
+<img src="images/tag/TagActivityDiagram.png" alt="TagActivityDiagram">
 </div>
-<div class="title">Figure 18. Activity Diagram for tag commands</div>
+<div class="title">Figure 19. Activity Diagram for tag commands</div>
 </div>
 </div>
 <div class="sect3">
@@ -664,7 +670,7 @@ Command executes <code>edittag</code>, causing the taglist find the first tag in
 <div class="content">
 <img src="images/find/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram">
 </div>
-<div class="title">Figure 19. Activity Diagram for the Execution of <code>find</code> Command</div>
+<div class="title">Figure 20. Activity Diagram for the Execution of <code>find</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
@@ -756,7 +762,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/FindCommandClassDiagram.png" alt="FindCommandClassDiagram" width="75%">
 </div>
-<div class="title">Figure 20. Class Diagram of the Find Feature</div>
+<div class="title">Figure 21. Class Diagram of the Find Feature</div>
 </div>
 <div class="ulist">
 <ul>
@@ -845,7 +851,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/PredicateClassDiagram.png" alt="PredicateClassDiagram" width="40%">
 </div>
-<div class="title">Figure 21. Class Diagram for Predicates in the Find Feature</div>
+<div class="title">Figure 22. Class Diagram for Predicates in the Find Feature</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the find problem mechanism behaves at each step.</p>
@@ -875,7 +881,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/find/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 22. Sequence Diagram for the Execution of <code>find</code> Command</div>
+<div class="title">Figure 23. Sequence Diagram for the Execution of <code>find</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -996,7 +1002,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/savefindrule/AddFindRuleActivityDiagram.png" alt="AddFindRuleActivityDiagram" width="70%">
 </div>
-<div class="title">Figure 23. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 24. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
@@ -1063,7 +1069,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleClassDiagram.png" alt="AddFindRuleClassDiagram" width="70%">
 </div>
-<div class="title">Figure 24. Class Diagram for Add Find Rule Feature</div>
+<div class="title">Figure 25. Class Diagram for Add Find Rule Feature</div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes the request when user types in <code>addfindrule rule1 n/Sequences</code>:</p>
@@ -1072,7 +1078,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/HighLevelAddFindRuleSequenceDiagram.png" alt="HighLevelAddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 25. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
+<div class="title">Figure 26. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
@@ -1081,7 +1087,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleSequenceDiagram.png" alt="AddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 26. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 27. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 </div>
 </div>
@@ -1316,7 +1322,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/PlanClassDiagram.png" alt="PlanClassDiagram">
 </div>
-<div class="title">Figure 27. Class Diagram of <code>Plan</code></div>
+<div class="title">Figure 28. Class Diagram of <code>Plan</code></div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the AlgoBase behaves at each step.</p>
@@ -1331,7 +1337,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/AddPlanSequenceDiagram.png" alt="AddPlanSequenceDiagram">
 </div>
-<div class="title">Figure 28. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
+<div class="title">Figure 29. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user executes <code>listplan</code> to list all plans. The <code>listplan</code> command calls <code>Model#updateFilteredPlanList()</code>. The plan <code>CS2040</code> is numbered <code>1</code> in the displayed list.</p>
@@ -1343,7 +1349,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/EditPlanCommandActivityDiagram.png" alt="EditPlanCommandActivityDiagram">
 </div>
-<div class="title">Figure 29. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
+<div class="title">Figure 30. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1364,7 +1370,7 @@ The user can also add value for an empty field by executing <code>editplan</code
 <div class="content">
 <img src="images/plan/FindPlanDescriptorClassDiagram.png" alt="FindPlanDescriptorClassDiagram">
 </div>
-<div class="title">Figure 30. Class Diagram for <code>FindPlanDescriptor</code></div>
+<div class="title">Figure 31. Class Diagram for <code>FindPlanDescriptor</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2641,4 +2647,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-04 14:31:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 04:08:42 UTC</div></div></div></body></html>

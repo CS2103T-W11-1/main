@@ -56,7 +56,7 @@
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui.png" alt="Ui" width="80%">
+<img src="images/Ui.png" alt="Ui">
 </div>
 </div>
 </li>
@@ -69,13 +69,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list</code></strong> : lists all problems</p>
+<p><strong><code>listprob</code></strong> : lists all problems</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Halim</code> : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Halim'</p>
+<p><strong><code>addprob</code></strong><code>n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Halim</code> : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Halim'</p>
 </li>
 <li>
-<p><strong><code>edit</code></strong><code>1 src/LeetCode</code> : edits the first problem displayed and sets its source to 'LeetCode'</p>
+<p><strong><code>editprob</code></strong><code>1 src/LeetCode</code> : edits the first problem displayed and sets its source to 'LeetCode'</p>
 </li>
 <li>
 <p><strong><code>switchtab</code></strong><code>tt/display i/2</code> : switches to tag tab</p>
@@ -84,7 +84,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>switchtab</code></strong><code>tt/display i/3</code> : switches to plan tab</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/UiStartPlan.png" alt="UiStartPlan" width="60%">
+<img src="images/UiStartPlan.png" alt="UiStartPlan">
 </div>
 </div>
 </li>
@@ -118,7 +118,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/Two Sequences</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>addprob n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/Two Sequences</code>.</p>
 </li>
 <li>
 <p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/factorial t/recursion</code> or as <code>n/factorial</code>.</p>
@@ -136,10 +136,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="problems"><a class="link" href="#problems">3.1. Problems</a></h3>
 <div class="sect3">
-<h4 id="adding-a-problem-code-add-code"><a class="link" href="#adding-a-problem-code-add-code">3.1.1. Adding a problem: <code>add</code></a></h4>
+<h4 id="adding-a-problem-code-addprob-code"><a class="link" href="#adding-a-problem-code-addprob-code">3.1.1. Adding a problem: <code>addprob</code></a></h4>
 <div class="paragraph">
 <p>Generates a new problem.<br>
-Format: <code>add n/NAME [a/AUTHOR] [w/WEBLINK] [d/DESCRIPTION] [diff/DIFFICULTY] [src/SOURCE] [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>addprob n/NAME [a/AUTHOR] [w/WEBLINK] [d/DESCRIPTION] [diff/DIFFICULTY] [src/SOURCE] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -178,16 +178,16 @@ A problem can have any number of tags (including 0)
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/Sequences a/Tung Kam Chuen w/https://open.kattis.com/problems/sequences d/Find the sum of the number of inversions of the 2k sequences, modulo 1000000007 (109+7). diff/3.0 src/Kattis t/recursion</code></p>
+<p><code>addprob n/Sequences a/Tung Kam Chuen w/https://open.kattis.com/problems/sequences d/Find the sum of the number of inversions of the 2k sequences, modulo 1000000007 (109+7). diff/3.0 src/Kattis t/recursion</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-problem-code-delete-code"><a class="link" href="#deleting-a-problem-code-delete-code">3.1.2. Deleting a problem : <code>delete</code></a></h4>
+<h4 id="deleting-a-problem-code-deleteprob-code"><a class="link" href="#deleting-a-problem-code-deleteprob-code">3.1.2. Deleting a problem : <code>deleteprob</code></a></h4>
 <div class="paragraph">
 <p>Deletes an existing problem.<br>
-Format: <code>delete INDEX [f/]</code></p>
+Format: <code>deleteprob INDEX [f/]</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -212,23 +212,23 @@ Add <code>f/</code> to force AlgoBase to delete all tasks associated with the pr
 <div class="ulist">
 <ul>
 <li>
-<p><code>list</code><br>
-<code>delete 2</code><br>
+<p><code>listprob</code><br>
+<code>deleteprob 2</code><br>
 Deletes the 2nd problem in the displayed list.</p>
 </li>
 <li>
-<p><code>find n/factorial</code><br>
-<code>delete 1</code><br>
-Deletes the 1st problem in the results of the <code>find</code> command.</p>
+<p><code>findprob n/factorial</code><br>
+<code>deleteprob 1</code><br>
+Deletes the 1st problem in the results of the <code>findprob</code> command.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-problem-code-edit-code"><a class="link" href="#editing-a-problem-code-edit-code">3.1.3. Editing a problem : <code>edit</code></a></h4>
+<h4 id="editing-a-problem-code-editprob-code"><a class="link" href="#editing-a-problem-code-editprob-code">3.1.3. Editing a problem : <code>editprob</code></a></h4>
 <div class="paragraph">
 <p>Edits an existing problem.<br>
-Format: <code>edit INDEX [n/NAME] [d/DESCRIPTION] [a/AUTHOR]  [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>editprob INDEX [n/NAME] [d/DESCRIPTION] [a/AUTHOR]  [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -255,28 +255,28 @@ Format: <code>edit INDEX [n/NAME] [d/DESCRIPTION] [a/AUTHOR]  [t/TAG]&#8230;&#82
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit 1 a/John Doe</code><br>
+<p><code>editprob 1 a/John Doe</code><br>
 Edits the author of the 1st problem to be <code>John Doe</code> respectively.</p>
 </li>
 <li>
-<p><code>edit 2 n/permutations t/</code><br>
+<p><code>editprob 2 n/permutations t/</code><br>
 Edits the name of the 2nd problem to be <code>permutations</code> and clears all existing tags.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-all-problems-code-list-code"><a class="link" href="#listing-all-problems-code-list-code">3.1.4. Listing all problems : <code>list</code></a></h4>
+<h4 id="listing-all-problems-code-listprob-code"><a class="link" href="#listing-all-problems-code-listprob-code">3.1.4. Listing all problems : <code>listprob</code></a></h4>
 <div class="paragraph">
 <p>Displays a list of all existing problems.<br>
-Format: <code>list</code></p>
+Format: <code>listprob</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sorting-problems-code-sort-code"><a class="link" href="#sorting-problems-code-sort-code">3.1.5. Sorting problems: <code>sort</code></a></h4>
+<h4 id="sorting-problems-code-sortprob-code"><a class="link" href="#sorting-problems-code-sortprob-code">3.1.5. Sorting problems: <code>sortprob</code></a></h4>
 <div class="paragraph">
 <p>Sorts the current list of results by a specified order and direction.<br>
-Format: <code>sort m/METHOD [ord/ORDER]</code></p>
+Format: <code>sortprob m/METHOD [ord/ORDER]</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -298,7 +298,7 @@ Format: <code>sort m/METHOD [ord/ORDER]</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If sorted by ascending order (i.e. the default order), empty fields will have the highest priority, which means if you execute <code>sort m/weblink</code>, the first few results would be (if any) without web links.
+If sorted by ascending order (i.e. the default order), empty fields will have the highest priority, which means if you execute <code>sortprob m/weblink</code>, the first few results would be (if any) without web links.
 </td>
 </tr>
 </table>
@@ -309,15 +309,15 @@ If sorted by ascending order (i.e. the default order), empty fields will have th
 <div class="ulist">
 <ul>
 <li>
-<p><code>sort m/name</code>
+<p><code>sortprob m/name</code>
 Sorts the current list of problems in ascending order of names.</p>
 </li>
 <li>
-<p><code>sort m/author ord/descend</code>
+<p><code>sortprob m/author ord/descend</code>
 Sorts the current list of problems in descending order of author names.</p>
 </li>
 <li>
-<p><code>sort m/difficulty ord/ascend</code>
+<p><code>sortprob m/difficulty ord/ascend</code>
 Sorts the current list of problems from lowest to highest difficulty.</p>
 </li>
 </ul>
@@ -327,10 +327,10 @@ Sorts the current list of problems from lowest to highest difficulty.</p>
 <div class="sect2">
 <h3 id="searching-problems"><a class="link" href="#searching-problems">3.2. Searching Problems</a></h3>
 <div class="sect3">
-<h4 id="locating-problems-code-find-code"><a class="link" href="#locating-problems-code-find-code">3.2.1. Locating problems: <code>find</code></a></h4>
+<h4 id="locating-problems-code-findprob-code"><a class="link" href="#locating-problems-code-findprob-code">3.2.1. Locating problems: <code>findprob</code></a></h4>
 <div class="paragraph">
 <p>Finds problems fulfilling all provided constraints.<br>
-Format: <code>find [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>findprob [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -377,10 +377,10 @@ Format: <code>find [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_
 <div class="ulist">
 <ul>
 <li>
-<p>Constraints are separated by spaces. (e.g. <code>find t/Recursion Brute-Force</code> will display all problems with both tag <code>Recursion</code> and <code>Brute-Force</code>)</p>
+<p>Constraints are separated by spaces. (e.g. <code>findprob t/Recursion Brute-Force</code> will display all problems with both tag <code>Recursion</code> and <code>Brute-Force</code>)</p>
 </li>
 <li>
-<p>Constraint tag set is a subset of matching problems. (e.g. <code>find t/Recursion Brute-Force</code> will match problem with tags <code>Recursion</code>+<code>Brute-Force</code>+<code>Playful</code> but not <code>Recursion</code>+<code>Adhoc</code>)</p>
+<p>Constraint tag set is a subset of matching problems. (e.g. <code>findprob t/Recursion Brute-Force</code> will match problem with tags <code>Recursion</code>+<code>Brute-Force</code>+<code>Playful</code> but not <code>Recursion</code>+<code>Adhoc</code>)</p>
 </li>
 <li>
 <p>Two tags are considered equal only when their tag strings are exactly matched.</p>
@@ -420,7 +420,7 @@ If you want to match problems with with difficulty no lower than <code>1.5</code
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When providing the search restrictions, you should ensure that keywords are non-blank and difficulty range is valid (as specified in <code>add</code> command). Also at least one search restriction should be provided.
+When providing the search restrictions, you should ensure that keywords are non-blank and difficulty range is valid (as specified in <code>addprob</code> command). Also at least one search restriction should be provided.
 </td>
 </tr>
 </table>
@@ -443,15 +443,15 @@ Words are separated by empty spaces. Thus if we have a sentence "Hello, world!",
 <div class="ulist">
 <ul>
 <li>
-<p><code>find n/Sequence</code><br>
+<p><code>findprob n/Sequence</code><br>
 Returns any problem with word <code>sequence</code> (case-insensitive) in its name.</p>
 </li>
 <li>
-<p><code>find t/algorithm diff/2.0-4.0</code><br>
+<p><code>findprob t/algorithm diff/2.0-4.0</code><br>
 Returns any problem with <code>algorithm</code> as one of its tags AND with a difficulty between 2.0 and 4.0 (inclusive).</p>
 </li>
 <li>
-<p><code>find a/Hentin Marz src/Kattis</code><br>
+<p><code>findprob a/Hentin Marz src/Kattis</code><br>
 Returns any problem from <code>Kattis</code> that&#8217;s authored by <code>Hentin Marz</code>.</p>
 </li>
 </ul>
@@ -547,7 +547,7 @@ You can find problem-finding rules that you can <code>apply</code> with in the "
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>apply</code> a problem-finding rule is essentially the same as executing a pre-filled <code>find</code> command.
+<code>apply</code> a problem-finding rule is essentially the same as executing a pre-filled <code>findprob</code> command.
 </td>
 </tr>
 </table>
@@ -1305,27 +1305,31 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add Problem</strong> <code>add n/NAME [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>add  n/factorial d/define a function factorial that takes in a number n and returns the factorial of the number t/recursion a/Wee Han</code></p>
+<p>Problems</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Add Problem</strong> <code>addprob n/NAME [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>addprob  n/factorial d/define a function factorial that takes in a number n and returns the factorial of the number t/recursion a/Wee Han</code></p>
 </li>
 <li>
-<p><strong>List Problems</strong> : <code>list</code><br></p>
+<p><strong>List Problems</strong> : <code>listprob</code><br></p>
 </li>
 <li>
-<p><strong>Edit Problems</strong> : <code>edit INDEX [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>edit 2 n/permutations t/</code></p>
+<p><strong>Edit Problems</strong> : <code>editprob INDEX [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>editprob 2 n/permutations t/</code></p>
 </li>
 <li>
-<p><strong>Delete Problem</strong> : <code>delete INDEX</code><br>
-e.g. <code>delete 3</code></p>
+<p><strong>Delete Problem</strong> : <code>deleteprob INDEX</code><br>
+e.g. <code>deleteprob 3</code></p>
 </li>
 <li>
-<p><strong>Sort Problems</strong> : <code>sort m/METHOD [ord/ORDER]</code><br>
-e.g. <code>sort m/difficulty ord/ascend</code></p>
+<p><strong>Sort Problems</strong> : <code>sortprob m/METHOD [ord/ORDER]</code><br>
+e.g. <code>sortprob m/difficulty ord/ascend</code></p>
 </li>
 <li>
-<p><strong>Find Problems</strong> : <code>find [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]…</code><br>
-e.g. <code>find t/algorithm diff/2.0-4.0</code></p>
+<p><strong>Find Problems</strong> : <code>findprob [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]…</code><br>
+e.g. <code>findprob t/algorithm diff/2.0-4.0</code></p>
 </li>
 <li>
 <p><strong>Add Find Rule</strong>: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]…</code><br>
@@ -1339,6 +1343,13 @@ e.g. <code>apply 2</code></p>
 <p><strong>Delete Find Rule</strong>: <code>deletefindrule INDEX</code><br>
 e.g. <code>deletefindrule 2</code></p>
 </li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tags</p>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>New Tag</strong> : <code>addtag t/NAME</code><br>
 e.g. <code>addtag t/sssp</code></p>
@@ -1354,6 +1365,13 @@ e.g. <code>deletetag 3</code></p>
 <p><strong>Edit tag</strong> : <code>edittag INDEX t/TAGNAME</code><br>
 e.g. <code>edittag 1 t/sort</code></p>
 </li>
+</ul>
+</div>
+</li>
+<li>
+<p>Plans</p>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>Add Training Plan</strong> : <code>addplan n/NAME [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]</code><br>
 e.g. <code>addplan n/CS2040</code></p>
@@ -1373,6 +1391,13 @@ e.g. <code>find n/CS2040 start/2019-03-01 end/2019-03-31</code></p>
 <p><strong>Delete Training Plan</strong> : <code>deleteplan INDEX</code><br>
 e.g. <code>deleteplan 2</code></p>
 </li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tasks</p>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>Add Task to Training Plan</strong> : <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX</code><br>
 e.g. <code>addtask plan/1 prob/2</code></p>
@@ -1405,6 +1430,13 @@ e.g. <code>movetask task/1 from/1 to/2</code></p>
 <p><strong>Set Current Plan</strong> : <code>setplan PLAN_TASK</code><br>
 e.g. <code>setplan 10</code></p>
 </li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tabs</p>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>Switch Tab</strong> : <code>switchtab tt/TAB_TYPE i/TAB_INDEX</code><br>
 e.g. <code>switchtab tt/display i/3</code></p>
@@ -1417,6 +1449,13 @@ e.g. <code>opentab m/problem i/2</code></p>
 <p><strong>Close Tab</strong> : <code>closetab i/DETAILS_TAB_INDEX</code><br>
 e.g. <code>closetab i/3</code></p>
 </li>
+</ul>
+</div>
+</li>
+<li>
+<p>Storage</p>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>Exporting data</strong> : <code>export format/FORMAT path/DIRECTORY_PATH</code><br>
 e.g. <code>export format/json path/.</code></p>
@@ -1425,6 +1464,13 @@ e.g. <code>export format/json path/.</code></p>
 <p><strong>Importing data</strong> : <code>import format/FORMAT path/FILE_PATH</code><br>
 e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </li>
+</ul>
+</div>
+</li>
+<li>
+<p>Miscellaneous</p>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
@@ -1436,5 +1482,8 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </li>
 </ul>
 </div>
+</li>
+</ul>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-04 14:31:00 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 04:08:42 UTC</div></div></div></body></html>
