@@ -1228,7 +1228,7 @@ This, we introduced tabbing, which facilitates multitasking in AlgoBase, which i
 <div class="ulist">
 <ul>
 <li>
-<p><code>UiActionType</code> - An enum of the types of UI actions that exist in AlgoBase.</p>
+<p><code>UiActionType</code> - An Enum of the types of UI actions that exist in AlgoBase.</p>
 </li>
 <li>
 <p><code>UiActionDetails</code> - An object containing details of a UI action.</p>
@@ -1269,7 +1269,7 @@ This, we introduced tabbing, which facilitates multitasking in AlgoBase, which i
 <p>Step 1: The user edits the <code>ProblemDetails</code> controller class through his/her actions in the GUI.</p>
 </div>
 <div class="paragraph">
-<p>Step 2: The <code>ProblemDetails</code> class constructs a new <code>UiActionDetails</code> object with using <code>UiActionType.EditProblem</code>.</p>
+<p>Step 2: The <code>ProblemDetails</code> class constructs a new <code>UiActionDetails</code> object of type <code>UiActionType.EditProblem</code>.</p>
 </div>
 <div class="paragraph">
 <p>Step 3: The <code>executeUiAction</code> of the <code>MainWindow</code> class is called with the <code>UiActionDetails</code> object,
@@ -1288,7 +1288,7 @@ which in turn calls the <code>execute</code> method of <code>UiLogicManager</cod
 <div class="title">Figure 34. Interactions between classes in the <code>UiLogic</code></div>
 </div>
 <div class="paragraph">
-<p>Step 1: The <code>UiLogicManager</code> passes the <code>UiActionDetails</code> object to the <code>AlgoBaseActionParser</code>,
+<p>Step 1: The <code>UiLogicManager</code> passes the <code>UiActionDetails</code> object to the <code>AlgoBaseUiActionParser</code>,
 which in turn passes it to the <code>EditProblemUiActionParser</code> based on its Action type.</p>
 </div>
 <div class="paragraph">
@@ -1296,7 +1296,7 @@ which in turn passes it to the <code>EditProblemUiActionParser</code> based on i
 and passes it back to the <code>UiLogicManager</code>.</p>
 </div>
 <div class="paragraph">
-<p>Step 3: The <code>UiLogicManager</code> executes the <code>EditProblemUiAction</code> together with the <code>Model</code>, and returns the <code>CommandResult</code>.</p>
+<p>Step 3: The <code>UiLogicManager</code> executes the <code>EditProblemUiAction</code> together with the <code>Model</code>, and returns the <code>UiActionResult</code>.</p>
 </div>
 </div>
 </div>
@@ -1315,27 +1315,23 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 <div class="title">Figure 35. Class Diagram for the <code>GuiState</code> class</div>
 </div>
 <div class="paragraph">
-<p>The information stored in the GuiState is linked to the <code>UI</code> through listeners. For example, when the attributes of the <code>TabManager</code> object is updated, it triggers callback functions in the UI controllers that update the state of the UI displayed.</p>
-</div>
-<div class="paragraph">
-<p>In AlgoBase, the state of the GUI is also saved to Storage after every action. This is so that when the user closes the application and opens it again later, the state is stored.</p>
-</div>
-<div class="paragraph">
 <p>The following Activity diagram illustrates the series of actions that occur when the user opens a new tab:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/OpenTabUiActionActivityDiagram.png" alt="OpenTabUiActionActivityDiagram">
 </div>
+<div class="title">Figure 36. Activity Diagram for Opening a new Tab from the GUI</div>
 </div>
 <div class="paragraph">
-<p>The Sequence diagram below also shows how the GuiState is saved to Storage.</p>
+<p>In AlgoBase, the state of the GUI is also saved to Storage after every action. This is so that when the user closes the application and opens it again later, the state is stored.
+The Sequence diagram below also shows how the GuiState is saved to Storage.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3">
 </div>
-<div class="title">Figure 36. Sequence Diagram for storing new GUI state</div>
+<div class="title">Figure 37. Sequence Diagram for storing new GUI state</div>
 </div>
 <div class="paragraph">
 <p>The <code>StorageManager</code> saves the modified <code>GuiState</code> as a new <code>JSON</code> file.
@@ -1425,13 +1421,13 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabCommandActivityDiagram.png" alt="SwitchTabCommandActivityDiagram" width="50%">
 </div>
-<div class="title">Figure 37. Activity Diagram for the Execution of <code>switchtab</code> Command</div>
+<div class="title">Figure 38. Activity Diagram for the Execution of <code>switchtab</code> Command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/OpenTabCommandActivityDiagram.png" alt="OpenTabCommandActivityDiagram" width="50%">
 </div>
-<div class="title">Figure 38. Activity Diagram for the Execution of <code>opentab</code> Command</div>
+<div class="title">Figure 39. Activity Diagram for the Execution of <code>opentab</code> Command</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the tag mechanism behaves at each step.</p>
@@ -1440,7 +1436,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram0.png" alt="SwitchTabsSequenceDiagram0">
 </div>
-<div class="title">Figure 39. Sequence Diagram for instantiating a <code>SwitchCommand</code> object</div>
+<div class="title">Figure 40. Sequence Diagram for instantiating a <code>SwitchCommand</code> object</div>
 </div>
 <div class="paragraph">
 <p>Step 1: The user executes <code>switchtab tt/display i/1</code> to switch to the first tab in the <code>display</code> tabpane.</p>
@@ -1455,7 +1451,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram1.png" alt="SwitchTabsSequenceDiagram1">
 </div>
-<div class="title">Figure 40. Sequence Diagram for updating the tab index in the TabManager</div>
+<div class="title">Figure 41. Sequence Diagram for updating the tab index in the TabManager</div>
 </div>
 <div class="paragraph">
 <p>Step 4: <code>LogicManager</code> invokes <code>execute()</code> method of the returned <code>SwitchTabCommand</code>, which retrieves the TabManager from the <code>Model</code> object. The <code>setDisplayTabPaneIndex(1)</code> method is invoked with the index 1 that the <code>SwitchTabCommand</code> was instantiated with.</p>
@@ -1467,7 +1463,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram2.png" alt="SwitchTabsSequenceDiagram2">
 </div>
-<div class="title">Figure 41. Sequence Diagram for reflecting the tab changes</div>
+<div class="title">Figure 42. Sequence Diagram for reflecting the tab changes</div>
 </div>
 <div class="paragraph">
 <p>Step 6: A listener was added to the <code>displayTabIndex</code> field when the application was initialized. When a change in the value is detected, it triggers the <code>selectTab(1)</code> method with the value of the new index passed as an argument. This updates the selected tab in the UI.</p>
@@ -1476,7 +1472,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3">
 </div>
-<div class="title">Figure 42. Sequence Diagram for storing new GUI state</div>
+<div class="title">Figure 43. Sequence Diagram for storing new GUI state</div>
 </div>
 <div class="paragraph">
 <p>Step 7: After the command is executed, the state of the GUI changes. This causes the <code>StorageManager</code> to save the modified GUI state as a new <code>JSON</code> file.
@@ -1552,7 +1548,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/PlanClassDiagram.png" alt="PlanClassDiagram">
 </div>
-<div class="title">Figure 43. Class Diagram of <code>Plan</code></div>
+<div class="title">Figure 44. Class Diagram of <code>Plan</code></div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the AlgoBase behaves at each step.</p>
@@ -1567,7 +1563,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/AddPlanSequenceDiagram.png" alt="AddPlanSequenceDiagram">
 </div>
-<div class="title">Figure 44. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
+<div class="title">Figure 45. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user executes <code>listplan</code> to list all plans. The <code>listplan</code> command calls <code>Model#updateFilteredPlanList()</code>. The plan <code>CS2040</code> is numbered <code>1</code> in the displayed list.</p>
@@ -1579,7 +1575,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/EditPlanCommandActivityDiagram.png" alt="EditPlanCommandActivityDiagram">
 </div>
-<div class="title">Figure 45. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
+<div class="title">Figure 46. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1600,7 +1596,7 @@ The user can also add value for an empty field by executing <code>editplan</code
 <div class="content">
 <img src="images/plan/FindPlanDescriptorClassDiagram.png" alt="FindPlanDescriptorClassDiagram">
 </div>
-<div class="title">Figure 46. Class Diagram for <code>FindPlanDescriptor</code></div>
+<div class="title">Figure 47. Class Diagram for <code>FindPlanDescriptor</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2958,4 +2954,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 09:33:29 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 12:19:49 UTC</div></div></div></body></html>

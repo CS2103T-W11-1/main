@@ -34,7 +34,7 @@ It is written in Java, and has about 20 kLoC.</p>
 where they can edit and delete said items in the GUI in a user-friendly manner.</p>
 </li>
 <li>
-<p>Justifications: As our target users are Computer Science students preparing for technical interviews, they would likely want to manage multiple plans and problems concurrently. We decided to introduce tabbing to address this need, as it is a convenient, intuitive and user-friendly solution. Furthermore, while the command line is fast for typing short commands, it might not be ideal in certain cases. For example, it would be extremely tedious and time consuming to edit large amounts of text from the command line. Hence, I implemented the ability to edit a problem / plan from within the tabs. Not having to deal with cumbersome details tremendously improves the overall user experience our user – it reduces their frustration and maximises the time they spend practicing for their interviews</p>
+<p>Justifications: As our target users are Computer Science students preparing for technical interviews, they would likely want to manage multiple plans and problems concurrently. We decided to introduce tabbing to address this need, as it is a convenient, intuitive and user-friendly solution. Furthermore, while the command line is fast for typing short commands, it might not be ideal in certain cases. For example, it would be extremely tedious and time consuming to edit large amounts of text from the command line. Hence, I implemented the ability to edit a problem or plan from within the tabs. Not having to deal with cumbersome details tremendously improves the overall user experience our user – it reduces their frustration and maximises the time they spend practicing for their interviews</p>
 </li>
 <li>
 <p>Highlights:</p>
@@ -45,7 +45,7 @@ where they can edit and delete said items in the GUI in a user-friendly manner.<
 It was challenging as logic of the Command line is primarily synchronous while the GUI is event-driven. Integrating the 2 architectural styles cleanly required an in-depth evaluation of design alternatives.</p>
 </li>
 <li>
-<p>Furthermore, this feature transcends across all 5 components of AlgoBase: <code>UI</code>, <code>Logic</code>, <code>UiLogic</code>, <code>Model</code> and <code>Storage</code>, making it a full-stack development consisting of &gt; 4000 lines of functional code and &gt; 1500 lines of tests.</p>
+<p>Furthermore, this feature transcends across all 5 components of AlgoBase: <code>UI</code>, <code>Logic</code>, <code>UiLogic</code>, <code>Model</code> and <code>Storage</code>, making it a full-stack development consisting of more than 4000 lines of functional code and more than 1500 lines of tests.</p>
 </li>
 </ul>
 </div>
@@ -200,7 +200,7 @@ Upon completing a task, users can mark it as done, which contributes to the prog
 <p><em>Display Tabs</em> – displays a list of items (problem, tag, plan or findrule)</p>
 </li>
 <li>
-<p><em>Display Tabs</em>  – shows details of a specific item</p>
+<p><em>Details Tabs</em>  – shows details of a specific item</p>
 </li>
 <li>
 <p><em>Plan Tab</em> – shows details of the current plan</p>
@@ -218,17 +218,17 @@ Upon completing a task, users can mark it as done, which contributes to the prog
 <p>Opening, Closing and Switching between Tabs</p>
 </li>
 <li>
-<p>Editing a Problem / Plan</p>
+<p>Editing a Problem or Plan</p>
 </li>
 <li>
-<p>Deleting a Problem / Plan</p>
+<p>Deleting a Problem or Plan</p>
 </li>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="tabs"><a class="link" href="#tabs">Tabs</a></h4>
+<h4 id="managing-tabs"><a class="link" href="#managing-tabs">Managing Tabs</a></h4>
 <div class="paragraph">
-<p>There are 3 types of tabs in AlgoBase. 2 of them, Display and Details tabs, are illustrated in the figure below.</p>
+<p>There are 3 types of tabs in AlgoBase, 2 of which (Display and Details) are shown in the figure below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -239,8 +239,7 @@ Upon completing a task, users can mark it as done, which contributes to the prog
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Display tabs</strong> give a high level overview of the contents of a list of items
-(e.g. a list of <em>problems</em> / <em>tags</em> / <em>plans</em> / <em>findrules</em>).</p>
+<p><strong>Display tabs</strong> give a high level overview of the contents of a list of items</p>
 </li>
 <li>
 <p><strong>Details tabs</strong> give a more detailed description of an item in a display tab.</p>
@@ -248,18 +247,18 @@ Upon completing a task, users can mark it as done, which contributes to the prog
 </ul>
 </div>
 <div class="paragraph">
-<p>Much like tabs you see in other applications, tabs in AlgoBase work the same way:</p>
+<p>Much like tabs you see in other applications, tabs in AlgoBase work the same way.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Switch Tab – Click on a tab to switch tabs</p>
+<p>To Switch Tabs – Click on a tab to switch tabs</p>
 </li>
 <li>
-<p>Open Tab – Double click on an item in the Display tab to open it in the Details tab</p>
+<p>To Open a Tab – Double click on an item in the Display tab to open it in the Details tab</p>
 </li>
 <li>
-<p>Close Tab – Click on the <code>x</code> button next to a Details tab to close it.</p>
+<p>To Close a Tab – Click on the <code>x</code> button next to a Details tab to close it.</p>
 </li>
 </ul>
 </div>
@@ -277,12 +276,12 @@ Display Tabs cannot be closed.
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-problem-plan"><a class="link" href="#editing-a-problem-plan">Editing a Problem / Plan</a></h4>
+<h4 id="editing-a-problem-or-plan"><a class="link" href="#editing-a-problem-or-plan">Editing a Problem or Plan</a></h4>
 <div class="paragraph">
 <p>The following steps show how a user can edit problems or plans from the GUI.</p>
 </div>
 <div class="paragraph">
-<p>Step 1: Select the problem / plan you want to delete by double clicking on it.</p>
+<p><strong>Step 1:</strong> Select the problem or plan you want to delete by double clicking on it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -291,7 +290,7 @@ Display Tabs cannot be closed.
 <div class="title">Figure 3. Plan with name "Data Structures" is opened.</div>
 </div>
 <div class="paragraph">
-<p>Step 2: Make changes to the problem / plan by editing the fields directly.</p>
+<p><strong>Step 2:</strong> Make changes to the problem or plan by editing the fields directly.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -300,7 +299,7 @@ Display Tabs cannot be closed.
 <div class="title">Figure 4. The name and start date of the plan are modified.</div>
 </div>
 <div class="paragraph">
-<p>Step 3: Save changes to the problem / plan by clicking on the <em>Edit Problem</em> / <em>Edit Plan</em> button.</p>
+<p><strong>Step 3:</strong> Save changes to the problem or plan by clicking on the <em>Edit Problem</em> or <em>Edit Plan</em> button.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -322,12 +321,12 @@ The <em>Edit Plan</em> Button cannot be clicked if there are no changes made to 
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-problem-plan"><a class="link" href="#deleting-a-problem-plan">Deleting a Problem / Plan</a></h4>
+<h4 id="deleting-a-problem-or-plan"><a class="link" href="#deleting-a-problem-or-plan">Deleting a Problem or Plan</a></h4>
 <div class="paragraph">
 <p>The following steps show how a user can delete problems or plans from the GUI.</p>
 </div>
 <div class="paragraph">
-<p>Step 1: Select the problem / plan you want to delete by double clicking on it.</p>
+<p><strong>Step 1:</strong> Select the problem or plan you want to delete by double clicking on it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -336,7 +335,7 @@ The <em>Edit Plan</em> Button cannot be clicked if there are no changes made to 
 <div class="title">Figure 6. Problem with name "Sequences" is opened.</div>
 </div>
 <div class="paragraph">
-<p>Step 2: Click on the red <em>Delete Problem</em> / <em>Delete Plan</em> button at the bottom right.
+<p><strong>Step 2:</strong> Click on the red <em>Delete Problem</em> or <em>Delete Plan</em> button at the bottom right.
 To prevent accidental deletion, a warning dialog will appear to confirm if you would like to delete the item.
 Click on the <em>"confirm"</em> button.</p>
 </div>
@@ -347,7 +346,7 @@ Click on the <em>"confirm"</em> button.</p>
 <div class="title">Figure 7. Warning Dialog to confirm problem being deleted.</div>
 </div>
 <div class="paragraph">
-<p>Step 3: Click on <em>Confirm</em>.</p>
+<p><strong>Step 3:</strong> Click on <em>Confirm</em>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -406,19 +405,6 @@ Click on the <em>"confirm"</em> button.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect2">
-<h3 id="gui-enhancements"><a class="link" href="#gui-enhancements">GUI Enhancements</a></h3>
-<div class="paragraph">
-<p>An intuitive GUI facilitates the overall user friendliness of the application.
-The user should be able to navigate around the application easily to facilitate a smooth experience using AlgoBase.
-While the command line is fast for typing short commands, it us not ideal if the user is editing large amounts of text (e.g. when the user is adding description for a new problem).
-In this case, having a GUI will be more beneficial to the user and facilitates a smoother user experience.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, multitasking is important as a user may be tackling multiple algorithmic questions at a single time.
-This, we introduced tabbing, which facilitates multitasking in AlgoBase, which is an important requirement for competitive programmers.</p>
-</div>
 <div class="sect3">
 <h4 id="graphical-user-interface-enhancements"><a class="link" href="#graphical-user-interface-enhancements">Graphical User Interface Enhancements</a></h4>
 <div class="sect4">
@@ -429,7 +415,7 @@ This, we introduced tabbing, which facilitates multitasking in AlgoBase, which i
 <div class="ulist">
 <ul>
 <li>
-<p><code>UiActionType</code> - An enum of the types of UI actions that exist in AlgoBase.</p>
+<p><code>UiActionType</code> - An Enum of the types of UI actions that exist in AlgoBase.</p>
 </li>
 <li>
 <p><code>UiActionDetails</code> - An object containing details of a UI action.</p>
@@ -470,7 +456,7 @@ This, we introduced tabbing, which facilitates multitasking in AlgoBase, which i
 <p>Step 1: The user edits the <code>ProblemDetails</code> controller class through his/her actions in the GUI.</p>
 </div>
 <div class="paragraph">
-<p>Step 2: The <code>ProblemDetails</code> class constructs a new <code>UiActionDetails</code> object with using <code>UiActionType.EditProblem</code>.</p>
+<p>Step 2: The <code>ProblemDetails</code> class constructs a new <code>UiActionDetails</code> object of type <code>UiActionType.EditProblem</code>.</p>
 </div>
 <div class="paragraph">
 <p>Step 3: The <code>executeUiAction</code> of the <code>MainWindow</code> class is called with the <code>UiActionDetails</code> object,
@@ -489,7 +475,7 @@ which in turn calls the <code>execute</code> method of <code>UiLogicManager</cod
 <div class="title">Figure 12. Interactions between classes in the <code>UiLogic</code></div>
 </div>
 <div class="paragraph">
-<p>Step 1: The <code>UiLogicManager</code> passes the <code>UiActionDetails</code> object to the <code>AlgoBaseActionParser</code>,
+<p>Step 1: The <code>UiLogicManager</code> passes the <code>UiActionDetails</code> object to the <code>AlgoBaseUiActionParser</code>,
 which in turn passes it to the <code>EditProblemUiActionParser</code> based on its Action type.</p>
 </div>
 <div class="paragraph">
@@ -497,7 +483,7 @@ which in turn passes it to the <code>EditProblemUiActionParser</code> based on i
 and passes it back to the <code>UiLogicManager</code>.</p>
 </div>
 <div class="paragraph">
-<p>Step 3: The <code>UiLogicManager</code> executes the <code>EditProblemUiAction</code> together with the <code>Model</code>, and returns the <code>CommandResult</code>.</p>
+<p>Step 3: The <code>UiLogicManager</code> executes the <code>EditProblemUiAction</code> together with the <code>Model</code>, and returns the <code>UiActionResult</code>.</p>
 </div>
 </div>
 </div>
@@ -516,27 +502,23 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 <div class="title">Figure 13. Class Diagram for the <code>GuiState</code> class</div>
 </div>
 <div class="paragraph">
-<p>The information stored in the GuiState is linked to the <code>UI</code> through listeners. For example, when the attributes of the <code>TabManager</code> object is updated, it triggers callback functions in the UI controllers that update the state of the UI displayed.</p>
-</div>
-<div class="paragraph">
-<p>In AlgoBase, the state of the GUI is also saved to Storage after every action. This is so that when the user closes the application and opens it again later, the state is stored.</p>
-</div>
-<div class="paragraph">
 <p>The following Activity diagram illustrates the series of actions that occur when the user opens a new tab:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/gui/OpenTabUiActionActivityDiagram.png" alt="OpenTabUiActionActivityDiagram">
 </div>
+<div class="title">Figure 14. Activity Diagram for Opening a new Tab from the GUI</div>
 </div>
 <div class="paragraph">
-<p>The Sequence diagram below also shows how the GuiState is saved to Storage.</p>
+<p>In AlgoBase, the state of the GUI is also saved to Storage after every action. This is so that when the user closes the application and opens it again later, the state is stored.
+The Sequence diagram below also shows how the GuiState is saved to Storage.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3">
 </div>
-<div class="title">Figure 14. Sequence Diagram for storing new GUI state</div>
+<div class="title">Figure 15. Sequence Diagram for storing new GUI state</div>
 </div>
 <div class="paragraph">
 <p>The <code>StorageManager</code> saves the modified <code>GuiState</code> as a new <code>JSON</code> file.
@@ -584,4 +566,4 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 09:33:29 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 12:19:49 UTC</div></div></div></body></html>
