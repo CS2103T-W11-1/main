@@ -653,9 +653,6 @@ and replace the original plan with this updated plan in the <code>PlanList</code
 <li>
 <p><code>editTag</code> - edit the current tag name which have already been in the uniqueTagList</p>
 </li>
-<li>
-<p><code>editTagColor</code> - edit a tag&#8217;s color which have already been in the uniqueTagList</p>
-</li>
 </ul>
 </div>
 <div class="imageblock">
@@ -689,15 +686,11 @@ and replace the original plan with this updated plan in the <code>PlanList</code
 <p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls Model#listtag(), causing the taglist shows the current components of uniqueTagList. Commands that do not modify the address book, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
 </div>
 <div class="paragraph">
-<p>Step 4.The user executes <code>edittag 1 t/hard</code> to edit the current tag [easy] to [hard] in the <code>uniqueTagList</code>. The <code>edittag 1 t/hard</code>
-Command executes <code>edittag</code>, causing the taglist find the tag with index 1 in the tag list and change tag [easy] into [hard] and change all [easy] tag into [hard] in all problems.</p>
+<p>Step 4.The user executes <code>edittag 1 t/hard c/BLUE</code> to edit the current tag [easy] to [hard] in the <code>uniqueTagList</code>. The <code>edittag 1 t/hard c/BLUE</code>
+Command executes <code>edittag</code>, causing the taglist find the tag with index 1 in the tag list and change tag [easy] into [hard] and change tag color from default color to blue, and change all [easy] tag into [hard] in blue color in all problems.</p>
 </div>
 <div class="paragraph">
-<p>Step 5.The user executes <code>edittagcolor 1 c/BLUE</code> to edit the current tag color from [DEFAULT] to [BLUE] in the <code>uniqueTagList</code>. The <code>edittagcolor 1 c/BLUE</code>
-Command executes <code>edittag</code>, causing the taglist find the tag with index 1 in the tag list and change this tag&#8217;s color [DEFAULT] to [BLUE] in all related problems.</p>
-</div>
-<div class="paragraph">
-<p>Step 6. The user executes <code>deletetag t/hard</code> to delete the current tag [easy] in the uniqueTagList. The <code>deletetag t/hard</code> command executes <code>deletetag</code>, causing the taglist delete the [hard] tag in uniqueTagList and [hard] tag in all problems.
+<p>Step 5. The user executes <code>deletetag t/hard</code> to delete the current tag [easy] in the uniqueTagList. The <code>deletetag t/hard</code> command executes <code>deletetag</code>, causing the taglist delete the [hard] tag in uniqueTagList and [hard] tag in all problems.
 (diagram)</p>
 </div>
 <div class="paragraph">
@@ -3294,4 +3287,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 16:11:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 16:58:09 UTC</div></div></div></body></html>
