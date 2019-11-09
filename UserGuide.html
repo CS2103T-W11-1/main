@@ -18,12 +18,11 @@
 <li><a href="#searching-problems">4.2. Searching Problems</a></li>
 <li><a href="#tags">4.3. Tags</a></li>
 <li><a href="#training-plans">4.4. Training Plans</a></li>
-<li><a href="#searching-plans">4.5. Searching Plans</a></li>
-<li><a href="#task-management">4.6. Task Management</a></li>
-<li><a href="#graphical-user-interface-gui-enhancements">4.7. Graphical User Interface (GUI) Enhancements</a></li>
-<li><a href="#data-management">4.8. Data Management</a></li>
-<li><a href="#miscellaneous">4.9. Miscellaneous</a></li>
-<li><a href="#encryption">4.10. Encryption</a></li>
+<li><a href="#task-management">4.5. Task Management</a></li>
+<li><a href="#graphical-user-interface-gui-enhancements">4.6. Graphical User Interface (GUI) Enhancements</a></li>
+<li><a href="#data-management">4.7. Data Management</a></li>
+<li><a href="#miscellaneous">4.8. Miscellaneous</a></li>
+<li><a href="#encryption">4.9. Encryption</a></li>
 </ul>
 </li>
 <li><a href="#faq">5. FAQ</a></li>
@@ -898,11 +897,8 @@ Edits the starting date of the 2nd plan to be <code>2019-08-13</code>.</p>
 Format: <code>listplan</code></p>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="searching-plans"><a class="link" href="#searching-plans">4.5. Searching Plans</a></h3>
 <div class="sect3">
-<h4 id="locating-plans-code-findplan-code"><a class="link" href="#locating-plans-code-findplan-code">4.5.1. Locating plans: <code>findplan</code></a></h4>
+<h4 id="locating-plans-code-findplan-code"><a class="link" href="#locating-plans-code-findplan-code">4.4.5. Locating plans: <code>findplan</code></a></h4>
 <div class="paragraph">
 <p>Finds plans fulfilling all provided constraints.<br>
 Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_END] [task/TASK_NAME]</code></p>
@@ -975,12 +971,27 @@ Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_E
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>findplan start/2019-08-05 end/2019-12-07</code><br>
+Finds plans whose duration overlaps with NUS AY 19/20 Semester 1.</p>
+</li>
+<li>
+<p><code>findsplan task/Sequences</code><br>
+Finds plans that contain a task names 'Sequences'.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="task-management"><a class="link" href="#task-management">4.6. Task Management</a></h3>
+<h3 id="task-management"><a class="link" href="#task-management">4.5. Task Management</a></h3>
 <div class="sect3">
-<h4 id="adding-a-new-task-to-a-plan-code-addtask-code"><a class="link" href="#adding-a-new-task-to-a-plan-code-addtask-code">4.6.1. Adding a new task to a plan: <code>addtask</code></a></h4>
+<h4 id="adding-a-new-task-to-a-plan-code-addtask-code"><a class="link" href="#adding-a-new-task-to-a-plan-code-addtask-code">4.5.1. Adding a new task to a plan: <code>addtask</code></a></h4>
 <div class="paragraph">
 <p>Adds a task to a specified plan.<br>
 Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]</code></p>
@@ -1004,7 +1015,7 @@ Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]</code></
 </div>
 </div>
 <div class="sect3">
-<h4 id="copying-a-task-from-one-plan-to-another-code-copytask-code"><a class="link" href="#copying-a-task-from-one-plan-to-another-code-copytask-code">4.6.2. Copying a task from one plan to another: <code>copytask</code></a></h4>
+<h4 id="copying-a-task-from-one-plan-to-another-code-copytask-code"><a class="link" href="#copying-a-task-from-one-plan-to-another-code-copytask-code">4.5.2. Copying a task from one plan to another: <code>copytask</code></a></h4>
 <div class="paragraph">
 <p>Copies a specified task from one plan to another.<br>
 Format: <code>copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
@@ -1028,7 +1039,7 @@ Format: <code>copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-task-from-a-plan-code-deletetask-code"><a class="link" href="#deleting-a-task-from-a-plan-code-deletetask-code">4.6.3. Deleting a task from a plan: <code>deletetask</code></a></h4>
+<h4 id="deleting-a-task-from-a-plan-code-deletetask-code"><a class="link" href="#deleting-a-task-from-a-plan-code-deletetask-code">4.5.3. Deleting a task from a plan: <code>deletetask</code></a></h4>
 <div class="paragraph">
 <p>Deletes a specified task from a specified plan.<br>
 Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
@@ -1045,7 +1056,7 @@ Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-a-task-as-done-code-donetask-code"><a class="link" href="#marking-a-task-as-done-code-donetask-code">4.6.4. Marking a task as done: <code>donetask</code></a></h4>
+<h4 id="marking-a-task-as-done-code-donetask-code"><a class="link" href="#marking-a-task-as-done-code-donetask-code">4.5.4. Marking a task as done: <code>donetask</code></a></h4>
 <div class="paragraph">
 <p>Marks a specified task in a specified plan as done.<br>
 Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
@@ -1062,7 +1073,7 @@ Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-due-date-of-a-task-from-a-plan-code-edittask-code"><a class="link" href="#editing-due-date-of-a-task-from-a-plan-code-edittask-code">4.6.5. Editing due date of a task from a plan: <code>edittask</code></a></h4>
+<h4 id="editing-due-date-of-a-task-from-a-plan-code-edittask-code"><a class="link" href="#editing-due-date-of-a-task-from-a-plan-code-edittask-code">4.5.5. Editing due date of a task from a plan: <code>edittask</code></a></h4>
 <div class="paragraph">
 <p>Edits the due date of a specified task from a specified plan.<br>
 Format: <code>edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE</code></p>
@@ -1086,7 +1097,7 @@ Format: <code>edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-a-task-as-undone-code-undonetask-code"><a class="link" href="#marking-a-task-as-undone-code-undonetask-code">4.6.6. Marking a task as undone: <code>undonetask</code></a></h4>
+<h4 id="marking-a-task-as-undone-code-undonetask-code"><a class="link" href="#marking-a-task-as-undone-code-undonetask-code">4.5.6. Marking a task as undone: <code>undonetask</code></a></h4>
 <div class="paragraph">
 <p>Marks a specified task in a specified plan as undone.<br>
 Format: <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
@@ -1103,7 +1114,7 @@ Format: <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="moving-a-task-from-one-plan-to-another-code-movetask-code"><a class="link" href="#moving-a-task-from-one-plan-to-another-code-movetask-code">4.6.7. Moving a task from one plan to another: <code>movetask</code></a></h4>
+<h4 id="moving-a-task-from-one-plan-to-another-code-movetask-code"><a class="link" href="#moving-a-task-from-one-plan-to-another-code-movetask-code">4.5.7. Moving a task from one plan to another: <code>movetask</code></a></h4>
 <div class="paragraph">
 <p>Moves a specified task from a specified plan to another.<br>
 Format: <code>movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
@@ -1127,7 +1138,7 @@ Format: <code>movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-the-plan-to-be-used-in-main-display-code-setplan-code"><a class="link" href="#setting-the-plan-to-be-used-in-main-display-code-setplan-code">4.6.8. Setting the plan to be used in main display: <code>setplan</code></a></h4>
+<h4 id="setting-the-plan-to-be-used-in-main-display-code-setplan-code"><a class="link" href="#setting-the-plan-to-be-used-in-main-display-code-setplan-code">4.5.8. Setting the plan to be used in main display: <code>setplan</code></a></h4>
 <div class="paragraph">
 <p>Sets a specified plan as the current display plan.<br>
 Format: <code>setplan PLAN_INDEX</code></p>
@@ -1145,7 +1156,7 @@ Format: <code>setplan PLAN_INDEX</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="graphical-user-interface-gui-enhancements"><a class="link" href="#graphical-user-interface-gui-enhancements">4.7. Graphical User Interface (GUI) Enhancements</a></h3>
+<h3 id="graphical-user-interface-gui-enhancements"><a class="link" href="#graphical-user-interface-gui-enhancements">4.6. Graphical User Interface (GUI) Enhancements</a></h3>
 <div class="paragraph">
 <p>AlgoBase currently supports several GUI features with an intuitive layout, including the following:</p>
 </div>
@@ -1163,7 +1174,7 @@ Format: <code>setplan PLAN_INDEX</code></p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="managing-tabs"><a class="link" href="#managing-tabs">4.7.1. Managing Tabs</a></h4>
+<h4 id="managing-tabs"><a class="link" href="#managing-tabs">4.6.1. Managing Tabs</a></h4>
 <div class="paragraph">
 <p>There are 3 types of tabs in AlgoBase, 2 of which (Display and Details) are shown in the figure below.</p>
 </div>
@@ -1213,7 +1224,7 @@ Display Tabs cannot be closed.
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-problem-or-plan"><a class="link" href="#editing-a-problem-or-plan">4.7.2. Editing a Problem or Plan</a></h4>
+<h4 id="editing-a-problem-or-plan"><a class="link" href="#editing-a-problem-or-plan">4.6.2. Editing a Problem or Plan</a></h4>
 <div class="paragraph">
 <p>The following steps show how a user can edit problems or plans from the GUI.</p>
 </div>
@@ -1258,7 +1269,7 @@ The <em>Edit Plan</em> Button cannot be clicked if there are no changes made to 
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-problem-or-plan"><a class="link" href="#deleting-a-problem-or-plan">4.7.3. Deleting a Problem or Plan</a></h4>
+<h4 id="deleting-a-problem-or-plan"><a class="link" href="#deleting-a-problem-or-plan">4.6.3. Deleting a Problem or Plan</a></h4>
 <div class="paragraph">
 <p>The following steps show how a user can delete problems or plans from the GUI.</p>
 </div>
@@ -1293,7 +1304,7 @@ Click on the <em>"confirm"</em> button.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="switching-tabs-code-switchtab-code"><a class="link" href="#switching-tabs-code-switchtab-code">4.7.4. Switching Tabs: <code>switchtab</code></a></h4>
+<h4 id="switching-tabs-code-switchtab-code"><a class="link" href="#switching-tabs-code-switchtab-code">4.6.4. Switching Tabs: <code>switchtab</code></a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/SwitchTabCommand.png" alt="SwitchTabCommand" width="70%">
@@ -1343,7 +1354,7 @@ Format: <code>st tt/TAB_TYPE i/TAB_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="opening-tabs-code-opentab-code"><a class="link" href="#opening-tabs-code-opentab-code">4.7.5. Opening Tabs: <code>opentab</code></a></h4>
+<h4 id="opening-tabs-code-opentab-code"><a class="link" href="#opening-tabs-code-opentab-code">4.6.5. Opening Tabs: <code>opentab</code></a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/OpenTabCommand.png" alt="OpenTabCommand" width="70%">
@@ -1393,7 +1404,7 @@ Format: <code>ot m/MODEL_TYPE i/MODEL_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="closing-tabs-code-closetab-code"><a class="link" href="#closing-tabs-code-closetab-code">4.7.6. Closing Tabs: <code>closetab</code></a></h4>
+<h4 id="closing-tabs-code-closetab-code"><a class="link" href="#closing-tabs-code-closetab-code">4.6.6. Closing Tabs: <code>closetab</code></a></h4>
 <div class="paragraph">
 <p>Closes a <strong>details</strong> tab in the GUI<br>
 Format: <code>closetab i/DETAILS_TAB_INDEX</code><br>
@@ -1415,9 +1426,9 @@ Format: <code>ct i/DETAILS_TAB_INDEX</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-management"><a class="link" href="#data-management">4.8. Data Management</a></h3>
+<h3 id="data-management"><a class="link" href="#data-management">4.7. Data Management</a></h3>
 <div class="sect3">
-<h4 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">4.8.1. Importing data: <code>import</code></a></h4>
+<h4 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">4.7.1. Importing data: <code>import</code></a></h4>
 <div class="paragraph">
 <p>Imports external data of a specified format (e.g. JSON) into local storage.<br>
 Format: <code>import format/FORMAT path/FILE_PATH</code></p>
@@ -1444,7 +1455,7 @@ Format: <code>import format/FORMAT path/FILE_PATH</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">4.8.2. Exporting data: <code>export</code></a></h4>
+<h4 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">4.7.2. Exporting data: <code>export</code></a></h4>
 <div class="paragraph">
 <p>Exports data into a specified format (e.g. JSON).<br>
 Format: <code>export format/FORMAT path/DIRECTORY_PATH</code></p>
@@ -1472,9 +1483,9 @@ Format: <code>export format/FORMAT path/DIRECTORY_PATH</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="miscellaneous"><a class="link" href="#miscellaneous">4.9. Miscellaneous</a></h3>
+<h3 id="miscellaneous"><a class="link" href="#miscellaneous">4.8. Miscellaneous</a></h3>
 <div class="sect3">
-<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.9.1. Viewing help : <code>help</code></a></h4>
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.8.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>List all possible commands or find command usage using the command word.<br>
 Format: <code>help [COMMAND_WORD]</code></p>
@@ -1505,27 +1516,27 @@ Shows command usage for <code>addprob</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.9.2. Clearing all entries : <code>clear</code></a></h4>
+<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.8.2. Clearing all entries : <code>clear</code></a></h4>
 <div class="paragraph">
 <p>Clears all entries from AlgoBase.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.9.3. Exiting the program : <code>exit</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.8.3. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="navigating-the-command-history"><a class="link" href="#navigating-the-command-history">4.9.4. Navigating the command history</a></h4>
+<h4 id="navigating-the-command-history"><a class="link" href="#navigating-the-command-history">4.8.4. Navigating the command history</a></h4>
 <div class="paragraph">
 <p>You can press <kbd>↑</kbd> to navigate back or <kbd>↓</kbd> to navigate forward in the command history.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">4.9.5. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">4.8.5. Saving the data</a></h4>
 <div class="paragraph">
 <p>AlgoBase data is saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -1533,9 +1544,9 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encryption"><a class="link" href="#encryption">4.10. Encryption</a></h3>
+<h3 id="encryption"><a class="link" href="#encryption">4.9. Encryption</a></h3>
 <div class="sect3">
-<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">4.10.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
+<h4 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">4.9.1. Encrypting data files <code>[coming in v2.0]</code></a></h4>
 
 </div>
 </div>
@@ -1613,11 +1624,11 @@ e.g. <code>addtag t/sssp c/BLUE</code></p>
 e.g. <code>deletetag 3</code></p>
 </li>
 <li>
-<p><strong>Edit tag</strong> : <code>edittag INDEX t/TAGNAME</code><br>
+<p><strong>Edit Tag</strong> : <code>edittag INDEX t/TAGNAME</code><br>
 e.g. <code>edittag 1 t/sort</code></p>
 </li>
 <li>
-<p><strong>Edit tag color</strong> : <code>edittagcolor INDEX c/COLOR</code><br>
+<p><strong>Edit Tag Color</strong> : <code>edittagcolor INDEX c/COLOR</code><br>
 e.g. <code>edittagcolor 1 c/RED</code></p>
 </li>
 </ul>
@@ -1741,4 +1752,4 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 12:37:59 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 14:57:40 UTC</div></div></div></body></html>

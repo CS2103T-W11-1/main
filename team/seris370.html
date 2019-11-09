@@ -10,7 +10,19 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AlgoBase is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.</p>
+<p>AlgoBase is primarily a problem management application, where users can add different algorithm problems from all kinds of sources. Within the application, users can create training plans consisting of tasks, where each task is a problem that the user has to complete. Upon completing a task, users can mark it as done, which contributes to the progress of their plan. Users interact with AlgoBase using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.</p>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates the layout of the AlgoBase application:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/gui/AlgoBaseLayout.png" alt="AlgoBaseLayout">
+</div>
+<div class="title">Figure 1. Layout of AlgoBase</div>
+</div>
+<div class="paragraph">
+<p>My role was to design and write the codes for the training plan feature. The following sections illustrate these enhancements in more detail, as well as the relevant documentation I have added to the user guide and developer guide.</p>
 </div>
 </div>
 </div>
@@ -24,7 +36,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows users to create customized training plans with specific starting date and end date and that consist of selected problems in AlgoBase. Each problem is wrapped up as a task in the plan. Users can record their progress by marking problems in plans as done or undone, and they can edit, delete or search for plans.</p>
+<p>What it does: Allows users to create customized training plans with specific starting date and end date and that consist of selected problems in AlgoBase. Each problem is wrapped up as a task in the plan. Users can record their progress by marking problems in plans as done or undone, and they can edit, delete or search for plans.</p>
 </li>
 <li>
 <p>Justification: This feature improves the product significantly because it would be inconvenient for a hard-working user to manage a large number of problems without a higher-level component that categorize selected problems.</p>
@@ -51,7 +63,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.1</code> - <code>v1.4</code> (3 releases) on GitHub</p>
+<p>Managed release <code>v1.3</code> on GitHub</p>
 </li>
 </ul>
 </div>
@@ -61,13 +73,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Add basic plan commands and Ui for plans (Pull requests <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/65">#65</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/72">#72</a>)</p>
+<p>Design plan logic (Pull requests <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/65">#65</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/117">#117</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/148">#148</a>)</p>
 </li>
 <li>
-<p>Enable plan finding (Pull requests <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/117">#117</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/148">#148</a>)</p>
+<p>Build Ui prototype for plans (Pull requests <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/72">#72</a>)</p>
 </li>
 <li>
-<p>Write tests for plans (Pull requests <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/65">#212</a>)</p>
+<p>Write tests for plans (Pull requests <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/212">#212</a>)</p>
 </li>
 </ul>
 </div>
@@ -77,7 +89,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments):
+<p>PRs reviewed:
 <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/105">#105</a>
 <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/108">#108</a>
 <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/125">#125</a></p>
@@ -229,9 +241,6 @@ Edits the starting date of the 2nd plan to be <code>2019-08-13</code>.</p>
 Format: <code>listplan</code></p>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="searching-plans"><a class="link" href="#searching-plans">Searching Plans</a></h3>
 <div class="sect3">
 <h4 id="locating-plans-code-findplan-code"><a class="link" href="#locating-plans-code-findplan-code">Locating plans: <code>findplan</code></a></h4>
 <div class="paragraph">
@@ -306,6 +315,21 @@ Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_E
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>findplan start/2019-08-05 end/2019-12-07</code><br>
+Finds plans whose duration overlaps with NUS AY 19/20 Semester 1.</p>
+</li>
+<li>
+<p><code>findsplan task/Sequences</code><br>
+Finds plans that contain a task names 'Sequences'.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -324,8 +348,7 @@ Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_E
 </tbody>
 </table>
 <div class="paragraph">
-<p><a href="https://github.com/AY1920S1-CS2103T-W11-1/main/blob/master/docs/DeveloperGuide.adoc#training-plan-feature">Design - Plan</a><br>
-<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/blob/master/docs/DeveloperGuide.adoc#adding-a-plan">Manual Testing - Plan</a></p>
+<p><a href="https://github.com/AY1920S1-CS2103T-W11-1/main/blob/master/docs/DeveloperGuide.adoc#training-plan-feature">Design - Plan</a></p>
 </div>
 <div class="sect2">
 <h3 id="training-plan-feature"><a class="link" href="#training-plan-feature">Training Plan Feature</a></h3>
@@ -355,9 +378,9 @@ Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_E
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/plan/PlanClassDiagram.png" alt="PlanClassDiagram">
+<img src="../images/plan/PlanClassDiagram.png" alt="PlanClassDiagram" width="70%">
 </div>
-<div class="title">Figure 1. Class Diagram of <code>Plan</code></div>
+<div class="title">Figure 2. Class Diagram of <code>Plan</code></div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the AlgoBase behaves at each step.</p>
@@ -370,9 +393,9 @@ Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_E
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/plan/AddPlanSequenceDiagram.png" alt="AddPlanSequenceDiagram">
+<img src="../images/plan/AddPlanSequenceDiagram.png" alt="AddPlanSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 2. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
+<div class="title">Figure 3. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user executes <code>listplan</code> to list all plans. The <code>listplan</code> command calls <code>Model#updateFilteredPlanList()</code>. The plan <code>CS2040</code> is numbered <code>1</code> in the displayed list.</p>
@@ -382,9 +405,9 @@ Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_E
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/plan/EditPlanCommandActivityDiagram.png" alt="EditPlanCommandActivityDiagram">
+<img src="../images/plan/EditPlanCommandActivityDiagram.png" alt="EditPlanCommandActivityDiagram" width="70%">
 </div>
-<div class="title">Figure 3. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
+<div class="title">Figure 4. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -403,9 +426,9 @@ The user can also add value for an empty field by executing <code>editplan</code
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/plan/FindPlanDescriptorClassDiagram.png" alt="FindPlanDescriptorClassDiagram">
+<img src="../images/plan/FindPlanDescriptorClassDiagram.png" alt="FindPlanDescriptorClassDiagram" width="70%">
 </div>
-<div class="title">Figure 4. Class Diagram for <code>FindPlanDescriptor</code></div>
+<div class="title">Figure 5. Class Diagram for <code>FindPlanDescriptor</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -420,7 +443,7 @@ If the user wants to find plans with overlapping time range, both the starting d
 </table>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>deleteplan 1</code>, which calls <code>Model#getFilteredPlanList()</code> and <code>Model#deletePlan</code>. The 'Model#getFilteredPlanList()' returns the last shown plan list, which is list of plans returns by the <code>findplan</code> command in step 4. Therefore, the first plan with overlapping time range is deleted.</p>
+<p>Step 6. The user executes <code>deleteplan 1</code>, which calls <code>Model#getFilteredPlanList()</code> and <code>Model#deletePlan</code>. The <code>Model#getFilteredPlanList()</code> returns the last shown plan list, which is list of plans returns by the <code>findplan</code> command in step 4. Therefore, the first plan with overlapping time range is deleted.</p>
 </div>
 </div>
 <div class="sect3">
@@ -437,20 +460,20 @@ If the user wants to find plans with overlapping time range, both the starting d
 <p>Pros: Easy to implement.</p>
 </li>
 <li>
-<p>Cons: Generating a <code>TimeRange</code> object in <code>findplan</code> command adds coupling.</p>
+<p>Cons: Generating a <code>TimeRange</code> object in <code>findplan</code> command adds coupling, and is not very intuitive.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Replace <code>startDate</code> and <code>endDate</code> fields in plans to a single field <code>TimeRange</code> .</p>
+<p><strong>Alternative 2:</strong> Abstract out <code>startDate</code> and <code>endDate</code> fields in plans to a single field <code>TimeRange</code> .</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: More OOP (<code>startDate</code> and <code>endDate</code> are currently <code>LocalDate</code> objects).</p>
 </li>
 <li>
-<p>Cons: We must ensure that the implementation complies with other date-related commands and storage of plans.</p>
+<p>Cons: We must ensure that the implementation complies with other date-related commands and storage of plans, such as adding or editing due dates of tasks in plans and the json file.</p>
 </li>
 </ul>
 </div>
@@ -463,7 +486,7 @@ If the user wants to find plans with overlapping time range, both the starting d
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> By matching names.</p>
+<p><strong>Alternative 1 (current choice):</strong> By exactly-matching names.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -488,10 +511,100 @@ If the user wants to find plans with overlapping time range, both the starting d
 </ul>
 </div>
 </li>
+<li>
+<p><strong>Alternative 3:</strong> By exactly-matching tags of the original problem.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User-friendly.</p>
+</li>
+<li>
+<p>Cons: MAdds coupling due to access to <code>filteredProblemList</code> in the model as the wrapped-up task does not have a tag list field.</p>
+</li>
 </ul>
 </div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/AY1920S1-CS2103T-W11-1/main/blob/master/docs/DeveloperGuide.adoc#plan">Manual Testing - Plan</a></p>
 </div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 12:37:59 UTC</div></div></div></body></html>
+<div class="sect2">
+<h3 id="plans"><a class="link" href="#plans">Plans</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a plan to the existing AlgoBase</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>addplan n/ByteDance d/coding test for Software engineering</code><br>
+Expected: A new plan with respective information is added and displayed on plan tab. Start date is now and end date is one month from now.</p>
+</li>
+<li>
+<p>Test case: <code>addplan n/ByteDance d/coding test for Software engineering</code><br>
+Expected: No plan is added. Error details shown in the status message. No plans with duplicate names can be added.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Editing a plan</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>listplan</code><br>
+<code>edit 1 d/give up start/2019-01-01 end/2020-02-02</code><br>
+   Expected: All plans are displayed in chronological order. The description and the dates of the first plan is changed.</p>
+</li>
+<li>
+<p>Test case: <code>edit 1 end/2018-02-02</code><br>
+Expected: Edit command is invalid. Error details shown in the status message. Starting date should be before or equal to end date.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Finding plans</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>findplan n/bytedance</code><br>
+Expected: The plan named 'ByteDance' is listed.</p>
+</li>
+<li>
+<p>Test case: <code>findplan start/2019-01-01 end/2019-12-12</code><br>
+Expected: Plans whose time range overlaps with the given time range are listed in the plan panel.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting a plan</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>findplan n/bytedance</code><br>
+<code>delete 1</code><br>
+   Expected: The plan with name 'ByteDance' is deleted.</p>
+</li>
+<li>
+<p>Test case: <code>listplan</code><br>
+<code>delete 1</code><br>
+   Expected: The first plan among all plans is deleted.</p>
+</li>
+<li>
+<p>Test case: <code>delete all</code><br>
+Expected: No plan is deleted. Error message is shown. Plan index must be a valid integer.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 14:57:40 UTC</div></div></div></body></html>
