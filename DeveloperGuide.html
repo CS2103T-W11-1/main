@@ -55,6 +55,16 @@
 <li><a href="#deleting-problem-finding-rules">F.11. Deleting problem-finding rules</a></li>
 <li><a href="#plans">F.12. Plans</a></li>
 <li><a href="#saving-data">F.13. Saving Data</a></li>
+<li><a href="#switching-tabs">F.14. Switching tabs</a></li>
+<li><a href="#opening-a-new-tab">F.15. Opening a new tab</a></li>
+<li><a href="#closing-an-existing-tab">F.16. Closing an existing tab</a></li>
+<li><a href="#editing-problem-from-gui">F.17. Editing Problem from GUI</a></li>
+<li><a href="#deleting-problem-from-gui">F.18. Deleting Problem from GUI</a></li>
+<li><a href="#editing-plan-from-gui">F.19. Editing Plan from GUI</a></li>
+<li><a href="#deleting-plan-from-gui">F.20. Deleting Plan from GUI</a></li>
+<li><a href="#switching-tabs-from-gui">F.21. Switching tabs from GUI</a></li>
+<li><a href="#opening-a-new-tab-from-gui">F.22. Opening a new tab from GUI</a></li>
+<li><a href="#closing-an-existing-tab-from-gui">F.23. Closing an existing tab from GUI</a></li>
 </ul>
 </li>
 </ul>
@@ -3377,5 +3387,546 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="switching-tabs"><a class="link" href="#switching-tabs">F.14. Switching tabs</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Switching between Display Tabs</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Currently at the first display tab (Problem).</p>
+</li>
+<li>
+<p>Test case: <code>switchtab tt/display i/2</code><br>
+Expected: The display tab is now at the <code>Tags</code> tab.</p>
+</li>
+<li>
+<p>Test case: <code>st tt/1 i/2</code><br>
+Expected: The display tab is now at the <code>Tags</code> tab.</p>
+</li>
+<li>
+<p>Test case: <code>switchtab tt/display i/0</code><br>
+Expected: The display tab is not changed. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>st tt/1 i/0</code><br>
+Expected: The display tab is not changed. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>switchtab tt/display i/5</code><br>
+Expected: The display tab is not changed. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>st tt/1 i/5</code><br>
+Expected: The display tab is not changed. Error message is shown.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 17:10:45 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>Switching between Details Tabs</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least 2 Details Tabs are opened. Currently at the first Details Tab.</p>
+</li>
+<li>
+<p>Test case: <code>switchtab tt/details i/2</code><br>
+Expected: The details tab is now at the second tab.</p>
+</li>
+<li>
+<p>Test case: <code>st tt/2 i/2</code><br>
+Expected: The details tab is now at the second tab.</p>
+</li>
+<li>
+<p>Test case: <code>switchtab tt/details i/0</code><br>
+Expected: The details tab is not changed. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>st tt/2 i/0</code><br>
+Expected: The details tab is not changed. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>switchtab tt/details i/5</code> (Assuming only 4 details tab exist)<br>
+Expected: The details tab is not changed. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>st tt/2 i/5</code> (Assuming only 4 details tab exist)<br>
+Expected: The details tab is not changed. Error message is shown.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Switching to non-existent Tab Type index</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>switchtab tt/0 i/1</code><br>
+Expected: No tabs are changed. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>switchtab tt/3 i/1</code><br>
+Expected: No tabs are changed. Error message is shown.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="opening-a-new-tab"><a class="link" href="#opening-a-new-tab">F.15. Opening a new tab</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Opening a new Details Tab for a Problem</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least 1 problem exists in the current problem display tab.</p>
+</li>
+<li>
+<p>Test case: <code>opentab m/problem i/1</code><br>
+Expected: A new details tab containing the problem at index 1 of the currently displayed problem list is opened. The tab is selected as well.</p>
+</li>
+<li>
+<p>Test case: <code>ot m/1 i/1</code><br>
+Expected: A new details tab containing the problem at index 1 of the currently displayed problem list is opened. The tab is selected as well.</p>
+</li>
+<li>
+<p>Test case: <code>opentab m/problem i/0</code><br>
+Expected: No details tab are opened. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>ot m/1 i/0</code><br>
+Expected: No details tab are opened. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>opentab m/problem i/4</code> (Assuming only 3 problems exist)<br>
+Expected: No details tab are opened. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>ot m/1 i/4</code> (Assuming only 3 problems exist)<br>
+Expected: No details tab are opened. Error message is shown.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Opening an existing Details Tabs for a Problem</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least 1 problem exists and the problem is already in a details tab.</p>
+</li>
+<li>
+<p>Test case: <code>opentab m/problem i/1</code> (Assuming the first problem is in a Details Tab)<br>
+Expected: The existing details tab containing the problem is selected.</p>
+</li>
+<li>
+<p>Test case: <code>ot m/1 i/1</code> (Assuming the first problem is in a Details Tab)<br>
+Expected: The existing details tab containing the problem is selected.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Opening a new Details Tab for a Plan</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least 1 plan exist.</p>
+</li>
+<li>
+<p>Test case: <code>opentab m/plan i/1</code><br>
+Expected: A new details tab containing the plan at index 1 of the currently displayed problem list is opened. The tab is selected as well.
+          The plan tab also updates to display the selected plan.</p>
+</li>
+<li>
+<p>Test case: <code>ot m/2 i/1</code><br>
+Expected: A new details tab containing the plan at index 1 of the currently displayed problem list is opened. The tab is selected as well.
+          The plan tab also updates to display the selected plan.</p>
+</li>
+<li>
+<p>Test case: <code>opentab m/plan i/0</code><br>
+Expected: No details tab are opened. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>ot m/2 i/0</code><br>
+Expected: No details tab are opened. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>opentab m/plan i/4</code> (Assuming only 3 plans exist)<br>
+Expected: No details tab are opened. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>ot m/1 i/4</code> (Assuming only 3 plans exist)<br>
+Expected: No details tab are opened. Error message is shown.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Opening an existing Details Tabs for a Plan</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least 1 plan exists and the plan is already in a details tab.</p>
+</li>
+<li>
+<p>Test case: <code>opentab m/plan i/1</code> (Assuming the first plan is in a Details Tab)
+Expected: The existing details tab containing the plan is selected.
+The plan tab also updates to display the selected plan.</p>
+</li>
+<li>
+<p>Test case: <code>ot m/2 i/1</code> (Assuming the first plan is in a Details Tab)<br>
+Expected: The existing details tab containing the plan is selected.
+The plan tab also updates to display the selected plan.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Opening a non-existent Tab Type index</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>opentab tt/0 i/1</code><br>
+Expected: No tabs are opened. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>ot tt/3 i/1</code><br>
+Expected: No tabs are opened. Error message is shown.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="closing-an-existing-tab"><a class="link" href="#closing-an-existing-tab">F.16. Closing an existing tab</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Closing a Details Tab</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least one Details Tab exist.</p>
+</li>
+<li>
+<p>Test case: <code>closetab i/1</code> while first tab is selected (Assuming there are 3 details tabs)<br>
+Expected: The first tab is closed and the new first tab (previously second tab) is selected.</p>
+</li>
+<li>
+<p>Test case: <code>ct i/1</code> while first tab is selected (Assuming there are 3 details tabs)<br>
+Expected: The first tab is closed and the new first tab (previously second tab) is selected.</p>
+</li>
+<li>
+<p>Test case: <code>closetab i/1</code> while last tab is selected (Assuming there are 3 details tabs)<br>
+Expected: The first tab is closed and the last tab is still selected.</p>
+</li>
+<li>
+<p>Test case: <code>ct i/1</code> while last tab is selected (Assuming there are 3 details tabs)<br>
+Expected: The first tab is closed and the last tab is still selected.</p>
+</li>
+<li>
+<p>Test case: <code>closetab i/3</code> while first tab is selected (Assuming there are 3 details tabs)<br>
+Expected: The last tab is closed and the new first tab (previously second tab) is selected.</p>
+</li>
+<li>
+<p>Test case: <code>ct i/3</code> while first tab is selected (Assuming there are 3 details tabs)<br>
+Expected: The last tab is closed and the new first tab (previously second tab) is selected.</p>
+</li>
+<li>
+<p>Test case: <code>closetab i/3</code> while last tab is selected (Assuming there are 3 details tabs)<br>
+Expected: The last tab is closed and the new last tab (previously second tab) is selected.</p>
+</li>
+<li>
+<p>Test case: <code>ct i/3</code> while last tab is selected (Assuming there are 3 details tabs)<br>
+Expected: The last tab is closed and the new last tab (previously second tab) is selected.</p>
+</li>
+<li>
+<p>Test case: <code>closetab i/2</code> while current tab is selected (Assuming there are 3 details tabs)<br>
+Expected: The second tab is closed and the tab before (the first tab) is selected.</p>
+</li>
+<li>
+<p>Test case: <code>ct i/2</code> while current tab is selected (Assuming there are 3 details tabs)<br>
+Expected: The second tab is closed and the tab before (the first tab) is selected.</p>
+</li>
+<li>
+<p>Test case: <code>closetab i/1</code> while first tab is selected (Assuming there is only 1 details tabs)<br>
+Expected: There are no tabs left and no tabs are selected.</p>
+</li>
+<li>
+<p>Test case: <code>ct i/1</code> while first tab is selected (Assuming there is only 1 details tabs)<br>
+Expected: There are no tabs left and no tabs are selected.</p>
+</li>
+<li>
+<p>Test case: <code>closetab i/0</code> while current tab is selected (Assuming there are 3 details tabs)<br>
+Expected: No details tab are closed. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>ct i/0</code> while current tab is selected (Assuming there are 3 details tabs)<br>
+Expected: No details tab are closed. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>closetab i/4</code> while current tab is selected (Assuming there are 3 details tabs)<br>
+Expected: No details tab are closed. Error message is shown.</p>
+</li>
+<li>
+<p>Test case: <code>ct i/4</code> while current tab is selected (Assuming there are 3 details tabs)<br>
+Expected: No details tab are closed. Error message is shown.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-problem-from-gui"><a class="link" href="#editing-problem-from-gui">F.17. Editing Problem from GUI</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Editing a Problem from GUI</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least one problem exists and it is opened in a Details Tab.</p>
+</li>
+<li>
+<p>Test case: No changes are made to the Problem.<br>
+Expected: The <em>Edit Problem</em> button should be disabled and not clickable.</p>
+</li>
+<li>
+<p>Test case: Some valid changes are made and the user clicks on <em>Edit Problem</em> button.<br>
+Expected: Name of the edited problem shown in the status message. Field updates are reflected in the Display, Details and Plan tabs. <em>Edit Problem</em> button is disabled.</p>
+</li>
+<li>
+<p>Test case: Some invalid changes are made and the user clicks on <em>Edit Problem</em> button.<br>
+Expected: Error details shown in the status message. Field updates are not reflected in the Display and Plan tabs, and Details Tab remains in edit mode. <em>Edit Problem</em> button is not disabled.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-problem-from-gui"><a class="link" href="#deleting-problem-from-gui">F.18. Deleting Problem from GUI</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a Problem from GUI</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least one problem exists and it is opened in a Details Tab.</p>
+</li>
+<li>
+<p>Test case: User clicks on the Delete button.<br>
+Expected: A warning dialog shows up with a <em>Confirm</em> and <em>Cancel</em> button.</p>
+</li>
+<li>
+<p>Test case: User clicks on the Delete button then clicks <em>Confirm</em> on the warning dialog.<br>
+Expected: The Warning dialog and Details tab is closed, and the problem is removed from the plan as well as Display and Plan tabs.</p>
+</li>
+<li>
+<p>Test case: User clicks on the Delete button then clicks <em>Cancel</em> on the warning dialog.<br>
+Expected: The Warning dialog is closed and no other changes are made.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-plan-from-gui"><a class="link" href="#editing-plan-from-gui">F.19. Editing Plan from GUI</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a Plan from GUI</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least one plan exists and it is opened in a Details Tab.</p>
+</li>
+<li>
+<p>Test case: No changes are made to the Plan.<br>
+Expected: The <em>Edit Plan</em> button should be disabled and not clickable.</p>
+</li>
+<li>
+<p>Test case: Some valid changes are made and the user clicks on <em>Edit Plan</em> button.<br>
+Expected: Name of the edited plan shown in the status message. Field updates are reflected in the Display, Details and Plan tabs. <em>Edit Plan</em> button is disabled.</p>
+</li>
+<li>
+<p>Test case: Some invalid changes are made and the user clicks on <em>Edit Problem</em> button.<br>
+Expected: Error details shown in the status message. Field updates are not reflected in the Display and Plan tabs, and Details Tab remains in edit mode. <em>Edit Plan</em> button is not disabled.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-plan-from-gui"><a class="link" href="#deleting-plan-from-gui">F.20. Deleting Plan from GUI</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Editing a Plan from GUI</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least one plan exists and it is opened in a Details Tab.</p>
+</li>
+<li>
+<p>Test case: User clicks on the Delete button.<br>
+Expected: A warning dialog shows up with a <em>Confirm</em> and <em>Cancel</em> button.</p>
+</li>
+<li>
+<p>Test case: User clicks on the Delete button then clicks <em>Confirm</em> on the warning dialog.<br>
+Expected: The Warning dialog and Details tab is closed, and the plan is removed from the Display and Plan tabs.</p>
+</li>
+<li>
+<p>Test case: User clicks on the Delete button then clicks <em>Cancel</em> on the warning dialog.<br>
+Expected: The Warning dialog is closed and no other changes are made.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="switching-tabs-from-gui"><a class="link" href="#switching-tabs-from-gui">F.21. Switching tabs from GUI</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Switching between Display Tabs</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Currently at the first display tab (Problem).</p>
+</li>
+<li>
+<p>Test case: Click on <code>Training Plans</code> Tab<br>
+Expected: The display tab is now at the <code>Training Plans</code> tab.</p>
+</li>
+<li>
+<p>Test case: Click on <code>Tags</code> Tab<br>
+Expected: The display tab is now at the <code>Tags</code> tab.</p>
+</li>
+<li>
+<p>Test case: Click on <code>Findrules</code> Tab<br>
+Expected: The display tab is now at the <code>Findrules</code> tab.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Switching between Details Tabs</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least 2 Details Tabs are opened. Currently at the first details tab.</p>
+</li>
+<li>
+<p>Test case: Click on the same Tab<br>
+Expected: No changes are made.</p>
+</li>
+<li>
+<p>Test case: Click on a different tab<br>
+Expected: The display tab is now at the tab that is clicked on.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="opening-a-new-tab-from-gui"><a class="link" href="#opening-a-new-tab-from-gui">F.22. Opening a new tab from GUI</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Opening a new Details Tabs for a Problem</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There is at least 1 problem in the Display Tab currently.</p>
+</li>
+<li>
+<p>Test case: The user double clicks on a problem in the display tab.<br>
+Expected: The problem is added as the last tab of the Details Tabs and is selected.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Opening an existing Details Tabs for a Problem</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least 1 problem exists and the problem is already in a details tab.</p>
+</li>
+<li>
+<p>Test case: The user double clicks on a problem in the display tab that is already in a details tab.
+Expected: The tab is switched to details tab containing the problem.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Opening a new Details Tabs for a Plan</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There is at least 1 problem in the Display Tab currently.</p>
+</li>
+<li>
+<p>Test case: The user double clicks on a problem in the display tab.<br>
+Expected: The plan is added as the last tab of the Details Tabs and is selected. The content of the plan tab is likewise changed to the planned being clicked on.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Opening an existing Details Tabs for a Plan</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least 1 plan exists and the plan is already in a details tab.</p>
+</li>
+<li>
+<p>Test case: The user double clicks on a plan in the display tab that is already in a details tab.
+Expected: The tab is switched to details tab containing the plan.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="closing-an-existing-tab-from-gui"><a class="link" href="#closing-an-existing-tab-from-gui">F.23. Closing an existing tab from GUI</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: At least one Details Tab exist.</p>
+</li>
+<li>
+<p>Test case: User clicks on the <code>x</code> button next to the tab.<br>
+Expected: The Details tab corresponding to that tab is closed.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 17:30:42 UTC</div></div></div></body></html>
