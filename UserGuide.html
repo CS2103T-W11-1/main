@@ -335,7 +335,7 @@ Format: <code>listprob</code></p>
 <div class="sect3">
 <h4 id="sorting-problems-code-sortprob-code"><a class="link" href="#sorting-problems-code-sortprob-code">4.1.5. Sorting problems: <code>sortprob</code></a></h4>
 <div class="paragraph">
-<p>Sorts the current list of results by a specified order and direction.<br>
+<p>Sorts the current list of <strong>problems</strong> by a specified method and order.<br>
 Format: <code>sortprob m/METHOD [ord/ORDER]</code></p>
 </div>
 <div class="ulist">
@@ -391,6 +391,12 @@ Sorts the current list of problems from lowest to highest difficulty.</p>
 <div class="paragraph">
 <p>Finds problems fulfilling all provided constraints.<br>
 Format: <code>findprob [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/findprob_1.png" alt="findprob 1" width="70%">
+</div>
+<div class="title">Figure 2. The result of <code>findprob</code> is shown in the problems list</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -540,6 +546,12 @@ Returns any problem from <code>Kattis</code> that&#8217;s authored by <code>Hent
 Format: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code><br>
 Alias: <code>afr</code></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/find_rule_1.png" alt="find rule 1" width="70%">
+</div>
+<div class="title">Figure 3. Information related to find rules is displayed in the "Find Rules" panel</div>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -547,7 +559,8 @@ Alias: <code>afr</code></p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The feature of storing/applying a problem-finding rule is complementary to the plan and tag feature: both tag and plan requires you to categorize problems one by one manually. If you simply want to "keep a list of problems" that fulfills certain conditions, say "algorithm questions of medium difficulty" or "graph theory questions from Kattis", you may store these rules using <code>addfindrule</code> and <code>apply</code> them later. Unlike plans, as you add new questions to AlgoBase, so long as the new questions fulfill the search rule, they will show up if you <code>apply</code> that rule.
+If you want to "keep a list of problems" that fulfills certain conditions, say "graph theory questions from Kattis", you may store these rules using <code>addfindrule</code> and <code>apply</code> them later.<br>
+Unlike plans, as you add new questions to AlgoBase, so long as the new questions fulfill the search rule, they will show up if you <code>apply</code> that rule.
 </td>
 </tr>
 </table>
@@ -559,7 +572,7 @@ The feature of storing/applying a problem-finding rule is complementary to the p
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The rules for constraints are the same as those described in <code>findprob</code> command.
+The rules for constraints are the same as those described in <code>findprob</code> command. Note that keywords in a find rule may be less restrictive than the fields (e.g. name, source, etc.).
 </td>
 </tr>
 </table>
@@ -610,11 +623,6 @@ You can find problem-finding rules that you can <code>apply</code> with in the "
 </td>
 </tr>
 </table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/apply_tip_find_rule_tab.png" alt="apply tip find rule tab">
-</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1127,7 +1135,7 @@ Format: <code>setplan PLAN_INDEX</code></p>
 <div class="content">
 <img src="images/gui/TabsOverview1.png" alt="TabsOverview1" width="70%">
 </div>
-<div class="title">Figure 2. Types of tabs and their usage</div>
+<div class="title">Figure 4. Types of tabs and their usage</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1181,7 +1189,7 @@ Display Tabs cannot be closed.
 <div class="content">
 <img src="images/gui/EditPlanUiAction0Annotated.png" alt="EditPlanUiAction0Annotated" width="70%">
 </div>
-<div class="title">Figure 3. Plan with name "Data Structures" is opened.</div>
+<div class="title">Figure 5. Plan with name "Data Structures" is opened.</div>
 </div>
 <div class="paragraph">
 <p>Step 2: Make changes to the problem / plan by editing the fields directly.</p>
@@ -1190,7 +1198,7 @@ Display Tabs cannot be closed.
 <div class="content">
 <img src="images/gui/EditPlanUiAction1Annotated.png" alt="EditPlanUiAction1Annotated" width="70%">
 </div>
-<div class="title">Figure 4. The name and start date of the plan are modified.</div>
+<div class="title">Figure 6. The name and start date of the plan are modified.</div>
 </div>
 <div class="paragraph">
 <p>Step 3: Save changes to the problem / plan by clicking on the <em>Edit Problem</em> / <em>Edit Plan</em> button.</p>
@@ -1199,7 +1207,7 @@ Display Tabs cannot be closed.
 <div class="content">
 <img src="images/gui/EditPlanUiAction2Annotated.png" alt="EditPlanUiAction2Annotated" width="70%">
 </div>
-<div class="title">Figure 5. The plan is successfully edited.</div>
+<div class="title">Figure 7. The plan is successfully edited.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1226,7 +1234,7 @@ The <em>Edit Plan</em> Button cannot be clicked if there are no changes made to 
 <div class="content">
 <img src="images/gui/DeleteProblemUiAction0Annotated.png" alt="DeleteProblemUiAction0Annotated" width="70%">
 </div>
-<div class="title">Figure 6. Problem with name "Sequences" is opened.</div>
+<div class="title">Figure 8. Problem with name "Sequences" is opened.</div>
 </div>
 <div class="paragraph">
 <p>Step 2: Click on the red <em>Delete Problem</em> / <em>Delete Plan</em> button at the bottom right.
@@ -1237,7 +1245,7 @@ Click on the <em>"confirm"</em> button.</p>
 <div class="content">
 <img src="images/gui/DeleteProblemUiAction1Annotated.png" alt="DeleteProblemUiAction1Annotated" width="70%">
 </div>
-<div class="title">Figure 7. Warning Dialog to confirm problem being deleted.</div>
+<div class="title">Figure 9. Warning Dialog to confirm problem being deleted.</div>
 </div>
 <div class="paragraph">
 <p>Step 3: Click on <em>Confirm</em>.</p>
@@ -1246,7 +1254,7 @@ Click on the <em>"confirm"</em> button.</p>
 <div class="content">
 <img src="images/gui/DeleteProblemUiAction2Annotated.png" alt="DeleteProblemUiAction2Annotated" width="70%">
 </div>
-<div class="title">Figure 8. The problem is successfully deleted.</div>
+<div class="title">Figure 10. The problem is successfully deleted.</div>
 </div>
 </div>
 <div class="sect3">
@@ -1255,7 +1263,7 @@ Click on the <em>"confirm"</em> button.</p>
 <div class="content">
 <img src="images/gui/SwitchTabCommand.png" alt="SwitchTabCommand" width="70%">
 </div>
-<div class="title">Figure 9. Demonstration of the <code>SwitchTab</code> command</div>
+<div class="title">Figure 11. Demonstration of the <code>SwitchTab</code> command</div>
 </div>
 <div class="paragraph">
 <p>Switches between tabs in the GUI<br>
@@ -1305,7 +1313,7 @@ Format: <code>st tt/TAB_TYPE i/TAB_INDEX</code></p>
 <div class="content">
 <img src="images/gui/OpenTabCommand.png" alt="OpenTabCommand" width="70%">
 </div>
-<div class="title">Figure 10. Demonstration of the <code>OpenTab</code> command</div>
+<div class="title">Figure 12. Demonstration of the <code>OpenTab</code> command</div>
 </div>
 <div class="paragraph">
 <p>Opens a new <strong>Details</strong> tab in the GUI<br>
@@ -1694,4 +1702,4 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 07:22:14 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 09:33:29 UTC</div></div></div></body></html>

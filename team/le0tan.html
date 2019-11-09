@@ -49,17 +49,17 @@
 <p>This is a full-stack feature involving all the components of <strong>AlgoBase</strong> from <code>Logic</code> to <code>Model</code> to <code>Storage</code> to <code>UI</code>, consisting of roughly 3000 lines of functional code and more than 2000 lines of testing code.</p>
 </li>
 <li>
-<p><code>find</code> can search on almost all fields of a problem while <code>sort</code> provides 10 combinations of sorting order.</p>
+<p><code>findprob</code> can search on almost all fields of a problem while <code>sortprob</code> provides 10 combinations of sorting order.</p>
 </li>
 <li>
 <p>It requires an in-depth analysis of the overall architecture of <strong>AlgoBase</strong> because</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The original implementation of <code>find</code> in AddressBook accepts only one search constraint (i.e. the name), but in <strong>AlgoBase</strong> we need to support combination of arbitrary (non-zero) number of search constraints.</p>
+<p>The original implementation of <code>findprob</code> in AddressBook accepts only one search constraint (i.e. the name), but in <strong>AlgoBase</strong> we need to support combination of arbitrary (non-zero) number of search constraints.</p>
 </li>
 <li>
-<p>The design of AB3 only considers "filtering" problems, thus it used <code>FilteredList</code> to support <code>find</code> command. However, <strong>AlgoBase</strong> needs to support both <code>find</code> and <code>sort</code>. We need to redesign the way AB3 exposes the processed observable list to the UI so that the list accepts both a predicate and a comparator.</p>
+<p>The design of AB3 only considers "filtering" problems, thus it used <code>FilteredList</code> to support <code>findprob</code> command. However, <strong>AlgoBase</strong> needs to support both <code>findprob</code> and <code>sortprob</code>. We need to redesign the way AB3 exposes the processed observable list to the UI so that the list accepts both a predicate and a comparator.</p>
 </li>
 </ul>
 </div>
@@ -87,7 +87,7 @@
 <p>What it does: allows the user to navigate to previous commands using ↑ and ↓ keyboard shortcut.</p>
 </li>
 <li>
-<p>Justification: This feature makes <code>addfindrule</code> more useful - the user can first check if their problem find rule is working as expected by executing it using <code>find</code> command, then press ↑ to restore the command text, change the command word to <code>addfindrule</code> and assign a name to the added find rule.</p>
+<p>Justification: This feature makes <code>addfindrule</code> more useful - the user can first check if their problem find rule is working as expected by executing it using <code>findprob</code> command, then press ↑ to restore the command text, change the command word to <code>addfindrule</code> and assign a name to the added find rule.</p>
 </li>
 <li>
 <p>Relevant pull request
@@ -106,7 +106,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> (1 release) on GitHub</p>
+<p>Managed releases <code>v1.3</code>, <code>v1.3.4</code>, <code>v1.4</code> (3 releases) on GitHub</p>
 </li>
 </ul>
 </div>
@@ -211,7 +211,7 @@
 <div class="sect3">
 <h4 id="sorting-problems-code-sortprob-code"><a class="link" href="#sorting-problems-code-sortprob-code">Sorting problems: <code>sortprob</code></a></h4>
 <div class="paragraph">
-<p>Sorts the current list of results by a specified order and direction.<br>
+<p>Sorts the current list of <strong>problems</strong> by a specified method and order.<br>
 Format: <code>sortprob m/METHOD [ord/ORDER]</code></p>
 </div>
 <div class="ulist">
@@ -264,6 +264,12 @@ Sorts the current list of problems from lowest to highest difficulty.</p>
 <div class="paragraph">
 <p>Finds problems fulfilling all provided constraints.<br>
 Format: <code>findprob [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/findprob_1.png" alt="findprob 1" width="70%">
+</div>
+<div class="title">Figure 1. The result of <code>findprob</code> is shown in the problems list</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -413,6 +419,12 @@ Returns any problem from <code>Kattis</code> that&#8217;s authored by <code>Hent
 Format: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]&#8230;&#8203;</code><br>
 Alias: <code>afr</code></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/find_rule_1.png" alt="find rule 1" width="70%">
+</div>
+<div class="title">Figure 2. Information related to find rules is displayed in the "Find Rules" panel</div>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -420,7 +432,8 @@ Alias: <code>afr</code></p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The feature of storing/applying a problem-finding rule is complementary to the plan and tag feature: both tag and plan requires you to categorize problems one by one manually. If you simply want to "keep a list of problems" that fulfills certain conditions, say "algorithm questions of medium difficulty" or "graph theory questions from Kattis", you may store these rules using <code>addfindrule</code> and <code>apply</code> them later. Unlike plans, as you add new questions to AlgoBase, so long as the new questions fulfill the search rule, they will show up if you <code>apply</code> that rule.
+If you want to "keep a list of problems" that fulfills certain conditions, say "graph theory questions from Kattis", you may store these rules using <code>addfindrule</code> and <code>apply</code> them later.<br>
+Unlike plans, as you add new questions to AlgoBase, so long as the new questions fulfill the search rule, they will show up if you <code>apply</code> that rule.
 </td>
 </tr>
 </table>
@@ -432,7 +445,7 @@ The feature of storing/applying a problem-finding rule is complementary to the p
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The rules for constraints are the same as those described in <code>findprob</code> command.
+The rules for constraints are the same as those described in <code>findprob</code> command. Note that keywords in a find rule may be less restrictive than the fields (e.g. name, source, etc.).
 </td>
 </tr>
 </table>
@@ -483,11 +496,6 @@ You can find problem-finding rules that you can <code>apply</code> with in the "
 </td>
 </tr>
 </table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/apply_tip_find_rule_tab.png" alt="apply tip find rule tab">
-</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -545,6 +553,37 @@ Deletes the 2nd find rule in the displayed list.</p>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">Viewing help : <code>help</code></a></h4>
+<div class="paragraph">
+<p>List all possible commands or find command usage using the command word.<br>
+Format: <code>help [COMMAND_WORD]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>help</code>
+Shows all possible commands.</p>
+</li>
+<li>
+<p><code>help addprob</code>
+Shows command usage for <code>addprob</code> command.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>help</code> command only searches commands' full command word. (i.e. aliases is not supported by <code>help</code>)
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -575,7 +614,7 @@ Deletes the 2nd find rule in the displayed list.</p>
 <div class="content">
 <img src="../images/savefindrule/AddFindRuleActivityDiagram.png" alt="AddFindRuleActivityDiagram" width="70%">
 </div>
-<div class="title">Figure 1. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 3. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
@@ -642,7 +681,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="../images/savefindrule/AddFindRuleClassDiagram.png" alt="AddFindRuleClassDiagram" width="70%">
 </div>
-<div class="title">Figure 2. Class Diagram for Add Find Rule Feature</div>
+<div class="title">Figure 4. Class Diagram for Add Find Rule Feature</div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes the request when user types in <code>addfindrule rule1 n/Sequences</code>:</p>
@@ -651,7 +690,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="../images/savefindrule/HighLevelAddFindRuleSequenceDiagram.png" alt="HighLevelAddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 3. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
+<div class="title">Figure 5. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
@@ -660,7 +699,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="../images/savefindrule/AddFindRuleSequenceDiagram.png" alt="AddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 4. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 6. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 </div>
 </div>
@@ -708,8 +747,10 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <h3 id="more-contributions-to-the-developer-guide"><a class="link" href="#more-contributions-to-the-developer-guide">More contributions to the Developer Guide</a></h3>
 <div class="paragraph">
 <p><a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#Design-Model">Design - Model</a><br>
-<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#find-problem-feature">Implementation - Find Feature</a></p>
+<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#find-problem-feature">Implementation - Find Feature</a><br>
+<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#use-cases">Use cases for find and sort</a><br>
+<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#non-functional-requirements">Non-functional requirements</a></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 07:22:14 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 09:33:29 UTC</div></div></div></body></html>
