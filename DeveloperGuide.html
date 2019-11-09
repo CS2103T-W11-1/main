@@ -44,8 +44,13 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-problems">F.2. Deleting Problems</a></li>
-<li><a href="#plans">F.3. Plans</a></li>
-<li><a href="#saving-data">F.4. Saving Data</a></li>
+<li><a href="#sorting-problems">F.3. Sorting problems</a></li>
+<li><a href="#finding-problems">F.4. Finding problems</a></li>
+<li><a href="#adding-problem-finding-rules">F.5. Adding problem-finding rules</a></li>
+<li><a href="#applying-problem-finding-rules">F.6. Applying problem-finding rules</a></li>
+<li><a href="#deleting-problem-finding-rules">F.7. Deleting problem-finding rules</a></li>
+<li><a href="#plans">F.8. Plans</a></li>
+<li><a href="#saving-data">F.9. Saving Data</a></li>
 </ul>
 </li>
 </ul>
@@ -3082,7 +3087,118 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="plans"><a class="link" href="#plans">F.3. Plans</a></h3>
+<h3 id="sorting-problems"><a class="link" href="#sorting-problems">F.3. Sorting problems</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>sortprob m/name</code><br>
+Expected: The current problem list is sorted with respect to names in ascending order.</p>
+</li>
+<li>
+<p>Test case: <code>sortprob m/difficulty ord/descend</code><br>
+Expected: The current problem list is sorted with respect to difficulty in descending order.</p>
+</li>
+<li>
+<p>Test case: <code>sortprob m/diff</code><br>
+Expected: The current problem list remains unchanged and an error is thrown to inform the user that the method name is incorrect.</p>
+</li>
+<li>
+<p>Test case: <code>sortprob m/diff m/name</code><br>
+Expected: The current problem list is sorted with respect to name in ascending order.</p>
+</li>
+<li>
+<p>Test case: <code>sortprob m/name m/diff</code><br>
+Expected: The current problem list remains unchanged and an error is thrown to inform the user that the method name is incorrect.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-problems"><a class="link" href="#finding-problems">F.4. Finding problems</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Finding problems that fulfills certain constraints</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>findprob n/sort</code><br>
+Expected: All problems whose name includes “sort” (case-insensitive) is listed in the “Problems” panel.</p>
+</li>
+<li>
+<p>Test case: <code>findprob</code><br>
+Expected: An error is thrown and the user is informed that at least one constraint should be provided.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-problem-finding-rules"><a class="link" href="#adding-problem-finding-rules">F.5. Adding problem-finding rules</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: there is no find rules named “rule1” or “rule2” or “rule3” in the existing AlgoBase, and find rules with a certain name is never added more than once.</p>
+</li>
+<li>
+<p>Test case: <code>addfindrule rule1 n/Sequences</code><br>
+Expected: A new find rule named “rule1” is added and the new rule appears in the “Find Rules” panel.</p>
+</li>
+<li>
+<p>Test case: <code>afr rule2 n/sequences</code><br>
+Expected: A new find rule named “rule2” is added and the new rule appears in the “Find Rules” panel.</p>
+</li>
+<li>
+<p>Test case: <code>afr rule3</code><br>
+Expected: An error is thrown and the user is informed that at least one constraint should be provided.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="applying-problem-finding-rules"><a class="link" href="#applying-problem-finding-rules">F.6. Applying problem-finding rules</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: there are four find rules in the existing AlgoBase.</p>
+</li>
+<li>
+<p>Test case: <code>apply 1</code><br>
+Expected: The first find rule is applied, the problems in the “Problems” panel are updated accordingly.</p>
+</li>
+<li>
+<p>Test case: <code>apply 0</code><br>
+Expected: An error is thrown and the user is informed that the command format is invalid.</p>
+</li>
+<li>
+<p>Test case: <code>apply 100</code><br>
+Expected: An error is thrown and the user is informed that the provided find rule index is invalid.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-problem-finding-rules"><a class="link" href="#deleting-problem-finding-rules">F.7. Deleting problem-finding rules</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: there are four find rules in the existing AlgoBase.</p>
+</li>
+<li>
+<p>Test case: <code>deletefindrule 1</code><br>
+Expected: The first find rule is deleted and the find rules list is updated.</p>
+</li>
+<li>
+<p>Test case: <code>dfr 1</code><br>
+Expected: The first find rule is deleted and the find rules list is updated.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="plans"><a class="link" href="#plans">F.8. Plans</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3156,7 +3272,7 @@ Expected: No plan is deleted. Error message is shown. Plan index must be a valid
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.4. Saving Data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">F.9. Saving Data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3178,4 +3294,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 14:57:40 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 15:04:17 UTC</div></div></div></body></html>
