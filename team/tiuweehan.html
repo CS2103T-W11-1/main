@@ -34,25 +34,21 @@ It is written in Java, and has about 20 kLoC.</p>
 where they can edit and delete said items in the GUI in a user-friendly manner.</p>
 </li>
 <li>
-<p>Justifications:</p>
+<p>Justifications: As our target users are Computer Science students preparing for technical interviews, they would likely want to manage multiple plans and problems concurrently. We decided to introduce tabbing to address this need, as it is a convenient, intuitive and user-friendly solution. Furthermore, while the command line is fast for typing short commands, it might not be ideal in certain cases. For example, it would be extremely tedious and time consuming to edit large amounts of text from the command line. Hence, I implemented the ability to edit a problem / plan from within the tabs. Not having to deal with cumbersome details tremendously improves the overall user experience our user – it reduces their frustration and maximises the time they spend practicing for their interviews</p>
+</li>
+<li>
+<p>Highlights:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>As our target users are Computer Science students preparing for technical interviews, they would likely want to manage multiple plans and problems concurrently.
-Hence, it is important to provide an avenue for them to multitask and to switch between tasks easily. After much consideration, we decided to introduce tabbing to address this need,
-as it is a convenient, intuitive and user-friendly solution – Every problem and plan is just a click away, and is self-explanatory given its prevalent in many applications today.</p>
+<p>This enhancement introduces a new high level component <code>UiLogic</code>, which handle events, or <code>UiActions</code>, triggered by the user in the GUI.
+It was challenging as logic of the Command line is primarily synchronous while the GUI is event-driven. Integrating the 2 architectural styles cleanly required an in-depth evaluation of design alternatives.</p>
 </li>
 <li>
-<p>Furthermore, while the command line is fast for typing short commands, it might not be ideal in certain cases.
-For example, if the user is editing large amounts of text (e.g. The description of a problem), it would be extremely tedious and time consuming to edit from the command line.
-Hence, I implemented the ability to edit a problem / plan from within the tabs. Not having to deal with cumbersome details tremendously improves the overall user experience our user – it reduces their frustration and maximises the time they spend practicing for their interviews.</p>
+<p>Furthermore, this feature transcends across all 5 components of AlgoBase: <code>UI</code>, <code>Logic</code>, <code>UiLogic</code>, <code>Model</code> and <code>Storage</code>, making it a full-stack development consisting of &gt; 4000 lines of functional code and &gt; 1500 lines of tests.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Highlights: This enhancement introduces a new high level component <code>UiLogic</code>, which handle events, or <code>UiActions</code>, triggered by the user in the GUI.
-It was challenging as logic of the Command line is primarily synchronous while the GUI is event-driven, and integrating the 2 architectural styles required an in-depth evaluation of design alternatives.</p>
 </li>
 <li>
 <p>Relevant pull requests:
@@ -139,6 +135,20 @@ Hence, I decided to implement a command line version for tab management to optim
 <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/116">#116</a>
 <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/117">#117</a></p>
 </li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class:
+<a href="https://github.com/tiuweehan/ped">Reported 18 bugs in PED</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Integrated a new Github plugin (Travis-CI) to the team repo</p>
+</li>
 </ul>
 </div>
 </li>
@@ -162,35 +172,6 @@ Hence, I decided to implement a command line version for tab management to optim
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>AlgoBase (AB) is a one-stop management platform for Computer Science students preparing for technical interviews.
-<strong>With AlgoBase, say goodbye to tough interview days!</strong></p>
-</div>
-<div class="paragraph">
-<p>Tired of having to manually track your progress across multiple websites like Kattis, Hackerrank and Leetcode?
-AlgoBase allows you to pull practice questions from these online repositories (and more!)
-and consolidates them into a single application.</p>
-</div>
-<div class="paragraph">
-<p>Do you have to prepare for mutliple interviews, and want to customize your preparations for each of them?
-We got you covered! AlgoBase also allows you to create highly flexible training plans to tailor to your individual needs.</p>
-</div>
-<div class="paragraph">
-<p>Are you a guru that has completed many problems, and want a powerful way to filter through your problems? No worries!
-AlgoBase comes equipped with a comprehensive tag system and a flexible filtering mechanism for your needs.</p>
-</div>
-<div class="paragraph">
-<p>Are you used to the speed of Command Line tools and find that GUI applications are too slow? Not a problem! AlgoBase is designed for those who prefer to use a desktop app for managing algorithm problems,
-equipped with a robust Command Line Interface (CLI) while still maintaining the benefits of a Graphical User Interface (GUI).</p>
-</div>
-<div class="paragraph">
-<p>Interested? Jump to the Section 2 to get an "Overview" of the AlgoBase, or Section 3 “Quick Start” to get started with AlgoBase!</p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -227,83 +208,33 @@ Upon completing a task, users can mark it as done, which contributes to the prog
 </ul>
 </div>
 <div class="sect2">
-<h3 id="editing-and-deleting-from-the-graphical-user-interface"><a class="link" href="#editing-and-deleting-from-the-graphical-user-interface">Editing and Deleting from the Graphical User Interface</a></h3>
+<h3 id="graphical-user-interface-gui-enhancements"><a class="link" href="#graphical-user-interface-gui-enhancements">Graphical User Interface (GUI) Enhancements</a></h3>
 <div class="paragraph">
-<p>AlgoBase currently supports editing Problems and Plans from the GUI with an intuitive layout.</p>
+<p>AlgoBase currently supports several GUI features with an intuitive layout, including the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Opening, Closing and Switching between Tabs</p>
+</li>
+<li>
+<p>Editing a Problem / Plan</p>
+</li>
+<li>
+<p>Deleting a Problem / Plan</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
-<h4 id="editing-a-problem-plan"><a class="link" href="#editing-a-problem-plan">Editing a Problem / Plan</a></h4>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/EditPlanUiAction0.png" alt="EditPlanUiAction0" width="70%">
-</div>
-<div class="title">Figure 2. Plan with name "Data Structures" is opened.</div>
-</div>
+<h4 id="tabs"><a class="link" href="#tabs">Tabs</a></h4>
 <div class="paragraph">
-<p>Step 1: Select the problem / plan you want to delete by double clicking on it.</p>
+<p>There are 3 types of tabs in AlgoBase. 2 of them, Display and Details tabs, are illustrated in the figure below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/gui/EditPlanUiAction1.png" alt="EditPlanUiAction1" width="70%">
+<img src="../images/gui/TabsOverview1.png" alt="TabsOverview1" width="70%">
 </div>
-<div class="title">Figure 3. The name and start date of the plan are modified.</div>
-</div>
-<div class="paragraph">
-<p>Step 2: Make changes to the problem / plan by editing the fields directly.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/EditPlanUiAction2.png" alt="EditPlanUiAction2" width="70%">
-</div>
-<div class="title">Figure 4. The plan is successfully edited.</div>
-</div>
-<div class="paragraph">
-<p>Step 3: Save changes to the problem by clicking on the <em>"Edit Problem"</em> / <em>"Edit Plan"</em> button.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="deleting-a-problem-plan"><a class="link" href="#deleting-a-problem-plan">Deleting a Problem / Plan</a></h4>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/DeleteProblemUiAction0.png" alt="DeleteProblemUiAction0" width="70%">
-</div>
-<div class="title">Figure 5. Problem with name "Sequences" is opened.</div>
-</div>
-<div class="paragraph">
-<p>Step 1: Select the problem / plan you want to delete by double clicking on it.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/DeleteProblemUiAction1.png" alt="DeleteProblemUiAction1" width="70%">
-</div>
-<div class="title">Figure 6. Warning Dialog to confirm problem being deleted.</div>
-</div>
-<div class="paragraph">
-<p>Step 2: Click on the red <em>"Delete Problem"</em> / <em>"Delete Plan"</em> button at the bottom right.
-To prevent accidental deletion, a warning dialog will appear to confirm if you would like to delete the item.
-Click on the <em>"confirm"</em> button.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/DeleteProblemUiAction2.png" alt="DeleteProblemUiAction2" width="70%">
-</div>
-<div class="title">Figure 7. The problem is successfully deleted.</div>
-</div>
-<div class="paragraph">
-<p>Step 4: Click on <em>Confirm</em>.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="tabs"><a class="link" href="#tabs">Tabs</a></h3>
-<div class="paragraph">
-<p>There are 2 types of tabs in AlgoBase: Display and Details tabs, as seen in the figure below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/TabsOverview.png" alt="TabsOverview" width="70%">
-</div>
-<div class="title">Figure 8. Types of tabs highlighted in Orange</div>
+<div class="title">Figure 2. Types of tabs and their usage</div>
 </div>
 <div class="ulist">
 <ul>
@@ -316,125 +247,113 @@ Click on the <em>"confirm"</em> button.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Much like tabs you see in other applications, tabs in AlgoBase work the same way:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Switch Tab – Click on a tab to switch tabs</p>
+</li>
+<li>
+<p>Open Tab – Double click on an item in the Display tab to open it in the Details tab</p>
+</li>
+<li>
+<p>Close Tab – Click on the <code>x</code> button next to a Details tab to close it.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Display Tabs cannot be closed.
+</td>
+</tr>
+</table>
+</div>
+</div>
 <div class="sect3">
-<h4 id="switching-tabs-code-switchtab-code"><a class="link" href="#switching-tabs-code-switchtab-code">Switching Tabs: <code>switchtab</code></a></h4>
+<h4 id="editing-a-problem-plan"><a class="link" href="#editing-a-problem-plan">Editing a Problem / Plan</a></h4>
+<div class="paragraph">
+<p>The following steps show how a user can edit problems or plans from the GUI.</p>
+</div>
+<div class="paragraph">
+<p>Step 1: Select the problem / plan you want to delete by double clicking on it.</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/gui/SwitchTabCommand.png" alt="SwitchTabCommand" width="70%">
+<img src="../images/gui/EditPlanUiAction0Annotated.png" alt="EditPlanUiAction0Annotated" width="70%">
 </div>
-<div class="title">Figure 9. Demonstration of the <code>SwitchTab</code> command</div>
-</div>
-<div class="paragraph">
-<p>Switches between tabs in the GUI<br>
-Format: <code>switchtab tt/TAB_TYPE i/TAB_INDEX</code><br>
-Format: <code>st tt/TAB_TYPE i/TAB_INDEX</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Tab Type</p>
-<div class="ulist">
-<ul>
-<li>
-<p>can be <strong>display</strong> or <strong>details</strong></p>
-</li>
-<li>
-<p>Alternatively, <strong>display</strong> and <strong>details</strong> can be replaced by <strong>1</strong> and <strong>2</strong> respectively</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<div class="title">Figure 3. Plan with name "Data Structures" is opened.</div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Step 2: Make changes to the problem / plan by editing the fields directly.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>switchtab tt/display i/3</code> – Switches to the third <strong>display</strong> tab (i.e. <em>plans</em> tab).</p>
-</li>
-<li>
-<p><code>st tt/1 i/3</code> – Same effects as the previous command but in a shorter format.</p>
-</li>
-<li>
-<p><code>switchtab tt/details i/3</code> – Switches to the third <strong>details</strong> tab</p>
-</li>
-<li>
-<p><code>st tt/2 i/3</code> – Same effects as the previous command but in a shorter format.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="opening-tabs-code-opentab-code"><a class="link" href="#opening-tabs-code-opentab-code">Opening Tabs: <code>opentab</code></a></h4>
 <div class="imageblock">
 <div class="content">
-<img src="../images/gui/OpenTabCommand.png" alt="OpenTabCommand" width="70%">
+<img src="../images/gui/EditPlanUiAction1Annotated.png" alt="EditPlanUiAction1Annotated" width="70%">
 </div>
-<div class="title">Figure 10. Demonstration of the <code>OpenTab</code> command</div>
-</div>
-<div class="paragraph">
-<p>Opens a new <strong>Details</strong> tab in the GUI<br>
-Format: <code>opentab m/MODEL_TYPE i/MODEL_INDEX</code><br>
-Format: <code>ot m/MODEL_TYPE i/MODEL_INDEX</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Model Type</p>
-<div class="ulist">
-<ul>
-<li>
-<p>can be <em>problem</em>, <em>tag</em>, <em>plan</em> and <em>findrule</em></p>
-</li>
-<li>
-<p>Alternatively, <em>problem</em>, <em>tag</em>, <em>plan</em> and <em>findrule</em> can be replaced by <em>1</em>, <em>2</em>, <em>3</em> and <em>4</em> respectively</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<div class="title">Figure 4. The name and start date of the plan are modified.</div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Step 3: Save changes to the problem / plan by clicking on the <em>Edit Problem</em> / <em>Edit Plan</em> button.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>opentab m/problem i/2</code> – Opens the 2nd problem in the list of problems.</p>
-</li>
-<li>
-<p><code>ot m/1 i/2</code> – Same effects as the previous command but in a shorter format.</p>
-</li>
-<li>
-<p><code>opentab m/plan i/3</code> – Opens the 3nd plan in the list of plans.</p>
-</li>
-<li>
-<p><code>ot m/3 i/3</code> – Same effects as the previous command but in a shorter format.</p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="../images/gui/EditPlanUiAction2Annotated.png" alt="EditPlanUiAction2Annotated" width="70%">
+</div>
+<div class="title">Figure 5. The plan is successfully edited.</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <em>Edit Plan</em> Button cannot be clicked if there are no changes made to the plan.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="closing-tabs-code-closetab-code"><a class="link" href="#closing-tabs-code-closetab-code">Closing Tabs: <code>closetab</code></a></h4>
+<h4 id="deleting-a-problem-plan"><a class="link" href="#deleting-a-problem-plan">Deleting a Problem / Plan</a></h4>
 <div class="paragraph">
-<p>Closes a <strong>details</strong> tab in the GUI<br>
-Format: <code>closetab i/DETAILS_TAB_INDEX</code><br>
-Format: <code>ct i/DETAILS_TAB_INDEX</code></p>
+<p>The following steps show how a user can delete problems or plans from the GUI.</p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Step 1: Select the problem / plan you want to delete by double clicking on it.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>closetab i/3</code> – Closes the third <strong>details</strong> tab</p>
-</li>
-<li>
-<p><code>ct i/1</code> – Same effects as the previous command but in a shorter format.</p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="../images/gui/DeleteProblemUiAction0Annotated.png" alt="DeleteProblemUiAction0Annotated" width="70%">
+</div>
+<div class="title">Figure 6. Problem with name "Sequences" is opened.</div>
+</div>
+<div class="paragraph">
+<p>Step 2: Click on the red <em>Delete Problem</em> / <em>Delete Plan</em> button at the bottom right.
+To prevent accidental deletion, a warning dialog will appear to confirm if you would like to delete the item.
+Click on the <em>"confirm"</em> button.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/gui/DeleteProblemUiAction1Annotated.png" alt="DeleteProblemUiAction1Annotated" width="70%">
+</div>
+<div class="title">Figure 7. Warning Dialog to confirm problem being deleted.</div>
+</div>
+<div class="paragraph">
+<p>Step 3: Click on <em>Confirm</em>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/gui/DeleteProblemUiAction2Annotated.png" alt="DeleteProblemUiAction2Annotated" width="70%">
+</div>
+<div class="title">Figure 8. The problem is successfully deleted.</div>
 </div>
 </div>
 </div>
@@ -459,7 +378,7 @@ Format: <code>ct i/DETAILS_TAB_INDEX</code></p>
 <div class="content">
 <img src="../images/UiLogicClassDiagram.png" alt="UiLogicClassDiagram" width="65%">
 </div>
-<div class="title">Figure 11. Structure of the UiLogic Component</div>
+<div class="title">Figure 9. Structure of the UiLogic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -487,38 +406,23 @@ Format: <code>ct i/DETAILS_TAB_INDEX</code></p>
 </li>
 </ol>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/EditSequenceDiagram.png" alt="EditSequenceDiagram">
 </div>
-<div class="title">Figure 12. Interactions Inside the UiLogic Component for a <code>UiActionDetails</code> with a <code>UiActionType</code> of <code>editPlanUiAction</code>. This <code>UiActionDetails</code> also contains the ID of the problem to be deleted, in this case <code>11b</code>.</div>
+<div class="sect2">
+<h3 id="gui-enhancements"><a class="link" href="#gui-enhancements">GUI Enhancements</a></h3>
+<div class="paragraph">
+<p>An intuitive GUI facilitates the overall user friendliness of the application.
+The user should be able to navigate around the application easily to facilitate a smooth experience using AlgoBase.
+While the command line is fast for typing short commands, it us not ideal if the user is editing large amounts of text (e.g. when the user is adding description for a new problem).
+In this case, having a GUI will be more beneficial to the user and facilitates a smoother user experience.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The lifeline for <code>EditProblemUiActionParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-=== GUI Enhancements
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Additionally, multitasking is important as a user may be tackling multiple algorithmic questions at a single time.
+This, we introduced tabbing, which facilitates multitasking in AlgoBase, which is an important requirement for competitive programmers.</p>
 </div>
 <div class="sect3">
-<h4 id="editing-problems-from-gui"><a class="link" href="#editing-problems-from-gui">Editing Problems from GUI</a></h4>
+<h4 id="graphical-user-interface-enhancements"><a class="link" href="#graphical-user-interface-enhancements">Graphical User Interface Enhancements</a></h4>
 <div class="sect4">
 <h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
-<div class="paragraph">
-<p>When the user makes a change in the GUI, the change is propagated from <code>Ui</code> to <code>UiLogic</code> to <code>Model</code> and to <code>Storage</code>, as represented in the diagram below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/ArchitectureSequenceDiagram1.png" alt="ArchitectureSequenceDiagram1">
-</div>
-<div class="title">Figure 13. An example of a high level representation of GUI actions.</div>
-</div>
 <div class="paragraph">
 <p>The following classes facilitate the handling of GUI actions:</p>
 </div>
@@ -545,25 +449,22 @@ The lifeline for <code>EditProblemUiActionParser</code> should end at the destro
 </ul>
 </div>
 <div class="paragraph">
-<p>When the user performs any action in the GUI (e.g. Editing a problem), a <code>UiActionDetails</code> object is created with a given <code>UiActionType</code>, an enum type.
-This object contains information about the action which will later be used to make changes to the application.</p>
+<p>When the user makes a change in the GUI, the change is propagated from <code>Ui</code> to <code>UiLogic</code> to <code>Model</code> and to <code>Storage</code>, as represented in the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ArchitectureSequenceDiagram1.png" alt="ArchitectureSequenceDiagram1">
+</div>
+<div class="title">Figure 10. An example of a high level representation of the GUI Actions.</div>
 </div>
 <div class="paragraph">
-<p>This <code>UiActionDetails</code> object is sent to the <code>AlgoBaseUiActionParser</code>, which instantiates a <code>UiParser</code> depending on the <code>UiActionType</code> of the object.
-The purpose of the <code>UiParser</code> is to convert the <code>UiActionDetails</code> object into a <code>UiAction</code> object.</p>
-</div>
-<div class="paragraph">
-<p>The <code>UiAction</code> object stores the instructions to make the specified changes to the <code>Model</code>, which will run when its <code>execute</code> method is called.
-The <code>UiAction</code> object is passed along to the <code>UiLogicManager</code>, which calls its <code>execute</code> method on the <code>Model</code> object.</p>
-</div>
-<div class="paragraph">
-<p>This process is captured by the example in the Sequence Diagrams below.</p>
+<p>This process of how the application handles UI Actions is captured by the example in the Sequence Diagrams below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/gui/EditProblemUiActionSequenceDiagram0.png" alt="EditProblemUiActionSequenceDiagram0">
 </div>
-<div class="title">Figure 14. Interaction between <code>UI</code> and <code>UiLogic</code></div>
+<div class="title">Figure 11. Interaction between <code>UI</code> and <code>UiLogic</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1: The user edits the <code>ProblemDetails</code> controller class through his/her actions in the GUI.</p>
@@ -585,7 +486,7 @@ which in turn calls the <code>execute</code> method of <code>UiLogicManager</cod
 <div class="content">
 <img src="../images/gui/EditProblemUiActionSequenceDiagram1.png" alt="EditProblemUiActionSequenceDiagram1">
 </div>
-<div class="title">Figure 15. Interactions between classes in the <code>UiLogic</code></div>
+<div class="title">Figure 12. Interactions between classes in the <code>UiLogic</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1: The <code>UiLogicManager</code> passes the <code>UiActionDetails</code> object to the <code>AlgoBaseActionParser</code>,
@@ -598,6 +499,49 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 <div class="paragraph">
 <p>Step 3: The <code>UiLogicManager</code> executes the <code>EditProblemUiAction</code> together with the <code>Model</code>, and returns the <code>CommandResult</code>.</p>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="graphical-user-interface-state"><a class="link" href="#graphical-user-interface-state">Graphical User Interface State</a></h4>
+<div class="paragraph">
+<p>The state of the GUI is stored in a <code>GuiState</code> object, which is in turn stored in the <code>Model</code>. The <code>GuiState</code> object contains a <code>TabManager</code> object, which manages tab information such as the tabs that are open and the tabs that are currently selected.</p>
+</div>
+<div class="paragraph">
+<p>The following class diagram illustrates how the classes in the <code>GuiState</code> interact with one another:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/design/model/GuiPackageDiagram.png" alt="GuiPackageDiagram" width="60%">
+</div>
+<div class="title">Figure 13. Class Diagram for the <code>GuiState</code> class</div>
+</div>
+<div class="paragraph">
+<p>The information stored in the GuiState is linked to the <code>UI</code> through listeners. For example, when the attributes of the <code>TabManager</code> object is updated, it triggers callback functions in the UI controllers that update the state of the UI displayed.</p>
+</div>
+<div class="paragraph">
+<p>In AlgoBase, the state of the GUI is also saved to Storage after every action. This is so that when the user closes the application and opens it again later, the state is stored.</p>
+</div>
+<div class="paragraph">
+<p>The following Activity diagram illustrates the series of actions that occur when the user opens a new tab:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/gui/OpenTabUiActionActivityDiagram.png" alt="OpenTabUiActionActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The Sequence diagram below also shows how the GuiState is saved to Storage.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3">
+</div>
+<div class="title">Figure 14. Sequence Diagram for storing new GUI state</div>
+</div>
+<div class="paragraph">
+<p>The <code>StorageManager</code> saves the modified <code>GuiState</code> as a new <code>JSON</code> file.
+This is done with the help of the <code>JsonSerializableGui</code>, <code>JsonSerializableTabManager</code> and <code>JsonSerializableTab</code> classes that are wrappers for the <code>GuiState</code>, <code>TabManager</code> and <code>TabData</code> classes.
+These wrapper classes can be converted into <code>JSON</code> format for storage without any data loss.</p>
 </div>
 <div class="sect4">
 <h5 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h5>
@@ -616,7 +560,7 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Handling Commands and UI Actions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to implement Commands and UI Actions in the same application</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Handle Commands and UI Actions separately.</p>
 <p class="tableblock"><strong>Pros</strong>: Higher modularity. Allows separation the different architectures as well
 (Synchronous for Commands &amp; Event-Driven for UI Actions)</p>
@@ -626,7 +570,7 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 <p class="tableblock"><strong>Cons</strong>: Higher coupling and less cohesion.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Handling different kinds of UI Actions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to handle different kinds of UI Actions</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using a command structure with a central parser and many smaller parsers.</p>
 <p class="tableblock"><strong>Pros</strong>: Higher extensibility, easier to add new UI Actions</p>
 <p class="tableblock"><strong>Cons</strong>: Have to write more code to achieve the same functionality.</p></td>
@@ -638,161 +582,6 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="tabbing-feature"><a class="link" href="#tabbing-feature">Tabbing Feature</a></h4>
-<div class="sect4">
-<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
-<div class="paragraph">
-<p>The state of the GUI is stored in a <code>GuiState</code> object, which is in turn stored in the <code>Model</code>. The <code>GuiState</code> object contains a <code>TabManager</code> object, which manages tab information such as the tabs that are open and the tabs that are currently selected.</p>
-</div>
-<div class="paragraph">
-<p>The information is linked to the <code>UI</code> through listeners. When the attributes of the <code>TabManager</code> object is updated, it triggers callback functions in the UI controllers that update the state of the UI displayed.</p>
-</div>
-<div class="paragraph">
-<p>The following class diagram illustrates how the classes in the <code>GuiState</code> interact with one another:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/design/model/GuiPackageDiagram.png" alt="GuiPackageDiagram" width="60%">
-</div>
-<div class="title">Figure 16. Class Dagram for the <code>GuiState</code> class</div>
-</div>
-<div class="paragraph">
-<p>The following commands facilitate the management of tabs:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>switchTab</code> - Switch between tabs within a specified Tab pane.</p>
-</li>
-<li>
-<p><code>openTab</code> - Opens a new tab containing details of a model.</p>
-</li>
-<li>
-<p><code>closeTab</code> - Closes an existing tab.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These operations are exposed in the <code>TabManager</code> class respectively as:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>SwitchTab</code>: <code>TabManager#switchTab</code></p>
-</li>
-<li>
-<p><code>OpenTab</code>: <code>TabManager#openTab</code></p>
-</li>
-<li>
-<p><code>CloseTab</code>: <code>TabManager#closeTab</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The following Activity Diagrams illustrate what happens when the user executes a <code>SwitchTabCommand</code> or <code>OpenTabCommand</code></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/SwitchTabCommandActivityDiagram.png" alt="SwitchTabCommandActivityDiagram" width="50%">
-</div>
-<div class="title">Figure 17. Activity Diagram for the Execution of <code>switchtab</code> Command</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/OpenTabCommandActivityDiagram.png" alt="OpenTabCommandActivityDiagram" width="50%">
-</div>
-<div class="title">Figure 18. Activity Diagram for the Execution of <code>opentab</code> Command</div>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the tag mechanism behaves at each step.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/SwitchTabsSequenceDiagram0.png" alt="SwitchTabsSequenceDiagram0">
-</div>
-<div class="title">Figure 19. Sequence Diagram for instantiating a <code>SwitchCommand</code> object</div>
-</div>
-<div class="paragraph">
-<p>Step 1: The user executes <code>switchtab tt/display i/1</code> to switch to the first tab in the <code>display</code> tabpane.</p>
-</div>
-<div class="paragraph">
-<p>Step 2: <code>SwitchTabCommandParser</code> processes the user input, retrieving the tab type (<code>display</code>) and the index (<code>1</code>).</p>
-</div>
-<div class="paragraph">
-<p>Step 3: These two attributes are passed into the constructor of a <code>SwitchTabCommand</code> and a corresponding <code>SwitchTabCommand</code> object is returned to the LogicManager</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/SwitchTabsSequenceDiagram1.png" alt="SwitchTabsSequenceDiagram1">
-</div>
-<div class="title">Figure 20. Sequence Diagram for updating the tab index in the TabManager</div>
-</div>
-<div class="paragraph">
-<p>Step 4: <code>LogicManager</code> invokes <code>execute()</code> method of the returned <code>SwitchTabCommand</code>, which retrieves the TabManager from the <code>Model</code> object. The <code>setDisplayTabPaneIndex(1)</code> method is invoked with the index 1 that the <code>SwitchTabCommand</code> was instantiated with.</p>
-</div>
-<div class="paragraph">
-<p>Step 5: Invoking this method updates the integer value in the <code>displayTabIndex</code> field (type <code>ObservableIntegerValue</code>) of the <code>TabManager</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/SwitchTabsSequenceDiagram2.png" alt="SwitchTabsSequenceDiagram2">
-</div>
-<div class="title">Figure 21. Sequence Diagram for reflecting the tab changes</div>
-</div>
-<div class="paragraph">
-<p>Step 6: A listener was added to the <code>displayTabIndex</code> field when the application was initialized. When a change in the value is detected, it triggers the <code>selectTab(1)</code> method with the value of the new index passed as an argument. This updates the selected tab in the UI.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3">
-</div>
-<div class="title">Figure 22. Sequence Diagram for storing new GUI state</div>
-</div>
-<div class="paragraph">
-<p>Step 7: After the command is executed, the state of the GUI changes. This causes the <code>StorageManager</code> to save the modified GUI state as a new <code>JSON</code> file.
-This is done with the help of the <code>JsonSerializableGui</code>, <code>JsonSerializableTabManager</code> and <code>JsonSerializableTab</code> classes that are wrappers for the <code>GuiState</code>, <code>TabManager</code> and <code>TabData</code> classes.
-These wrapper classes can be converted into <code>JSON</code> format for storage without any data loss.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Aspect</th>
-<th class="tableblock halign-left valign-top">Alternative 1 (Current Choice)</th>
-<th class="tableblock halign-left valign-top">Alternative 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Implementation of Tab Logic</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Implement Tab Logic separately within model and UI.</p>
-<p class="tableblock"><strong>Pros</strong>: Modularizes the logic and reduces the need for tighter coupling between model and UI</p>
-<p class="tableblock"><strong>Cons</strong>: Multiple sources of truth and more modules to be implemented</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Implement Tab Logic as a singular module</p>
-<p class="tableblock"><strong>Pros</strong>: Single source of truth for state of tabs</p>
-<p class="tableblock"><strong>Cons</strong>: Increasing coupling between Model and UI, which in turn reduces testability</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to update the tab in the UI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Using a listener to detect changes to state of tab</p>
-<p class="tableblock"><strong>Pros</strong>: Reduces coupling between the <code>TabManager</code> class and the UI</p>
-<p class="tableblock"><strong>Cons</strong>: As callback functions are utilized, it is not immediately obvious how changes in state of TabManager leads to a change in the UI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Updating the UI synchronously</p>
-<p class="tableblock"><strong>Pros</strong>: Execution is sequential and it is easier to keep track of the flow of the program.</p>
-<p class="tableblock"><strong>Cons</strong>: Increases coupling between the <code>TabManager</code> class and the UI and reduces testability.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-08 13:27:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 06:11:42 UTC</div></div></div></body></html>
