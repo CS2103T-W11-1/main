@@ -40,14 +40,14 @@
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
-<li><a href="#adding-a-problem">F.2. Adding a problem</a></li>
-<li><a href="#deleting-a-problem">F.3. Deleting a problem</a></li>
-<li><a href="#editing-a-problem">F.4. Editing a problem</a></li>
+<li><a href="#adding-problems">F.2. Adding problems</a></li>
+<li><a href="#deleting-problems">F.3. Deleting problems</a></li>
+<li><a href="#editing-problems">F.4. Editing problems</a></li>
 <li><a href="#listing-problems">F.5. Listing problems</a></li>
 <li><a href="#sorting-problems">F.6. Sorting problems</a></li>
-<li><a href="#adding-a-tag">F.7. Adding a tag</a></li>
-<li><a href="#deleting-a-tag">F.8. Deleting a tag</a></li>
-<li><a href="#editing-a-tag">F.9. Editing a tag</a></li>
+<li><a href="#adding-tags">F.7. Adding tags</a></li>
+<li><a href="#deleting-tags">F.8. Deleting tags</a></li>
+<li><a href="#editing-tags">F.9. Editing tags</a></li>
 <li><a href="#listing-tags">F.10. Listing tags</a></li>
 <li><a href="#finding-problems">F.11. Finding problems</a></li>
 <li><a href="#adding-problem-finding-rules">F.12. Adding problem-finding rules</a></li>
@@ -58,17 +58,25 @@
 <li><a href="#finding-plans">F.17. Finding plans</a></li>
 <li><a href="#deleting-a-plan">F.18. Deleting a plan</a></li>
 <li><a href="#listing-plans">F.19. Listing plans</a></li>
-<li><a href="#saving-data">F.20. Saving Data</a></li>
-<li><a href="#switching-tabs">F.21. Switching tabs</a></li>
-<li><a href="#opening-a-new-tab">F.22. Opening a new tab</a></li>
-<li><a href="#closing-an-existing-tab">F.23. Closing an existing tab</a></li>
-<li><a href="#editing-problem-from-gui">F.24. Editing Problem from GUI</a></li>
-<li><a href="#deleting-problem-from-gui">F.25. Deleting Problem from GUI</a></li>
-<li><a href="#editing-plan-from-gui">F.26. Editing Plan from GUI</a></li>
-<li><a href="#deleting-plan-from-gui">F.27. Deleting Plan from GUI</a></li>
-<li><a href="#switching-tabs-from-gui">F.28. Switching tabs from GUI</a></li>
-<li><a href="#opening-a-new-tab-from-gui">F.29. Opening a new tab from GUI</a></li>
-<li><a href="#closing-an-existing-tab-from-gui">F.30. Closing an existing tab from GUI</a></li>
+<li><a href="#setting-a-plan-as-current-plan">F.20. Setting a plan as current plan</a></li>
+<li><a href="#adding-a-task-to-an-existing-plan">F.21. Adding a task to an existing plan</a></li>
+<li><a href="#editing-due-date-of-a-task">F.22. Editing due date of a task</a></li>
+<li><a href="#deleting-a-task">F.23. Deleting a task</a></li>
+<li><a href="#marking-a-task-as-done">F.24. Marking a task as done</a></li>
+<li><a href="#marking-a-task-as-undone">F.25. Marking a task as undone</a></li>
+<li><a href="#copying-a-task-between-plans">F.26. Copying a task between plans</a></li>
+<li><a href="#moving-a-task-between-plans">F.27. Moving a task between plans</a></li>
+<li><a href="#saving-data">F.28. Saving Data</a></li>
+<li><a href="#switching-tabs">F.29. Switching tabs</a></li>
+<li><a href="#opening-a-new-tab">F.30. Opening a new tab</a></li>
+<li><a href="#closing-an-existing-tab">F.31. Closing an existing tab</a></li>
+<li><a href="#editing-problem-from-gui">F.32. Editing Problem from GUI</a></li>
+<li><a href="#deleting-problem-from-gui">F.33. Deleting Problem from GUI</a></li>
+<li><a href="#editing-plan-from-gui">F.34. Editing Plan from GUI</a></li>
+<li><a href="#deleting-plan-from-gui">F.35. Deleting Plan from GUI</a></li>
+<li><a href="#switching-tabs-from-gui">F.36. Switching tabs from GUI</a></li>
+<li><a href="#opening-a-new-tab-from-gui">F.37. Opening a new tab from GUI</a></li>
+<li><a href="#closing-an-existing-tab-from-gui">F.38. Closing an existing tab from GUI</a></li>
 </ul>
 </li>
 </ul>
@@ -110,7 +118,8 @@ Refer to the <a href="UsingPlantUml.html">Using PlantUML guide</a> to learn how 
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/Main.java"><code>Main</code></a> and <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/Main.java"><code>Main</code></a>
+and <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -179,7 +188,8 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>deleteprob 1</code>.</p>
+<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario
+where the user issues the command <code>deleteprob 1</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -204,7 +214,7 @@ The following class plays an important role at the architecture level:</p>
 <h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/UiClassDiagram.png" alt="UiClassDiagram">
+<img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="100%">
 </div>
 <div class="title">Figure 5. Structure of the UI Component</div>
 </div>
@@ -212,12 +222,25 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts
+<p>The <code>UI</code> component consists of a <code>MainWindow</code> that is made up of parts
 e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>DetailsTabPane</code>, <code>DisplayTabPane</code>, <code>TaskManagementPane</code>, <code>StatusBarFooter</code> etc.
-All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+All these components, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiDisplayTabClassDiagram.png" alt="UiDisplayTabClassDiagram" width="100%">
+</div>
+<div class="title">Figure 6. Structure of the DisplayTabPane Component</div>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>DetailsTabPane</code> consists of <code>FindRuleListPanel</code>, <code>PlanListPanel</code>, <code>ProblemListPanel</code> and <code>TagListPanel</code>,
+which are used for displaying entries of <code>FindRule</code>, <code>Plan</code>, <code>Problem</code> and <code>Tag</code> stored in AlgoBase respectively.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses JavaFx UI framework.
+The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
+For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/ui/MainWindow.java"><code>MainWindow</code></a>
+is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -239,7 +262,7 @@ All these, including the <code>MainWindow</code>, inherit from the abstract <cod
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
 </div>
-<div class="title">Figure 6. Structure of the Logic Component</div>
+<div class="title">Figure 7. Structure of the Logic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -271,7 +294,7 @@ All these, including the <code>MainWindow</code>, inherit from the abstract <cod
 <div class="content">
 <img src="images/DeleteSequenceDiagram.png" alt="DeleteSequenceDiagram">
 </div>
-<div class="title">Figure 7. Interactions Inside the Logic Component for the <code>deleteprob 1</code> Command</div>
+<div class="title">Figure 8. Interactions Inside the Logic Component for the <code>deleteprob 1</code> Command</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -292,7 +315,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="content">
 <img src="images/UiLogicClassDiagram.png" alt="UiLogicClassDiagram" width="70%">
 </div>
-<div class="title">Figure 8. Structure of the UiLogic Component</div>
+<div class="title">Figure 9. Structure of the UiLogic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -324,7 +347,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="content">
 <img src="images/EditSequenceDiagram.png" alt="EditSequenceDiagram">
 </div>
-<div class="title">Figure 9. Interactions Inside the UiLogic Component for a <code>UiActionDetails</code> with a <code>UiActionType</code> of <code>editPlanUiAction</code>. This <code>UiActionDetails</code> also contains the ID of the problem to be deleted, in this case <code>11b</code>.</div>
+<div class="title">Figure 10. Interactions Inside the UiLogic Component for a <code>UiActionDetails</code> with a <code>UiActionType</code> of <code>editPlanUiAction</code>. This <code>UiActionDetails</code> also contains the ID of the problem to be deleted, in this case <code>11b</code>.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -345,7 +368,7 @@ The lifeline for <code>EditProblemUiActionParser</code> should end at the destro
 <div class="content">
 <img src="images/design/model/ModelClassDiagram.png" alt="ModelClassDiagram" width="65%">
 </div>
-<div class="title">Figure 10. Structure of the Model Component</div>
+<div class="title">Figure 11. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/model/Model.java"><code>Model.java</code></a></p>
@@ -376,58 +399,58 @@ The lifeline for <code>EditProblemUiActionParser</code> should end at the destro
 <div class="content">
 <img src="images/design/model/ProblemPackageDiagram.png" alt="ProblemPackageDiagram" width="75%">
 </div>
-<div class="title">Figure 11. Structure of the Problem Package</div>
+<div class="title">Figure 12. Structure of the Problem Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/PlanPackageDiagram.png" alt="PlanPackageDiagram" width="50%">
 </div>
-<div class="title">Figure 12. Structure of the Plan Package</div>
+<div class="title">Figure 13. Structure of the Plan Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/TagPackageDiagram.png" alt="TagPackageDiagram" width="30%">
 </div>
-<div class="title">Figure 13. Structure of the Tag Package</div>
+<div class="title">Figure 14. Structure of the Tag Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/TaskPackageDiagram.png" alt="TaskPackageDiagram" width="30%">
 </div>
-<div class="title">Figure 14. Structure of the Task Package</div>
+<div class="title">Figure 15. Structure of the Task Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/ProblemSearchRulePackageDiagram.png" alt="ProblemSearchRulePackageDiagram" width="60%">
 </div>
-<div class="title">Figure 15. Structure of the ProblemSearchRule Package</div>
+<div class="title">Figure 16. Structure of the ProblemSearchRule Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/PlanSearchRulePackageDiagram.png" alt="PlanSearchRulePackageDiagram" width="90%">
 </div>
-<div class="title">Figure 16. Structure of the PlanSearchRule Package</div>
+<div class="title">Figure 17. Structure of the PlanSearchRule Package</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/GuiPackageDiagram.png" alt="GuiPackageDiagram" width="60%">
 </div>
-<div class="title">Figure 17. Structure of the GUI Package</div>
+<div class="title">Figure 18. Structure of the GUI Package</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.6. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/storage/StorageClassDiagram.png" alt="StorageClassDiagram">
+<img src="images/storage/StorageClassDiagram.png" alt="StorageClassDiagram" width="70%">
 </div>
-<div class="title">Figure 18. Structure of the Storage Component</div>
+<div class="title">Figure 19. Structure of the Storage Component</div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/storage/ProblemSearchRuleClassDiagram.png" alt="ProblemSearchRuleClassDiagram">
+<img src="images/storage/ProblemSearchRuleClassDiagram.png" alt="ProblemSearchRuleClassDiagram" width="65%">
 </div>
-<div class="title">Figure 19. Structure of the JsonAdaptedProblemSearchRule Component</div>
+<div class="title">Figure 20. Structure of the JsonAdaptedProblemSearchRule Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -438,17 +461,17 @@ The lifeline for <code>EditProblemUiActionParser</code> should end at the destro
 <div class="ulist">
 <ul>
 <li>
-<p>can store <code>UserPref</code> objects in json format.</p>
+<p>can store <code>UserPref</code> objects in <code>JSON</code> format.</p>
 </li>
 <li>
-<p>can retrieve <code>UserPref</code> objects from json format.</p>
+<p>can retrieve <code>UserPref</code> objects from <code>JSON</code> format.</p>
 </li>
 <li>
 <p>can store the AlgoBase app data including <code>GuiState</code>, <code>Plan</code>, <code>Problem</code>, <code>ProblemSearchRule</code>, <code>Tag</code>, <code>Task</code>
-objects in relational manner in json format.</p>
+objects in relational manner in <code>JSON</code> format.</p>
 </li>
 <li>
-<p>can retrieve <code>GuiState</code>, <code>Plan</code>, <code>Problem</code>, <code>ProblemSearchRule</code>, <code>Tag</code>, <code>Task</code> objects from json format.</p>
+<p>can retrieve <code>GuiState</code>, <code>Plan</code>, <code>Problem</code>, <code>ProblemSearchRule</code>, <code>Tag</code>, <code>Task</code> objects from data stored in <code>JSON</code> format.</p>
 </li>
 </ul>
 </div>
@@ -474,8 +497,8 @@ JSON storage <code>JsonUtil</code>, string manipulation <code>StringUtil</code> 
 <div class="sect2">
 <h3 id="task-management-feature"><a class="link" href="#task-management-feature">3.1. Task Management Feature</a></h3>
 <div class="paragraph">
-<p>As a algorithmic problem management tool, one of the most important features will be manage tasks that have been done
-and are to be done.</p>
+<p>As an algorithmic problem management tool, one of the most important features will be managing tasks that have been done
+or are to be done.</p>
 </div>
 <div class="paragraph">
 <p>This section will describe in details the current implementation and design considerations of
@@ -507,12 +530,28 @@ the task management feature.</p>
 <p><code>MoveTask</code> - moves a task from one plan to another.</p>
 </li>
 <li>
-<p><code>UndoneTask</code> - marks a task as undone in a specified plan.</p>
-</li>
-<li>
 <p><code>SetPlan</code> - sets a plan as the current plan in main display.</p>
 </li>
+<li>
+<p><code>UndoneTask</code> - marks a task as undone in a specified plan.</p>
+</li>
 </ul>
+</div>
+<div class="paragraph">
+<p>This feature is mainly supported by the <code>Task</code> class.
+Given below are class diagrams of the <code>Task</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/task/HighLevelTaskClassDiagram.png" alt="HighLevelTaskClassDiagram" width="40%">
+</div>
+<div class="title">Figure 21. High Level Class Diagram for Task</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/task/TaskClassDiagram.png" alt="TaskClassDiagram" width="30%">
+</div>
+<div class="title">Figure 22. Detailed Class Diagram for Task</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the mechanism for adding tasks behaves at each step.</p>
@@ -522,9 +561,9 @@ the task management feature.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram">
+<img src="images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram" width="80%">
 </div>
-<div class="title">Figure 20. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 23. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application.</p>
@@ -538,13 +577,24 @@ The <code>AddTaskCommand</code> calls <code>Model#updateTasks</code> to create a
 and replace the original plan with this updated plan in the <code>PlanList</code> stored in <code>AlgoBase</code>.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the <code>AddTaskCommand</code> executes:</p>
+<p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes user request
+to execute <code>addtask plan/1 prob/1</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram">
+<img src="images/task/HighLevelAddTaskSequenceDiagram.png" alt="HighLevelAddTaskSequenceDiagram" width="80%">
 </div>
-<div class="title">Figure 21. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 24. High Level Sequence Diagram for the Execution of <code>addtask plan/1 prob/1</code></div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram illustrates the interaction between the <code>Logic</code> and <code>Model</code> component
+while executing <code>AddTaskCommand</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram" width="100%">
+</div>
+<div class="title">Figure 25. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 </div>
 <div class="sect3">
@@ -660,16 +710,16 @@ and replace the original plan with this updated plan in the <code>PlanList</code
 <div class="ulist">
 <ul>
 <li>
-<p><code>addTag</code> - create a new tag in AlgoBase&#8217;s uniqueTagList in the algobase history.</p>
+<p><code>AddTag</code> - creates a new tag in AlgoBase&#8217;s uniqueTagList in the algobase history.</p>
 </li>
 <li>
-<p><code>deleteTag</code> - delete a current tag which have already in the uniqueTagList.</p>
+<p><code>DeleteTag</code> - deletes a current tag which have already in the uniqueTagList.</p>
 </li>
 <li>
-<p><code>listTag</code> - show the tags in the uniqueTagList in the algobase GUI for users</p>
+<p><code>EditTag</code> - edits the current tag name which have already been in the <code>uniqueTagList</code>.</p>
 </li>
 <li>
-<p><code>editTag</code> - edit the current tag name which have already been in the uniqueTagList</p>
+<p><code>ListTag</code> - shows the tags in the uniqueTagList in the algobase GUI for users.</p>
 </li>
 </ul>
 </div>
@@ -677,7 +727,7 @@ and replace the original plan with this updated plan in the <code>PlanList</code
 <div class="content">
 <img src="images/tag/TagClassDiagram.png" alt="TagClassDiagram">
 </div>
-<div class="title">Figure 22. Class Diagram for Tag</div>
+<div class="title">Figure 26. Class Diagram for Tag</div>
 </div>
 <div class="paragraph">
 <p>These operations are exposed in the Model interface as <code>Model#addTag()</code>, <code>Model#deleteTag()</code>, <code>Model#listTag()</code> and <code>Model#editTag()</code> respectively.</p>
@@ -692,16 +742,16 @@ and replace the original plan with this updated plan in the <code>PlanList</code
 <p>Step 2. The user executes <code>addtag t/easy</code> to add a tag named [easy] with default color which have not applied in any problems. The addtag command calls <code>Model#addtag()</code>, causing the taglist added a tag after the ‘addtag t/easy’ command executes to be saved in the uniqueTagList.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the <code>deletetag</code> operation works:</p>
+<p>The following sequence diagram shows how the <code>addtag</code> operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/tag/AddTagSequenceDiagram.png" alt="AddTagSequenceDiagram">
 </div>
-<div class="title">Figure 23. Sequence Diagram for <code>AddTagCommand</code></div>
+<div class="title">Figure 27. Sequence Diagram for <code>AddTagCommand</code></div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls <code>Model#listtag()</code>, causing the taglist shows the current components of uniqueTagList. Commands that do not modify the address book, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
+<p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls <code>Model#listtag()</code>, causing the taglist shows the current components of uniqueTagList. Commands that do not modify the data, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
 </div>
 <div class="paragraph">
 <p>Step 4.The user executes <code>edittag 1 t/hard c/BLUE</code> to edit the current tag [easy] to [hard] in the <code>uniqueTagList</code>. The <code>edittag 1 t/hard c/BLUE</code>
@@ -718,7 +768,7 @@ Command executes <code>edittag</code>, causing the taglist find the tag with ind
 <div class="content">
 <img src="images/tag/TagCommandActivityDiagram.png" alt="TagCommandActivityDiagram">
 </div>
-<div class="title">Figure 24. Activity Diagram for tag commands</div>
+<div class="title">Figure 28. Activity Diagram for tag commands</div>
 </div>
 </div>
 <div class="sect3">
@@ -773,7 +823,7 @@ Command executes <code>edittag</code>, causing the taglist find the tag with ind
 <div class="content">
 <img src="images/find/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram">
 </div>
-<div class="title">Figure 25. Activity Diagram for the Execution of <code>findprob</code> Command</div>
+<div class="title">Figure 29. Activity Diagram for the Execution of <code>findprob</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
@@ -865,7 +915,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/FindCommandClassDiagram.png" alt="FindCommandClassDiagram" width="75%">
 </div>
-<div class="title">Figure 26. Class Diagram of the Find Feature</div>
+<div class="title">Figure 30. Class Diagram of the Find Feature</div>
 </div>
 <div class="ulist">
 <ul>
@@ -954,7 +1004,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/PredicateClassDiagram.png" alt="PredicateClassDiagram" width="40%">
 </div>
-<div class="title">Figure 27. Class Diagram for Predicates in the Find Feature</div>
+<div class="title">Figure 31. Class Diagram for Predicates in the Find Feature</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the find problem mechanism behaves at each step.</p>
@@ -984,7 +1034,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/find/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 28. Sequence Diagram for the Execution of <code>findprob</code> Command</div>
+<div class="title">Figure 32. Sequence Diagram for the Execution of <code>findprob</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -1105,7 +1155,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/savefindrule/AddFindRuleActivityDiagram.png" alt="AddFindRuleActivityDiagram" width="70%">
 </div>
-<div class="title">Figure 29. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 33. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
@@ -1172,7 +1222,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleClassDiagram.png" alt="AddFindRuleClassDiagram" width="70%">
 </div>
-<div class="title">Figure 30. Class Diagram for Add Find Rule Feature</div>
+<div class="title">Figure 34. Class Diagram for Add Find Rule Feature</div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes the request when user types in <code>addfindrule rule1 n/Sequences</code>:</p>
@@ -1181,7 +1231,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/HighLevelAddFindRuleSequenceDiagram.png" alt="HighLevelAddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 31. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
+<div class="title">Figure 35. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
@@ -1190,7 +1240,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleSequenceDiagram.png" alt="AddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 32. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 36. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 </div>
 </div>
@@ -1282,7 +1332,7 @@ This, we introduced tabbing, which facilitates multitasking in AlgoBase, which i
 <div class="content">
 <img src="images/ArchitectureSequenceDiagram1.png" alt="ArchitectureSequenceDiagram1" width="70%">
 </div>
-<div class="title">Figure 33. An example of a high level representation of the GUI Actions.</div>
+<div class="title">Figure 37. An example of a high level representation of the GUI Actions.</div>
 </div>
 <div class="paragraph">
 <p>This process of how the application handles UI Actions is captured by the example in the Sequence Diagrams below:</p>
@@ -1291,7 +1341,7 @@ This, we introduced tabbing, which facilitates multitasking in AlgoBase, which i
 <div class="content">
 <img src="images/gui/EditProblemUiActionSequenceDiagram0.png" alt="EditProblemUiActionSequenceDiagram0" width="100%">
 </div>
-<div class="title">Figure 34. Interaction between <code>UI</code> and <code>UiLogic</code></div>
+<div class="title">Figure 38. Interaction between <code>UI</code> and <code>UiLogic</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1: The user edits the <code>ProblemDetails</code> controller class through his/her actions in the GUI.</p>
@@ -1313,7 +1363,7 @@ which in turn calls the <code>execute</code> method of <code>UiLogicManager</cod
 <div class="content">
 <img src="images/gui/EditProblemUiActionSequenceDiagram1.png" alt="EditProblemUiActionSequenceDiagram1" width="100%">
 </div>
-<div class="title">Figure 35. Interactions between classes in the <code>UiLogic</code> component.</div>
+<div class="title">Figure 39. Interactions between classes in the <code>UiLogic</code> component.</div>
 </div>
 <div class="paragraph">
 <p>Step 1: The <code>UiLogicManager</code> passes the <code>UiActionDetails</code> object to the <code>AlgoBaseUiActionParser</code>,
@@ -1342,7 +1392,7 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 <div class="content">
 <img src="images/design/model/GuiPackageDiagram.png" alt="GuiPackageDiagram" width="60%">
 </div>
-<div class="title">Figure 36. Class Diagram for the <code>GuiState</code> class</div>
+<div class="title">Figure 40. Class Diagram for the <code>GuiState</code> class</div>
 </div>
 <div class="paragraph">
 <p>The following Activity diagram illustrates the series of actions that occur when the user opens a new tab:</p>
@@ -1351,7 +1401,7 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 <div class="content">
 <img src="images/gui/OpenTabUiActionActivityDiagram.png" alt="OpenTabUiActionActivityDiagram">
 </div>
-<div class="title">Figure 37. Activity Diagram for Opening a new Tab from the GUI</div>
+<div class="title">Figure 41. Activity Diagram for Opening a new Tab from the GUI</div>
 </div>
 <div class="paragraph">
 <p>In AlgoBase, the state of the GUI is also saved to Storage after every action. This is so that when the user closes the application and opens it again later, the state is stored.
@@ -1361,7 +1411,7 @@ The Sequence diagram below also shows how the GuiState is saved to Storage:</p>
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3" width="100%">
 </div>
-<div class="title">Figure 38. Sequence Diagram for storing new GUI state</div>
+<div class="title">Figure 42. Sequence Diagram for storing new GUI state</div>
 </div>
 <div class="paragraph">
 <p>The <code>StorageManager</code> saves the modified <code>GuiState</code> as a new <code>JSON</code> file.
@@ -1452,13 +1502,13 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabCommandActivityDiagram.png" alt="SwitchTabCommandActivityDiagram" width="50%">
 </div>
-<div class="title">Figure 39. Activity Diagram for the Execution of <code>switchtab</code> Command</div>
+<div class="title">Figure 43. Activity Diagram for the Execution of <code>switchtab</code> Command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/OpenTabCommandActivityDiagram.png" alt="OpenTabCommandActivityDiagram" width="50%">
 </div>
-<div class="title">Figure 40. Activity Diagram for the Execution of <code>opentab</code> Command</div>
+<div class="title">Figure 44. Activity Diagram for the Execution of <code>opentab</code> Command</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the tag mechanism behaves at each step.</p>
@@ -1467,7 +1517,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram0.png" alt="SwitchTabsSequenceDiagram0">
 </div>
-<div class="title">Figure 41. Sequence Diagram for instantiating a <code>SwitchCommand</code> object</div>
+<div class="title">Figure 45. Sequence Diagram for instantiating a <code>SwitchCommand</code> object</div>
 </div>
 <div class="paragraph">
 <p>Step 1: The user executes <code>switchtab tt/display i/1</code> to switch to the first tab in the <code>display</code> tabpane.</p>
@@ -1482,7 +1532,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram1.png" alt="SwitchTabsSequenceDiagram1">
 </div>
-<div class="title">Figure 42. Sequence Diagram for updating the tab index in the TabManager</div>
+<div class="title">Figure 46. Sequence Diagram for updating the tab index in the TabManager</div>
 </div>
 <div class="paragraph">
 <p>Step 4: <code>LogicManager</code> invokes <code>execute()</code> method of the returned <code>SwitchTabCommand</code>, which retrieves the TabManager from the <code>Model</code> object. The <code>setDisplayTabPaneIndex(1)</code> method is invoked with the index 1 that the <code>SwitchTabCommand</code> was instantiated with.</p>
@@ -1494,7 +1544,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram2.png" alt="SwitchTabsSequenceDiagram2">
 </div>
-<div class="title">Figure 43. Sequence Diagram for reflecting the tab changes</div>
+<div class="title">Figure 47. Sequence Diagram for reflecting the tab changes</div>
 </div>
 <div class="paragraph">
 <p>Step 6: A listener was added to the <code>displayTabIndex</code> field when the application was initialized. When a change in the value is detected, it triggers the <code>selectTab(1)</code> method with the value of the new index passed as an argument. This updates the selected tab in the UI.</p>
@@ -1503,7 +1553,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3">
 </div>
-<div class="title">Figure 44. Sequence Diagram for storing new GUI state</div>
+<div class="title">Figure 48. Sequence Diagram for storing new GUI state</div>
 </div>
 <div class="paragraph">
 <p>Step 7: After the command is executed, the state of the GUI changes. This causes the <code>StorageManager</code> to save the modified GUI state as a new <code>JSON</code> file.
@@ -1579,7 +1629,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/PlanClassDiagram.png" alt="PlanClassDiagram" width="70%">
 </div>
-<div class="title">Figure 45. Class Diagram of <code>Plan</code></div>
+<div class="title">Figure 49. Class Diagram of <code>Plan</code></div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the AlgoBase behaves at each step.</p>
@@ -1594,7 +1644,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/AddPlanSequenceDiagram.png" alt="AddPlanSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 46. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
+<div class="title">Figure 50. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user executes <code>listplan</code> to list all plans. The <code>listplan</code> command calls <code>Model#updateFilteredPlanList()</code>. The plan <code>CS2040</code> is numbered <code>1</code> in the displayed list.</p>
@@ -1606,7 +1656,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/EditPlanCommandActivityDiagram.png" alt="EditPlanCommandActivityDiagram" width="70%">
 </div>
-<div class="title">Figure 47. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
+<div class="title">Figure 51. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1627,7 +1677,7 @@ The user can also add value for an empty field by executing <code>editplan</code
 <div class="content">
 <img src="images/plan/FindPlanDescriptorClassDiagram.png" alt="FindPlanDescriptorClassDiagram" width="70%">
 </div>
-<div class="title">Figure 48. Class Diagram for <code>FindPlanDescriptor</code></div>
+<div class="title">Figure 52. Class Diagram for <code>FindPlanDescriptor</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2364,63 +2414,17 @@ If the user wants to find plans with overlapping time range, both the starting d
 </li>
 </ul>
 </div>
-<h3 id="use-case-11-sort-problems" class="discrete">Use Case 11: Sort Problems</h3>
-<div class="paragraph">
-<p><strong>Guarantees</strong></p>
-</div>
-<div class="paragraph">
-<p>A list of tags will be displayed in UI.</p>
-</div>
+<h3 id="a-id-uc-11-a-use-case-11-add-tasks-to-plan" class="discrete"><a id="uc-11"></a> Use Case 11: Add Tasks to Plan</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to add a tag.</p>
+<p>User requests to add a new task by entering the index of the problem, index of the plan and optionally a due date.</p>
 </li>
 <li>
-<p>AlgoBase creates the tag with taq name and tag color.</p>
-</li>
-<li>
-<p>AlgoBase displays the tag list.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. AlgoBase detects that tag name or tag color has an invalid format.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a1. AlgoBase informs user that the form of new tag is invalid.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-12-add-tasks-to-plan" class="discrete">Use Case 12: Add Tasks to Plan</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to add a new task by entering the index of the problem and index of the plan.</p>
-</li>
-<li>
-<p>AlgoBase creates a new task with the specified problem.</p>
+<p>AlgoBase creates a new task with the specified problem (and due date).</p>
 </li>
 <li>
 <p>AlgoBase adds the newly created task to the specified plan.</p>
@@ -2459,7 +2463,7 @@ If the user wants to find plans with overlapping time range, both the starting d
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a. AlgoBase detects that the index of plan is out of bounds.</p>
+<p>3a. <a id="uc-11-3a"></a> AlgoBase detects that the index of plan is out of bounds.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2473,7 +2477,24 @@ If the user wants to find plans with overlapping time range, both the starting d
 </li>
 </ul>
 </div>
-<h3 id="use-case-13-copy-tasks-between-plans" class="discrete">Use Case 13: Copy Tasks between Plans</h3>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b. <a id="uc-11-3b"></a> AlgoBase detects that the given due date is outside the range of the target plan.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. AlgoBase informs user that the addition is unsuccessful because the given due date is not within range of target plan.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="a-id-uc-12-a-use-case-12-copy-tasks-between-plans" class="discrete"><a id="uc-12"></a> Use Case 12: Copy Tasks between Plans</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2503,24 +2524,14 @@ by entering the index of the task and the indices of the plans involved.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. AlgoBase detects that the index of either plan is out of bounds.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a1. AlgoBase informs user that the update is unsuccessful because the index of plan is out of bounds.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
+<p>2a. Similar to <a href="#uc-11-3a">3a</a> in <a href="#uc-11">Use Case 11</a>.</p>
 </li>
 </ul>
 </div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2b. AlgoBase detects that the index of task is out of bounds.</p>
+<p>2b. <a id="uc-12-2b"></a> AlgoBase detects that the index of task is out of bounds.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2537,7 +2548,7 @@ by entering the index of the task and the indices of the plans involved.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2c. AlgoBase detects that task to be copied already exists in the "to" plan.</p>
+<p>2c. <a id="uc-12-2c"></a> AlgoBase detects that task to be copied already exists in the target plan.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2551,7 +2562,14 @@ by entering the index of the task and the indices of the plans involved.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-14-delete-tasks-from-plan" class="discrete">Use Case 14: Delete Tasks from Plan</h3>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2d. Similar to <a href="#uc-11-3b">3b</a> in <a href="#uc-11">Use Case 11</a>.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-13-delete-tasks-from-plan" class="discrete">Use Case 13: Delete Tasks from Plan</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2580,18 +2598,18 @@ by entering the index of the task and the indices of the plans involved.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. Similar to <code>2a</code> in Use Case 8.</p>
+<p>2a. Similar to <a href="#uc-11-3a">3a</a> in <a href="#uc-11">Use Case 11</a>.</p>
 </li>
 </ul>
 </div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2b. Similar to <code>2b</code> in Use Case 8.</p>
+<p>2b. Similar to <a href="#uc-12-2b">2b</a> in <a href="#uc-12">Use Case 12</a>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-15-edit-due-dates-of-tasks" class="discrete">Use Case 15: Edit Due Dates of Tasks</h3>
+<h3 id="use-case-14-edit-due-dates-of-tasks" class="discrete">Use Case 14: Edit Due Dates of Tasks</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2621,18 +2639,25 @@ by entering the index of the plan, index of the task and new due date.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. Similar to <code>2a</code> in Use Case 8.</p>
+<p>2a. Similar to <a href="#uc-11-3a">3a</a> in <a href="#uc-11">Use Case 11</a>.</p>
 </li>
 </ul>
 </div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2b. Similar to <code>2b</code> in Use Case 8.</p>
+<p>2b. Similar to <a href="#uc-12-2b">2b</a> in <a href="#uc-12">Use Case 12</a>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-16-mark-tasks-as-done-in-plan" class="discrete">Use Case 16: Mark Tasks as Done in Plan</h3>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c. Similar to <a href="#uc-11-3b">3b</a> in <a href="#uc-11">Use Case 11</a>.</p>
+</li>
+</ul>
+</div>
+<h3 id="a-id-uc-15-a-use-case-15-mark-tasks-as-done-in-plan" class="discrete"><a id="uc-15"></a> Use Case 15: Mark Tasks as Done in Plan</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2661,18 +2686,35 @@ by entering the index of the plan, index of the task and new due date.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. Similar to <code>2a</code> in Use Case 8.</p>
+<p>2a. Similar to <a href="#uc-11-3a">3a</a> in <a href="#uc-11">Use Case 11</a>.</p>
 </li>
 </ul>
 </div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2b. Similar to <code>2b</code> in Use Case 8.</p>
+<p>2b. Similar to <a href="#uc-12-2b">2b</a> in <a href="#uc-12">Use Case 12</a>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-17-mark-tasks-as-undone-in-plan" class="discrete">Use Case 17: Mark Tasks as Undone in Plan</h3>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c. <a id="uc-15-2c"></a> AlgoBase detects that target task is already marked as done.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c1. AlgoBase informs user that the update is unsuccessful because the task is already done.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-16-mark-tasks-as-undone-in-plan" class="discrete">Use Case 16: Mark Tasks as Undone in Plan</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2701,18 +2743,25 @@ by entering the index of the plan, index of the task and new due date.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. Similar to <code>2a</code> in Use Case 8.</p>
+<p>2a. Similar to <a href="#uc-11-3a">3a</a> in <a href="#uc-11">Use Case 11</a>.</p>
 </li>
 </ul>
 </div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2b. Similar <code>2b</code> in Use Case 8.</p>
+<p>2b. Similar <a href="#uc-12-2b">2b</a> in <a href="#uc-12">Use Case 12</a>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-18-move-tasks-between-plans" class="discrete">Use Case 18: Move Tasks between Plans</h3>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c. Similar <a href="#uc-15-2c">2c</a> in <a href="#uc-15">Use Case 15</a>.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-17-move-tasks-between-plans" class="discrete">Use Case 17: Move Tasks between Plans</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2742,25 +2791,32 @@ by entering the index of the task and the indices of the plans involved.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. Similar to <code>2a</code> in Use Case 8.</p>
+<p>2a. Similar to <a href="#uc-11-3a">3a</a> in <a href="#uc-11">Use Case 11</a>.</p>
 </li>
 </ul>
 </div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2b. Similar to <code>2b</code> in Use Case 8.</p>
+<p>2b. Similar to <a href="#uc-12-2b">2b</a> in <a href="#uc-12">Use Case 12</a>.</p>
 </li>
 </ul>
 </div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2c. Similar to <code>2c</code> in Use Case 8.</p>
+<p>2c. Similar to <a href="#uc-12-2c">2c</a> in <a href="#uc-12">Use Case 12</a>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-19-set-current-plan-in-main-display" class="discrete">Use Case 19: Set Current Plan in Main Display</h3>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2d. Similar to <a href="#uc-11-3b">3b</a> in <a href="#uc-11">Use Case 11</a>.</p>
+</li>
+</ul>
+</div>
+<h3 id="use-case-18-set-current-plan-in-main-display" class="discrete">Use Case 18: Set Current Plan in Main Display</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2789,11 +2845,11 @@ by entering the index of the task and the indices of the plans involved.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. Same as <code>2a</code> in Use Case 9.</p>
+<p>2a. Similar to <a href="#uc-11-3a">3a</a> in <a href="#uc-11">Use Case 11</a>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-20-switch-between-view-of-items" class="discrete">Use Case 20: Switch between View of Items</h3>
+<h3 id="use-case-19-switch-between-view-of-items" class="discrete">Use Case 19: Switch between View of Items</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2829,6 +2885,23 @@ by entering the index of the task and the indices of the plans involved.</p>
 </div>
 </li>
 </ul>
+</div>
+<h3 id="use-case-20-see-details-of-an-item" class="discrete">Use Case 20: See details of an item</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see the details of a specified item from the list of items.</p>
+</li>
+<li>
+<p>AlgoBase displays the details of that item.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
 </div>
 <h3 id="use-case-21-export-algobase-data" class="discrete">Use Case 21: Export AlgoBase data</h3>
 <div class="paragraph">
@@ -3031,7 +3104,7 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-problem"><a class="link" href="#adding-a-problem">F.2. Adding a problem</a></h3>
+<h3 id="adding-problems"><a class="link" href="#adding-problems">F.2. Adding problems</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3053,7 +3126,7 @@ Expected: No problem is added. The problem&#8217;s name shouldn&#8217;t be blank
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-problem"><a class="link" href="#deleting-a-problem">F.3. Deleting a problem</a></h3>
+<h3 id="deleting-problems"><a class="link" href="#deleting-problems">F.3. Deleting problems</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3082,7 +3155,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-problem"><a class="link" href="#editing-a-problem">F.4. Editing a problem</a></h3>
+<h3 id="editing-problems"><a class="link" href="#editing-problems">F.4. Editing problems</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3149,7 +3222,7 @@ Expected: The current problem list remains unchanged and an error is thrown to i
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-tag"><a class="link" href="#adding-a-tag">F.7. Adding a tag</a></h3>
+<h3 id="adding-tags"><a class="link" href="#adding-tags">F.7. Adding tags</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3171,7 +3244,7 @@ Expected: Tag [test] already exists in AlgoBase.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-tag"><a class="link" href="#deleting-a-tag">F.8. Deleting a tag</a></h3>
+<h3 id="deleting-tags"><a class="link" href="#deleting-tags">F.8. Deleting tags</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3193,7 +3266,7 @@ Expected: The Tag index provided is invalid</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-tag"><a class="link" href="#editing-a-tag">F.9. Editing a tag</a></h3>
+<h3 id="editing-tags"><a class="link" href="#editing-tags">F.9. Editing tags</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3453,7 +3526,254 @@ Expected: All plans in Algobase are listed in the plan display tab.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.20. Saving Data</a></h3>
+<h3 id="setting-a-plan-as-current-plan"><a class="link" href="#setting-a-plan-as-current-plan">F.20. Setting a plan as current plan</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>There are exactly 2 training plans in AlgoBase.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>setplan 2</code><br>
+   Expected: Plan 2 is set as the current plan. The task management pane is updated.
+Current plan in the task management is updated to plan 1.</p>
+</li>
+<li>
+<p>Test case: <code>setplan 20</code><br>
+Expected: No task is added. Error details shown in the status message, indicating that the given plan index is invalid.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-task-to-an-existing-plan"><a class="link" href="#adding-a-task-to-an-existing-plan">F.21. Adding a task to an existing plan</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>There is at least 1 training plan and 10 problems in AlgoBase.</p>
+</li>
+<li>
+<p>Plan 1 is empty.</p>
+</li>
+<li>
+<p>Start and end dates of plan 1 are <code>2019-11-15</code> and <code>2019-12-15</code> respectively.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>addtask plan/1 prob/1</code><br>
+   Expected: A new task is created from problem 1 with due date on <code>2019-12-15</code>, and added to task list in plan 1.
+Current plan in the task management is updated to plan 1.</p>
+</li>
+<li>
+<p>Test case: <code>addtask plan/1 prob/2 due/3030-01-01</code><br>
+Expected: No task is added. Error details shown in the status message, indicating that the due date is not within the range of plan.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-due-date-of-a-task"><a class="link" href="#editing-due-date-of-a-task">F.22. Editing due date of a task</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>There is at least 1 training plan in AlgoBase.</p>
+</li>
+<li>
+<p>Plan 1 has at least 1 task.</p>
+</li>
+<li>
+<p>Start and end dates of plan 1 are <code>2019-11-15</code> and <code>2019-12-15</code> respectively.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>edittask plan/1 task/1 due/2019-11-20</code><br>
+Expected: The due date of the first task in plan 1 is updated to <code>2019-11-20</code>.</p>
+</li>
+<li>
+<p>Test case: <code>edittask plan/1 task/1 due/3030-01-01</code><br>
+Expected: Error details shown in the status message, indicating that the due date is not within the range of plan.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-task"><a class="link" href="#deleting-a-task">F.23. Deleting a task</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>There is exactly 1 training plan in AlgoBase.</p>
+</li>
+<li>
+<p>Plan 1 has at least 1 task.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>deletetask plan/1 task/1</code><br>
+Expected: The first task in plan 1 is deleted.</p>
+</li>
+<li>
+<p>Test case: <code>deletetask plan/100 task/1</code><br>
+Expected: Error details shown in the status message, indicating that the plan index is invalid.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="marking-a-task-as-done"><a class="link" href="#marking-a-task-as-done">F.24. Marking a task as done</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>There is at least 1 training plan in AlgoBase.</p>
+</li>
+<li>
+<p>Plan 1 has at least 2 tasks.</p>
+</li>
+<li>
+<p>The first task in plan 1 is not yet done.</p>
+</li>
+<li>
+<p>The second task in plan 1 is already done.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>donetask plan/1 task/1</code><br>
+Expected: The first task in plan 1 is marked as done.</p>
+</li>
+<li>
+<p>Test case: <code>donetask plan/1 task/2</code><br>
+Expected: Error details shown in the status message, indicating that the specified task is already done.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="marking-a-task-as-undone"><a class="link" href="#marking-a-task-as-undone">F.25. Marking a task as undone</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>There is at least 1 training plan in AlgoBase.</p>
+</li>
+<li>
+<p>Plan 1 has at least 2 tasks.</p>
+</li>
+<li>
+<p>The first task in plan 1 is already done.</p>
+</li>
+<li>
+<p>The second task in plan 1 is not yet done.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>undonetask plan/1 task/1</code><br>
+Expected: The first task in plan 1 is marked as undone.</p>
+</li>
+<li>
+<p>Test case: <code>undonetask plan/1 task/2</code><br>
+Expected: Error details shown in the status message, indicating that the specified task is not yet done.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="copying-a-task-between-plans"><a class="link" href="#copying-a-task-between-plans">F.26. Copying a task between plans</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>There are at least 2 training plans in AlgoBase.</p>
+</li>
+<li>
+<p>Plan 1 has at least 2 tasks.</p>
+</li>
+<li>
+<p>Plan 2 has exactly 1 task, which is the same the the first task in plan 1.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>copytask task/2 from/1 to/2</code><br>
+Expected: The second task in plan 1 is copied to plan 2.</p>
+</li>
+<li>
+<p>Test case: <code>copytask task/1 from/1 to/2</code><br>
+Expected: Error details shown in the status message, indicating that the specified task is already in plan 2.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="moving-a-task-between-plans"><a class="link" href="#moving-a-task-between-plans">F.27. Moving a task between plans</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>There are at least 2 training plans in AlgoBase.</p>
+</li>
+<li>
+<p>Plan 1 has at least 2 tasks.</p>
+</li>
+<li>
+<p>Plan 2 has exactly 1 task, which is the same the the first task in plan 1.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>movetask task/2 from/1 to/2</code><br>
+Expected: The second task in plan 1 is copied to plan 2.</p>
+</li>
+<li>
+<p>Test case: <code>movetask task/1 from/1 to/2</code><br>
+Expected: Error details shown in the status message, indicating that the specified task is already in plan 2.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">F.28. Saving Data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3475,7 +3795,7 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 <div class="sect2">
-<h3 id="switching-tabs"><a class="link" href="#switching-tabs">F.21. Switching tabs</a></h3>
+<h3 id="switching-tabs"><a class="link" href="#switching-tabs">F.29. Switching tabs</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3565,7 +3885,7 @@ Expected: No tabs are changed. Error message is shown.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="opening-a-new-tab"><a class="link" href="#opening-a-new-tab">F.22. Opening a new tab</a></h3>
+<h3 id="opening-a-new-tab"><a class="link" href="#opening-a-new-tab">F.30. Opening a new tab</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3695,7 +4015,7 @@ Expected: No tabs are opened. Error message is shown.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="closing-an-existing-tab"><a class="link" href="#closing-an-existing-tab">F.23. Closing an existing tab</a></h3>
+<h3 id="closing-an-existing-tab"><a class="link" href="#closing-an-existing-tab">F.31. Closing an existing tab</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3776,7 +4096,7 @@ Expected: No details tab are closed. Error message is shown.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-problem-from-gui"><a class="link" href="#editing-problem-from-gui">F.24. Editing Problem from GUI</a></h3>
+<h3 id="editing-problem-from-gui"><a class="link" href="#editing-problem-from-gui">F.32. Editing Problem from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3805,7 +4125,7 @@ Expected: Error details shown in the status message. Field updates are not refle
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-problem-from-gui"><a class="link" href="#deleting-problem-from-gui">F.25. Deleting Problem from GUI</a></h3>
+<h3 id="deleting-problem-from-gui"><a class="link" href="#deleting-problem-from-gui">F.33. Deleting Problem from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3834,7 +4154,7 @@ Expected: The Warning dialog is closed and no other changes are made.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-plan-from-gui"><a class="link" href="#editing-plan-from-gui">F.26. Editing Plan from GUI</a></h3>
+<h3 id="editing-plan-from-gui"><a class="link" href="#editing-plan-from-gui">F.34. Editing Plan from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3863,7 +4183,7 @@ Expected: Error details shown in the status message. Field updates are not refle
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-plan-from-gui"><a class="link" href="#deleting-plan-from-gui">F.27. Deleting Plan from GUI</a></h3>
+<h3 id="deleting-plan-from-gui"><a class="link" href="#deleting-plan-from-gui">F.35. Deleting Plan from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3892,7 +4212,7 @@ Expected: The Warning dialog is closed and no other changes are made.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="switching-tabs-from-gui"><a class="link" href="#switching-tabs-from-gui">F.28. Switching tabs from GUI</a></h3>
+<h3 id="switching-tabs-from-gui"><a class="link" href="#switching-tabs-from-gui">F.36. Switching tabs from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3939,7 +4259,7 @@ Expected: The display tab is now at the tab that is clicked on.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="opening-a-new-tab-from-gui"><a class="link" href="#opening-a-new-tab-from-gui">F.29. Opening a new tab from GUI</a></h3>
+<h3 id="opening-a-new-tab-from-gui"><a class="link" href="#opening-a-new-tab-from-gui">F.37. Opening a new tab from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4002,7 +4322,7 @@ Expected: The tab is switched to details tab containing the plan.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="closing-an-existing-tab-from-gui"><a class="link" href="#closing-an-existing-tab-from-gui">F.30. Closing an existing tab from GUI</a></h3>
+<h3 id="closing-an-existing-tab-from-gui"><a class="link" href="#closing-an-existing-tab-from-gui">F.38. Closing an existing tab from GUI</a></h3>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -4016,4 +4336,4 @@ Expected: The Details tab corresponding to that tab is closed.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:21:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:28:11 UTC</div></div></div></body></html>

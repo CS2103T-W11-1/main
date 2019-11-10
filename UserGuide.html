@@ -38,7 +38,7 @@
 <strong>With AlgoBase, say goodbye to tough interview days!</strong></p>
 </div>
 <div class="paragraph">
-<p>Tired of having to manually track your progress across multiple websites like Kattis, Hackerrank and Leetcode?
+<p>Tired of having to manually track your progress across multiple websites like Kattis, HackerRank and LeetCode?
 AlgoBase allows you to pull practice questions from these online repositories (and more!)
 and consolidates them into a single application.</p>
 </div>
@@ -51,8 +51,9 @@ We got you covered! AlgoBase also allows you to create highly flexible training 
 AlgoBase comes equipped with a comprehensive tag system and a flexible filtering mechanism for your needs.</p>
 </div>
 <div class="paragraph">
-<p>Are you used to the speed of Command Line tools and find that GUI applications are too slow? Not a problem! AlgoBase is designed for those who prefer to use a desktop app for managing algorithm problems,
-equipped with a robust Command Line Interface (CLI) while still maintaining the benefits of a Graphical User Interface (GUI).</p>
+<p>Are you used to the speed of Command Line tools and find that Graphical User Interface (GUI) applications are too slow?
+Not a problem! AlgoBase is designed for those who prefer to use a desktop app for managing algorithm problems,
+equipped with a robust Command Line Interface (CLI) while still maintaining the benefits of a GUI.</p>
 </div>
 <div class="paragraph">
 <p>Interested? Jump to the Section 2 to get an "Overview" of the AlgoBase, or Section 3 “Quick Start” to get started with AlgoBase!</p>
@@ -82,13 +83,13 @@ Upon completing a task, users can mark it as done, which contributes to the prog
 <div class="ulist">
 <ul>
 <li>
-<p><em>Display Tabs</em> – displays a list of items (problem, tag, plan or findrule)</p>
+<p><em>Display Tabs</em> – displays a list of items (problems, tags, plans or find rules)</p>
 </li>
 <li>
-<p><em>Details Tabs</em>  – shows details of a specific item</p>
+<p><em>Details Tabs</em>  – displays details of a specific item</p>
 </li>
 <li>
-<p><em>Plan Tab</em> – shows details of the current plan</p>
+<p><em>Task Management Pane</em> – displays details of the current plan</p>
 </li>
 </ul>
 </div>
@@ -114,6 +115,7 @@ Upon completing a task, users can mark it as done, which contributes to the prog
 <div class="content">
 <img src="images/Ui.png" alt="Ui">
 </div>
+<div class="title">Figure 2. UI of AlgoBase</div>
 </div>
 </li>
 <li>
@@ -128,30 +130,29 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>listprob</code></strong> : lists all problems</p>
 </li>
 <li>
-<p><strong><code>addprob</code></strong><code>n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Halim</code> : adds a problem called 'factorial' tagged with 'recursion' and authored by 'Halim'</p>
+<p><strong><code>addprob n/factorial d/define a function factorial that takes in a number and n and returns the factorial of the number t/recursion a/Halim</code></strong> :
+adds a problem called 'factorial' tagged with 'recursion' and authored by 'Halim'</p>
 </li>
 <li>
-<p><strong><code>editprob</code></strong><code>1 src/LeetCode</code> : edits the first problem displayed and sets its source to 'LeetCode'</p>
+<p><strong><code>editprob 1 src/LeetCode</code></strong> : edits the first problem displayed and sets its source to 'LeetCode'</p>
 </li>
 <li>
-<p><strong><code>switchtab</code></strong><code>tt/display i/2</code> : switches to tag tab</p>
+<p><strong><code>switchtab tt/display i/2</code></strong> : switches to tag tab</p>
 </li>
 <li>
-<p><strong><code>switchtab</code></strong><code>tt/display i/3</code> : switches to plan tab</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/UiStartPlan.png" alt="UiStartPlan">
-</div>
-</div>
+<p><strong><code>switchtab tt/display i/3</code></strong> : switches to plan tab</p>
 </li>
 <li>
-<p><strong><code>findplan</code></strong><code>n/CS2040</code> : finds plans that with name 'CS2040'</p>
+<p><strong><code>findplan n/CS2040</code></strong> : finds plans that with name 'CS2040'</p>
 </li>
 <li>
-<p><strong><code>clear</code></strong> : resets Algobase</p>
+<p><strong><code>donetask plan/1 task/1</code></strong> : marks the first task in the first training plan as done</p>
 </li>
 <li>
-<p><strong><code>exit</code></strong> : exits the app</p>
+<p><strong><code>clear</code></strong> : resets AlgoBase</p>
+</li>
+<li>
+<p><strong><code>exit</code></strong> : exits AlgoBase</p>
 </li>
 </ul>
 </div>
@@ -251,7 +252,7 @@ Format: <code>deleteprob INDEX [f/]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the problem at the specified <code>INDEX</code>.</p>
+<p>Deletes the problem with the specified <code>INDEX</code>.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the displayed problem list.</p>
@@ -259,11 +260,20 @@ Format: <code>deleteprob INDEX [f/]</code></p>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
-<li>
-<p>The command will fail if the problem identified by <code>INDEX</code> is used in some task(s) in existing plans.
-Add <code>f/</code> to force AlgoBase to delete all tasks associated with the problem.</p>
-</li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The command will fail if the problem identified by <code>INDEX</code> is used in some task(s) in existing plans.
+Add <code>f/</code> to force AlgoBase to delete all tasks associated with the problem.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -273,12 +283,12 @@ Add <code>f/</code> to force AlgoBase to delete all tasks associated with the pr
 <li>
 <p><code>listprob</code><br>
 <code>deleteprob 2</code><br>
-Deletes the 2nd problem in the displayed list.</p>
+Deletes the second problem in the displayed list.</p>
 </li>
 <li>
 <p><code>findprob n/factorial</code><br>
 <code>deleteprob 1</code><br>
-Deletes the 1st problem in the results of the <code>findprob</code> command.</p>
+Deletes the first problem in the results of the <code>findprob</code> command.</p>
 </li>
 </ul>
 </div>
@@ -287,7 +297,7 @@ Deletes the 1st problem in the results of the <code>findprob</code> command.</p>
 <h4 id="editing-a-problem-code-editprob-code"><a class="link" href="#editing-a-problem-code-editprob-code">4.1.3. Editing a problem : <code>editprob</code></a></h4>
 <div class="paragraph">
 <p>Edits an existing problem.<br>
-Format: <code>editprob INDEX [n/NAME] [d/DESCRIPTION] [a/AUTHOR]  [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>editprob INDEX [n/NAME] [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -315,11 +325,11 @@ Format: <code>editprob INDEX [n/NAME] [d/DESCRIPTION] [a/AUTHOR]  [t/TAG]&#8230;
 <ul>
 <li>
 <p><code>editprob 1 a/John Doe</code><br>
-Edits the author of the 1st problem to be <code>John Doe</code> respectively.</p>
+Edits the author of the first problem to be <code>John Doe</code> respectively.</p>
 </li>
 <li>
 <p><code>editprob 2 n/permutations t/</code><br>
-Edits the name of the 2nd problem to be <code>permutations</code> and clears all existing tags.</p>
+Edits the name of the second problem to be <code>permutations</code> and clears all existing tags.</p>
 </li>
 </ul>
 </div>
@@ -395,7 +405,7 @@ Format: <code>findprob [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LO
 <div class="content">
 <img src="images/findprob_1.png" alt="findprob 1" width="70%">
 </div>
-<div class="title">Figure 2. The result of <code>findprob</code> is shown in the problems list</div>
+<div class="title">Figure 3. The result of <code>findprob</code> is shown in the problems list</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -549,7 +559,7 @@ Alias: <code>afr</code></p>
 <div class="content">
 <img src="images/find_rule_1.png" alt="find rule 1" width="70%">
 </div>
-<div class="title">Figure 3. Information related to find rules is displayed in the "Find Rules" panel</div>
+<div class="title">Figure 4. Information related to find rules is displayed in the "Find Rules" panel</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -642,7 +652,7 @@ You can find problem-finding rules that you can <code>apply</code> with in the "
 <ul>
 <li>
 <p><code>apply 2</code><br>
-Applies the 2nd find rule in the displayed list.</p>
+Applies the second find rule in the displayed list.</p>
 </li>
 </ul>
 </div>
@@ -674,7 +684,7 @@ Alias: <code>dfr</code></p>
 <ul>
 <li>
 <p><code>deletefindrule 2</code> or <code>dfr 2</code><br>
-Deletes the 2nd find rule in the displayed list.</p>
+Deletes the second find rule in the displayed list.</p>
 </li>
 </ul>
 </div>
@@ -779,7 +789,7 @@ Format: <code>addplan n/NAME [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]</
 <p><code>START_DATE</code> should be before or equal to <code>END_DATE</code>.</p>
 </li>
 <li>
-<p><code>START_DATE</code> will be <code>LocalDate#now()</code> if not specified, and <code>END_DATE</code> will be one month from <code>START_DATE</code> if not specified.</p>
+<p><code>START_DATE</code> will be set to <code>LocalDate#now()</code> if not specified, and <code>END_DATE</code> will be one month from <code>START_DATE</code> if not specified.</p>
 </li>
 </ul>
 </div>
@@ -821,12 +831,12 @@ Format: <code>deleteplan INDEX</code></p>
 <li>
 <p><code>listplan</code><br>
 <code>deleteplan 2</code><br>
-Deletes the 2nd problem in the displayed list.</p>
+Deletes the second plan in the displayed list.</p>
 </li>
 <li>
 <p><code>findplan n/CS2040</code><br>
 <code>delete 1</code><br>
-Deletes the 1st problem in the results of the <code>findplan</code> command (will be introduced in the next section).</p>
+Deletes the first plan in the results of the <code>findplan</code> command (will be introduced in the next section).</p>
 </li>
 </ul>
 </div>
@@ -863,11 +873,11 @@ Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/EN
 <ul>
 <li>
 <p><code>editplan 1 d/past year questions of sit-in labs</code><br>
-Edits the description of the 1st plan to be <code>past year questions of sit-in labs</code> respectively.</p>
+Edits the description of the first plan to be <code>past year questions of sit-in labs</code> respectively.</p>
 </li>
 <li>
 <p><code>editplan 2 start/2019-08-13 f/</code><br>
-Edits the starting date of the 2nd plan to be <code>2019-08-13</code> and any task with due date before <code>2019-08-13</code> to the plan&#8217;s end date.</p>
+Edits the starting date of the second plan to be <code>2019-08-13</code> and any task with due date before <code>2019-08-13</code> to the plan&#8217;s end date.</p>
 </li>
 </ul>
 </div>
@@ -973,7 +983,7 @@ Finds plans that contain a task named 'Sequences'.</p>
 <div class="sect2">
 <h3 id="task-management"><a class="link" href="#task-management">4.5. Task Management</a></h3>
 <div class="sect3">
-<h4 id="adding-a-new-task-to-a-plan-code-addtask-code"><a class="link" href="#adding-a-new-task-to-a-plan-code-addtask-code">4.5.1. Adding a new task to a plan: <code>addtask</code></a></h4>
+<h4 id="adding-new-tasks-code-addtask-code"><a class="link" href="#adding-new-tasks-code-addtask-code">4.5.1. Adding new tasks: <code>addtask</code></a></h4>
 <div class="paragraph">
 <p>Adds a task to a specified plan.<br>
 Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]</code></p>
@@ -981,7 +991,51 @@ Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]</code></
 <div class="ulist">
 <ul>
 <li>
-<p><code>DUE_DATE</code> should be in between plan&#8217;s <code>startDate</code> and <code>endDate</code> (inclusive).</p>
+<p><code>DUE_DATE</code> should be in the format of <code>yyyy-MM-dd</code></p>
+</li>
+<li>
+<p><code>DUE_DATE</code> should be in between plan&#8217;s start date and end date (inclusive).</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>DUE_DATE</code> will be set to the end date of the plan to be added into, if unspecified.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addtask plan/1 prob/1 due/2019-12-12</code><br>
+Creates a new task with the first problem in the displayed problem list and due date on 12 December 2019,
+and adds it the first plan in the displayed plan list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="copying-tasks-between-plans-code-copytask-code"><a class="link" href="#copying-tasks-between-plans-code-copytask-code">4.5.2. Copying tasks between plans: <code>copytask</code></a></h4>
+<div class="paragraph">
+<p>Copies a specified task from one plan to another.<br>
+Format: <code>copytask task/TASK_INDEX from/PLAN_FROM_INDEX to/PLAN_TO_INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Task identified by <code>TASK_INDEX</code> should have a due date in between the start date and end date of the plan identified by <code>PLAN_TO_INDEX</code> (inclusive).</p>
+</li>
+<li>
+<p>Plan identified by <code>PLAN_TO_INDEX</code> should not contain tasks that consist of the same problem as the task identified by <code>TASK_INDEX</code>.</p>
 </li>
 </ul>
 </div>
@@ -991,13 +1045,14 @@ Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]</code></
 <div class="ulist">
 <ul>
 <li>
-<p><code>addtask plan/1 prob/1 due/2019-12-12</code></p>
+<p><code>copytask task/1 from/1 to/2</code><br>
+Copies the first task in the first plan to the second plan in the displayed plan list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-task-from-a-plan-code-deletetask-code"><a class="link" href="#deleting-a-task-from-a-plan-code-deletetask-code">4.5.2. Deleting a task from a plan: <code>deletetask</code></a></h4>
+<h4 id="deleting-tasks-code-deletetask-code"><a class="link" href="#deleting-tasks-code-deletetask-code">4.5.3. Deleting tasks: <code>deletetask</code></a></h4>
 <div class="paragraph">
 <p>Deletes a specified task from a specified plan.<br>
 Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
@@ -1008,13 +1063,39 @@ Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>deletetask plan/1 task/1</code></p>
+<p><code>deletetask plan/1 task/1</code><br>
+Deletes the first task in the first plan to the second plan in the displayed plan list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-due-date-of-a-task-from-a-plan-code-edittask-code"><a class="link" href="#editing-due-date-of-a-task-from-a-plan-code-edittask-code">4.5.3. Editing due date of a task from a plan: <code>edittask</code></a></h4>
+<h4 id="marking-tasks-as-done-code-donetask-code"><a class="link" href="#marking-tasks-as-done-code-donetask-code">4.5.4. Marking tasks as done: <code>donetask</code></a></h4>
+<div class="paragraph">
+<p>Marks a specified task in a specified plan as done.<br>
+Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The task to be marked as done should have a current status of <code>undone</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>donetask plan/1 task/1</code><br>
+Marks the first task in the first plan as done.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-due-date-of-tasks-code-edittask-code"><a class="link" href="#editing-due-date-of-tasks-code-edittask-code">4.5.5. Editing due date of tasks: <code>edittask</code></a></h4>
 <div class="paragraph">
 <p>Edits the due date of a specified task from a specified plan.<br>
 Format: <code>edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE</code></p>
@@ -1022,7 +1103,10 @@ Format: <code>edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>DUE_DATE</code> should be in between plan&#8217;s <code>startDate</code> and <code>endDate</code> (inclusive).</p>
+<p><code>DUE_DATE</code> should be in the format of <code>yyyy-MM-dd</code></p>
+</li>
+<li>
+<p><code>DUE_DATE</code> should be in between plan&#8217;s start date and end date (inclusive).</p>
 </li>
 </ul>
 </div>
@@ -1032,79 +1116,25 @@ Format: <code>edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edittask plan/1 task/1 due/2019-12-12</code></p>
+<p><code>edittask plan/1 task/1 due/2019-12-12</code><br>
+Changes the due date of the first task in the first plan to 12 December 2019.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-a-task-as-done-code-donetask-code"><a class="link" href="#marking-a-task-as-done-code-donetask-code">4.5.4. Marking a task as done: <code>donetask</code></a></h4>
-<div class="paragraph">
-<p>Marks a specified task in a specified plan as done.<br>
-Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>donetask plan/1 task/1</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="marking-a-task-as-undone-code-undonetask-code"><a class="link" href="#marking-a-task-as-undone-code-undonetask-code">4.5.5. Marking a task as undone: <code>undonetask</code></a></h4>
-<div class="paragraph">
-<p>Marks a specified task in a specified plan as undone.<br>
-Format: <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>undonetask plan/1 task/1</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="copying-a-task-from-one-plan-to-another-code-copytask-code"><a class="link" href="#copying-a-task-from-one-plan-to-another-code-copytask-code">4.5.6. Copying a task from one plan to another: <code>copytask</code></a></h4>
-<div class="paragraph">
-<p>Copies a specified task from one plan to another.<br>
-Format: <code>copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Task identified by <code>TASK_INDEX</code> should have a due date in between plan&#8217;s <code>startDate</code> and <code>endDate</code> (inclusive).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>copytask task/1 from/1 to/2</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="moving-a-task-from-one-plan-to-another-code-movetask-code"><a class="link" href="#moving-a-task-from-one-plan-to-another-code-movetask-code">4.5.7. Moving a task from one plan to another: <code>movetask</code></a></h4>
+<h4 id="moving-tasks-between-plans-code-movetask-code"><a class="link" href="#moving-tasks-between-plans-code-movetask-code">4.5.6. Moving tasks between plans: <code>movetask</code></a></h4>
 <div class="paragraph">
 <p>Moves a specified task from a specified plan to another.<br>
-Format: <code>movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
+Format: <code>movetask task/TASK_INDEX from/PLAN_FROM_INDEX to/PLAN_TO_INDEX</code></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Task identified by <code>TASK_INDEX</code> should have a due date in between plan&#8217;s <code>startDate</code> and <code>endDate</code> (inclusive).</p>
+<p>Task identified by <code>TASK_INDEX</code> should have a due date in between the start date and end date of the plan identified by <code>PLAN_TO_INDEX</code> (inclusive).</p>
+</li>
+<li>
+<p>Plan identified by <code>PLAN_TO_INDEX</code> should not contain tasks that consist of the same problem as the task identified by <code>TASK_INDEX</code>.</p>
 </li>
 </ul>
 </div>
@@ -1114,15 +1144,16 @@ Format: <code>movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>movetask task/1 from/1 to/2</code></p>
+<p><code>movetask task/1 from/1 to/2</code><br>
+Removes the first task from the first plan and adds it to the second plan in the displayed plan list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-the-plan-to-be-used-in-main-display-code-setplan-code"><a class="link" href="#setting-the-plan-to-be-used-in-main-display-code-setplan-code">4.5.8. Setting the plan to be used in main display: <code>setplan</code></a></h4>
+<h4 id="setting-current-plan-code-setplan-code"><a class="link" href="#setting-current-plan-code-setplan-code">4.5.7. Setting current plan: <code>setplan</code></a></h4>
 <div class="paragraph">
-<p>Sets a specified plan as the current display plan.<br>
+<p>Sets a specified plan as the current plan in main display.<br>
 Format: <code>setplan PLAN_INDEX</code></p>
 </div>
 <div class="paragraph">
@@ -1131,7 +1162,33 @@ Format: <code>setplan PLAN_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>setplan 10</code></p>
+<p><code>setplan 10</code><br>
+Sets plan with index 10 as the current plan.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="marking-tasks-as-undone-code-undonetask-code"><a class="link" href="#marking-tasks-as-undone-code-undonetask-code">4.5.8. Marking tasks as undone: <code>undonetask</code></a></h4>
+<div class="paragraph">
+<p>Marks a specified task in a specified plan as undone.<br>
+Format: <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The task to be marked as undone should have a current status of <code>done</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>undonetask plan/1 task/1</code><br>
+Marks the first task in the first plan as undone.</p>
 </li>
 </ul>
 </div>
@@ -1164,7 +1221,7 @@ Format: <code>setplan PLAN_INDEX</code></p>
 <div class="content">
 <img src="images/gui/TabsOverview1.png" alt="TabsOverview1" width="70%">
 </div>
-<div class="title">Figure 4. Types of tabs and their usage</div>
+<div class="title">Figure 5. Types of tabs and their usage</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1211,16 +1268,10 @@ Display Tabs cannot be closed.
 <p>The following steps show how a user can edit problems or plans from the GUI.</p>
 </div>
 <div class="paragraph">
-<p><strong>Step 1:</strong> Select the problem or plan you want to delete by double clicking on it.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/gui/EditPlanUiAction0Annotated.png" alt="EditPlanUiAction0Annotated" width="70%">
-</div>
-<div class="title">Figure 5. Plan with name "Data Structures" is opened.</div>
-</div>
-<div class="paragraph">
-<p><strong>Step 2:</strong> Make changes to the problem or plan by editing the fields directly.</p>
+<p><strong>Step 1:</strong> Select the problem or plan you want to delete by double clicking on it.
+.Plan with name "Data Structures" is opened.
+image::gui/EditPlanUiAction0Annotated.png[width=70%, scaledwidth=12cm]
+<strong>Step 2:</strong> Make changes to the problem or plan by editing the fields directly.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1256,16 +1307,10 @@ The <em>Edit Plan</em> Button cannot be clicked if there are no changes made to 
 <p>The following steps show how a user can delete problems or plans from the GUI.</p>
 </div>
 <div class="paragraph">
-<p><strong>Step 1:</strong> Select the problem or plan you want to delete by double clicking on it.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/gui/DeleteProblemUiAction0Annotated.png" alt="DeleteProblemUiAction0Annotated" width="70%">
-</div>
-<div class="title">Figure 8. Problem with name "Sequences" is opened.</div>
-</div>
-<div class="paragraph">
-<p><strong>Step 2:</strong> Click on the red <em>Delete Problem</em> or <em>Delete Plan</em> button at the bottom right.
+<p><strong>Step 1:</strong> Select the problem or plan you want to delete by double clicking on it.
+.Problem with name "Sequences" is opened.
+image::gui/DeleteProblemUiAction0Annotated.png[width=70%, scaledwidth=12cm]
+<strong>Step 2:</strong> Click on the red <em>Delete Problem</em> or <em>Delete Plan</em> button at the bottom right.
 To prevent accidental deletion, a warning dialog will appear to confirm if you would like to delete the item.
 Click on the <em>"confirm"</em> button.</p>
 </div>
@@ -1273,7 +1318,7 @@ Click on the <em>"confirm"</em> button.</p>
 <div class="content">
 <img src="images/gui/DeleteProblemUiAction1Annotated.png" alt="DeleteProblemUiAction1Annotated" width="70%">
 </div>
-<div class="title">Figure 9. Warning Dialog to confirm problem being deleted.</div>
+<div class="title">Figure 8. Warning Dialog to confirm problem being deleted.</div>
 </div>
 <div class="paragraph">
 <p><strong>Step 3:</strong> Click on <em>Confirm</em>.</p>
@@ -1282,7 +1327,7 @@ Click on the <em>"confirm"</em> button.</p>
 <div class="content">
 <img src="images/gui/DeleteProblemUiAction2Annotated.png" alt="DeleteProblemUiAction2Annotated" width="70%">
 </div>
-<div class="title">Figure 10. The problem is successfully deleted.</div>
+<div class="title">Figure 9. The problem is successfully deleted.</div>
 </div>
 </div>
 <div class="sect3">
@@ -1291,7 +1336,7 @@ Click on the <em>"confirm"</em> button.</p>
 <div class="content">
 <img src="images/gui/SwitchTabCommand.png" alt="SwitchTabCommand" width="70%">
 </div>
-<div class="title">Figure 11. Demonstration of the <code>SwitchTab</code> command</div>
+<div class="title">Figure 10. Demonstration of the <code>SwitchTab</code> command</div>
 </div>
 <div class="paragraph">
 <p>Switches between tabs in the GUI<br>
@@ -1341,7 +1386,7 @@ Format: <code>st tt/TAB_TYPE i/TAB_INDEX</code></p>
 <div class="content">
 <img src="images/gui/OpenTabCommand.png" alt="OpenTabCommand" width="70%">
 </div>
-<div class="title">Figure 12. Demonstration of the <code>OpenTab</code> command</div>
+<div class="title">Figure 11. Demonstration of the <code>OpenTab</code> command</div>
 </div>
 <div class="paragraph">
 <p>Opens a new <strong>Details</strong> tab in the GUI<br>
@@ -1412,7 +1457,7 @@ Format: <code>ct i/DETAILS_TAB_INDEX</code></p>
 <div class="sect3">
 <h4 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">4.7.1. Importing data: <code>import</code></a></h4>
 <div class="paragraph">
-<p>Imports external data of a specified format (e.g. JSON) into local storage.<br>
+<p>Imports external data in <code>JSON</code> format into local storage.<br>
 Format: <code>import format/FORMAT path/FILE_PATH</code></p>
 </div>
 <div class="ulist">
@@ -1439,7 +1484,7 @@ Format: <code>import format/FORMAT path/FILE_PATH</code></p>
 <div class="sect3">
 <h4 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">4.7.2. Exporting data: <code>export</code></a></h4>
 <div class="paragraph">
-<p>Exports data into a specified format (e.g. JSON).<br>
+<p>Exports data into <code>JSON</code> format.<br>
 Format: <code>export format/FORMAT path/DIRECTORY_PATH</code></p>
 </div>
 <div class="ulist">
@@ -1626,7 +1671,7 @@ e.g. <code>editplan 1 n/training start/2020-02-02 f/</code></p>
 </li>
 <li>
 <p><strong>Find Training Plans</strong> : <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_END] [task/TASK_NAME]</code><br>
-e.g. <code>find n/CS2040 start/2019-03-01 end/2019-03-31</code></p>
+e.g. <code>findplan n/CS2040 start/2019-03-01 end/2019-03-31</code></p>
 </li>
 <li>
 <p><strong>List Training Plans</strong> : <code>listplan</code></p>
@@ -1647,6 +1692,10 @@ e.g. <code>deleteplan 2</code></p>
 e.g. <code>addtask plan/1 prob/2</code></p>
 </li>
 <li>
+<p><strong>Copy Task between Plans</strong> : <code>copytask task/TASK_INDEX from/PLAN_FROM_INDEX to/PLAN_TO_TASK</code><br>
+e.g. <code>copytask task/1 from/1 to/2</code></p>
+</li>
+<li>
 <p><strong>Delete Task from Training Plan</strong> : <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code><br>
 e.g. <code>deletetask plan/1 task/2</code></p>
 </li>
@@ -1655,19 +1704,15 @@ e.g. <code>deletetask plan/1 task/2</code></p>
 e.g. <code>edittask plan/1 task/2 due/2019-12-12</code></p>
 </li>
 <li>
-<p><strong>Mark Task as done</strong> : <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code><br>
+<p><strong>Mark Task as Done</strong> : <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code><br>
 e.g. <code>donetask plan/1 task/2</code></p>
 </li>
 <li>
-<p><strong>Mark Task as undone</strong> : <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code><br>
+<p><strong>Mark Task as Undone</strong> : <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code><br>
 e.g. <code>undonetask plan/1 task/2</code></p>
 </li>
 <li>
-<p><strong>Copy Tasks among Plans</strong> : <code>copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_TASK</code><br>
-e.g. <code>copytask task/1 from/1 to/2</code></p>
-</li>
-<li>
-<p><strong>Move Tasks among Plans</strong> : <code>movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_TASK</code><br>
+<p><strong>Move Task between Plans</strong> : <code>movetask task/TASK_INDEX from/PLAN_FROM_INDEX to/PLAN_TO_TASK</code><br>
 e.g. <code>movetask task/1 from/1 to/2</code></p>
 </li>
 <li>
@@ -1716,7 +1761,7 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Help</strong> : <code>help</code></p>
+<p><strong>Help</strong> : <code>help [COMMAND_WORD]</code></p>
 </li>
 <li>
 <p><strong>Clear</strong> : <code>clear</code></p>
@@ -1730,4 +1775,4 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:21:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:28:11 UTC</div></div></div></body></html>

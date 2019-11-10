@@ -144,7 +144,7 @@ Format: <code>addplan n/NAME [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]</
 <p><code>START_DATE</code> should be before or equal to <code>END_DATE</code>.</p>
 </li>
 <li>
-<p><code>START_DATE</code> will be <code>LocalDate#now()</code> if not specified, and <code>END_DATE</code> will be one month from <code>START_DATE</code> if not specified.</p>
+<p><code>START_DATE</code> will be set to <code>LocalDate#now()</code> if not specified, and <code>END_DATE</code> will be one month from <code>START_DATE</code> if not specified.</p>
 </li>
 </ul>
 </div>
@@ -186,12 +186,12 @@ Format: <code>deleteplan INDEX</code></p>
 <li>
 <p><code>listplan</code><br>
 <code>deleteplan 2</code><br>
-Deletes the 2nd problem in the displayed list.</p>
+Deletes the second plan in the displayed list.</p>
 </li>
 <li>
 <p><code>findplan n/CS2040</code><br>
 <code>delete 1</code><br>
-Deletes the 1st problem in the results of the <code>findplan</code> command (will be introduced in the next section).</p>
+Deletes the first plan in the results of the <code>findplan</code> command (will be introduced in the next section).</p>
 </li>
 </ul>
 </div>
@@ -228,11 +228,11 @@ Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/EN
 <ul>
 <li>
 <p><code>editplan 1 d/past year questions of sit-in labs</code><br>
-Edits the description of the 1st plan to be <code>past year questions of sit-in labs</code> respectively.</p>
+Edits the description of the first plan to be <code>past year questions of sit-in labs</code> respectively.</p>
 </li>
 <li>
 <p><code>editplan 2 start/2019-08-13 f/</code><br>
-Edits the starting date of the 2nd plan to be <code>2019-08-13</code> and any task with due date before <code>2019-08-13</code> to the plan&#8217;s end date.</p>
+Edits the starting date of the second plan to be <code>2019-08-13</code> and any task with due date before <code>2019-08-13</code> to the plan&#8217;s end date.</p>
 </li>
 </ul>
 </div>
@@ -672,4 +672,4 @@ Expected: All plans in Algobase are listed in the plan display tab.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:21:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:28:12 UTC</div></div></div></body></html>

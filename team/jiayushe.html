@@ -14,6 +14,12 @@
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 20 kLoC.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui">
+</div>
+<div class="title">Figure 1. UI of AlgoBase</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -22,43 +28,76 @@ It is written in Java, and has about 20 kLoC.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: implemented <strong>task management feature</strong></p>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=jiayushe">View on RepoSense</a>]</p>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: Implemented task management feature</p>
 <div class="ulist">
 <ul>
 <li>
 <p>What it does:
-This feature allows the user to keep track of the problems to be done as upcoming tasks
+This feature allows the user to keep track of the problems to be done as upcoming tasks in separate plans
 and thus manage his/her progress for each plan.</p>
 </li>
 <li>
 <p>Justification:
-This feature is the core feature of AlgoBase.
-It allows the user to manage the problems to meet different needs,
-such as interviews for different companies or different rounds.
+Task management is the core feature of AlgoBase.
+It allows the user to manage the problems as tasks in separate plans for different purposes,
+such as interviews for different companies or different rounds,
+instead of managing all problems stored in the database all together.
 By introducing the notion of tasks, user can add more details to the problems
-such as due dates and whether each problem has been solved, without modifying the original problem.
+such as due dates and whether each problem has been solved, without modifying the original problems.
 This adds significant value to AlgoBase as an algorithmic problem manager.</p>
 </li>
 <li>
-<p>Highlights:
-This feature is highly coupled with the problem feature and plan feature.
-It requires in-depth analysis of all existing features in order to avoid unintended behaviours.
-For example, since each task stores a problem, when the corresponding problem is deleted or updated,
-all tasks in all plans that are related to this problem need to be updated at the same time.
-Moreover, to avoid user mistakes when deleting problems that are used in some tasks,
+<p>Highlights:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This feature involves full-stack development in all five main components in AlgoBase,
+including <code>Logic</code>, <code>Model</code>, <code>Storage</code>, <code>Ui</code> and <code>UiLogic</code>.</p>
+</li>
+<li>
+<p>This feature is highly coupled with the problem tracking feature and training plan feature.
+It requires in-depth analysis of all existing features in order to avoid unintended behaviours.</p>
+</li>
+<li>
+<p>For example, since each task stores a problem, when a problem is deleted or updated,
+all corresponding tasks in all plans need to be deleted or updated simultaneously.</p>
+</li>
+<li>
+<p>Moreover, to avoid user mistakes when deleting problems that are used in some tasks,
 which may cause additional overhead to bring back the tasks,
-a forced mode is introduced to reduce such possibilities.
-It involves all main components in AlgoBase, including <code>Model</code>, <code>Logic</code>, <code>Storage</code> and <code>Ui</code>.</p>
+a distinction between normal mode and "forced" mode is introduced to reduce such risks.
+(User command to delete problems that are used in tasks will fail gracefully,
+unless a "forced" flag is added to the end of his/her command to enable "forced" mode.)</p>
+</li>
+<li>
+<p>A task management pane is also added in the main display
+to allow user direct and convenient access to the current plan he/she is doing.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: Implemented <strong>data management feature</strong><br>
-It allows the user to export their data into JSON format and import new data from JSON files.</p>
+<p>Relevant pull requests:
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/62">#62</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/70">#70</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/73">#73</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/75">#75</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/116">#116</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/143">#143</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/150">#150</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/164">#164</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/210">#210</a>
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/237">#237</a></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=jiayushe">View on RepoSense</a>]</p>
+<p><strong>Minor enhancement</strong>: Implemented data management feature<br>
+It allows the user to export their data into JSON format and import new data from JSON files.</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -69,7 +108,10 @@ It allows the user to export their data into JSON format and import new data fro
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.0</code>, <code>v1.3.2</code> and <code>v1.3.3</code> (3 releases) on GitHub</p>
+<p>Managed releases <code>v1.1</code>, <code>v1.3.2</code> and <code>v1.3.3</code> (3 releases) on GitHub</p>
+</li>
+<li>
+<p>Updated logo of AlgoBase</p>
 </li>
 </ul>
 </div>
@@ -79,7 +121,8 @@ It allows the user to export their data into JSON format and import new data fro
 <div class="ulist">
 <ul>
 <li>
-<p>TBA</p>
+<p>Implement relational storage of models in database [<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/80">#80</a>]<br>
+This allows integrity check on the storage file upon each launch of AlgoBase.</p>
 </li>
 </ul>
 </div>
@@ -89,7 +132,10 @@ It allows the user to export their data into JSON format and import new data fro
 <div class="ulist">
 <ul>
 <li>
-<p>TBA</p>
+<p>Updated documentation for UI, Logic and Storage in Developer Guide</p>
+</li>
+<li>
+<p>Added documentation for Task Management feature in Developer Guide and User Guide</p>
 </li>
 </ul>
 </div>
@@ -108,11 +154,8 @@ It allows the user to export their data into JSON format and import new data fro
 <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/214">#214</a></p>
 </li>
 <li>
-<p>Contributed to forum discussions: TBA</p>
-</li>
-<li>
 <p>Reported bugs and suggestions for other teams in the class:
-<a href="https://github.com/jiayushe/ped">PE Dry Run</a></p>
+<a href="https://github.com/jiayushe/ped">Reported 17 bugs during PE Dry Run</a></p>
 </li>
 </ul>
 </div>
@@ -122,7 +165,7 @@ It allows the user to export their data into JSON format and import new data fro
 <div class="ulist">
 <ul>
 <li>
-<p>Integrated Github plugins (AppVeyor, Coveralls, Netlify, Traivs) to the team repository</p>
+<p>Integrated Github plugins (AppVeyor, Coveralls, Netlify, Travis) to the team repository</p>
 </li>
 </ul>
 </div>
@@ -150,7 +193,7 @@ It allows the user to export their data into JSON format and import new data fro
 <div class="sect2">
 <h3 id="task-management"><a class="link" href="#task-management">Task Management</a></h3>
 <div class="sect3">
-<h4 id="adding-a-new-task-to-a-plan-code-addtask-code"><a class="link" href="#adding-a-new-task-to-a-plan-code-addtask-code">Adding a new task to a plan: <code>addtask</code></a></h4>
+<h4 id="adding-new-tasks-code-addtask-code"><a class="link" href="#adding-new-tasks-code-addtask-code">Adding new tasks: <code>addtask</code></a></h4>
 <div class="paragraph">
 <p>Adds a task to a specified plan.<br>
 Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]</code></p>
@@ -158,7 +201,51 @@ Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]</code></
 <div class="ulist">
 <ul>
 <li>
-<p><code>DUE_DATE</code> should be in between plan&#8217;s <code>startDate</code> and <code>endDate</code> (inclusive).</p>
+<p><code>DUE_DATE</code> should be in the format of <code>yyyy-MM-dd</code></p>
+</li>
+<li>
+<p><code>DUE_DATE</code> should be in between plan&#8217;s start date and end date (inclusive).</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>DUE_DATE</code> will be set to the end date of the plan to be added into, if unspecified.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addtask plan/1 prob/1 due/2019-12-12</code><br>
+Creates a new task with the first problem in the displayed problem list and due date on 12 December 2019,
+and adds it the first plan in the displayed plan list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="copying-tasks-between-plans-code-copytask-code"><a class="link" href="#copying-tasks-between-plans-code-copytask-code">Copying tasks between plans: <code>copytask</code></a></h4>
+<div class="paragraph">
+<p>Copies a specified task from one plan to another.<br>
+Format: <code>copytask task/TASK_INDEX from/PLAN_FROM_INDEX to/PLAN_TO_INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Task identified by <code>TASK_INDEX</code> should have a due date in between the start date and end date of the plan identified by <code>PLAN_TO_INDEX</code> (inclusive).</p>
+</li>
+<li>
+<p>Plan identified by <code>PLAN_TO_INDEX</code> should not contain tasks that consist of the same problem as the task identified by <code>TASK_INDEX</code>.</p>
 </li>
 </ul>
 </div>
@@ -168,13 +255,14 @@ Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]</code></
 <div class="ulist">
 <ul>
 <li>
-<p><code>addtask plan/1 prob/1 due/2019-12-12</code></p>
+<p><code>copytask task/1 from/1 to/2</code><br>
+Copies the first task in the first plan to the second plan in the displayed plan list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-task-from-a-plan-code-deletetask-code"><a class="link" href="#deleting-a-task-from-a-plan-code-deletetask-code">Deleting a task from a plan: <code>deletetask</code></a></h4>
+<h4 id="deleting-tasks-code-deletetask-code"><a class="link" href="#deleting-tasks-code-deletetask-code">Deleting tasks: <code>deletetask</code></a></h4>
 <div class="paragraph">
 <p>Deletes a specified task from a specified plan.<br>
 Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
@@ -185,13 +273,39 @@ Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>deletetask plan/1 task/1</code></p>
+<p><code>deletetask plan/1 task/1</code><br>
+Deletes the first task in the first plan to the second plan in the displayed plan list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-due-date-of-a-task-from-a-plan-code-edittask-code"><a class="link" href="#editing-due-date-of-a-task-from-a-plan-code-edittask-code">Editing due date of a task from a plan: <code>edittask</code></a></h4>
+<h4 id="marking-tasks-as-done-code-donetask-code"><a class="link" href="#marking-tasks-as-done-code-donetask-code">Marking tasks as done: <code>donetask</code></a></h4>
+<div class="paragraph">
+<p>Marks a specified task in a specified plan as done.<br>
+Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The task to be marked as done should have a current status of <code>undone</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>donetask plan/1 task/1</code><br>
+Marks the first task in the first plan as done.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-due-date-of-tasks-code-edittask-code"><a class="link" href="#editing-due-date-of-tasks-code-edittask-code">Editing due date of tasks: <code>edittask</code></a></h4>
 <div class="paragraph">
 <p>Edits the due date of a specified task from a specified plan.<br>
 Format: <code>edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE</code></p>
@@ -199,7 +313,10 @@ Format: <code>edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>DUE_DATE</code> should be in between plan&#8217;s <code>startDate</code> and <code>endDate</code> (inclusive).</p>
+<p><code>DUE_DATE</code> should be in the format of <code>yyyy-MM-dd</code></p>
+</li>
+<li>
+<p><code>DUE_DATE</code> should be in between plan&#8217;s start date and end date (inclusive).</p>
 </li>
 </ul>
 </div>
@@ -209,79 +326,25 @@ Format: <code>edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edittask plan/1 task/1 due/2019-12-12</code></p>
+<p><code>edittask plan/1 task/1 due/2019-12-12</code><br>
+Changes the due date of the first task in the first plan to 12 December 2019.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-a-task-as-done-code-donetask-code"><a class="link" href="#marking-a-task-as-done-code-donetask-code">Marking a task as done: <code>donetask</code></a></h4>
-<div class="paragraph">
-<p>Marks a specified task in a specified plan as done.<br>
-Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>donetask plan/1 task/1</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="marking-a-task-as-undone-code-undonetask-code"><a class="link" href="#marking-a-task-as-undone-code-undonetask-code">Marking a task as undone: <code>undonetask</code></a></h4>
-<div class="paragraph">
-<p>Marks a specified task in a specified plan as undone.<br>
-Format: <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>undonetask plan/1 task/1</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="copying-a-task-from-one-plan-to-another-code-copytask-code"><a class="link" href="#copying-a-task-from-one-plan-to-another-code-copytask-code">Copying a task from one plan to another: <code>copytask</code></a></h4>
-<div class="paragraph">
-<p>Copies a specified task from one plan to another.<br>
-Format: <code>copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Task identified by <code>TASK_INDEX</code> should have a due date in between plan&#8217;s <code>startDate</code> and <code>endDate</code> (inclusive).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>copytask task/1 from/1 to/2</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="moving-a-task-from-one-plan-to-another-code-movetask-code"><a class="link" href="#moving-a-task-from-one-plan-to-another-code-movetask-code">Moving a task from one plan to another: <code>movetask</code></a></h4>
+<h4 id="moving-tasks-between-plans-code-movetask-code"><a class="link" href="#moving-tasks-between-plans-code-movetask-code">Moving tasks between plans: <code>movetask</code></a></h4>
 <div class="paragraph">
 <p>Moves a specified task from a specified plan to another.<br>
-Format: <code>movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
+Format: <code>movetask task/TASK_INDEX from/PLAN_FROM_INDEX to/PLAN_TO_INDEX</code></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Task identified by <code>TASK_INDEX</code> should have a due date in between plan&#8217;s <code>startDate</code> and <code>endDate</code> (inclusive).</p>
+<p>Task identified by <code>TASK_INDEX</code> should have a due date in between the start date and end date of the plan identified by <code>PLAN_TO_INDEX</code> (inclusive).</p>
+</li>
+<li>
+<p>Plan identified by <code>PLAN_TO_INDEX</code> should not contain tasks that consist of the same problem as the task identified by <code>TASK_INDEX</code>.</p>
 </li>
 </ul>
 </div>
@@ -291,15 +354,16 @@ Format: <code>movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>movetask task/1 from/1 to/2</code></p>
+<p><code>movetask task/1 from/1 to/2</code><br>
+Removes the first task from the first plan and adds it to the second plan in the displayed plan list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-the-plan-to-be-used-in-main-display-code-setplan-code"><a class="link" href="#setting-the-plan-to-be-used-in-main-display-code-setplan-code">Setting the plan to be used in main display: <code>setplan</code></a></h4>
+<h4 id="setting-current-plan-code-setplan-code"><a class="link" href="#setting-current-plan-code-setplan-code">Setting current plan: <code>setplan</code></a></h4>
 <div class="paragraph">
-<p>Sets a specified plan as the current display plan.<br>
+<p>Sets a specified plan as the current plan in main display.<br>
 Format: <code>setplan PLAN_INDEX</code></p>
 </div>
 <div class="paragraph">
@@ -308,7 +372,33 @@ Format: <code>setplan PLAN_INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>setplan 10</code></p>
+<p><code>setplan 10</code><br>
+Sets plan with index 10 as the current plan.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="marking-tasks-as-undone-code-undonetask-code"><a class="link" href="#marking-tasks-as-undone-code-undonetask-code">Marking tasks as undone: <code>undonetask</code></a></h4>
+<div class="paragraph">
+<p>Marks a specified task in a specified plan as undone.<br>
+Format: <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The task to be marked as undone should have a current status of <code>done</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>undonetask plan/1 task/1</code><br>
+Marks the first task in the first plan as undone.</p>
 </li>
 </ul>
 </div>
@@ -329,16 +419,89 @@ Format: <code>setplan PLAN_INDEX</code></p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">Storage component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/storage/StorageClassDiagram.png" alt="StorageClassDiagram" width="70%">
+</div>
+<div class="title">Figure 2. Structure of the Storage Component</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/storage/ProblemSearchRuleClassDiagram.png" alt="ProblemSearchRuleClassDiagram" width="65%">
+</div>
+<div class="title">Figure 3. Structure of the JsonAdaptedProblemSearchRule Component</div>
+</div>
 <div class="paragraph">
-<p><a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#task-management-feature">Implementation - Task Management</a><br>
-<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#Design-Ui">Design - UI</a><br>
-<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#Design-Storage">Design - Storage</a></p>
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/algobase/storage/Storage.java"><code>Storage.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Storage</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can store <code>UserPref</code> objects in <code>JSON</code> format.</p>
+</li>
+<li>
+<p>can retrieve <code>UserPref</code> objects from <code>JSON</code> format.</p>
+</li>
+<li>
+<p>can store the AlgoBase app data including <code>GuiState</code>, <code>Plan</code>, <code>Problem</code>, <code>ProblemSearchRule</code>, <code>Tag</code>, <code>Task</code>
+objects in relational manner in <code>JSON</code> format.</p>
+</li>
+<li>
+<p>can retrieve <code>GuiState</code>, <code>Plan</code>, <code>Problem</code>, <code>ProblemSearchRule</code>, <code>Tag</code>, <code>Task</code> objects from data stored in <code>JSON</code> format.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">UI component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UiClassDiagram.png" alt="UiClassDiagram" width="100%">
+</div>
+<div class="title">Figure 4. Structure of the UI Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/algobase/ui/Ui.java"><code>Ui.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component consists of a <code>MainWindow</code> that is made up of parts
+e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>DetailsTabPane</code>, <code>DisplayTabPane</code>, <code>TaskManagementPane</code>, <code>StatusBarFooter</code> etc.
+All these components, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>DetailsTabPane</code> consists of <code>FindRuleListPanel</code>, <code>PlanListPanel</code>, <code>ProblemListPanel</code> and <code>TagListPanel</code>,
+which are used for displaying entries of <code>FindRule</code>, <code>Plan</code>, <code>Problem</code> and <code>Tag</code> stored in AlgoBase respectively.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses JavaFx UI framework.
+The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
+For example, the layout of the <a href="{repoURL}/src/main/java/seedu/algobase/ui/MainWindow.java"><code>MainWindow</code></a>
+is specified in <a href="{repoURL}/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Executes user commands using the <code>Logic</code> component.</p>
+</li>
+<li>
+<p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect2">
 <h3 id="task-management-feature"><a class="link" href="#task-management-feature">Task Management Feature</a></h3>
 <div class="paragraph">
-<p>As a algorithmic problem management tool, one of the most important features will be manage tasks that have been done
-and are to be done.</p>
+<p>As an algorithmic problem management tool, one of the most important features will be managing tasks that have been done
+or are to be done.</p>
 </div>
 <div class="paragraph">
 <p>This section will describe in details the current implementation and design considerations of
@@ -370,12 +533,28 @@ the task management feature.</p>
 <p><code>MoveTask</code> - moves a task from one plan to another.</p>
 </li>
 <li>
-<p><code>UndoneTask</code> - marks a task as undone in a specified plan.</p>
-</li>
-<li>
 <p><code>SetPlan</code> - sets a plan as the current plan in main display.</p>
 </li>
+<li>
+<p><code>UndoneTask</code> - marks a task as undone in a specified plan.</p>
+</li>
 </ul>
+</div>
+<div class="paragraph">
+<p>This feature is mainly supported by the <code>Task</code> class.
+Given below are class diagrams of the <code>Task</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/task/HighLevelTaskClassDiagram.png" alt="HighLevelTaskClassDiagram" width="40%">
+</div>
+<div class="title">Figure 5. High Level Class Diagram for Task</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/task/TaskClassDiagram.png" alt="TaskClassDiagram" width="30%">
+</div>
+<div class="title">Figure 6. Detailed Class Diagram for Task</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the mechanism for adding tasks behaves at each step.</p>
@@ -385,9 +564,9 @@ the task management feature.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram">
+<img src="../images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram" width="80%">
 </div>
-<div class="title">Figure 1. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 7. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application.</p>
@@ -401,13 +580,24 @@ The <code>AddTaskCommand</code> calls <code>Model#updateTasks</code> to create a
 and replace the original plan with this updated plan in the <code>PlanList</code> stored in <code>AlgoBase</code>.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the <code>AddTaskCommand</code> executes:</p>
+<p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes user request
+to execute <code>addtask plan/1 prob/1</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram">
+<img src="../images/task/HighLevelAddTaskSequenceDiagram.png" alt="HighLevelAddTaskSequenceDiagram" width="80%">
 </div>
-<div class="title">Figure 2. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 8. High Level Sequence Diagram for the Execution of <code>addtask plan/1 prob/1</code></div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram illustrates the interaction between the <code>Logic</code> and <code>Model</code> component
+while executing <code>AddTaskCommand</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram" width="100%">
+</div>
+<div class="title">Figure 9. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 </div>
 <div class="sect3">
@@ -513,14 +703,22 @@ and replace the original plan with this updated plan in the <code>PlanList</code
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="more-contributions-to-the-developer-guide"><a class="link" href="#more-contributions-to-the-developer-guide">More Contributions to the Developer Guide</a></h3>
+<div class="paragraph">
+<p><a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#Design-Logic">Design - Logic</a><br>
+<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#use-cases">Use Cases for Problems, Tasks and Storage</a><br>
+<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#non-functional-requirements">Non Functional Requirements</a></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="project-a-href-https-sourceacademy-nus-edu-sg-sourcecast-sourcecast-a"><a class="link" href="#project-a-href-https-sourceacademy-nus-edu-sg-sourcecast-sourcecast-a">PROJECT: <a href="https://sourceacademy.nus.edu.sg/sourcecast">SourceCast</a></a></h2>
+<h2 id="project-sourcecast"><a class="link" href="#project-sourcecast">PROJECT: SourceCast</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An interactive code recorder and player to support e-teaching and e-learning, used in Source Academy,
+<p><a href="https://sourceacademy.nus.edu.sg/sourcecast">SourceCast</a> is an interactive code recorder and player to support e-teaching and e-learning, used in Source Academy,
 an immersive experiential learning environment for NUS freshman programming methodology course, CS1101S.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:21:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:28:12 UTC</div></div></div></body></html>

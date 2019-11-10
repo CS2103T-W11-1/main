@@ -171,16 +171,16 @@ e.g. <code>edittag 1 t/sort</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addTag</code> - create a new tag in AlgoBase&#8217;s uniqueTagList in the algobase history.</p>
+<p><code>AddTag</code> - creates a new tag in AlgoBase&#8217;s uniqueTagList in the algobase history.</p>
 </li>
 <li>
-<p><code>deleteTag</code> - delete a current tag which have already in the uniqueTagList.</p>
+<p><code>DeleteTag</code> - deletes a current tag which have already in the uniqueTagList.</p>
 </li>
 <li>
-<p><code>listTag</code> - show the tags in the uniqueTagList in the algobase GUI for users</p>
+<p><code>EditTag</code> - edits the current tag name which have already been in the <code>uniqueTagList</code>.</p>
 </li>
 <li>
-<p><code>editTag</code> - edit the current tag name which have already been in the uniqueTagList</p>
+<p><code>ListTag</code> - shows the tags in the uniqueTagList in the algobase GUI for users.</p>
 </li>
 </ul>
 </div>
@@ -203,7 +203,7 @@ e.g. <code>edittag 1 t/sort</code></p>
 <p>Step 2. The user executes <code>addtag t/easy</code> to add a tag named [easy] with default color which have not applied in any problems. The addtag command calls <code>Model#addtag()</code>, causing the taglist added a tag after the ‘addtag t/easy’ command executes to be saved in the uniqueTagList.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the <code>deletetag</code> operation works:</p>
+<p>The following sequence diagram shows how the <code>addtag</code> operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -212,7 +212,7 @@ e.g. <code>edittag 1 t/sort</code></p>
 <div class="title">Figure 2. Sequence Diagram for <code>AddTagCommand</code></div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls <code>Model#listtag()</code>, causing the taglist shows the current components of uniqueTagList. Commands that do not modify the address book, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
+<p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls <code>Model#listtag()</code>, causing the taglist shows the current components of uniqueTagList. Commands that do not modify the data, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
 </div>
 <div class="paragraph">
 <p>Step 4.The user executes <code>edittag 1 t/hard c/BLUE</code> to edit the current tag [easy] to [hard] in the <code>uniqueTagList</code>. The <code>edittag 1 t/hard c/BLUE</code>
@@ -355,4 +355,4 @@ Expected: All tags listed.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:21:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:28:12 UTC</div></div></div></body></html>
