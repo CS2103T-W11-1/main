@@ -539,19 +539,13 @@ the task management feature.</p>
 </div>
 <div class="paragraph">
 <p>This feature is mainly supported by the <code>Task</code> class.
-Given below are class diagrams of the <code>Task</code> class.</p>
+Given below is the class diagram of the <code>Task</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/task/HighLevelTaskClassDiagram.png" alt="HighLevelTaskClassDiagram" width="40%">
 </div>
-<div class="title">Figure 21. High Level Class Diagram for Task</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/task/TaskClassDiagram.png" alt="TaskClassDiagram" width="30%">
-</div>
-<div class="title">Figure 22. Detailed Class Diagram for Task</div>
+<div class="title">Figure 21. Class Diagram for Task</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the mechanism for adding tasks behaves at each step.</p>
@@ -563,7 +557,7 @@ Given below are class diagrams of the <code>Task</code> class.</p>
 <div class="content">
 <img src="images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram" width="80%">
 </div>
-<div class="title">Figure 23. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 22. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application.</p>
@@ -584,7 +578,7 @@ to execute <code>addtask plan/1 prob/1</code>:</p>
 <div class="content">
 <img src="images/task/HighLevelAddTaskSequenceDiagram.png" alt="HighLevelAddTaskSequenceDiagram" width="80%">
 </div>
-<div class="title">Figure 24. High Level Sequence Diagram for the Execution of <code>addtask plan/1 prob/1</code></div>
+<div class="title">Figure 23. High Level Sequence Diagram for the Execution of <code>addtask plan/1 prob/1</code></div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram illustrates the interaction between the <code>Logic</code> and <code>Model</code> component
@@ -594,7 +588,7 @@ while executing <code>AddTaskCommand</code>:</p>
 <div class="content">
 <img src="images/task/AddTaskSequenceDiagram.png" alt="AddTaskSequenceDiagram" width="100%">
 </div>
-<div class="title">Figure 25. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
+<div class="title">Figure 24. Sequence Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
 </div>
 <div class="sect3">
@@ -727,7 +721,7 @@ while executing <code>AddTaskCommand</code>:</p>
 <div class="content">
 <img src="images/tag/TagClassDiagram.png" alt="TagClassDiagram">
 </div>
-<div class="title">Figure 26. Class Diagram for Tag</div>
+<div class="title">Figure 25. Class Diagram for Tag</div>
 </div>
 <div class="paragraph">
 <p>These operations are exposed in the Model interface as <code>Model#addTag()</code>, <code>Model#deleteTag()</code>, <code>Model#listTag()</code> and <code>Model#editTag()</code> respectively.</p>
@@ -748,7 +742,7 @@ while executing <code>AddTaskCommand</code>:</p>
 <div class="content">
 <img src="images/tag/AddTagSequenceDiagram.png" alt="AddTagSequenceDiagram">
 </div>
-<div class="title">Figure 27. Sequence Diagram for <code>AddTagCommand</code></div>
+<div class="title">Figure 26. Sequence Diagram for <code>AddTagCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls <code>Model#listtag()</code>, causing the taglist shows the current components of uniqueTagList. Commands that do not modify the data, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
@@ -768,7 +762,7 @@ Command executes <code>edittag</code>, causing the taglist find the tag with ind
 <div class="content">
 <img src="images/tag/TagCommandActivityDiagram.png" alt="TagCommandActivityDiagram">
 </div>
-<div class="title">Figure 28. Activity Diagram for tag commands</div>
+<div class="title">Figure 27. Activity Diagram for tag commands</div>
 </div>
 </div>
 <div class="sect3">
@@ -823,7 +817,7 @@ Command executes <code>edittag</code>, causing the taglist find the tag with ind
 <div class="content">
 <img src="images/find/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram">
 </div>
-<div class="title">Figure 29. Activity Diagram for the Execution of <code>findprob</code> Command</div>
+<div class="title">Figure 28. Activity Diagram for the Execution of <code>findprob</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
@@ -915,7 +909,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/FindCommandClassDiagram.png" alt="FindCommandClassDiagram" width="75%">
 </div>
-<div class="title">Figure 30. Class Diagram of the Find Feature</div>
+<div class="title">Figure 29. Class Diagram of the Find Feature</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1004,7 +998,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="content">
 <img src="images/find/PredicateClassDiagram.png" alt="PredicateClassDiagram" width="40%">
 </div>
-<div class="title">Figure 31. Class Diagram for Predicates in the Find Feature</div>
+<div class="title">Figure 30. Class Diagram for Predicates in the Find Feature</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the find problem mechanism behaves at each step.</p>
@@ -1034,7 +1028,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/find/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 32. Sequence Diagram for the Execution of <code>findprob</code> Command</div>
+<div class="title">Figure 31. Sequence Diagram for the Execution of <code>findprob</code> Command</div>
 </div>
 </div>
 <div class="sect3">
@@ -1155,7 +1149,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <div class="content">
 <img src="images/savefindrule/AddFindRuleActivityDiagram.png" alt="AddFindRuleActivityDiagram" width="70%">
 </div>
-<div class="title">Figure 33. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 32. Activity Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
@@ -1222,7 +1216,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleClassDiagram.png" alt="AddFindRuleClassDiagram" width="70%">
 </div>
-<div class="title">Figure 34. Class Diagram for Add Find Rule Feature</div>
+<div class="title">Figure 33. Class Diagram for Add Find Rule Feature</div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below shows the high-level abstraction of how AlgoBase processes the request when user types in <code>addfindrule rule1 n/Sequences</code>:</p>
@@ -1231,7 +1225,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/HighLevelAddFindRuleSequenceDiagram.png" alt="HighLevelAddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 35. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
+<div class="title">Figure 34. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
@@ -1240,7 +1234,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="content">
 <img src="images/savefindrule/AddFindRuleSequenceDiagram.png" alt="AddFindRuleSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 36. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
+<div class="title">Figure 35. Sequence Diagram for the Execution of <code>addfindrule</code> Command</div>
 </div>
 </div>
 </div>
@@ -1332,7 +1326,7 @@ This, we introduced tabbing, which facilitates multitasking in AlgoBase, which i
 <div class="content">
 <img src="images/ArchitectureSequenceDiagram1.png" alt="ArchitectureSequenceDiagram1" width="70%">
 </div>
-<div class="title">Figure 37. An example of a high level representation of the GUI Actions.</div>
+<div class="title">Figure 36. An example of a high level representation of the GUI Actions.</div>
 </div>
 <div class="paragraph">
 <p>This process of how the application handles UI Actions is captured by the example in the Sequence Diagrams below:</p>
@@ -1341,7 +1335,7 @@ This, we introduced tabbing, which facilitates multitasking in AlgoBase, which i
 <div class="content">
 <img src="images/gui/EditProblemUiActionSequenceDiagram0.png" alt="EditProblemUiActionSequenceDiagram0" width="100%">
 </div>
-<div class="title">Figure 38. Interaction between <code>UI</code> and <code>UiLogic</code></div>
+<div class="title">Figure 37. Interaction between <code>UI</code> and <code>UiLogic</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1: The user edits the <code>ProblemDetails</code> controller class through his/her actions in the GUI.</p>
@@ -1363,7 +1357,7 @@ which in turn calls the <code>execute</code> method of <code>UiLogicManager</cod
 <div class="content">
 <img src="images/gui/EditProblemUiActionSequenceDiagram1.png" alt="EditProblemUiActionSequenceDiagram1" width="100%">
 </div>
-<div class="title">Figure 39. Interactions between classes in the <code>UiLogic</code> component.</div>
+<div class="title">Figure 38. Interactions between classes in the <code>UiLogic</code> component.</div>
 </div>
 <div class="paragraph">
 <p>Step 1: The <code>UiLogicManager</code> passes the <code>UiActionDetails</code> object to the <code>AlgoBaseUiActionParser</code>,
@@ -1392,7 +1386,7 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 <div class="content">
 <img src="images/design/model/GuiPackageDiagram.png" alt="GuiPackageDiagram" width="60%">
 </div>
-<div class="title">Figure 40. Class Diagram for the <code>GuiState</code> class</div>
+<div class="title">Figure 39. Class Diagram for the <code>GuiState</code> class</div>
 </div>
 <div class="paragraph">
 <p>The following Activity diagram illustrates the series of actions that occur when the user opens a new tab:</p>
@@ -1401,7 +1395,7 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 <div class="content">
 <img src="images/gui/OpenTabUiActionActivityDiagram.png" alt="OpenTabUiActionActivityDiagram">
 </div>
-<div class="title">Figure 41. Activity Diagram for Opening a new Tab from the GUI</div>
+<div class="title">Figure 40. Activity Diagram for Opening a new Tab from the GUI</div>
 </div>
 <div class="paragraph">
 <p>In AlgoBase, the state of the GUI is also saved to Storage after every action. This is so that when the user closes the application and opens it again later, the state is stored.
@@ -1411,7 +1405,7 @@ The Sequence diagram below also shows how the GuiState is saved to Storage:</p>
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3" width="100%">
 </div>
-<div class="title">Figure 42. Sequence Diagram for storing new GUI state</div>
+<div class="title">Figure 41. Sequence Diagram for storing new GUI state</div>
 </div>
 <div class="paragraph">
 <p>The <code>StorageManager</code> saves the modified <code>GuiState</code> as a new <code>JSON</code> file.
@@ -1502,13 +1496,13 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabCommandActivityDiagram.png" alt="SwitchTabCommandActivityDiagram" width="50%">
 </div>
-<div class="title">Figure 43. Activity Diagram for the Execution of <code>switchtab</code> Command</div>
+<div class="title">Figure 42. Activity Diagram for the Execution of <code>switchtab</code> Command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/gui/OpenTabCommandActivityDiagram.png" alt="OpenTabCommandActivityDiagram" width="50%">
 </div>
-<div class="title">Figure 44. Activity Diagram for the Execution of <code>opentab</code> Command</div>
+<div class="title">Figure 43. Activity Diagram for the Execution of <code>opentab</code> Command</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the tag mechanism behaves at each step.</p>
@@ -1517,7 +1511,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram0.png" alt="SwitchTabsSequenceDiagram0">
 </div>
-<div class="title">Figure 45. Sequence Diagram for instantiating a <code>SwitchCommand</code> object</div>
+<div class="title">Figure 44. Sequence Diagram for instantiating a <code>SwitchCommand</code> object</div>
 </div>
 <div class="paragraph">
 <p>Step 1: The user executes <code>switchtab tt/display i/1</code> to switch to the first tab in the <code>display</code> tabpane.</p>
@@ -1532,7 +1526,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram1.png" alt="SwitchTabsSequenceDiagram1">
 </div>
-<div class="title">Figure 46. Sequence Diagram for updating the tab index in the TabManager</div>
+<div class="title">Figure 45. Sequence Diagram for updating the tab index in the TabManager</div>
 </div>
 <div class="paragraph">
 <p>Step 4: <code>LogicManager</code> invokes <code>execute()</code> method of the returned <code>SwitchTabCommand</code>, which retrieves the TabManager from the <code>Model</code> object. The <code>setDisplayTabPaneIndex(1)</code> method is invoked with the index 1 that the <code>SwitchTabCommand</code> was instantiated with.</p>
@@ -1544,7 +1538,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram2.png" alt="SwitchTabsSequenceDiagram2">
 </div>
-<div class="title">Figure 47. Sequence Diagram for reflecting the tab changes</div>
+<div class="title">Figure 46. Sequence Diagram for reflecting the tab changes</div>
 </div>
 <div class="paragraph">
 <p>Step 6: A listener was added to the <code>displayTabIndex</code> field when the application was initialized. When a change in the value is detected, it triggers the <code>selectTab(1)</code> method with the value of the new index passed as an argument. This updates the selected tab in the UI.</p>
@@ -1553,7 +1547,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3">
 </div>
-<div class="title">Figure 48. Sequence Diagram for storing new GUI state</div>
+<div class="title">Figure 47. Sequence Diagram for storing new GUI state</div>
 </div>
 <div class="paragraph">
 <p>Step 7: After the command is executed, the state of the GUI changes. This causes the <code>StorageManager</code> to save the modified GUI state as a new <code>JSON</code> file.
@@ -1629,7 +1623,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/PlanClassDiagram.png" alt="PlanClassDiagram" width="70%">
 </div>
-<div class="title">Figure 49. Class Diagram of <code>Plan</code></div>
+<div class="title">Figure 48. Class Diagram of <code>Plan</code></div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the AlgoBase behaves at each step.</p>
@@ -1644,7 +1638,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/AddPlanSequenceDiagram.png" alt="AddPlanSequenceDiagram" width="70%">
 </div>
-<div class="title">Figure 50. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
+<div class="title">Figure 49. Sequence Diagram for the execution of <code>AddPlanCommand</code></div>
 </div>
 <div class="paragraph">
 <p>Step 3. The user executes <code>listplan</code> to list all plans. The <code>listplan</code> command calls <code>Model#updateFilteredPlanList()</code>. The plan <code>CS2040</code> is numbered <code>1</code> in the displayed list.</p>
@@ -1656,7 +1650,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="content">
 <img src="images/plan/EditPlanCommandActivityDiagram.png" alt="EditPlanCommandActivityDiagram" width="70%">
 </div>
-<div class="title">Figure 51. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
+<div class="title">Figure 50. Activity Diagram for the Execution of <code>EditPlanCommand</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1677,7 +1671,7 @@ The user can also add value for an empty field by executing <code>editplan</code
 <div class="content">
 <img src="images/plan/FindPlanDescriptorClassDiagram.png" alt="FindPlanDescriptorClassDiagram" width="70%">
 </div>
-<div class="title">Figure 52. Class Diagram for <code>FindPlanDescriptor</code></div>
+<div class="title">Figure 51. Class Diagram for <code>FindPlanDescriptor</code></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4336,4 +4330,4 @@ Expected: The Details tab corresponding to that tab is closed.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:28:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:51:52 UTC</div></div></div></body></html>
