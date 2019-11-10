@@ -40,28 +40,35 @@
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-problems">F.2. Deleting Problems</a></li>
-<li><a href="#sorting-problems">F.3. Sorting problems</a></li>
-<li><a href="#adding-a-tag">F.4. Adding a tag</a></li>
-<li><a href="#deleting-a-tag">F.5. Deleting a tag</a></li>
-<li><a href="#editing-a-tag">F.6. Editing a tag</a></li>
-<li><a href="#listing-tags">F.7. Listing tags</a></li>
-<li><a href="#finding-problems">F.8. Finding problems</a></li>
-<li><a href="#adding-problem-finding-rules">F.9. Adding problem-finding rules</a></li>
-<li><a href="#applying-problem-finding-rules">F.10. Applying problem-finding rules</a></li>
-<li><a href="#deleting-problem-finding-rules">F.11. Deleting problem-finding rules</a></li>
-<li><a href="#plans">F.12. Plans</a></li>
-<li><a href="#saving-data">F.13. Saving Data</a></li>
-<li><a href="#switching-tabs">F.14. Switching tabs</a></li>
-<li><a href="#opening-a-new-tab">F.15. Opening a new tab</a></li>
-<li><a href="#closing-an-existing-tab">F.16. Closing an existing tab</a></li>
-<li><a href="#editing-problem-from-gui">F.17. Editing Problem from GUI</a></li>
-<li><a href="#deleting-problem-from-gui">F.18. Deleting Problem from GUI</a></li>
-<li><a href="#editing-plan-from-gui">F.19. Editing Plan from GUI</a></li>
-<li><a href="#deleting-plan-from-gui">F.20. Deleting Plan from GUI</a></li>
-<li><a href="#switching-tabs-from-gui">F.21. Switching tabs from GUI</a></li>
-<li><a href="#opening-a-new-tab-from-gui">F.22. Opening a new tab from GUI</a></li>
-<li><a href="#closing-an-existing-tab-from-gui">F.23. Closing an existing tab from GUI</a></li>
+<li><a href="#adding-a-problem">F.2. Adding a problem</a></li>
+<li><a href="#deleting-a-problem">F.3. Deleting a problem</a></li>
+<li><a href="#editing-a-problem">F.4. Editing a problem</a></li>
+<li><a href="#listing-problems">F.5. Listing problems</a></li>
+<li><a href="#sorting-problems">F.6. Sorting problems</a></li>
+<li><a href="#adding-a-tag">F.7. Adding a tag</a></li>
+<li><a href="#deleting-a-tag">F.8. Deleting a tag</a></li>
+<li><a href="#editing-a-tag">F.9. Editing a tag</a></li>
+<li><a href="#listing-tags">F.10. Listing tags</a></li>
+<li><a href="#finding-problems">F.11. Finding problems</a></li>
+<li><a href="#adding-problem-finding-rules">F.12. Adding problem-finding rules</a></li>
+<li><a href="#applying-problem-finding-rules">F.13. Applying problem-finding rules</a></li>
+<li><a href="#deleting-problem-finding-rules">F.14. Deleting problem-finding rules</a></li>
+<li><a href="#adding-a-plan">F.15. Adding a plan</a></li>
+<li><a href="#editing-a-plan">F.16. Editing a plan</a></li>
+<li><a href="#finding-plans">F.17. Finding plans</a></li>
+<li><a href="#deleting-a-plan">F.18. Deleting a plan</a></li>
+<li><a href="#listing-plans">F.19. Listing plans</a></li>
+<li><a href="#saving-data">F.20. Saving Data</a></li>
+<li><a href="#switching-tabs">F.21. Switching tabs</a></li>
+<li><a href="#opening-a-new-tab">F.22. Opening a new tab</a></li>
+<li><a href="#closing-an-existing-tab">F.23. Closing an existing tab</a></li>
+<li><a href="#editing-problem-from-gui">F.24. Editing Problem from GUI</a></li>
+<li><a href="#deleting-problem-from-gui">F.25. Deleting Problem from GUI</a></li>
+<li><a href="#editing-plan-from-gui">F.26. Editing Plan from GUI</a></li>
+<li><a href="#deleting-plan-from-gui">F.27. Deleting Plan from GUI</a></li>
+<li><a href="#switching-tabs-from-gui">F.28. Switching tabs from GUI</a></li>
+<li><a href="#opening-a-new-tab-from-gui">F.29. Opening a new tab from GUI</a></li>
+<li><a href="#closing-an-existing-tab-from-gui">F.30. Closing an existing tab from GUI</a></li>
 </ul>
 </li>
 </ul>
@@ -82,7 +89,7 @@
 <h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">2.1. Architecture</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/ArchitectureDiagram.png" alt="ArchitectureDiagram">
+<img src="images/ArchitectureDiagram.png" alt="ArchitectureDiagram" width="70%">
 </div>
 <div class="title">Figure 1. Architecture Diagram</div>
 </div>
@@ -138,7 +145,7 @@ The following class plays an important role at the architecture level:</p>
 <p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: The command executor.</p>
 </li>
 <li>
-<p><a href="#Design-Logic"><strong><code>UiLogic</code></strong></a>: The UI action handler.</p>
+<p><a href="#Design-UiLogic"><strong><code>UiLogic</code></strong></a>: The UI action handler.</p>
 </li>
 <li>
 <p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of the App in-memory.</p>
@@ -172,13 +179,13 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code>.</p>
+<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>deleteprob 1</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ArchitectureSequenceDiagram.png" alt="ArchitectureSequenceDiagram">
 </div>
-<div class="title">Figure 3. Component interactions for <code>delete 1</code> command</div>
+<div class="title">Figure 3. Component interactions for <code>deleteprob 1</code> command</div>
 </div>
 <div class="paragraph">
 <p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user switches tabs in the GUI.</p>
@@ -210,7 +217,7 @@ e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>DetailsTabPane</c
 All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/java/seedu/algobase/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -258,13 +265,13 @@ All these, including the <code>MainWindow</code>, inherit from the abstract <cod
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("deleteprob 1")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/DeleteSequenceDiagram.png" alt="DeleteSequenceDiagram">
 </div>
-<div class="title">Figure 7. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
+<div class="title">Figure 7. Interactions Inside the Logic Component for the <code>deleteprob 1</code> Command</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -397,7 +404,7 @@ The lifeline for <code>EditProblemUiActionParser</code> should end at the destro
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/design/model/PlanSearchRulePackageDiagram.png" alt="PlanSearchRulePackageDiagram" width="60%">
+<img src="images/design/model/PlanSearchRulePackageDiagram.png" alt="PlanSearchRulePackageDiagram" width="90%">
 </div>
 <div class="title">Figure 16. Structure of the PlanSearchRule Package</div>
 </div>
@@ -682,7 +689,7 @@ and replace the original plan with this updated plan in the <code>PlanList</code
 <p>Step 1. The user launches the application for the first time. The UniqueTagList will be initialized with the initial algobase state</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>addtag t/easy</code> to add a tag named [easy] with default color which have not applied in any problems. The addtag command calls Model#addtag(), causing the taglist added a tag after the ‘addtag t/easy’ command executes to be saved in the uniqueTagList.</p>
+<p>Step 2. The user executes <code>addtag t/easy</code> to add a tag named [easy] with default color which have not applied in any problems. The addtag command calls <code>Model#addtag()</code>, causing the taglist added a tag after the ‘addtag t/easy’ command executes to be saved in the uniqueTagList.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the <code>deletetag</code> operation works:</p>
@@ -694,7 +701,7 @@ and replace the original plan with this updated plan in the <code>PlanList</code
 <div class="title">Figure 23. Sequence Diagram for <code>AddTagCommand</code></div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls Model#listtag(), causing the taglist shows the current components of uniqueTagList. Commands that do not modify the address book, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
+<p>Step 3. The user decides to execute the command <code>listtag</code> to show a tag list in the GUI of algobase. The <code>listtag</code> command calls <code>Model#listtag()</code>, causing the taglist shows the current components of uniqueTagList. Commands that do not modify the address book, such as <code>listtag</code>, will not call <code>Model#addTag()</code>, <code>Model#deleteTag()</code> or <code>Model#editTag()</code>. Thus the <code>uniqueTagList</code> remains unchanged.</p>
 </div>
 <div class="paragraph">
 <p>Step 4.The user executes <code>edittag 1 t/hard c/BLUE</code> to edit the current tag [easy] to [hard] in the <code>uniqueTagList</code>. The <code>edittag 1 t/hard c/BLUE</code>
@@ -953,7 +960,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <p>Given below is an example usage scenario and how the find problem mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user executes <code>find t/recursion diff/2.0-4.0</code> to find a problem with a tag “recursion” and difficulty between 2.0 and 4.0.</p>
+<p>Step 1. The user executes <code>findprob t/recursion diff/2.0-4.0</code> to find a problem with a tag “recursion” and difficulty between 2.0 and 4.0.</p>
 </div>
 <div class="paragraph">
 <p>Step 2. <code>FindCommandParser</code> processes the user input and returns a <code>FindCommand</code> instance with the information of user’s search restrictions.</p>
@@ -2351,13 +2358,13 @@ If the user wants to find plans with overlapping time range, both the starting d
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <h3 id="use-case-11-sort-problems" class="discrete">Use Case 11: Sort Problems</h3>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p><strong>Guarantees</strong></p>
 </div>
@@ -2823,23 +2830,6 @@ by entering the index of the task and the indices of the plans involved.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-16-see-details-of-an-item" class="discrete">Use Case 16: See details of an item</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to see the details of a specified item from the list of items.</p>
-</li>
-<li>
-<p>AlgoBase displays the details of that item.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
 <h3 id="use-case-21-export-algobase-data" class="discrete">Use Case 21: Export AlgoBase data</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -3041,26 +3031,48 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-problems"><a class="link" href="#deleting-problems">F.2. Deleting Problems</a></h3>
+<h3 id="adding-a-problem"><a class="link" href="#adding-a-problem">F.2. Adding a problem</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a problem while all problems are listed</p>
+<p>Adding a new problem to AlgoBase.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all problems using the <code>list</code> command. Multiple problems in the list.</p>
+<p>Test case: <code>addprob n/Sequences d/find number of inversions t/algorithm</code><br>
+Expected: A problem named 'Sequences' and tagged 'algorithm' is added to AlgoBase.</p>
 </li>
 <li>
-<p>Test case: <code>delete 1</code><br>
+<p>Test case: <code>addprob n/ d/unnamed problem</code><br>
+Expected: No problem is added. The problem&#8217;s name shouldn&#8217;t be blank. Error details shown in the status message.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-problem"><a class="link" href="#deleting-a-problem">F.3. Deleting a problem</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a problem from AlgoBase.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all problems using the <code>listprob</code> or <code>findprob</code> or  <code>sortprob</code> command. Multiple problems in the list.</p>
+</li>
+<li>
+<p>Test case: <code>deleteprob 1</code><br>
 Expected: First problem is deleted from the list. Details of the deleted problem shown in the status message. Timestamp in the status bar is updated.</p>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
+<p>Test case: <code>deleteprob 0</code><br>
 Expected: No problem is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size)<br>
+<p>Other incorrect delete commands to try: <code>delete</code>, <code>deletedeleteprob x</code> (where x is larger than the list size)<br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -3070,7 +3082,47 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sorting-problems"><a class="link" href="#sorting-problems">F.3. Sorting problems</a></h3>
+<h3 id="editing-a-problem"><a class="link" href="#editing-a-problem">F.4. Editing a problem</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Changing fields of an existing problem in AlgoBase.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all problems using the <code>listprob</code> or <code>findprob</code> or  <code>sortprob</code> command. Multiple problems in the list.</p>
+</li>
+<li>
+<p>Test case: <code>editprob 1 n/Two Sequences</code><br>
+Expected: Change the name of the first problem to 'Two Sequences'.</p>
+</li>
+<li>
+<p>Test case: <code>editprob 2 t/</code><br>
+Expected: Removes all tags from the second problem.</p>
+</li>
+<li>
+<p>Test case: <code>editprob x</code><br>
+Expected: No problem is edited. Index of problem should be a valid integer. Error details shown in the status message.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-problems"><a class="link" href="#listing-problems">F.5. Listing problems</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>listprob</code><br>
+Expected: All problems in AlgoBase are listed in the problem panel.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-problems"><a class="link" href="#sorting-problems">F.6. Sorting problems</a></h3>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3097,7 +3149,7 @@ Expected: The current problem list remains unchanged and an error is thrown to i
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-tag"><a class="link" href="#adding-a-tag">F.4. Adding a tag</a></h3>
+<h3 id="adding-a-tag"><a class="link" href="#adding-a-tag">F.7. Adding a tag</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3119,7 +3171,7 @@ Expected: Tag [test] already exists in AlgoBase.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-tag"><a class="link" href="#deleting-a-tag">F.5. Deleting a tag</a></h3>
+<h3 id="deleting-a-tag"><a class="link" href="#deleting-a-tag">F.8. Deleting a tag</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3141,7 +3193,7 @@ Expected: The Tag index provided is invalid</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-tag"><a class="link" href="#editing-a-tag">F.6. Editing a tag</a></h3>
+<h3 id="editing-a-tag"><a class="link" href="#editing-a-tag">F.9. Editing a tag</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3166,7 +3218,7 @@ Example: edittag 1 t/Easy c/BLUE</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-tags"><a class="link" href="#listing-tags">F.7. Listing tags</a></h3>
+<h3 id="listing-tags"><a class="link" href="#listing-tags">F.10. Listing tags</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3184,7 +3236,7 @@ Expected: All tags listed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="finding-problems"><a class="link" href="#finding-problems">F.8. Finding problems</a></h3>
+<h3 id="finding-problems"><a class="link" href="#finding-problems">F.11. Finding problems</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3206,7 +3258,7 @@ Expected: An error is thrown and the user is informed that at least one constrai
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-problem-finding-rules"><a class="link" href="#adding-problem-finding-rules">F.9. Adding problem-finding rules</a></h3>
+<h3 id="adding-problem-finding-rules"><a class="link" href="#adding-problem-finding-rules">F.12. Adding problem-finding rules</a></h3>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3228,7 +3280,7 @@ Expected: An error is thrown and the user is informed that at least one constrai
 </div>
 </div>
 <div class="sect2">
-<h3 id="applying-problem-finding-rules"><a class="link" href="#applying-problem-finding-rules">F.10. Applying problem-finding rules</a></h3>
+<h3 id="applying-problem-finding-rules"><a class="link" href="#applying-problem-finding-rules">F.13. Applying problem-finding rules</a></h3>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3250,7 +3302,7 @@ Expected: An error is thrown and the user is informed that the provided find rul
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-problem-finding-rules"><a class="link" href="#deleting-problem-finding-rules">F.11. Deleting problem-finding rules</a></h3>
+<h3 id="deleting-problem-finding-rules"><a class="link" href="#deleting-problem-finding-rules">F.14. Deleting problem-finding rules</a></h3>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3268,11 +3320,11 @@ Expected: The first find rule is deleted and the find rules list is updated.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="plans"><a class="link" href="#plans">F.12. Plans</a></h3>
+<h3 id="adding-a-plan"><a class="link" href="#adding-a-plan">F.15. Adding a plan</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Adding a plan to the existing AlgoBase</p>
+<p>Adding an empty plan into AlgoBase.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3281,29 +3333,59 @@ Expected: A new plan with respective information is added and displayed on plan 
 </li>
 <li>
 <p>Test case: <code>addplan n/ByteDance d/coding test for Software engineering</code><br>
-Expected: No plan is added. Error details shown in the status message. No plans with duplicate names can be added.</p>
+Expected: No plan is added. No plans with duplicate names can be added. Error details shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>addplan n/Graph start/2019-1-1 end/2019-3-3</code><br>
+Expected: No plan is added. The date should be in <code>yyyy-MM-dd</code> format. Error details shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>addplan n/Graph end/1912-06-23</code><br>
+Expected: No plan is added. If no starting time is specified, the starting time will be <code>LocalDate#now()</code>, and the starting time should not be after end time. Error details shown in the status message.</p>
 </li>
 </ol>
 </div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-plan"><a class="link" href="#editing-a-plan">F.16. Editing a plan</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Editing a plan</p>
+<p>Changing fields of an existing plan in AlgoBase.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Test case: <code>listplan</code><br>
-<code>edit 1 d/give up start/2019-01-01 end/2020-02-02</code><br>
-   Expected: All plans are displayed in chronological order. The description and the dates of the first plan is changed.</p>
+<p>Prerequisites: List all plans using the <code>listplan</code> or <code>findplan</code> command. Multiple plans in the list.</p>
 </li>
 <li>
-<p>Test case: <code>edit 1 end/2018-02-02</code><br>
+<p>Test case: <code>editplan 1 d/give up start/2019-01-01 end/2020-02-02</code><br>
+Expected: The description and the dates of the first displayed plan is changed.</p>
+</li>
+<li>
+<p>Test case: <code>editplan 1 end/2018-02-02</code><br>
 Expected: Edit command is invalid. Error details shown in the status message. Starting date should be before or equal to end date.</p>
+</li>
+<li>
+<p>Test case: <code>editplan 1 end/2019-02-02 /f</code><br>
+Expected: The end date of the first displayed plan is changed to <code>2019-02-02</code>. Any task&#8217;s due date after <code>2019-02-02</code> will be changed to <code>2019-02-02</code>.
+..Test case: <code>editplan 1 start/2019-01-30 /f</code><br>
+Expected: The starting date of the first displayed plan is changed to <code>2019-01-30</code>. Any task&#8217;s due date before <code>2019-01-30</code> will be changed to the plan&#8217;s end date.</p>
 </li>
 </ol>
 </div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-plans"><a class="link" href="#finding-plans">F.17. Finding plans</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Finding plans</p>
+<p>Finding plans with matching fields in AlgoBase.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3314,26 +3396,13 @@ Expected: The plan named 'ByteDance' is listed.</p>
 <p>Test case: <code>findplan start/2019-01-01 end/2019-12-12</code><br>
 Expected: Plans whose time range overlaps with the given time range are listed in the plan panel.</p>
 </li>
-</ol>
-</div>
+<li>
+<p>Test case: <code>findplan start/2019-01-01</code><br>
+Expected: Invalid command. Both range start and range end should be specified. Error details shown in the status message.</p>
 </li>
 <li>
-<p>Deleting a plan</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Test case: <code>findplan n/bytedance</code><br>
-<code>delete 1</code><br>
-   Expected: The plan with name 'ByteDance' is deleted.</p>
-</li>
-<li>
-<p>Test case: <code>listplan</code><br>
-<code>delete 1</code><br>
-   Expected: The first plan among all plans is deleted.</p>
-</li>
-<li>
-<p>Test case: <code>delete all</code><br>
-Expected: No plan is deleted. Error message is shown. Plan index must be a valid integer.</p>
+<p>Test case: <code>findplan start/2019-01-01 end/2018-01-02</code><br>
+Expected: Invalid command. Range start should not be after range end. Error details shown in the status message.</p>
 </li>
 </ol>
 </div>
@@ -3342,7 +3411,52 @@ Expected: No plan is deleted. Error message is shown. Plan index must be a valid
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.13. Saving Data</a></h3>
+<h3 id="deleting-a-plan"><a class="link" href="#deleting-a-plan">F.18. Deleting a plan</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a plan from AlgoBase.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all plans using the <code>listplan</code> or <code>findplan</code> command. Multiple plans in the list.</p>
+</li>
+<li>
+<p>Test case: <code>findplan n/bytedance</code><br>
+<code>deleteplan 1</code><br>
+   Expected: The plan with name 'ByteDance' is deleted.</p>
+</li>
+<li>
+<p>Test case: <code>listplan</code><br>
+<code>deleteplan 1</code><br>
+   Expected: The first plan among all plans is deleted.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-plans"><a class="link" href="#listing-plans">F.19. Listing plans</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Listing all existing plans in AlgoBase.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>listplan</code><br>
+Expected: All plans in Algobase are listed in the plan display tab.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">F.20. Saving Data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3364,7 +3478,7 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 <div class="sect2">
-<h3 id="switching-tabs"><a class="link" href="#switching-tabs">F.14. Switching tabs</a></h3>
+<h3 id="switching-tabs"><a class="link" href="#switching-tabs">F.21. Switching tabs</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3454,7 +3568,7 @@ Expected: No tabs are changed. Error message is shown.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="opening-a-new-tab"><a class="link" href="#opening-a-new-tab">F.15. Opening a new tab</a></h3>
+<h3 id="opening-a-new-tab"><a class="link" href="#opening-a-new-tab">F.22. Opening a new tab</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3584,7 +3698,7 @@ Expected: No tabs are opened. Error message is shown.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="closing-an-existing-tab"><a class="link" href="#closing-an-existing-tab">F.16. Closing an existing tab</a></h3>
+<h3 id="closing-an-existing-tab"><a class="link" href="#closing-an-existing-tab">F.23. Closing an existing tab</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3665,7 +3779,7 @@ Expected: No details tab are closed. Error message is shown.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-problem-from-gui"><a class="link" href="#editing-problem-from-gui">F.17. Editing Problem from GUI</a></h3>
+<h3 id="editing-problem-from-gui"><a class="link" href="#editing-problem-from-gui">F.24. Editing Problem from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3694,7 +3808,7 @@ Expected: Error details shown in the status message. Field updates are not refle
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-problem-from-gui"><a class="link" href="#deleting-problem-from-gui">F.18. Deleting Problem from GUI</a></h3>
+<h3 id="deleting-problem-from-gui"><a class="link" href="#deleting-problem-from-gui">F.25. Deleting Problem from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3723,7 +3837,7 @@ Expected: The Warning dialog is closed and no other changes are made.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-plan-from-gui"><a class="link" href="#editing-plan-from-gui">F.19. Editing Plan from GUI</a></h3>
+<h3 id="editing-plan-from-gui"><a class="link" href="#editing-plan-from-gui">F.26. Editing Plan from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3752,7 +3866,7 @@ Expected: Error details shown in the status message. Field updates are not refle
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-plan-from-gui"><a class="link" href="#deleting-plan-from-gui">F.20. Deleting Plan from GUI</a></h3>
+<h3 id="deleting-plan-from-gui"><a class="link" href="#deleting-plan-from-gui">F.27. Deleting Plan from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3781,7 +3895,7 @@ Expected: The Warning dialog is closed and no other changes are made.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="switching-tabs-from-gui"><a class="link" href="#switching-tabs-from-gui">F.21. Switching tabs from GUI</a></h3>
+<h3 id="switching-tabs-from-gui"><a class="link" href="#switching-tabs-from-gui">F.28. Switching tabs from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3828,7 +3942,7 @@ Expected: The display tab is now at the tab that is clicked on.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="opening-a-new-tab-from-gui"><a class="link" href="#opening-a-new-tab-from-gui">F.22. Opening a new tab from GUI</a></h3>
+<h3 id="opening-a-new-tab-from-gui"><a class="link" href="#opening-a-new-tab-from-gui">F.29. Opening a new tab from GUI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3891,7 +4005,7 @@ Expected: The tab is switched to details tab containing the plan.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="closing-an-existing-tab-from-gui"><a class="link" href="#closing-an-existing-tab-from-gui">F.23. Closing an existing tab from GUI</a></h3>
+<h3 id="closing-an-existing-tab-from-gui"><a class="link" href="#closing-an-existing-tab-from-gui">F.30. Closing an existing tab from GUI</a></h3>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3905,4 +4019,4 @@ Expected: The Details tab corresponding to that tab is closed.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:51:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:09:23 UTC</div></div></div></body></html>

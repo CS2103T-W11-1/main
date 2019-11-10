@@ -835,7 +835,7 @@ Deletes the 1st problem in the results of the <code>findplan</code> command (wil
 <h4 id="editing-a-plan-code-editplan-code"><a class="link" href="#editing-a-plan-code-editplan-code">4.4.3. Editing a plan : <code>editplan</code></a></h4>
 <div class="paragraph">
 <p>Edits an existing plan.<br>
-Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]</code></p>
+Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/END_DATE] [f/]</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -851,6 +851,9 @@ Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/EN
 <li>
 <p><code>START_DATE</code> should be before or equal to <code>END_DATE</code>.</p>
 </li>
+<li>
+<p>The time range of the edited plan should cover due dates of its tasks. However, adding <code>f/</code> will force inconsistent due dates to change to the plan&#8217;s end date.</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -863,8 +866,8 @@ Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/EN
 Edits the description of the 1st plan to be <code>past year questions of sit-in labs</code> respectively.</p>
 </li>
 <li>
-<p><code>editplan 2 start/2019-08-13</code><br>
-Edits the starting date of the 2nd plan to be <code>2019-08-13</code>.</p>
+<p><code>editplan 2 start/2019-08-13 f/</code><br>
+Edits the starting date of the 2nd plan to be <code>2019-08-13</code> and any task with due date before <code>2019-08-13</code> to the plan&#8217;s end date.</p>
 </li>
 </ul>
 </div>
@@ -960,8 +963,8 @@ Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_E
 Finds plans whose duration overlaps with NUS AY 19/20 Semester 1.</p>
 </li>
 <li>
-<p><code>findsplan task/Sequences</code><br>
-Finds plans that contain a task names 'Sequences'.</p>
+<p><code>findplan task/Sequences</code><br>
+Finds plans that contain a task named 'Sequences'.</p>
 </li>
 </ul>
 </div>
@@ -994,31 +997,7 @@ Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]</code></
 </div>
 </div>
 <div class="sect3">
-<h4 id="copying-a-task-from-one-plan-to-another-code-copytask-code"><a class="link" href="#copying-a-task-from-one-plan-to-another-code-copytask-code">4.5.2. Copying a task from one plan to another: <code>copytask</code></a></h4>
-<div class="paragraph">
-<p>Copies a specified task from one plan to another.<br>
-Format: <code>copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Task identified by <code>TASK_INDEX</code> should have a due date in between plan&#8217;s <code>startDate</code> and <code>endDate</code> (inclusive).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>copytask task/1 from/1 to/2</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="deleting-a-task-from-a-plan-code-deletetask-code"><a class="link" href="#deleting-a-task-from-a-plan-code-deletetask-code">4.5.3. Deleting a task from a plan: <code>deletetask</code></a></h4>
+<h4 id="deleting-a-task-from-a-plan-code-deletetask-code"><a class="link" href="#deleting-a-task-from-a-plan-code-deletetask-code">4.5.2. Deleting a task from a plan: <code>deletetask</code></a></h4>
 <div class="paragraph">
 <p>Deletes a specified task from a specified plan.<br>
 Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
@@ -1035,24 +1014,7 @@ Format: <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-a-task-as-done-code-donetask-code"><a class="link" href="#marking-a-task-as-done-code-donetask-code">4.5.4. Marking a task as done: <code>donetask</code></a></h4>
-<div class="paragraph">
-<p>Marks a specified task in a specified plan as done.<br>
-Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>donetask plan/1 task/1</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="editing-due-date-of-a-task-from-a-plan-code-edittask-code"><a class="link" href="#editing-due-date-of-a-task-from-a-plan-code-edittask-code">4.5.5. Editing due date of a task from a plan: <code>edittask</code></a></h4>
+<h4 id="editing-due-date-of-a-task-from-a-plan-code-edittask-code"><a class="link" href="#editing-due-date-of-a-task-from-a-plan-code-edittask-code">4.5.3. Editing due date of a task from a plan: <code>edittask</code></a></h4>
 <div class="paragraph">
 <p>Edits the due date of a specified task from a specified plan.<br>
 Format: <code>edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE</code></p>
@@ -1076,7 +1038,24 @@ Format: <code>edittask plan/PLAN_INDEX task/TASK_INDEX due/DUE_DATE</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-a-task-as-undone-code-undonetask-code"><a class="link" href="#marking-a-task-as-undone-code-undonetask-code">4.5.6. Marking a task as undone: <code>undonetask</code></a></h4>
+<h4 id="marking-a-task-as-done-code-donetask-code"><a class="link" href="#marking-a-task-as-done-code-donetask-code">4.5.4. Marking a task as done: <code>donetask</code></a></h4>
+<div class="paragraph">
+<p>Marks a specified task in a specified plan as done.<br>
+Format: <code>donetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>donetask plan/1 task/1</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="marking-a-task-as-undone-code-undonetask-code"><a class="link" href="#marking-a-task-as-undone-code-undonetask-code">4.5.5. Marking a task as undone: <code>undonetask</code></a></h4>
 <div class="paragraph">
 <p>Marks a specified task in a specified plan as undone.<br>
 Format: <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
@@ -1088,6 +1067,30 @@ Format: <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code></p>
 <ul>
 <li>
 <p><code>undonetask plan/1 task/1</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="copying-a-task-from-one-plan-to-another-code-copytask-code"><a class="link" href="#copying-a-task-from-one-plan-to-another-code-copytask-code">4.5.6. Copying a task from one plan to another: <code>copytask</code></a></h4>
+<div class="paragraph">
+<p>Copies a specified task from one plan to another.<br>
+Format: <code>copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Task identified by <code>TASK_INDEX</code> should have a due date in between plan&#8217;s <code>startDate</code> and <code>endDate</code> (inclusive).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>copytask task/1 from/1 to/2</code></p>
 </li>
 </ul>
 </div>
@@ -1550,30 +1553,30 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add Problem</strong> <code>addprob n/NAME [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code><br>
+<p><strong>Add Problem</strong> : <code>addprob n/NAME [a/AUTHOR] [w/WEBLINK] [d/DESCRIPTION] [diff/DIFFICULTY] [src/SOURCE] [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>addprob  n/factorial d/define a function factorial that takes in a number n and returns the factorial of the number t/recursion a/Wee Han</code></p>
 </li>
 <li>
 <p><strong>List Problems</strong> : <code>listprob</code><br></p>
 </li>
 <li>
-<p><strong>Edit Problems</strong> : <code>editprob INDEX [d/DESCRIPTION] [a/AUTHOR] [t/TAG]&#8230;&#8203;</code><br>
+<p><strong>Edit Problems</strong> : <code>editprob INDEX [n/NAME] [a/AUTHOR] [w/WEBLINK] [d/DESCRIPTION] [diff/DIFFICULTY] [src/SOURCE] [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>editprob 2 n/permutations t/</code></p>
 </li>
 <li>
-<p><strong>Delete Problem</strong> : <code>deleteprob INDEX</code><br>
-e.g. <code>deleteprob 3</code></p>
+<p><strong>Delete Problem</strong> : <code>deleteprob INDEX [f/]</code><br>
+e.g. <code>deleteprob 3 f/</code></p>
 </li>
 <li>
 <p><strong>Sort Problems</strong> : <code>sortprob m/METHOD [ord/ORDER]</code><br>
 e.g. <code>sortprob m/difficulty ord/ascend</code></p>
 </li>
 <li>
-<p><strong>Find Problems</strong> : <code>findprob [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]…</code><br>
+<p><strong>Find Problems</strong> : <code>findprob [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG_KEYWORDS]</code><br>
 e.g. <code>findprob t/algorithm diff/2.0-4.0</code></p>
 </li>
 <li>
-<p><strong>Add Find Rule</strong>: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG]…</code><br>
+<p><strong>Add Find Rule</strong>: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG_KEYWORDS]</code><br>
 e.g. <code>addfindrule MediumDiffAlgo t/algorithm diff/2.0-4.0</code></p>
 </li>
 <li>
@@ -1618,8 +1621,8 @@ e.g. <code>edittag 1 t/sort c/BLUE</code></p>
 e.g. <code>addplan n/CS2040</code></p>
 </li>
 <li>
-<p><strong>Edit Training Plan</strong> : <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]</code><br>
-e.g. <code>editplan 1 n/training start/2020-02-02</code></p>
+<p><strong>Edit Training Plan</strong> : <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/END_DATE] [f/]</code><br>
+e.g. <code>editplan 1 n/training start/2020-02-02 f/</code></p>
 </li>
 <li>
 <p><strong>Find Training Plans</strong> : <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_END] [task/TASK_NAME]</code><br>
@@ -1644,10 +1647,6 @@ e.g. <code>deleteplan 2</code></p>
 e.g. <code>addtask plan/1 prob/2</code></p>
 </li>
 <li>
-<p><strong>Copy Tasks among Plans</strong> : <code>copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_TASK</code><br>
-e.g. <code>copytask task/1 from/1 to/2</code></p>
-</li>
-<li>
 <p><strong>Delete Task from Training Plan</strong> : <code>deletetask plan/PLAN_INDEX task/TASK_INDEX</code><br>
 e.g. <code>deletetask plan/1 task/2</code></p>
 </li>
@@ -1662,6 +1661,10 @@ e.g. <code>donetask plan/1 task/2</code></p>
 <li>
 <p><strong>Mark Task as undone</strong> : <code>undonetask plan/PLAN_INDEX task/TASK_INDEX</code><br>
 e.g. <code>undonetask plan/1 task/2</code></p>
+</li>
+<li>
+<p><strong>Copy Tasks among Plans</strong> : <code>copytask task/TASK_INDEX from/PLAN_INDEX to/PLAN_TASK</code><br>
+e.g. <code>copytask task/1 from/1 to/2</code></p>
 </li>
 <li>
 <p><strong>Move Tasks among Plans</strong> : <code>movetask task/TASK_INDEX from/PLAN_INDEX to/PLAN_TASK</code><br>
@@ -1727,4 +1730,4 @@ e.g. <code>import format/json path/./steven_halim_secret.json</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:51:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:09:23 UTC</div></div></div></body></html>

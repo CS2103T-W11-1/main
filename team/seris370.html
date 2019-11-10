@@ -200,7 +200,7 @@ Deletes the 1st problem in the results of the <code>findplan</code> command (wil
 <h4 id="editing-a-plan-code-editplan-code"><a class="link" href="#editing-a-plan-code-editplan-code">Editing a plan : <code>editplan</code></a></h4>
 <div class="paragraph">
 <p>Edits an existing plan.<br>
-Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/END_DATE]</code></p>
+Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/END_DATE] [f/]</code></p>
 </div>
 <div class="ulist">
 <ul>
@@ -216,6 +216,9 @@ Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/EN
 <li>
 <p><code>START_DATE</code> should be before or equal to <code>END_DATE</code>.</p>
 </li>
+<li>
+<p>The time range of the edited plan should cover due dates of its tasks. However, adding <code>f/</code> will force inconsistent due dates to change to the plan&#8217;s end date.</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -228,8 +231,8 @@ Format: <code>editplan INDEX [n/NAME] [d/DESCRIPTION] [start/START_DATE] [end/EN
 Edits the description of the 1st plan to be <code>past year questions of sit-in labs</code> respectively.</p>
 </li>
 <li>
-<p><code>editplan 2 start/2019-08-13</code><br>
-Edits the starting date of the 2nd plan to be <code>2019-08-13</code>.</p>
+<p><code>editplan 2 start/2019-08-13 f/</code><br>
+Edits the starting date of the 2nd plan to be <code>2019-08-13</code> and any task with due date before <code>2019-08-13</code> to the plan&#8217;s end date.</p>
 </li>
 </ul>
 </div>
@@ -325,8 +328,8 @@ Format: <code>findplan [n/NAME] [d/DESCRIPTION] [start/RANGE_START] [end/RANGE_E
 Finds plans whose duration overlaps with NUS AY 19/20 Semester 1.</p>
 </li>
 <li>
-<p><code>findsplan task/Sequences</code><br>
-Finds plans that contain a task names 'Sequences'.</p>
+<p><code>findplan task/Sequences</code><br>
+Finds plans that contain a task named 'Sequences'.</p>
 </li>
 </ul>
 </div>
@@ -533,11 +536,11 @@ If the user wants to find plans with overlapping time range, both the starting d
 </div>
 </div>
 <div class="sect2">
-<h3 id="plans"><a class="link" href="#plans">Plans</a></h3>
+<h3 id="adding-a-plan"><a class="link" href="#adding-a-plan">Adding a plan</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Adding a plan to the existing AlgoBase</p>
+<p>Adding an empty plan into AlgoBase.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -546,29 +549,59 @@ Expected: A new plan with respective information is added and displayed on plan 
 </li>
 <li>
 <p>Test case: <code>addplan n/ByteDance d/coding test for Software engineering</code><br>
-Expected: No plan is added. Error details shown in the status message. No plans with duplicate names can be added.</p>
+Expected: No plan is added. No plans with duplicate names can be added. Error details shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>addplan n/Graph start/2019-1-1 end/2019-3-3</code><br>
+Expected: No plan is added. The date should be in <code>yyyy-MM-dd</code> format. Error details shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>addplan n/Graph end/1912-06-23</code><br>
+Expected: No plan is added. If no starting time is specified, the starting time will be <code>LocalDate#now()</code>, and the starting time should not be after end time. Error details shown in the status message.</p>
 </li>
 </ol>
 </div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-plan"><a class="link" href="#editing-a-plan">Editing a plan</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Editing a plan</p>
+<p>Changing fields of an existing plan in AlgoBase.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Test case: <code>listplan</code><br>
-<code>edit 1 d/give up start/2019-01-01 end/2020-02-02</code><br>
-   Expected: All plans are displayed in chronological order. The description and the dates of the first plan is changed.</p>
+<p>Prerequisites: List all plans using the <code>listplan</code> or <code>findplan</code> command. Multiple plans in the list.</p>
 </li>
 <li>
-<p>Test case: <code>edit 1 end/2018-02-02</code><br>
+<p>Test case: <code>editplan 1 d/give up start/2019-01-01 end/2020-02-02</code><br>
+Expected: The description and the dates of the first displayed plan is changed.</p>
+</li>
+<li>
+<p>Test case: <code>editplan 1 end/2018-02-02</code><br>
 Expected: Edit command is invalid. Error details shown in the status message. Starting date should be before or equal to end date.</p>
+</li>
+<li>
+<p>Test case: <code>editplan 1 end/2019-02-02 /f</code><br>
+Expected: The end date of the first displayed plan is changed to <code>2019-02-02</code>. Any task&#8217;s due date after <code>2019-02-02</code> will be changed to <code>2019-02-02</code>.
+..Test case: <code>editplan 1 start/2019-01-30 /f</code><br>
+Expected: The starting date of the first displayed plan is changed to <code>2019-01-30</code>. Any task&#8217;s due date before <code>2019-01-30</code> will be changed to the plan&#8217;s end date.</p>
 </li>
 </ol>
 </div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-plans"><a class="link" href="#finding-plans">Finding plans</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Finding plans</p>
+<p>Finding plans with matching fields in AlgoBase.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -579,26 +612,58 @@ Expected: The plan named 'ByteDance' is listed.</p>
 <p>Test case: <code>findplan start/2019-01-01 end/2019-12-12</code><br>
 Expected: Plans whose time range overlaps with the given time range are listed in the plan panel.</p>
 </li>
+<li>
+<p>Test case: <code>findplan start/2019-01-01</code><br>
+Expected: Invalid command. Both range start and range end should be specified. Error details shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>findplan start/2019-01-01 end/2018-01-02</code><br>
+Expected: Invalid command. Range start should not be after range end. Error details shown in the status message.</p>
+</li>
 </ol>
 </div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-plan"><a class="link" href="#deleting-a-plan">Deleting a plan</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Deleting a plan</p>
+<p>Deleting a plan from AlgoBase.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
+<p>Prerequisites: List all plans using the <code>listplan</code> or <code>findplan</code> command. Multiple plans in the list.</p>
+</li>
+<li>
 <p>Test case: <code>findplan n/bytedance</code><br>
-<code>delete 1</code><br>
+<code>deleteplan 1</code><br>
    Expected: The plan with name 'ByteDance' is deleted.</p>
 </li>
 <li>
 <p>Test case: <code>listplan</code><br>
-<code>delete 1</code><br>
+<code>deleteplan 1</code><br>
    Expected: The first plan among all plans is deleted.</p>
 </li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-plans"><a class="link" href="#listing-plans">Listing plans</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Test case: <code>delete all</code><br>
-Expected: No plan is deleted. Error message is shown. Plan index must be a valid integer.</p>
+<p>Listing all existing plans in AlgoBase.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>listplan</code><br>
+Expected: All plans in Algobase are listed in the plan display tab.</p>
 </li>
 </ol>
 </div>
@@ -607,4 +672,4 @@ Expected: No plan is deleted. Error message is shown. Plan index must be a valid
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:51:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:09:23 UTC</div></div></div></body></html>
