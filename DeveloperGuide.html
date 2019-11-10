@@ -27,7 +27,7 @@
 <li><a href="#tag-feature">3.2. Tag feature</a></li>
 <li><a href="#find-problem-feature">3.3. Find Problem Feature</a></li>
 <li><a href="#save-find-rules-feature">3.4. Save Find Rules Feature</a></li>
-<li><a href="#gui-enhancements">3.5. GUI Enhancements</a></li>
+<li><a href="#graphical-user-interface-features">3.5. Graphical User Interface Features</a></li>
 <li><a href="#command-line-tab-management">3.6. Command Line Tab Management</a></li>
 <li><a href="#training-plan-feature">3.7. Training Plan Feature</a></li>
 </ul>
@@ -283,7 +283,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <h3 id="Design-UiLogic"><a class="link" href="#Design-UiLogic">2.4. UiLogic Component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/UiLogicClassDiagram.png" alt="UiLogicClassDiagram" width="65%">
+<img src="images/UiLogicClassDiagram.png" alt="UiLogicClassDiagram" width="70%">
 </div>
 <div class="title">Figure 8. Structure of the UiLogic Component</div>
 </div>
@@ -1228,7 +1228,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 </div>
 </div>
 <div class="sect2">
-<h3 id="gui-enhancements"><a class="link" href="#gui-enhancements">3.5. GUI Enhancements</a></h3>
+<h3 id="graphical-user-interface-features"><a class="link" href="#graphical-user-interface-features">3.5. Graphical User Interface Features</a></h3>
 <div class="paragraph">
 <p>An intuitive GUI facilitates the overall user friendliness of the application.
 The user should be able to navigate around the application easily to facilitate a smooth experience using AlgoBase.
@@ -1258,7 +1258,7 @@ This, we introduced tabbing, which facilitates multitasking in AlgoBase, which i
 <p><code>UiAction</code> - Interface with instructions for executing a UI action.</p>
 </li>
 <li>
-<p><code>UiLogicManager</code> - Manages the overall UI Logic.</p>
+<p><code>UiLogicManager</code> - Implements  <code>Uilogic</code> and manages the overall UI Logic.</p>
 </li>
 <li>
 <p><code>AlgoBaseUiActionParser</code> - Parses a <code>UiActionDetails</code> object into an implementation of <code>UiAction</code>.</p>
@@ -1269,20 +1269,20 @@ This, we introduced tabbing, which facilitates multitasking in AlgoBase, which i
 </ul>
 </div>
 <div class="paragraph">
-<p>When the user makes a change in the GUI, the change is propagated from <code>Ui</code> to <code>UiLogic</code> to <code>Model</code> and to <code>Storage</code>, as represented in the diagram below.</p>
+<p>When the user makes a change in the GUI, the change is propagated from <code>Ui</code> to <code>UiLogic</code> to <code>Model</code> and to <code>Storage</code>, as represented in the diagram below:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ArchitectureSequenceDiagram1.png" alt="ArchitectureSequenceDiagram1">
+<img src="images/ArchitectureSequenceDiagram1.png" alt="ArchitectureSequenceDiagram1" width="70%">
 </div>
 <div class="title">Figure 33. An example of a high level representation of the GUI Actions.</div>
 </div>
 <div class="paragraph">
-<p>This process of how the application handles UI Actions is captured by the example in the Sequence Diagrams below.</p>
+<p>This process of how the application handles UI Actions is captured by the example in the Sequence Diagrams below:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/gui/EditProblemUiActionSequenceDiagram0.png" alt="EditProblemUiActionSequenceDiagram0">
+<img src="images/gui/EditProblemUiActionSequenceDiagram0.png" alt="EditProblemUiActionSequenceDiagram0" width="100%">
 </div>
 <div class="title">Figure 34. Interaction between <code>UI</code> and <code>UiLogic</code></div>
 </div>
@@ -1300,13 +1300,13 @@ which in turn calls the <code>execute</code> method of <code>UiLogicManager</cod
 <p>Step 4: The method call returns a <code>UiActionResult</code> object, which may optionally contain feedback for the user.</p>
 </div>
 <div class="paragraph">
-<p>The following diagram goes into more details on how the <code>UiLogic</code> handles the <code>UiActionDetails</code></p>
+<p>The following diagram goes into more details on how the <code>UiLogic</code> handles the <code>UiActionDetails</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/gui/EditProblemUiActionSequenceDiagram1.png" alt="EditProblemUiActionSequenceDiagram1">
+<img src="images/gui/EditProblemUiActionSequenceDiagram1.png" alt="EditProblemUiActionSequenceDiagram1" width="100%">
 </div>
-<div class="title">Figure 35. Interactions between classes in the <code>UiLogic</code></div>
+<div class="title">Figure 35. Interactions between classes in the <code>UiLogic</code> component.</div>
 </div>
 <div class="paragraph">
 <p>Step 1: The <code>UiLogicManager</code> passes the <code>UiActionDetails</code> object to the <code>AlgoBaseUiActionParser</code>,
@@ -1323,6 +1323,8 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="graphical-user-interface-state"><a class="link" href="#graphical-user-interface-state">3.5.2. Graphical User Interface State</a></h4>
+<div class="sect4">
+<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The state of the GUI is stored in a <code>GuiState</code> object, which is in turn stored in the <code>Model</code>. The <code>GuiState</code> object contains a <code>TabManager</code> object, which manages tab information such as the tabs that are open and the tabs that are currently selected.</p>
 </div>
@@ -1346,11 +1348,11 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 </div>
 <div class="paragraph">
 <p>In AlgoBase, the state of the GUI is also saved to Storage after every action. This is so that when the user closes the application and opens it again later, the state is stored.
-The Sequence diagram below also shows how the GuiState is saved to Storage.</p>
+The Sequence diagram below also shows how the GuiState is saved to Storage:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
-<img src="images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3">
+<img src="images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3" width="100%">
 </div>
 <div class="title">Figure 38. Sequence Diagram for storing new GUI state</div>
 </div>
@@ -1358,6 +1360,7 @@ The Sequence diagram below also shows how the GuiState is saved to Storage.</p>
 <p>The <code>StorageManager</code> saves the modified <code>GuiState</code> as a new <code>JSON</code> file.
 This is done with the help of the <code>JsonSerializableGui</code>, <code>JsonSerializableTabManager</code> and <code>JsonSerializableTab</code> classes that are wrappers for the <code>GuiState</code>, <code>TabManager</code> and <code>TabData</code> classes.
 These wrapper classes can be converted into <code>JSON</code> format for storage without any data loss.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h5>
@@ -1402,7 +1405,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <div class="sect2">
 <h3 id="command-line-tab-management"><a class="link" href="#command-line-tab-management">3.6. Command Line Tab Management</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.6.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The following commands facilitate the management of tabs:</p>
 </div>
@@ -1545,7 +1548,7 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 <p>Training plan feature allows users to create customized training plans with specific starting date and end date and that consist of selected problems in AlgoBase. Each problem is wrapped up as a task in the plan. Users can record their progress by marking problems in plans as done or undone, and they can edit, delete or search for plans.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.7.1. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The training plan mechanism is faciliated by <code>AlgoBase</code>, which keeps a list of training plans. It supports the following operations:</p>
 </div>
@@ -3902,4 +3905,4 @@ Expected: The Details tab corresponding to that tab is closed.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:55:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 07:15:44 UTC</div></div></div></body></html>

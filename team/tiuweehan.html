@@ -136,6 +136,16 @@ Hence, I decided to implement a command line version for tab management to optim
 <a href="https://github.com/AY1920S1-CS2103T-W11-1/main/pull/117">#117</a></p>
 </li>
 <li>
+<p>Contributed to forum discussions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Guide on image and caption formatting in asciidoc: <a href="https://github.com/nus-cs2103-AY1920S1/forum/issues/168">#168</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p>Reported bugs and suggestions for other teams in the class:
 <a href="https://github.com/tiuweehan/ped">Reported 18 bugs in PED</a></p>
 </li>
@@ -283,12 +293,6 @@ Display Tabs cannot be closed.
 <div class="paragraph">
 <p><strong>Step 1:</strong> Select the problem or plan you want to delete by double clicking on it.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/EditPlanUiAction0Annotated.png" alt="EditPlanUiAction0Annotated" width="70%">
-</div>
-<div class="title">Figure 3. Plan with name "Data Structures" is opened.</div>
-</div>
 <div class="paragraph">
 <p><strong>Step 2:</strong> Make changes to the problem or plan by editing the fields directly.</p>
 </div>
@@ -296,7 +300,7 @@ Display Tabs cannot be closed.
 <div class="content">
 <img src="../images/gui/EditPlanUiAction1Annotated.png" alt="EditPlanUiAction1Annotated" width="70%">
 </div>
-<div class="title">Figure 4. The name and start date of the plan are modified.</div>
+<div class="title">Figure 3. The name and start date of the plan are modified.</div>
 </div>
 <div class="paragraph">
 <p><strong>Step 3:</strong> Save changes to the problem or plan by clicking on the <em>Edit Problem</em> or <em>Edit Plan</em> button.</p>
@@ -305,7 +309,7 @@ Display Tabs cannot be closed.
 <div class="content">
 <img src="../images/gui/EditPlanUiAction2Annotated.png" alt="EditPlanUiAction2Annotated" width="70%">
 </div>
-<div class="title">Figure 5. The plan is successfully edited.</div>
+<div class="title">Figure 4. The plan is successfully edited.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -328,12 +332,6 @@ The <em>Edit Plan</em> Button cannot be clicked if there are no changes made to 
 <div class="paragraph">
 <p><strong>Step 1:</strong> Select the problem or plan you want to delete by double clicking on it.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/gui/DeleteProblemUiAction0Annotated.png" alt="DeleteProblemUiAction0Annotated" width="70%">
-</div>
-<div class="title">Figure 6. Problem with name "Sequences" is opened.</div>
-</div>
 <div class="paragraph">
 <p><strong>Step 2:</strong> Click on the red <em>Delete Problem</em> or <em>Delete Plan</em> button at the bottom right.
 To prevent accidental deletion, a warning dialog will appear to confirm if you would like to delete the item.
@@ -343,7 +341,7 @@ Click on the <em>"confirm"</em> button.</p>
 <div class="content">
 <img src="../images/gui/DeleteProblemUiAction1Annotated.png" alt="DeleteProblemUiAction1Annotated" width="70%">
 </div>
-<div class="title">Figure 7. Warning Dialog to confirm problem being deleted.</div>
+<div class="title">Figure 5. Warning Dialog to confirm problem being deleted.</div>
 </div>
 <div class="paragraph">
 <p><strong>Step 3:</strong> Click on <em>Confirm</em>.</p>
@@ -352,7 +350,7 @@ Click on the <em>"confirm"</em> button.</p>
 <div class="content">
 <img src="../images/gui/DeleteProblemUiAction2Annotated.png" alt="DeleteProblemUiAction2Annotated" width="70%">
 </div>
-<div class="title">Figure 8. The problem is successfully deleted.</div>
+<div class="title">Figure 6. The problem is successfully deleted.</div>
 </div>
 </div>
 </div>
@@ -375,9 +373,9 @@ Click on the <em>"confirm"</em> button.</p>
 <h3 id="Design-UiLogic"><a class="link" href="#Design-UiLogic">UiLogic Component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UiLogicClassDiagram.png" alt="UiLogicClassDiagram" width="65%">
+<img src="../images/UiLogicClassDiagram.png" alt="UiLogicClassDiagram" width="70%">
 </div>
-<div class="title">Figure 9. Structure of the UiLogic Component</div>
+<div class="title">Figure 7. Structure of the UiLogic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -424,7 +422,7 @@ Click on the <em>"confirm"</em> button.</p>
 <p><code>UiAction</code> - Interface with instructions for executing a UI action.</p>
 </li>
 <li>
-<p><code>UiLogicManager</code> - Manages the overall UI Logic.</p>
+<p><code>UiLogicManager</code> - Implements  <code>Uilogic</code> and manages the overall UI Logic.</p>
 </li>
 <li>
 <p><code>AlgoBaseUiActionParser</code> - Parses a <code>UiActionDetails</code> object into an implementation of <code>UiAction</code>.</p>
@@ -435,22 +433,22 @@ Click on the <em>"confirm"</em> button.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>When the user makes a change in the GUI, the change is propagated from <code>Ui</code> to <code>UiLogic</code> to <code>Model</code> and to <code>Storage</code>, as represented in the diagram below.</p>
+<p>When the user makes a change in the GUI, the change is propagated from <code>Ui</code> to <code>UiLogic</code> to <code>Model</code> and to <code>Storage</code>, as represented in the diagram below:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/ArchitectureSequenceDiagram1.png" alt="ArchitectureSequenceDiagram1">
+<img src="../images/ArchitectureSequenceDiagram1.png" alt="ArchitectureSequenceDiagram1" width="70%">
 </div>
-<div class="title">Figure 10. An example of a high level representation of the GUI Actions.</div>
+<div class="title">Figure 8. An example of a high level representation of the GUI Actions.</div>
 </div>
 <div class="paragraph">
-<p>This process of how the application handles UI Actions is captured by the example in the Sequence Diagrams below.</p>
+<p>This process of how the application handles UI Actions is captured by the example in the Sequence Diagrams below:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/gui/EditProblemUiActionSequenceDiagram0.png" alt="EditProblemUiActionSequenceDiagram0">
+<img src="../images/gui/EditProblemUiActionSequenceDiagram0.png" alt="EditProblemUiActionSequenceDiagram0" width="100%">
 </div>
-<div class="title">Figure 11. Interaction between <code>UI</code> and <code>UiLogic</code></div>
+<div class="title">Figure 9. Interaction between <code>UI</code> and <code>UiLogic</code></div>
 </div>
 <div class="paragraph">
 <p>Step 1: The user edits the <code>ProblemDetails</code> controller class through his/her actions in the GUI.</p>
@@ -466,13 +464,13 @@ which in turn calls the <code>execute</code> method of <code>UiLogicManager</cod
 <p>Step 4: The method call returns a <code>UiActionResult</code> object, which may optionally contain feedback for the user.</p>
 </div>
 <div class="paragraph">
-<p>The following diagram goes into more details on how the <code>UiLogic</code> handles the <code>UiActionDetails</code></p>
+<p>The following diagram goes into more details on how the <code>UiLogic</code> handles the <code>UiActionDetails</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/gui/EditProblemUiActionSequenceDiagram1.png" alt="EditProblemUiActionSequenceDiagram1">
+<img src="../images/gui/EditProblemUiActionSequenceDiagram1.png" alt="EditProblemUiActionSequenceDiagram1" width="100%">
 </div>
-<div class="title">Figure 12. Interactions between classes in the <code>UiLogic</code></div>
+<div class="title">Figure 10. Interactions between classes in the <code>UiLogic</code> component.</div>
 </div>
 <div class="paragraph">
 <p>Step 1: The <code>UiLogicManager</code> passes the <code>UiActionDetails</code> object to the <code>AlgoBaseUiActionParser</code>,
@@ -489,6 +487,8 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="graphical-user-interface-state"><a class="link" href="#graphical-user-interface-state">Graphical User Interface State</a></h4>
+<div class="sect4">
+<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The state of the GUI is stored in a <code>GuiState</code> object, which is in turn stored in the <code>Model</code>. The <code>GuiState</code> object contains a <code>TabManager</code> object, which manages tab information such as the tabs that are open and the tabs that are currently selected.</p>
 </div>
@@ -499,7 +499,7 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 <div class="content">
 <img src="../images/design/model/GuiPackageDiagram.png" alt="GuiPackageDiagram" width="60%">
 </div>
-<div class="title">Figure 13. Class Diagram for the <code>GuiState</code> class</div>
+<div class="title">Figure 11. Class Diagram for the <code>GuiState</code> class</div>
 </div>
 <div class="paragraph">
 <p>The following Activity diagram illustrates the series of actions that occur when the user opens a new tab:</p>
@@ -508,22 +508,23 @@ and passes it back to the <code>UiLogicManager</code>.</p>
 <div class="content">
 <img src="../images/gui/OpenTabUiActionActivityDiagram.png" alt="OpenTabUiActionActivityDiagram">
 </div>
-<div class="title">Figure 14. Activity Diagram for Opening a new Tab from the GUI</div>
+<div class="title">Figure 12. Activity Diagram for Opening a new Tab from the GUI</div>
 </div>
 <div class="paragraph">
 <p>In AlgoBase, the state of the GUI is also saved to Storage after every action. This is so that when the user closes the application and opens it again later, the state is stored.
-The Sequence diagram below also shows how the GuiState is saved to Storage.</p>
+The Sequence diagram below also shows how the GuiState is saved to Storage:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
-<img src="../images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3">
+<img src="../images/gui/SwitchTabsSequenceDiagram3.png" alt="SwitchTabsSequenceDiagram3" width="100%">
 </div>
-<div class="title">Figure 15. Sequence Diagram for storing new GUI state</div>
+<div class="title">Figure 13. Sequence Diagram for storing new GUI state</div>
 </div>
 <div class="paragraph">
 <p>The <code>StorageManager</code> saves the modified <code>GuiState</code> as a new <code>JSON</code> file.
 This is done with the help of the <code>JsonSerializableGui</code>, <code>JsonSerializableTabManager</code> and <code>JsonSerializableTab</code> classes that are wrappers for the <code>GuiState</code>, <code>TabManager</code> and <code>TabData</code> classes.
 These wrapper classes can be converted into <code>JSON</code> format for storage without any data loss.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h5>
@@ -565,5 +566,14 @@ These wrapper classes can be converted into <code>JSON</code> format for storage
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="more-contributions-to-the-user-and-developer-guide"><a class="link" href="#more-contributions-to-the-user-and-developer-guide">More contributions to the User and Developer Guide</a></h3>
+<div class="paragraph">
+<p><a href="https://ay1920s1-cs2103t-w11-1.github.io/main/UserGuide.html#introduction">UG - Introduction and Overview</a><br>
+<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/UserGuide.html#switching-tabs-code-switchtab-code">UG - Command line Tab Management</a><br>
+<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#command-line-tab-management">DG - Command Line Tab Management</a><br>
+<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#switching-tabs">DG - Tabs and GUI</a><br></p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:55:17 UTC</div></div></div></body></html>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 07:15:44 UTC</div></div></div></body></html>
