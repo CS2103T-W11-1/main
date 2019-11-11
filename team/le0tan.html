@@ -14,6 +14,11 @@
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 20 kLoC.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui">
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -256,11 +261,13 @@ Sorts the current list of problems in descending order of author names.</p>
 </li>
 <li>
 <p><code>sortprob m/difficulty ord/ascend</code>
-Sorts the current list of problems from lowest to highest difficulty.
-==== Locating problems: <code>findprob</code></p>
+Sorts the current list of problems from lowest to highest difficulty.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="locating-problems-code-findprob-code"><a class="link" href="#locating-problems-code-findprob-code">Locating problems: <code>findprob</code></a></h4>
 <div class="paragraph">
 <p>Finds problems fulfilling all provided constraints.<br>
 Format: <code>findprob [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG_KEYWORDS]</code></p>
@@ -387,7 +394,7 @@ If you want to match problems with with difficulty no lower than <code>1.5</code
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Ensure that <code>-</code> only appears once as the connective between two bounds (i.e. negative difficulty is not allowed, as mentioned before). Otherwise the command is considered invalid.
+Note that negative difficulty is not allowed, as mentioned before. Otherwise the command may be considered invalid.
 </td>
 </tr>
 </table>
@@ -407,11 +414,13 @@ Returns any problem with <code>algorithm</code> as one of its tags <strong>AND</
 </li>
 <li>
 <p><code>findprob a/Hentin Marz src/Kattis</code><br>
-Returns any problem from <code>Kattis</code> that&#8217;s authored by <code>Hentin Marz</code>.
-==== Storing a problem-finding rule: <code>addfindrule</code></p>
+Returns any problem from <code>Kattis</code> that&#8217;s authored by <code>Hentin Marz</code>.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="storing-a-problem-finding-rule-code-addfindrule-code"><a class="link" href="#storing-a-problem-finding-rule-code-addfindrule-code">Storing a problem-finding rule: <code>addfindrule</code></a></h4>
 <div class="paragraph">
 <p>Saves a problem-finding rule from provided constraints.<br>
 Format: <code>addfindrule RULE_NAME [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG_KEYWORDS]</code><br>
@@ -546,13 +555,15 @@ Alias: <code>dfr</code></p>
 <ul>
 <li>
 <p><code>deletefindrule 2</code> or <code>dfr 2</code><br>
-Deletes the second find rule in the displayed list.
-==== Viewing help : <code>help</code></p>
+Deletes the second find rule in the displayed list.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
-<p>List all possible commands or find command usage using the command word.<br>
+<p>Lists all possible commands or shows the command usage of a command word.<br>
 Format: <code>help [COMMAND_WORD]</code></p>
 </div>
 <div class="ulist">
@@ -689,7 +700,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="title">Figure 5. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
 </div>
 <div class="paragraph">
-<p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
+<p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>ProblemSearchRule</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>ProblemSearchRule</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -702,7 +713,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-a-immutable-concrete-class"><a class="link" href="#aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-a-immutable-concrete-class">Aspect: To implement <code>ProblemSearchRule</code> as a subclass of <code>FindProblemDescriptor</code> or implement it as a immutable concrete class.</a></h5>
+<h5 id="aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-an-immutable-concrete-class"><a class="link" href="#aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-an-immutable-concrete-class">Aspect: To implement <code>ProblemSearchRule</code> as a subclass of <code>FindProblemDescriptor</code> or implement it as an immutable concrete class.</a></h5>
 <div class="paragraph">
 <p>Since AlgoBase is forked from AddressBook 3, it also inherits AB3&#8217;s design choice on all data classes - they are all immutable classes with all fields being <code>final</code>. However, <code>ProblemSearchRule</code> is essentially saving the information of a command input, where the user may provide any number of predicates as the argument. We implement mutable <code>FindProblemDescriptor</code> to accommodate variable user inputs, now we have to consider whether to keep <code>ProblemSearchRule</code> immutable or not.</p>
 </div>
@@ -713,7 +724,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Drastically reduces the amount of duplicate code as <code>ProblemSearchRule</code> shares most fields with <code>FindProblemDescriptor</code></p>
+<p>Pros: Greatly reduces the amount of duplicate code as <code>ProblemSearchRule</code> shares most fields with <code>FindProblemDescriptor</code></p>
 </li>
 <li>
 <p>Cons: <code>ProblemSearchRule</code> as a data class is no longer immutable. We have to be careful not to call any setters it inherits from <code>FindProblemDescriptor</code>.</p>
@@ -729,7 +740,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <p>Pros: Provides good protection over unexpected changes to the data fields.</p>
 </li>
 <li>
-<p>Cons: Lots of repeated code.</p>
+<p>Cons: Lots of duplicated code.</p>
 </li>
 </ul>
 </div>
@@ -749,4 +760,4 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:51:53 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 06:50:34 UTC</div></div></div></body></html>

@@ -401,6 +401,9 @@ The lifeline for <code>EditProblemUiActionParser</code> should end at the destro
 </div>
 <div class="title">Figure 12. Structure of the Problem Package</div>
 </div>
+<div class="paragraph">
+<p>Note that we don&#8217;t require plans to be unique, thus unlike problems' collection class is named <code>UniqueProblemList</code>, plan&#8217;s collection is simply named <code>PlanList</code>.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/PlanPackageDiagram.png" alt="PlanPackageDiagram" width="50%">
@@ -419,6 +422,9 @@ The lifeline for <code>EditProblemUiActionParser</code> should end at the destro
 </div>
 <div class="title">Figure 15. Structure of the Task Package</div>
 </div>
+<div class="paragraph">
+<p>Both <code>problemsearchrule</code> and <code>plansearchrule</code> are packaged under <code>searchrule</code> and they share similar internal structure - note that saving find rule feature only supports saving <strong>problem</strong> search rule, thus there&#8217;s no subclass for <code>FindPlanDescriptor</code>.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/design/model/ProblemSearchRulePackageDiagram.png" alt="ProblemSearchRulePackageDiagram" width="60%">
@@ -430,6 +436,9 @@ The lifeline for <code>EditProblemUiActionParser</code> should end at the destro
 <img src="images/design/model/PlanSearchRulePackageDiagram.png" alt="PlanSearchRulePackageDiagram" width="90%">
 </div>
 <div class="title">Figure 17. Structure of the PlanSearchRule Package</div>
+</div>
+<div class="paragraph">
+<p>As we support preserving the GUI state, we included <code>GuiState</code> as a part of <strong>AlgoBase</strong>'s model.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -719,7 +728,7 @@ while executing <code>AddTaskCommand</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/tag/TagClassDiagram.png" alt="TagClassDiagram">
+<img src="images/tag/TagClassDiagram.png" alt="TagClassDiagram" width="60%">
 </div>
 <div class="title">Figure 25. Class Diagram for Tag</div>
 </div>
@@ -740,7 +749,7 @@ while executing <code>AddTaskCommand</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/tag/AddTagSequenceDiagram.png" alt="AddTagSequenceDiagram">
+<img src="images/tag/AddTagSequenceDiagram.png" alt="AddTagSequenceDiagram" width="80%">
 </div>
 <div class="title">Figure 26. Sequence Diagram for <code>AddTagCommand</code></div>
 </div>
@@ -760,7 +769,7 @@ Command executes <code>edittag</code>, causing the taglist find the tag with ind
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/tag/TagCommandActivityDiagram.png" alt="TagCommandActivityDiagram">
+<img src="images/tag/TagCommandActivityDiagram.png" alt="TagCommandActivityDiagram" width="80%">
 </div>
 <div class="title">Figure 27. Activity Diagram for tag commands</div>
 </div>
@@ -811,11 +820,11 @@ Command executes <code>edittag</code>, causing the taglist find the tag with ind
 <p>This section will describe in detail the current implementation and design considerations of the find problem feature (i.e. search feature) of AlgoBase.</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes the find command:</p>
+<p>The following activity diagram summarizes what happens when a user executes the <code>findprob</code> command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/find/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram">
+<img src="images/find/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram" width="80%">
 </div>
 <div class="title">Figure 28. Activity Diagram for the Execution of <code>findprob</code> Command</div>
 </div>
@@ -830,7 +839,7 @@ Command executes <code>edittag</code>, causing the taglist find the tag with ind
 <p>validating and parsing user input</p>
 </li>
 <li>
-<p>creating a filtering predicate from user’s search restrictions</p>
+<p>creating a filtering predicate from user’s search constraints</p>
 </li>
 <li>
 <p>update the displayed problem list with the filtering predicate.</p>
@@ -981,7 +990,7 @@ If the user provides difficulty range as one of the search restrictions, <code>F
 <div class="ulist">
 <ul>
 <li>
-<p>Each keyword will be considered as a tag, and two tags are considered equal only when their names are exactly the same.</p>
+<p>Each keyword will be considered as a tag, and two tags are considered equal only when their names are exactly the same (i.e. an exact match).</p>
 </li>
 <li>
 <p>It returns true when the provided tags are a subset of the tags of the provided problem.</p>
@@ -1022,7 +1031,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 </table>
 </div>
 <div class="paragraph">
-<p>Step 3. <code>LogicManager</code> invokes <code>execute()</code> method of the returned <code>FindCommand</code>. <code>FindCommand</code> updates the problem list with user’s search restrictions.</p>
+<p>Step 3. <code>LogicManager</code> invokes <code>execute()</code> method of the returned <code>FindCommand</code>. <code>FindCommand</code> updates the problem list with user’s search constraints.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1091,7 +1100,7 @@ If no valid search restriction is provided by the user, <code>FindCommandParser<
 <p>Pros: Easier implementation (if all predicates are always-true predicates, using <code>.and</code> method to chain them together would naturally result in an always-true predicate).</p>
 </li>
 <li>
-<p>Cons: Confusing definition of a search function.</p>
+<p>Cons: Confusing definition of the search feature.</p>
 </li>
 </ul>
 </div>
@@ -1228,7 +1237,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="title">Figure 34. High-level Sequence Diagram for the Execution of <code>addfindrule rule1 n/Sequences</code></div>
 </div>
 <div class="paragraph">
-<p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>AddFindRuleCommand</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>AddFindRuleCommand</code>.</p>
+<p>The sequence diagram below illustrates the interaction between the <code>Logic</code> and <code>Model</code> component when executing <code>AddFindRuleCommand</code>. Notice that the constructor for <code>ProblemSearchRule</code> requires <code>Name</code> to be non-null and accepts null values for other predicates. Thus if the predicate is not present in the arguments, <code>AddFindRuleCommandParser</code> will pass null to the constructor of <code>ProblemSearchRule</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1241,7 +1250,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="sect3">
 <h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-a-immutable-concrete-class"><a class="link" href="#aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-a-immutable-concrete-class">Aspect: To implement <code>ProblemSearchRule</code> as a subclass of <code>FindProblemDescriptor</code> or implement it as a immutable concrete class.</a></h5>
+<h5 id="aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-an-immutable-concrete-class"><a class="link" href="#aspect-to-implement-code-problemsearchrule-code-as-a-subclass-of-code-findproblemdescriptor-code-or-implement-it-as-an-immutable-concrete-class">Aspect: To implement <code>ProblemSearchRule</code> as a subclass of <code>FindProblemDescriptor</code> or implement it as an immutable concrete class.</a></h5>
 <div class="paragraph">
 <p>Since AlgoBase is forked from AddressBook 3, it also inherits AB3&#8217;s design choice on all data classes - they are all immutable classes with all fields being <code>final</code>. However, <code>ProblemSearchRule</code> is essentially saving the information of a command input, where the user may provide any number of predicates as the argument. We implement mutable <code>FindProblemDescriptor</code> to accommodate variable user inputs, now we have to consider whether to keep <code>ProblemSearchRule</code> immutable or not.</p>
 </div>
@@ -1252,7 +1261,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Drastically reduces the amount of duplicate code as <code>ProblemSearchRule</code> shares most fields with <code>FindProblemDescriptor</code></p>
+<p>Pros: Greatly reduces the amount of duplicate code as <code>ProblemSearchRule</code> shares most fields with <code>FindProblemDescriptor</code></p>
 </li>
 <li>
 <p>Cons: <code>ProblemSearchRule</code> as a data class is no longer immutable. We have to be careful not to call any setters it inherits from <code>FindProblemDescriptor</code>.</p>
@@ -1268,7 +1277,7 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 <p>Pros: Provides good protection over unexpected changes to the data fields.</p>
 </li>
 <li>
-<p>Cons: Lots of repeated code.</p>
+<p>Cons: Lots of duplicated code.</p>
 </li>
 </ul>
 </div>
@@ -4330,4 +4339,4 @@ Expected: The Details tab corresponding to that tab is closed.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:51:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 06:50:33 UTC</div></div></div></body></html>
