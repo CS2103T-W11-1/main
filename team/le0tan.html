@@ -14,11 +14,6 @@
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 20 kLoC.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/Ui.png" alt="Ui">
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -267,159 +262,6 @@ Sorts the current list of problems from lowest to highest difficulty.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="locating-problems-code-findprob-code"><a class="link" href="#locating-problems-code-findprob-code">Locating problems: <code>findprob</code></a></h4>
-<div class="paragraph">
-<p>Finds problems fulfilling all provided constraints.<br>
-Format: <code>findprob [n/NAME] [a/AUTHOR] [d/DESCRIPTION] [src/SOURCE] [diff/LOWER_BOUND-UPPER_BOUND] [t/TAG_KEYWORDS]</code></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/findprob_1.png" alt="findprob 1" width="70%">
-</div>
-<div class="title">Figure 1. The result of <code>findprob</code> is shown in the problems list</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When providing the search restrictions, you should ensure that keywords are non-blank and difficulty range is valid (as specified in <code>addprob</code> command). Also at least one search restriction should be provided.
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Name</p>
-<div class="ulist">
-<ul>
-<li>
-<p>is case-insensitive. e.g. <code>henz</code> will match <code>Henz</code></p>
-</li>
-<li>
-<p>is considered a match as long as one word matches. (e.g. <code>Henz Ben</code> matches both <code>Martin Henz</code> and <code>Ben Leong</code>)</p>
-</li>
-<li>
-<p>is matched word by word. e.g. <code>hello</code> will match <code>hello world</code> but not <code>helloworld</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Author requires an exact match.</p>
-</li>
-<li>
-<p>Description</p>
-<div class="ulist">
-<ul>
-<li>
-<p>is case-insensitive</p>
-</li>
-<li>
-<p>is matched word by word</p>
-</li>
-<li>
-<p>is considered as a match only when the problem&#8217;s description includes all words in the constraint. e.g. <code>wordA wordB</code> matches <code>wordC wordB wordA</code> not <code>wordD wordA</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Words are separated by empty spaces. Thus if we have a sentence "Hello, world!", we have two words <code>Hello,</code> and <code>world!</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Source requires an exact match.</p>
-</li>
-<li>
-<p>Tag</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Constraints are separated by spaces. (e.g. <code>findprob t/Recursion Brute-Force</code> will display all problems with both tag <code>Recursion</code> and <code>Brute-Force</code>)</p>
-</li>
-<li>
-<p>Constraint tag set is a subset of matching problems. (e.g. <code>findprob t/Recursion Brute-Force</code> will match problem with tags <code>Recursion</code>+<code>Brute-Force</code>+<code>Playful</code> but not <code>Recursion</code>+<code>Adhoc</code>)</p>
-</li>
-<li>
-<p>Two tags are considered equal only when their tag strings are exactly matched.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Difficulty</p>
-<div class="ulist">
-<ul>
-<li>
-<p>matches problems with <code>LOWER_BOUND &lt;= difficulty &lt;= UPPER_BOUND</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you want to match problems with exact difficulty <code>1.5</code>, please use <code>diff/1.5-1.5</code>.<br>
-If you want to match problems with with difficulty no lower than <code>1.5</code>, please use <code>diff/1.5-5.0</code> because <code>5.0</code> is the upper limit of difficulty.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Note that negative difficulty is not allowed, as mentioned before. Otherwise the command may be considered invalid.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>findprob n/Sequences</code><br>
-Returns any problem with word <code>Sequences</code> (case-insensitive) in its name.</p>
-</li>
-<li>
-<p><code>findprob t/algorithm diff/2.0-4.0</code><br>
-Returns any problem with <code>algorithm</code> as one of its tags <strong>AND</strong> with a difficulty between 2.0 and 4.0 (inclusive).</p>
-</li>
-<li>
-<p><code>findprob a/Hentin Marz src/Kattis</code><br>
-Returns any problem from <code>Kattis</code> that&#8217;s authored by <code>Hentin Marz</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
 <h4 id="storing-a-problem-finding-rule-code-addfindrule-code"><a class="link" href="#storing-a-problem-finding-rule-code-addfindrule-code">Storing a problem-finding rule: <code>addfindrule</code></a></h4>
 <div class="paragraph">
 <p>Saves a problem-finding rule from provided constraints.<br>
@@ -430,7 +272,7 @@ Alias: <code>afr</code></p>
 <div class="content">
 <img src="../images/find_rule_1.png" alt="find rule 1" width="70%">
 </div>
-<div class="title">Figure 2. Information related to find rules is displayed in the "Find Rules" panel</div>
+<div class="title">Figure 1. Information related to find rules is displayed in the "Find Rules" panel</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -566,6 +408,12 @@ Deletes the second find rule in the displayed list.</p>
 <p>Lists all possible commands or shows the command usage of a command word.<br>
 Format: <code>help [COMMAND_WORD]</code></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/help.png" alt="help" width="70%">
+</div>
+<div class="title">Figure 2. All possible (full) command words will be listed using <code>help</code> command</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -589,6 +437,12 @@ Shows command usage for <code>addprob</code> command.</p>
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="more-contributions-to-the-user-guide"><a class="link" href="#more-contributions-to-the-user-guide">More contributions to the User Guide</a></h3>
+<div class="paragraph">
+<p><a href="https://ay1920s1-cs2103t-w11-1.github.io/main/UserGuide.html#locating-problems-code-findprob-code">Locating problems</a></p>
 </div>
 </div>
 </div>
@@ -751,13 +605,56 @@ It applies a problem-finding rule by specifying the index of the displayed find 
 </div>
 </div>
 <div class="sect2">
+<h3 id="model-component"><a class="link" href="#model-component">Model component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/design/model/ModelClassDiagram.png" alt="ModelClassDiagram" width="65%">
+</div>
+<div class="title">Figure 7. Structure of the Model Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> :
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/blob/master/src/main/java/seedu/algobase/model/Model.java"><code>Model.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores the AlgoBase data.</p>
+</li>
+<li>
+<p>exposes unmodifiable <code>ObservableList&lt;Problem&gt;</code>, <code>ObservableList&lt;Tag&gt;</code>, <code>ObservableList&lt;Plan&gt;</code>, <code>ObservableList&lt;Task&gt;</code>, <code>ObservableList&lt;ProblemSearchRule&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>does not depend on any of the other three components.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We organize different data classes into packages (e.g. <code>Problem</code>), inside which we provide a collection class of that data object (e.g. <code>UniqueProblemList</code>) so that <code>AlgoBase</code> can manage these data objects without knowing the details of each data class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/design/model/ProblemPackageDiagram.png" alt="ProblemPackageDiagram" width="75%">
+</div>
+<div class="title">Figure 8. Structure of the Problem Package</div>
+</div>
+<div class="paragraph">
+<p>Remaining part: <a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#Design-Model">Design - Model</a></p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="more-contributions-to-the-developer-guide"><a class="link" href="#more-contributions-to-the-developer-guide">More contributions to the Developer Guide</a></h3>
 <div class="paragraph">
-<p><a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#Design-Model">Design - Model</a><br>
-<a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#find-problem-feature">Implementation - Find Feature</a><br>
+<p><a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#find-problem-feature">Implementation - Find Feature</a><br>
 <a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#use-cases">Use cases for find and sort</a><br>
 <a href="https://ay1920s1-cs2103t-w11-1.github.io/main/DeveloperGuide.html#non-functional-requirements">Non-functional requirements</a></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 10:34:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 10:50:38 UTC</div></div></div></body></html>
