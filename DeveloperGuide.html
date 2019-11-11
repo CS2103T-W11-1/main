@@ -3105,14 +3105,14 @@ Expected: No problem is added. The problem&#8217;s name shouldn&#8217;t be blank
 </li>
 <li>
 <p>Test case: <code>deleteprob 1</code><br>
-Expected: First problem is deleted from the list. Details of the deleted problem shown in the status message. Timestamp in the status bar is updated.</p>
+Expected: First problem is deleted from the list, details shown in the status message, timestamp in the status bar is updated. Otherwise show message will ask to force delete all related tasks in plans.</p>
 </li>
 <li>
 <p>Test case: <code>deleteprob 0</code><br>
 Expected: No problem is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>deletedeleteprob x</code> (where x is larger than the list size)<br>
+<p>Other incorrect delete commands to try: <code>delete</code>, <code>deleteprob x</code> (where x is larger than the list size)<br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -3359,9 +3359,9 @@ Expected: The description and the dates of the first displayed plan is changed.<
 Expected: Edit command is invalid. Error details shown in the status message. Starting date should be before or equal to end date.</p>
 </li>
 <li>
-<p>Test case: <code>editplan 1 end/2019-02-02 /f</code><br>
+<p>Test case: <code>editplan 1 end/2019-02-02 f/</code><br>
 Expected: The end date of the first displayed plan is changed to <code>2019-02-02</code>. Any task&#8217;s due date after <code>2019-02-02</code> will be changed to <code>2019-02-02</code>.
-..Test case: <code>editplan 1 start/2019-01-30 /f</code><br>
+..Test case: <code>editplan 1 start/2019-01-30 f/</code><br>
 Expected: The starting date of the first displayed plan is changed to <code>2019-01-30</code>. Any task&#8217;s due date before <code>2019-01-30</code> will be changed to the plan&#8217;s end date.</p>
 </li>
 </ol>
@@ -4014,4 +4014,4 @@ Expected: Error details shown in the status message, indicating corrupted data f
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:23:10 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:24:33 UTC</div></div></div></body></html>
