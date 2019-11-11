@@ -28,7 +28,7 @@ It is written in Java, and has about 20 kLoC.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=jiayushe">View on RepoSense</a>]</p>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=jiayushe">View on RepoSense</a>]</p>
 </li>
 <li>
 <p><strong>Major enhancement</strong>: Implemented task management feature</p>
@@ -46,7 +46,7 @@ It allows the user to manage the problems as tasks in separate plans for differe
 such as interviews for different companies or different rounds,
 instead of managing all problems stored in the database all together.
 By introducing the notion of tasks, user can add more details to the problems
-such as due dates and whether each problem has been solved, without modifying the original problems.
+such as due dates and whether each problem has been done, without modifying the original problems.
 This adds significant value to AlgoBase as an algorithmic problem manager.</p>
 </li>
 <li>
@@ -70,7 +70,7 @@ all corresponding tasks in all plans need to be deleted or updated simultaneousl
 which may cause additional overhead to bring back the tasks,
 a distinction between normal mode and "forced" mode is introduced to reduce such risks.
 (User command to delete problems that are used in tasks will fail gracefully,
-unless a "forced" flag is added to the end of his/her command to enable "forced" mode.)</p>
+unless a "forced" flag is added to the end of the command to enable "forced" mode.)</p>
 </li>
 <li>
 <p>A task management pane is also added in the main display
@@ -200,6 +200,9 @@ Format: <code>addtask plan/PLAN_INDEX prob/PROBLEM_INDEX [due/DUE_DATE]</code></
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>The target plan should not contain tasks with the same problem as the one identified by <code>PROBLEM_INDEX</code>.</p>
+</li>
 <li>
 <p><code>DUE_DATE</code> should be in the format of <code>yyyy-MM-dd</code></p>
 </li>
@@ -434,7 +437,8 @@ Marks the first task in the first plan as undone.</p>
 <div class="title">Figure 3. Structure of the JsonAdaptedProblemSearchRule Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/algobase/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> :
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/blob/master/src/main/java/seedu/algobase/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -466,7 +470,8 @@ objects in relational manner in <code>JSON</code> format.</p>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/algobase/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> :
+<a href="https://github.com/AY1920S1-CS2103T-W11-1/main/blob/master/src/main/java/seedu/algobase/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component consists of a <code>MainWindow</code> that is made up of parts
@@ -558,7 +563,7 @@ Given below is the class diagram of the <code>Task</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram" width="80%">
+<img src="../images/task/AddTaskCommandActivityDiagram.png" alt="AddTaskCommandActivityDiagram" width="100%">
 </div>
 <div class="title">Figure 6. Activity Diagram for the Execution of <code>AddTaskCommand</code></div>
 </div>
@@ -584,7 +589,7 @@ to execute <code>addtask plan/1 prob/1</code>:</p>
 <div class="title">Figure 7. High Level Sequence Diagram for the Execution of <code>addtask plan/1 prob/1</code></div>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram illustrates the interaction between the <code>Logic</code> and <code>Model</code> component
+<p>The following sequence diagram illustrates the interaction between the <code>Logic</code> and <code>Model</code> components
 while executing <code>AddTaskCommand</code>:</p>
 </div>
 <div class="imageblock">
@@ -715,4 +720,4 @@ while executing <code>AddTaskCommand</code>:</p>
 an immersive experiential learning environment for NUS freshman programming methodology course, CS1101S.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 08:37:37 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 10:34:46 UTC</div></div></div></body></html>
